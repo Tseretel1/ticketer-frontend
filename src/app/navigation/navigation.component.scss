@@ -1,0 +1,18 @@
+.Navbar{
+    width: 100%;
+    display: flex;
+    height: 50px;
+    background-color: black;
+    backdrop-filter: blur(20px);
+    align-items: center;
+    position: fixed;
+    z-index: 9;
+}
+.Nav_Routes{
+    gap: 20px;
+    display: flex;
+}
+.RouterLInk{
+    color: white;
+    text-decoration: none;
+}
