@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from './ticket.service';
 import { CommonModule, DatePipe } from '@angular/common';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink,RouterOutlet],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss',
   providers:[

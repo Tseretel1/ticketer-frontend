@@ -1,0 +1,34 @@
+<div class="TicketTitlle"><b class="titlestyle">{{matchingTicket.title}}</b></div>
+<div class="CenterBody">
+    <div class="Ticket_parent" *ngIf="matchingTicket">
+        <div class="Ticket">
+          <div class="data_style Title">{{ matchingTicket.title }}</div>
+          <div class="Ticket_Data">
+            <div class="data_style Description">
+              <p class="Data_Titles">Description:</p>
+              <p>{{ matchingTicket.description }}</p>
+            </div>
+            <div class="data_style Price">
+              <p class="Data_Titles">Price:</p>
+              <p>{{ matchingTicket.price }}$</p>
+            </div>
+            <div class="data_style Seat">
+              <p class="Data_Titles">Seat:</p>
+              <p>{{ matchingTicket.seat }}</p>
+            </div>
+            <div class="data_style Ticket_Count">
+              <p class="Data_Titles">Ticket Left:</p>
+              <p>{{ matchingTicket.ticketCount }}</p>
+            </div>
+            <div class="data_style Activation">
+              <p class="Data_Titles">Activation:</p>
+              <p>{{ formatDate(matchingTicket.activation_Date) }}</p>
+            </div>
+            <div class="data_style Expiration">
+              <p class="Data_Titles">Expiration:</p>
+              <p>{{ formatDate(matchingTicket.expiration_Date) }}</p>
+            </div>
+          </div>
+        </div>
+   </div>   
+</div>
