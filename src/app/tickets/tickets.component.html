@@ -1,13 +1,48 @@
-
-<div class="CenterBody">
-    <div class="Ticket_parent" *ngIf="tickets">
-        <div class="Ticket" *ngFor="let tkt of tickets; let i = index"  [routerLink]="['/FullTicket', tkt.id]"> 
-            {{i}} 
-
-            <div class="data_style Title">{{tkt.title}}</div>
-            <div class="Ticket_Data">
-            <div class="data_style Price"><p class="Data_Titles">Price:</p> <p>{{tkt.price}}$</p></div>
-           </div>
+<div class="center">
+    <div class="Tickets_Header" >
+        <div class="PopularEvent" *ngIf="MostPopularEvent">
+            <div class="Header_Content"  [routerLink]="['/FullTicket', MostPopularEvent.id]">
+              <div class="firsthalf">
+                <p class="content_style">
+                    {{MostPopularEvent.title}}
+                </p>
+              </div>
+              <div class="secondhalf">
+                <p class="content_style">
+                    {{MostPopularEvent.genre}}
+                </p>
+              </div>
+            </div>
+            <img [src]="MostPopularEvent.photo" alt="" class="MostpopularEventPhoto" [style.opacity.0]="PhotoOpacity">
+        </div>
+    </div>
+    <div class="CenterBody">
+        <div class="Ticket_parent" *ngIf="tickets">
+            <div class="Ticket" *ngFor="let tkt of tickets; let i = index"   [routerLink]="['/FullTicket', tkt.id]">
+                <div class="Ticket_genre_parent">
+                    <p class="Ticket_genre"> {{tkt.genre }}</p>
+                </div>
+                <div class="Ticket_HEader">
+                    <p class="Ticket_Title"> {{tkt.title}}</p> 
+                </div>
+                <div class="TicketImageContainer">
+                    <img [src]="tkt.photo" alt="" class="ticketimage">
+                </div>
+                <div class="publisherData">
+                    <div class="PublisherProfile">
+                        <img *ngIf="tkt.publisher.profile" [src]="tkt.publisher.profile" class="PublisherImg" alt="">
+                        <p class="PublisherName">
+                            {{tkt.publisher.name}}
+                        </p>
+                    </div>
+                    <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{tkt.price}}$</p></div>
+                </div>
+                <div class="Ticket_Data">
+                   <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ formatDate(tkt.activation_Date) }}</p></div>
+                   <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ formatHour(tkt.activation_Date) }}</p></div>
+               </div>
+            </div>
         </div>
     </div>
 </div>
+

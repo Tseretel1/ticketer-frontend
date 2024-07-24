@@ -1,0 +1,38 @@
+<div class="Modal" *ngIf="ModalVisible">
+    <div class="ModalWindow">
+        <p class="ModalMessage">{{ModalMessgae}}</p>
+    </div>
+</div>
+<div class="ticketbody">
+    <form [formGroup]="ticketForm"  (click)="AddTicket()">
+        <div class="FromAlign">
+            <label for="title">Title:</label>
+            <input id="title" formControlName="Title" type="text">
+          
+            <label for="description">Description:</label>
+            <input id="description" formControlName="Description" type="text">
+          
+            <label for="genre">Genre:</label>
+            <input id="genre" formControlName="Genre" type="text">
+          
+            <label for="price">Price:</label>
+            <input id="price" formControlName="Price" type="number">
+          
+            <label for="activationDate">Activation Date:</label>
+            <input id="activationDate" formControlName="Activation_Date" type="date">
+          
+            <label for="expirationDate">Expiration Date:</label>
+            <input id="expirationDate" formControlName="Expiration_Date" type="date">
+          
+            <label for="photo">Photo:</label>
+            <input id="photo" formControlName="Photo" type="text">
+          
+            <label for="ticketCount">Ticket Count:</label>
+            <input id="ticketCount" formControlName="TicketCount" type="number">
+            <input id="ticketCount" formControlName="PublisherID" type="number"  >
+          
+            <button type="submit">Create Ticket</button>
+        </div>
+    </form>
+      
+</div>

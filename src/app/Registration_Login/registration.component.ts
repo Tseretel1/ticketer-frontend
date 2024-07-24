@@ -8,7 +8,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { RegistrationService } from './registration.service';
-import { User } from './User_Interface';
+import { User, LoginUser } from './User_Interface';
+import { Router } from '@angular/router';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-registration',
@@ -23,11 +25,15 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   isFormSubmited: boolean = false;
   EmailValidationForm: FormGroup;
-  Registration_Response: any;
+  Server_response: any;
   dog: string = '@';
+
+
+  //constructor
   constructor(
     private formBuilder: FormBuilder,
-    private registrationService: RegistrationService
+    private registrationService: RegistrationService,
+    private router:Router,
   ) {
     this.LoginForm = this.formBuilder.group({
       Email: ['', [Validators.required, Validators.pattern('[^ @]*@[^ @]*')]],
@@ -68,7 +74,13 @@ export class RegistrationComponent implements OnInit {
   hideModal() {
     this.modalVisible = false;
   }
+  LoginOpacity: number = 100;
+  RegisterOpacity: number = 0;
+  changeWidth() {
+    this.LoginOpacity = this.LoginOpacity === 100 ? 0 : 100;
+       this.RegisterOpacity = this.RegisterOpacity === 0 ? 100 : 0;   
 
+  }
   //Toggle of registration and login
   loginVisible = true;
   registrationVisible = false;
@@ -103,7 +115,7 @@ export class RegistrationComponent implements OnInit {
         (response) => {
           if (response && typeof response === 'object') {
             console.log('Validation successful!', response);
-            this.Registration_Response = response.message;
+            this.Server_response = response.message;
             this.registrationForm.reset();
             this.RegistrationToggle();
           }
@@ -114,16 +126,16 @@ export class RegistrationComponent implements OnInit {
           console.error('Validation failed:', error);
           switch (error.status) {
             case 400:
-              this.Registration_Response = error.error.message || 'Bad Request';
+              this.Server_response = error.error.message || 'Bad Request';
               break;
             case 404:
-              this.Registration_Response = 'Resource not found';
+              this.Server_response = 'Resource not found';
               break;
             case 500:
-              this.Registration_Response = 'Internal server error';
+              this.Server_response = 'Internal server error';
               break;
             default:
-              this.Registration_Response = 'An unexpected error occurred.';
+              this.Server_response = 'An unexpected error occurred.';
           }
         }
       );
@@ -147,13 +159,15 @@ export class RegistrationComponent implements OnInit {
       const passcode: number = this.registrationForm.value.passcode;
 
       console.log('Data to be sent:', user, passcode);
-
       this.registrationService.registerUser(user, passcode).subscribe(
         (response) => {
-          this.Registration_Response = response.message;
+          this.Server_response = response.message;
           this.showModal();
-          this.registrationForm.reset;
-          this.Login_Registration_Togle();
+          this.registrationForm.reset();
+          this.EmailValidationForm_Visible = true;
+          this.RegistrationForm_visible = false;
+          this.loginVisible = true;
+          this.registrationVisible = false;
           this.RegistrationToggle();
         },
         (error) => {
@@ -161,16 +175,16 @@ export class RegistrationComponent implements OnInit {
           console.error('Registration failed:', error);
           switch (error.status) {
             case 400:
-              this.Registration_Response = error.error.message || 'Bad Request';
+              this.Server_response = error.error.message || 'Bad Request';
               break;
             case 404:
-              this.Registration_Response = 'Resource not found';
+              this.Server_response = 'Resource not found';
               break;
             case 500:
-              this.Registration_Response = 'Internal server error';
+              this.Server_response = 'Internal server error';
               break;
             default:
-              this.Registration_Response = 'An unexpected error occurred.';
+              this.Server_response = 'An unexpected error occurred.';
           }
         }
       );
@@ -182,12 +196,41 @@ export class RegistrationComponent implements OnInit {
   }
 
   //Login_________________________
+
   Login() {
-    this.registrationService
-      .onLogin(this.registrationService.onLogin)
-      .subscribe((res: any) => {
-        console.log('res', res);
-        localStorage.setItem('token', res.token);
-      });
+    const LoginUser: LoginUser = {
+      Email: this.LoginForm.value.Email,
+      Password: this.LoginForm.value.Password,
+    };
+    if(this.LoginForm.valid){
+      console.log(LoginUser);
+  
+      this.registrationService.onLogin(LoginUser).subscribe(
+        (res: any) => {
+          if (res) {
+            localStorage.setItem('token', res.message);
+            this.router.navigate(['/Tickets']);
+          }
+        },
+        (error) => {
+          this.showModal();
+          console.error('Login failed:', error);
+          switch (error.status) {
+            case 400:
+              this.Server_response = error.error.message || 'Bad Request';
+              break;
+            case 404:
+              this.Server_response = 'Email or Password is incorrect!, if you forgot your password Click "Forgot password" ';
+              break;
+            default:
+              this.Server_response =  'Server encountered some errors!, we apologise and we are working on it!';
+          }
+        }
+      );
+    }
+  }
+  
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 }

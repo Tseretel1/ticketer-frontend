@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from './User_Interface';
+import { User, LoginUser } from './User_Interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class RegistrationService {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });
-  }
+   }
 
   private RegistrationURL = 'https://localhost:7081/Registration';
 
@@ -33,7 +33,9 @@ export class RegistrationService {
     });
   }
 
-  onLogin(obj: any): Observable<any> {
-    return this.http.post('https://localhost:7081/Login', obj);
+  LoginURL = 'https://localhost:7081/Login';
+
+  onLogin(user: LoginUser): Observable<any> {
+    return this.http.post(this.LoginURL, user);
   }
 }

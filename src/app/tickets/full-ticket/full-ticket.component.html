@@ -1,34 +1,49 @@
-<div class="TicketTitlle"><b class="titlestyle">{{matchingTicket.title}}</b></div>
 <div class="CenterBody">
     <div class="Ticket_parent" *ngIf="matchingTicket">
         <div class="Ticket">
-          <div class="data_style Title">{{ matchingTicket.title }}</div>
-          <div class="Ticket_Data">
-            <div class="data_style Description">
-              <p class="Data_Titles">Description:</p>
-              <p>{{ matchingTicket.description }}</p>
-            </div>
-            <div class="data_style Price">
-              <p class="Data_Titles">Price:</p>
-              <p>{{ matchingTicket.price }}$</p>
-            </div>
-            <div class="data_style Seat">
-              <p class="Data_Titles">Seat:</p>
-              <p>{{ matchingTicket.seat }}</p>
-            </div>
-            <div class="data_style Ticket_Count">
-              <p class="Data_Titles">Ticket Left:</p>
-              <p>{{ matchingTicket.ticketCount }}</p>
-            </div>
-            <div class="data_style Activation">
-              <p class="Data_Titles">Activation:</p>
-              <p>{{ formatDate(matchingTicket.activation_Date) }}</p>
-            </div>
-            <div class="data_style Expiration">
-              <p class="Data_Titles">Expiration:</p>
-              <p>{{ formatDate(matchingTicket.expiration_Date) }}</p>
+          <div class="PublisherContainer">
+              <div class="publisher">
+                <img [src]="matchingTicket.publisher.profile" class="publisherPhoto" alt="">
+                <p class="publisherName">{{matchingTicket.publisher.name}}</p>
             </div>
           </div>
+            <div class="FirstSection">
+               <div class="Imagecontainer">
+                 <img [src]="matchingTicket.photo" alt="" class="TicketImage">
+               </div>
+            </div>
+        </div>  
+        <div class="Ticket_Information">
+            <div class="SecondSection">     
+                <div class="data_style Description">
+                    <p class="Data_Titles">Description:</p>
+                    <p class="Description">{{ matchingTicket.description }}</p>
+                </div>
+                <div class="data_style Price">
+                  <p class="Data_Titles">Price:</p>
+                  <p class="Data_Info">{{ matchingTicket.price }}$</p>
+                </div>
+                <div class="Ticket_Data">
+                 <div class="data_style Ticket_Count">
+                   <p class="Data_Titles">Ticket Left:</p>
+                   <p class="Data_Info">{{ matchingTicket.ticketCount }}</p>
+                 </div>
+                 <div class="data_style Activation">
+                   <p class="Data_Titles">Date:</p>
+                   <p class="Data_Info">{{ formatDate(matchingTicket.activation_Date) }}</p>
+                 </div>
+                 <div class="data_style Activation">
+                   <p class="Data_Titles">Start:</p>
+                   <p class="Data_Info">{{ formatHour(matchingTicket.activation_Date) }}</p>
+                 </div>
+               </div>
+           </div>
+           <button class="fancy" href="#">
+             <span class="top-key"></span>
+             <span class="text">Buy Ticket {{matchingTicket.price}}$</span>
+             <span class="bottom-key-1"></span>
+             <span class="bottom-key-2"></span>
+           </button>
         </div>
-   </div>   
+   </div> 
 </div>

@@ -1,0 +1,22 @@
+<div class="EventParent">
+    <div class="DashboardHeader">
+        <div class="DashboardRoutes">
+            <div class="Nav_Routes">
+                <div class="Navigation_routes">
+                    <a class="RouterLink" routerLinkActive="active-link" (click)="Dashboard()">Dashboard</a>
+                    <span class="underline" *ngIf="DashboardVisible"></span>
+                </div>
+                <div class="Navigation_routes">
+                     <a  class="RouterLink" routerLinkActive="active-link">Statistics</a>
+                     <span class="underline" *ngIf="StatisticVisible"></span>
+                 </div>
+                <div class="Navigation_routes">
+                    <a class="RouterLink" routerLinkActive="active-link" (click)="Profile()">Profile</a>
+                    <span class="underline" *ngIf="ProfileVisible"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-create-ticket class="create_ticket" *ngIf="DashboardVisible"></app-create-ticket>
+    <app-creator-profile class="Creator_Profile" *ngIf="ProfileVisible"></app-creator-profile>
+</div>

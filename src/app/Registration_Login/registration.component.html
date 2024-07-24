@@ -1,16 +1,18 @@
 <div class="Registration_Login">
     <div class="modal" [ngClass]="{'show-modal': modalVisible}">
-      <div class="Registration_Response">
-        <p class="Response_Style">{{ Registration_Response }}</p>
+      <div class="CloseModalParent">
+        <button (click)="hideModal()" class="close-modal-btn CloseModalbutton">X</button>
       </div>
-      <button (click)="hideModal()" class="close-modal-btn CloseModalbutton">Close</button>
+      <div class="Registration_Response">
+        <p class="Response_Style">{{ Server_response }}</p>
+      </div>
     </div>
     <!-------------------------Registration-------------------->
-    <div class="Regirstration_Style" [ngClass]="{'show-modal': registrationVisible}">
+    <div class="Regirstration_Style"[style.opacity.0]="RegisterOpacity">
       
       <div class="reg_label"><b class="reg_Font">Registration</b></div>
         <!--Email validation Form-->
-      <form action=""[formGroup]="EmailValidationForm" [ngClass]="{'show-modal': EmailValidationForm_Visible}"class="EmailForm" (ngSubmit)="EmailValidation()">      
+      <form action="" [formGroup]="EmailValidationForm" [ngClass]="{'show-modal': EmailValidationForm_Visible}" class="EmailForm" (ngSubmit)="EmailValidation()">      
         <div> 
           <input type="email" formControlName="email" placeholder="Email" class="Reg_Input">
            <div *ngIf="EmailValidationForm.controls['email']?.dirty || isFormSubmited">
@@ -69,7 +71,7 @@
       <!-------------------------Login-------------------->
 
 
-      <div class="Login_Style" id="loginform" [ngClass]="{'show-modal': loginVisible}">
+      <div class="Login_Style" id="loginform" [ngClass]="{'show-modal': loginVisible}"  [style.opacity.0]="LoginOpacity">
         <div class="reg_label"><b class="reg_Font">Login</b></div>
         <form [formGroup]="LoginForm" class="Login_Form" (ngSubmit)="Login()">
          <div class="">
@@ -96,7 +98,7 @@
 
      <!--Switch-->
      <div class="switch">
-      <p class="switchbtn" id="loginswitch" (click)="Login_Registration_Togle()">Switch to {{ToggleInnerText}}</p>
+      <p class="switchbtn" id="loginswitch" (click)="changeWidth()">Switch to {{ToggleInnerText}}</p>
     </div>
 </div>
  

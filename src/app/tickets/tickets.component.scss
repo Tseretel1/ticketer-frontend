@@ -1,34 +1,192 @@
+.center{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+//Header______________________________________
+.Tickets_Header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    max-width: 1500px;
+}
+.PopularEvent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  min-height: 400px;
+  max-height: 400px;
+  margin-top: 100px;
+  position: relative;
+  backdrop-filter: blur(20px);
+  box-shadow: 0px 10px 50px black;
+}
+.MostpopularEventPhoto{
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    transition: 0.3s all ease-in-out;
+}
+.Header_Content{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  cursor: pointer;
+}
+.content_style{
+  background: linear-gradient(270deg, rgb(0, 0, 0), gold, rgb(94, 64, 168));
+  background-size: 800% 800%;
+  -webkit-animation: AnimationName 5s ease infinite;
+  -moz-animation: AnimationName 5s ease infinite;
+  animation: AnimationName 10s ease infinite;
+  color: white;
+  font-size: 20px;
+  padding: 10px 40px 10px 40px;
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  font-family: sans-serif;
+  margin: 20px;
+  text-shadow: 0px 0px 5px black;
+  box-shadow: 0px 0px 5px black;
+  transition: 0.2s all ease-in-out;
+}
+.content_style:hover{
+  background-color: rgba(0, 0, 0, 0.242);
+}
+.firsthalf{
+  width: 60%;
+  height: 100%;
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+}
+.secondhalf{
+  width: 40%;
+  height: 100%;
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+//Ticket______________________________________
 .CenterBody{
     width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    gap: 50px;
+    max-width: 1800px;
 }
 .Ticket_parent{
-    width: 90%;
+    width: 100%;
     flex-wrap: wrap;
     display: flex;
     gap: 50px;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 .Ticket{
-    background-color: rgb(206, 202, 202);
+    background: linear-gradient(270deg, rgb(146, 191, 237), #b2b796, rgb(157, 134, 215));
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 20s ease infinite;
+    animation: AnimationName 20s ease infinite;
     color: black;
     max-width: 300px;
     min-width: 200px;
-    padding: 30px;
+    padding: 10px 20px 0px 20px;
     border-radius: 20px;
     font-family: sans-serif;
     font-weight: 600;
     box-shadow: 0px 0px 10px black;
     transition: 0.2s all ease-in-out;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%
+  }
+
+   50% {
+    background-position: 100% 50%
+  }
+
+  100% {
+    background-position: 0% 50%
+  }
 }
 .Ticket:hover{
-    background-color: white;
-    cursor: pointer;
+  scale: 1.02;
+}
+.Ticket_HEader{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.Ticket_genre_parent{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.Ticket_genre{
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.552);
+  border-radius: 5px;
+  color: white;
+  margin: 0;
+  text-shadow: 0px 0px 4px black;
+}
+.Ticket_Title{
+  font-size: 20px;
+}
+.TicketImageContainer{
+    max-width: 300px;
+    min-width: 200px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    max-height: 300px;
+    min-height: 200px;
+}
+.ticketimage{
+    width: 100%;
+    min-width: 200px;
+    border-radius: 10px;
+    transition: 0.3s all ease-in-out;
+    max-height: 300px;
 }
 .data_style{
     display: flex;
+}
+.publisherData{
+  display: flex;
+  align-items: center;
+  justify-content :space-between;
+  width: 100%;
+}
+.PublisherProfile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.PublisherImg{
+  width: 30px;
+  border-radius: 50%;
 }
