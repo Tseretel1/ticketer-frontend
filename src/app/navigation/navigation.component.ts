@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -11,26 +12,26 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent implements OnInit{
-  constructor() {
+  constructor(private authService:AuthService) {
 
   }
   ngOnInit(): void {  
-    this.getToken();
+    this.Creator();
   }
-  CreatorAuth:boolean = false;
-  Token :string| null = "";
-  getToken(): string | null {
-    this.Token =localStorage.getItem('token');
-    if(this.Token!=null){
-      console.log("token " +this.Token);
-      this.CreatorAuth= true;
-      return this.Token;
-    }
-    else{
-      this.CreatorAuth= false;
-      return null
+  Creator(){
+    const token = localStorage.getItem('token');
+    if (token && !this.authService.isTokenExpired(token)) {
+        const userRole = this.authService.getUserRole(token);
+        if (userRole == 'Creator') {
+          return true;
+        } else {
+          return false; 
+        }
+    } else {
+      return false;
     }
   }
+ 
 }
 
 

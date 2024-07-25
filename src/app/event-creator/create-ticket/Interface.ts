@@ -1,7 +1,7 @@
 export interface Ticket{
     Title :string;
     description :string;
-    activation:Date;
+    activation : Date;
     expiration :Date;
     photo:string;
     price:number;

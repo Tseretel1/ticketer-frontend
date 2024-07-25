@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ticket } from './Interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CreateTicketService {
   private TicketURL: string = "https://localhost:7081/Add%20New%20Tickets";
   ticketForm: FormGroup;
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder,private authService :AuthService) {
     this.ticketForm = this.fb.group({
       Title: ['', Validators.required],
       Description: ['', Validators.required],
@@ -18,9 +19,12 @@ export class CreateTicketService {
       Price: [0, Validators.required],
       Activation_Date: ['', Validators.required],
       Expiration_Date: ['', Validators.required],
+      ActivationTime: ['', Validators.required],
+      ExpirationTime: ['', Validators.required],
       Photo: ['', Validators.required],
       PublisherID: [0, Validators.required], 
-      TicketCount:[0]
+      TicketCount:[0],
+
     });
     
   }

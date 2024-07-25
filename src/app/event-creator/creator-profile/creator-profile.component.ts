@@ -16,21 +16,22 @@ export class CreatorProfileComponent implements OnInit{
   ngOnInit(): void {
     this.simpleProfile();
   }
+  userid :number = 0;
+  userrole :string = "";
+  TokenExpired : boolean = false;
   simpleProfile(){
     const token = localStorage.getItem('token');
     if (token) {
       const userId = this.Authservise.getUserId(token);
       const userRole = this.Authservise.getUserRole(token);
       const isTokenExpired = this.Authservise.isTokenExpired(token);
-
-      console.log('User ID:', userId);
-      console.log('User Role:', userRole);
-      console.log('Is Token Expired:', isTokenExpired);
+      this.userid = userId;
+      this.userrole = userRole;
+      this.TokenExpired=isTokenExpired;
+      this.ConsoleData();
     }
   }
-  Token :string| null = "";
-  getToken(): string | null {
-    console.log("token " +this.Token);
-    return this.Token
+  ConsoleData(){
+    console.log(this.userid, this.userrole, this.TokenExpired);
   }
 }

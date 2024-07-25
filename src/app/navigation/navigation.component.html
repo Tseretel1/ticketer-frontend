@@ -2,6 +2,6 @@
     <div class="Nav_Routes">
         <a [routerLink]="'Login'" class="RouterLink" routerLinkActive="active-link">Login</a>
         <a [routerLink]="'Tickets'" class="RouterLink" routerLinkActive="active-link">Tickets</a>
-        <a [routerLink]="'EventCreator'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="CreatorAuth">Create event</a>
+        <a [routerLink]="'EventCreator'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()">Create event</a>
     </div>
 </div>

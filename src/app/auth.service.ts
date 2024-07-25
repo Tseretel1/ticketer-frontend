@@ -3,7 +3,7 @@ import * as jwt_decode from 'jwt-decode';
  
 
 interface JwtPayload {
-  id: number;
+  ID: number;
   role: string;
   exp: number;
 }
@@ -17,11 +17,9 @@ export class AuthService {
   decodeToken(token: string): JwtPayload {
     return jwt_decode.jwtDecode(token);
   }
-
-
     getUserId(token: string): number {
     const decoded = this.decodeToken(token);
-    return decoded.id;
+    return decoded.ID;
   }
 
   getUserRole(token: string): string {

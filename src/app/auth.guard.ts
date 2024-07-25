@@ -15,3 +15,18 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
 };
+export const CreatorGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
+  const token = localStorage.getItem('token');
+
+  if (token) {
+    const userRole = authService.getUserRole(token);
+    if (userRole === 'Creator') {
+      return true;
+    } else {
+      return false; 
+    }
+  } else {
+    return false;
+  }
+};

@@ -11,6 +11,7 @@ import { RegistrationService } from './registration.service';
 import { User, LoginUser } from './User_Interface';
 import { Router } from '@angular/router';
 import { NavigationComponent } from '../navigation/navigation.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -34,6 +35,7 @@ export class RegistrationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private registrationService: RegistrationService,
     private router:Router,
+    private authService :AuthService,
   ) {
     this.LoginForm = this.formBuilder.group({
       Email: ['', [Validators.required, Validators.pattern('[^ @]*@[^ @]*')]],
@@ -74,12 +76,25 @@ export class RegistrationComponent implements OnInit {
   hideModal() {
     this.modalVisible = false;
   }
-  LoginOpacity: number = 100;
+  LoginOpacity: number = 1;
   RegisterOpacity: number = 0;
   changeWidth() {
-    this.LoginOpacity = this.LoginOpacity === 100 ? 0 : 100;
-       this.RegisterOpacity = this.RegisterOpacity === 0 ? 100 : 0;   
-
+    if(this.loginVisible ==true){
+      this.LoginOpacity = 0;
+      setTimeout(() => {
+         this.loginVisible =false;
+         this.registrationVisible = true;
+         this.RegisterOpacity = 1;
+      }, 300);
+    }
+    else{
+      this.RegisterOpacity = 0;
+      setTimeout(() => {
+         this.loginVisible =true;
+         this.registrationVisible = false;
+         this.LoginOpacity = 1;
+      }, 300);
+    }
   }
   //Toggle of registration and login
   loginVisible = true;
@@ -196,25 +211,27 @@ export class RegistrationComponent implements OnInit {
   }
 
   //Login_________________________
-
   Login() {
     const LoginUser: LoginUser = {
       Email: this.LoginForm.value.Email,
       Password: this.LoginForm.value.Password,
     };
     if(this.LoginForm.valid){
-      console.log(LoginUser);
-  
       this.registrationService.onLogin(LoginUser).subscribe(
         (res: any) => {
           if (res) {
-            localStorage.setItem('token', res.message);
+            const token = localStorage.getItem('token');
+            if (token) {
+              localStorage.setItem('token', res.message);
+            }
+            else{
+              localStorage.setItem('token', res.message);
+            }
             this.router.navigate(['/Tickets']);
           }
         },
         (error) => {
           this.showModal();
-          console.error('Login failed:', error);
           switch (error.status) {
             case 400:
               this.Server_response = error.error.message || 'Bad Request';
@@ -228,9 +245,5 @@ export class RegistrationComponent implements OnInit {
         }
       );
     }
-  }
-  
-  getToken(): string | null {
-    return localStorage.getItem('token');
   }
 }

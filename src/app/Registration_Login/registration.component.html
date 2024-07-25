@@ -8,7 +8,7 @@
       </div>
     </div>
     <!-------------------------Registration-------------------->
-    <div class="Regirstration_Style"[style.opacity.0]="RegisterOpacity">
+    <div class="Regirstration_Style"[style.opacity.0]="RegisterOpacity" *ngIf="registrationVisible">
       
       <div class="reg_label"><b class="reg_Font">Registration</b></div>
         <!--Email validation Form-->
@@ -71,7 +71,7 @@
       <!-------------------------Login-------------------->
 
 
-      <div class="Login_Style" id="loginform" [ngClass]="{'show-modal': loginVisible}"  [style.opacity.0]="LoginOpacity">
+      <div class="Login_Style" id="loginform" [style.opacity.0]="LoginOpacity" *ngIf="loginVisible">
         <div class="reg_label"><b class="reg_Font">Login</b></div>
         <form [formGroup]="LoginForm" class="Login_Form" (ngSubmit)="Login()">
          <div class="">
