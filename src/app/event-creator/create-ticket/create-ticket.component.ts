@@ -1,44 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { CreateTicketService } from './create-ticket.service';
 import { AuthService } from '../../auth.service';
-import { Ticket } from './Interface';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-create-ticket',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,DatePipe,FormsModule],
+  imports: [CommonModule, ReactiveFormsModule,DatePipe,FormsModule,DragDropModule],
   templateUrl: './create-ticket.component.html',
   styleUrls: ['./create-ticket.component.scss']
 })
 export class CreateTicketComponent implements OnInit {
-  Title = new FormControl('');
-  get TitleValue() {
-    return this.Title.value;
+  ticketForm : FormGroup;
+  constructor(private ticketservice :CreateTicketService, private authService :AuthService, private fb:FormBuilder,) {
+    this.ticketForm = this.fb.group({
+      Title:  ['', Validators.required],
+      Description: ['', Validators.required],
+      Genre: ['', Validators.required],
+      Price: [0, Validators.required],
+      Activation_Date: ['', Validators.required],
+      Expiration_Date: ['', Validators.required],
+      ActivationTime: ['', Validators.required],
+      ExpirationTime: ['', Validators.required],
+      Photo: ['', Validators.required],
+      PublisherID: [null, Validators.required], 
+      TicketCount: [null, [Validators.required, Validators.maxLength(3)]],
+    });
+    
   }
-  Price = new FormControl('');
-  get PriceValue() {
-    return this.Price.value;
+  get title(): FormControl {
+    return this.ticketForm.get('Title') as FormControl || null;
   }
-  Date = new FormControl('');
-  get DateValue() {
-    return this.Date.value;
+  get Date(): FormControl {
+    return this.ticketForm.get('Activation_Date') as FormControl || null;
   }
-  Genre = new FormControl('');
-  get GenreValue() {
-    return this.Genre.value;
+  get Genre(): FormControl {
+    return this.ticketForm.get('Genre') as FormControl || null;
   }
-  Time = new FormControl('');
-  get TimeValue() {
-    return this.Time.value;
+  get Time(): FormControl {
+    return this.ticketForm.get('ActivationTime') as FormControl || null;
   }
-  ticketForm = this.ticketservice.ticketForm;
-  constructor(private ticketservice :CreateTicketService, private authService :AuthService, ) {
+  get Description(): FormControl {
+    return this.ticketForm.get('Description') as FormControl || null;
   }
+  get Price(): FormControl {
+    return this.ticketForm.get('Price') as FormControl || null;
+  }
+
+
+
+
+
+
+
+
   ngOnInit(): void {
     this.CreatorIDFinder();
   }
-
   ModalVisible : boolean = false;
   ModalMessgae :string  = "";
 
@@ -48,13 +67,30 @@ export class CreateTicketComponent implements OnInit {
       this.ModalVisible = false;
     }, 5000);
   }
-  
+  imagePreview: string | ArrayBuffer | null = null;
+
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+
+      reader.readAsDataURL(file);
+    } else {
+      this.imagePreview = null;
+    }
+  }
+
+
+  //Ticket creation
   AddTicket(): void {
     if (this.ticketForm.valid) {
       this.ticketservice.onLogin(this.ticketForm.value).subscribe(
         (res) => {
-          console.log('Ticket sent successfully!', res);
-          console.log(this.ticketForm)
           this.ticketForm.reset();
           this.ModalMessgae = res.message;
           this.ModalShow();
@@ -79,38 +115,7 @@ export class CreateTicketComponent implements OnInit {
       Object.values(this.ticketForm.controls).forEach(control => {
         control.markAsTouched();
       });
-    }
-  }
-  onSubmit(): void {
-    if (this.ticketForm.valid) {
-      const activationDate = this.ticketForm.value.ActivationDate;
-      const activationTime = this.ticketForm.value.ActivationTime;
-      const expirationDate = this.ticketForm.value.ExpirationDate;
-      const expirationTime = this.ticketForm.value.ExpirationTime;
-  
-      const activationDateTime = new Date(`${activationDate}T${activationTime}`);
-      const expirationDateTime = new Date(`${expirationDate}T${expirationTime}`);
-  
-      const ticket : Ticket= {
-        Title: this.ticketForm.value.Title,
-        description: this.ticketForm.value.Description,
-        genre: this.ticketForm.value.Genre,
-        price: this.ticketForm.value.Price,
-        activation: activationDateTime, 
-        expiration: expirationDateTime,
-        photo: this.ticketForm.value.Photo,
-        ticketCount: this.ticketForm.value.TicketCount,
-        publisherID: this.ticketForm.value.PublisherID
-      };
-  
-      this.ticketservice.createTicket(ticket).subscribe(
-        response => {
-          console.log('Ticket created successfully!', response);
-        },
-        error => {
-          console.error('Error creating ticket', error);
-        }
-      );
+      console.log(this.ticketForm.value);
     }
   }
   

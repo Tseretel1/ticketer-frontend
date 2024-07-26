@@ -5,54 +5,61 @@
 </div>
 <div class="YourTicket">
     <b class="YourTicketText">
-        Create your own Ticket!
+        Create your own Event!
     </b>
 </div>
 <div class="ticketbody">
     <div class="firstHalf">
         
     <form [formGroup]="ticketForm"  (click)="AddTicket()">
-        <div class="FromAlign">
-            <label for="title" >Title:</label>
-            <input id="title" formControlName="Title" [formControl]="Title" type="text">
-          
-            <label for="description">Description:</label>
-            <input id="description" formControlName="Description" type="text">
-          
-            <label for="genre">Genre:</label>
-            <select id="genre" formControlName="Genre" [formControl]="Genre">
-              <option value="" disabled selected>Select a genre</option>
-              <option value="Football">Football</option>
-              <option value="Animation">Animation</option>
-              <option value="Music">Music</option>
-            </select>
-            
-          
-            <label for="price">Price:</label>
-            <input id="price" formControlName="Price" [formControl]="Price" type="number">
-          
+        <div class="FormAlign">
+            <div class="FormHeader">
+             <label for="title" >Title:</label>
+             <input id="title" [formControl]="title" type="text" class="TicketInputs" maxlength="80" placeholder="Add Title here..">
+            </div>
+            <div class="genreparent">
+                <label for="genre">Genre:</label>
+                <select id="genre" formControlName="Genre" [formControl]="Genre" class="genre"> 
+                  <option class="GenreOption" value="" disabled selected>Select a genre</option>
+                  <option class="GenreOption" value="Football">Football</option>
+                  <option class="GenreOption" value="Animation">Animation</option>
+                  <option class="GenreOption" value="Music">Music</option>
+                </select>
+            </div>
+            <div class="photoAlign">
+                <label for="photo">Photo:</label>
+                <input id="photo" formControlName="Photo" class="photoinput"  type="file" (change)="onFileChange($event)" accept="image/*">
+            </div>
+            <div class="DescriptionParent">
+                <div class="DescriptionAlingn">
+                    <label for="description">Description:</label>
+                    <input id="description" [formControl]="Description" type="text" class=" DescriptionIput"  placeholder="Add Description Here..." [maxlength]="800">    
+                </div>
+            </div>
             <div class="DateTimeGroup">
                 <div class="DateGroup">
-                    <label for="activation-date" class="Date">Activation Date:</label>
-                    <input id="activation-date" formControlName="Activation_Date" [formControl]="Date" type="date">
-                    
-                    <label for="activation-time">Activation Time:</label>
-                    <input id="activation-time" formControlName="ActivationTime" type="time" [formControl]="Time" class="Time" value="12:00">                
+                    <label for="activation-date" class="Date">Activation</label>
+                    <div class="DateAlign">
+                        <input id="activation-date" [formControl]="Date" type="date" class="dateStyle">
+                        <input id="activation-time" [formControl]="Time" class="Time" type="time" value="12:00">    
+                    </div>            
                 </div>
                 <div class="DateGroup">
-                    <label for="expiration-date">Expiration Date:</label>
-                    <input id="expiration-date" formControlName="Expiration_Date" type="date">
-                    
-                    <label for="expiration-time" class="Date">Expiration Time:</label>
-                    <input id="expiration-time"  class="Time" formControlName="ExpirationTime" type="time" value="01:00">    
+                    <label for="activation-date" class="Date">Expiration</label>
+                    <div class="DateAlign">
+                        <input id="activation-date" formControlName="Expiration_Date"type="date" class="dateStyle">
+                        <input id="activation-time" formControlName="ExpirationTime" type="time"class="Time" value="12:00">    
+                    </div>     
                 </div>            
             </div>
-            
-            <label for="photo">Photo:</label>
-            <input id="photo" formControlName="Photo" type="text">
+            <div class="DescriptionAlingn">
+                <label for="price">Price:</label>
+                <input id="price" [formControl]="Price" type="number" class="TicketInputs pricetag" placeholder="10$">                 
+            </div>
           
             <label for="ticketCount">Ticket Count:</label>
-            <input id="ticketCount" formControlName="TicketCount" type="number">
+            <input id="ticketCount" formControlName="TicketCount" type="number" class="TicketInputs"  maxlength="3"> 
+                <div class="" *ngIf=" ticketForm.controls['TicketCount'].errors?.['maxlength']">Cant enter more than 3 digits</div>
             <input id="ticketCount" formControlName="PublisherID" type="number" [value]="CreatorID" [placeholder]="CreatorID">
           
             <button type="submit">Create Ticket</button>
@@ -60,15 +67,15 @@
     </form>   
     </div>
     <div class="SecondHalf">
-        <div class="Ticket">
+        <div class="Ticket" cdkDrag>
             <div class="Ticket_genre_parent">
-                <p class="Ticket_genre">{{GenreValue}} </p>
+                <p class="Ticket_genre">{{Genre.value}} </p>
             </div>
             <div class="Ticket_HEader">
-                <p class="Ticket_Title">{{TitleValue}}</p> 
+                <p class="Ticket_Title">{{title.value}}</p> 
             </div>
             <div class="TicketImageContainer">
-                <img  alt="" class="ticketimage">
+                <img [src]="imagePreview" alt="Preview" class="ticketimage" *ngIf="imagePreview" />
             </div>
             <div class="publisherData">
                 <div class="PublisherProfile">
@@ -76,11 +83,17 @@
                     <p class="PublisherName">
                     </p>
                 </div>
-                <div class="data_style Price"><p class="Data_Titles">Price: {{PriceValue}}</p> <p>$</p></div>
+                <div class="data_style Price"><p class="Data_Titles">Price: {{Price.value}}</p> <p>$</p></div>
             </div>
             <div class="Ticket_Data">
-               <div class="data_style Price"><p class="Data_Titles">Date: {{DateValue}} </p> <p></p></div>
-               <div class="data_style Price"><p class="Data_Titles">Start : {{TimeValue}}</p> <p></p></div>
+               <div class="data_style Price"><p class="Data_Titles">Date: {{Date.value}} </p> <p></p></div>
+               <div class="data_style Price"><p class="Data_Titles">Start : {{Time.value}}</p> <p></p></div>
+           </div>
+           <div class="descriptionTicket">
+            <b>Description:</b>
+            <p class="DescriptionStyleTExt">
+                {{Description.value}}
+            </p>
            </div>
         </div>
     </div>

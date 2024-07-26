@@ -13,8 +13,25 @@ import { AuthService } from '../auth.service';
 })
 export class NavigationComponent implements OnInit{
   constructor(private authService:AuthService) {
-
   }
+  Opacity = 0;
+  NavigationVisible:Boolean = false;
+  NavbUttonVisible:boolean = true;
+  ShowNavigation(){
+    this.NavigationVisible = true;
+    setTimeout(() => {
+      this.NavbUttonVisible = false;
+      this.Opacity = 1;
+    }, 0);
+  }
+  HideNavigation(){
+    setTimeout(() => {
+      this.NavigationVisible = false;
+    }, 300);
+    this.Opacity = 0;
+    this.NavbUttonVisible = true;
+  }
+
   ngOnInit(): void {  
     this.Creator();
   }

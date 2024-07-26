@@ -18,12 +18,13 @@ export const authGuard: CanActivateFn = (route, state) => {
 export const CreatorGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const token = localStorage.getItem('token');
-
+  const router = inject(Router);
   if (token) {
     const userRole = authService.getUserRole(token);
     if (userRole === 'Creator') {
       return true;
     } else {
+      router.navigate(['/login']);
       return false; 
     }
   } else {

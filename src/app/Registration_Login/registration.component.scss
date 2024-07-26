@@ -8,16 +8,12 @@
     position: relative;
 }
 .Regirstration_Style{
-    background: linear-gradient(270deg, rgb(53, 46, 177), rgb(109, 46, 165));
-    background-size: 800% 800%;
-    -webkit-animation: AnimationName 10s ease infinite;
-    -moz-animation: AnimationName 10s ease infinite;
-    animation: AnimationName 10s ease infinite;
+  background: rgba(0,0,0,.9);
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
     gap: 40px;
     padding: 0px 50px 40px 50px;
     border-radius: 20px;
     backdrop-filter: blur(5px);
-    border: 1px solid white;
     font-family: sans-serif;
     flex-direction: column;
     max-width: 200px;    
@@ -25,34 +21,17 @@
     transition: 0.3s all ease-in-out;
 }
 .Login_Style {
-    background: linear-gradient(270deg, rgb(53, 46, 177), rgb(109, 46, 165));
-    background-size: 800% 800%;
-    -webkit-animation: AnimationName 10s ease infinite;
-    -moz-animation: AnimationName 10s ease infinite;
-    animation: AnimationName 10s ease infinite;
+    background: rgba(0,0,0,.9);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
     gap: 40px;
     padding: 0px 50px 40px 50px;
     border-radius: 20px;
     backdrop-filter: blur(5px);
-    border: 1px solid white;
     font-family: sans-serif;
     flex-direction: column;
     transition:0.3s all ease-in-out;
     position: absolute;
 }
-@keyframes AnimationName {
-    0% {
-      background-position: 0% 50%
-    }
-  
-    50% {
-      background-position: 100% 50%
-    }
-  
-    100% {
-      background-position: 0% 50%
-    }
-  }
 .Register_Form{
     display: none;
     flex-direction: column;

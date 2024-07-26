@@ -1,3 +1,6 @@
+html,body{
+    overflow-x: hidden;
+}
 .EventParent{
     width: 100%;
     height: 100%;
@@ -10,20 +13,23 @@
     height: auto;
     display: flex;
     justify-content: flex-end;
-    background-color: rgba(0, 0, 0, 0.379);
+    position: fixed;
+
 }
 .DashboardRoutes{
     width: 100%;
-    height: 100px;
     display: flex;
-    margin-top: 10px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 100px;
 }
 .Nav_Routes{
     display: flex;
-    width: 100%;
-    justify-content:start;
-    margin-top: 50px;
-    padding: 30px;
+    padding: 20px;
+    background-color: black;
+    border-radius: 10px;
+    z-index: 10;
+    margin-top: 150px;
 }
 .RouterLink{
     color: white;
@@ -35,11 +41,10 @@
 }
 .Creator_Profile{
     width: 100%;
-    height: 100%;
+
 }
 .create_ticket{
     width: 100%;
-    height: 100%;
 }
 .underline{
     width: 100%;
