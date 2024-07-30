@@ -13,7 +13,16 @@ export class TicketService {
   getTickets(): Observable<any> {
     return this.http.get('https://localhost:7081/all Tickets');
   }
+  
   PopularEvents():Observable<any>{
     return this.http.get('https://localhost:7081/Popular Events');
   }   
+
+  TicketURL = "https://localhost:7081/View Count";
+  TicketViewCount(id: number): Observable<any> {
+    return this.http.patch(this.TicketURL, id, {
+      headers: { 'Content-Type': 'application/json' },
+      responseType: 'json',
+    });
+  }
 }

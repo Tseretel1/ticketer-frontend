@@ -14,21 +14,24 @@ import { AuthService } from '../auth.service';
 export class NavigationComponent implements OnInit{
   constructor(private authService:AuthService) {
   }
-  Opacity = 0;
+  width = 0;
+  minwidth = 0;
   NavigationVisible:Boolean = false;
   NavbUttonVisible:boolean = true;
   ShowNavigation(){
     this.NavigationVisible = true;
     setTimeout(() => {
       this.NavbUttonVisible = false;
-      this.Opacity = 1;
+      this.width = 30;
+      this.minwidth = 150;
     }, 0);
   }
   HideNavigation(){
     setTimeout(() => {
       this.NavigationVisible = false;
     }, 300);
-    this.Opacity = 0;
+    this.width = 0;
+    this.minwidth = 0;
     this.NavbUttonVisible = true;
   }
 

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, } from '@angular/forms';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, formatDate } from '@angular/common';
 import { CreateTicketService } from './create-ticket.service';
 import { AuthService } from '../../auth.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { Ticket } from './Interface';
 @Component({
   selector: 'app-create-ticket',
   standalone: true,
@@ -24,8 +25,7 @@ export class CreateTicketComponent implements OnInit {
       ActivationTime: ['', Validators.required],
       ExpirationTime: ['', Validators.required],
       Photo: ['', Validators.required],
-      PublisherID: [null, Validators.required], 
-      TicketCount: [null, [Validators.required, Validators.maxLength(3)]],
+      TicketCount: [0, [Validators.required, Validators.maxLength(3)]],
     });
     
   }
@@ -48,15 +48,7 @@ export class CreateTicketComponent implements OnInit {
     return this.ticketForm.get('Price') as FormControl || null;
   }
 
-
-
-
-
-
-
-
   ngOnInit(): void {
-    this.CreatorIDFinder();
   }
   ModalVisible : boolean = false;
   ModalMessgae :string  = "";
@@ -84,29 +76,31 @@ export class CreateTicketComponent implements OnInit {
       this.imagePreview = null;
     }
   }
-
-
   //Ticket creation
-  AddTicket(): void {
+  addTicket(): void {
     if (this.ticketForm.valid) {
-      this.ticketservice.onLogin(this.ticketForm.value).subscribe(
+      const ticket: Ticket = {
+        Title: this.ticketForm.value.Title,
+        Description: this.ticketForm.value.Description,
+        Price: this.ticketForm.value.Price,
+        TicketCount: this.ticketForm.value.TicketCount,
+        Expiration_Date: this.ticketservice.combineDateAndTime(this.ticketForm.value.Expiration_Date, this.ticketForm.value.ExpirationTime),
+        Activation_Date: this.ticketservice.combineDateAndTime(this.ticketForm.value.Activation_Date, this.ticketForm.value.ActivationTime),
+        Photo: this.ticketForm.value.Photo,
+        Genre: this.ticketForm.value.Genre,
+      };
+
+      this.ticketservice.createTicket(ticket).subscribe(
         (res) => {
-          this.ticketForm.reset();
+          console.log(res);
+          console.log(ticket);
           this.ModalMessgae = res.message;
           this.ModalShow();
         },
         (error) => {
           console.error('Error creating ticket', error);
-          switch (error.status) {
-            case 400:
-              this.ModalMessgae = "Something went wrong!";
-              break;
-            case 403:
-              this.ModalMessgae = 'you Dont have Permissions to do such an activity!';
-              break;
-            default:
-              this.ModalMessgae =  'Server encountered some errors!, we apologise and we are working on it!';
-          }
+          console.log(ticket);
+          this.ModalMessgae = error.message;
           this.ModalShow();
         }
       );
@@ -115,25 +109,7 @@ export class CreateTicketComponent implements OnInit {
       Object.values(this.ticketForm.controls).forEach(control => {
         control.markAsTouched();
       });
-      console.log(this.ticketForm.value);
-    }
-  }
-  
-
-
-
-  CreatorID :number = 0;
-  CreatorIDFinder(){
-    const token = localStorage.getItem('token');
-    if (token) {
-      const userId = this.authService.getUserId(token);
-      this.CreatorID = userId;
-      console.log("asdasd"+this.CreatorID);
-      return this.CreatorID;
-    }
-    else{
-      return null;
-      console.log("asdasd");
     }
   }
 }
+

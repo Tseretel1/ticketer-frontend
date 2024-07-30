@@ -1,13 +1,13 @@
 <button (click)="ShowNavigation()" class="MenuButton" *ngIf="NavbUttonVisible">Menu</button>
-<div class="NavFull"  *ngIf="NavigationVisible" [style.opacity.0]="Opacity">
-    <div class="Navbar">
+<div class="NavFull"  *ngIf="NavigationVisible" >
+    <div class="Navbar"  [style.width.%]="width"  [style.minWidth.px]="minwidth">
         <div class="Xnav">
-          <button (click)="HideNavigation()"> X</button>  
+          <button (click)="HideNavigation()" class="Xbutton"> X</button>  
          </div>
          <div class="Nav_Routes">
-             <a [routerLink]="'Login'" class="RouterLink" routerLinkActive="active-link">Login</a>
-             <a [routerLink]="'Tickets'" class="RouterLink" routerLinkActive="active-link">Tickets</a>
-             <a [routerLink]="'EventCreator'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()">Create event</a>
+             <a [routerLink]="'Login'" class="RouterLink" routerLinkActive="active-link" (click)="HideNavigation()">Login</a>
+             <a [routerLink]="'Tickets'" class="RouterLink" routerLinkActive="active-link" (click)="HideNavigation()">Tickets</a>
+             <a [routerLink]="'EventCreator'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="HideNavigation()">Create event</a>
          </div>
      </div>
      <div class="OtherHalf"  (click)="HideNavigation()">

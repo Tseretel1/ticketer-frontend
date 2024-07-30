@@ -2,19 +2,19 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 100px;
 }
 .YourTicketText{
     color: white;
     font-size: 40px;
     font-family: sans-serif;
 }
-
-
 .ticketbody{
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-evenly;
+    margin-top: 30px;
 }
 .Modal{
     width: 100%;
@@ -35,33 +35,49 @@
     align-items: center;
     color: white;
 }
+.TicketFormm{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .FormAlign{
     display: flex;
     flex-direction: column;
     color: white;
-    background-color: rgba(0, 0, 0, 0.305);
-    backdrop-filter: blur(20px);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px black;
     gap: 20px;
+    background-color: #333;
+    box-shadow: 0px 0px 10px black;
+}
+.FirstHalf{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.SecondHalf{
+    display: flex;
+    justify-content: space-between;
+}
+.SecondHalfInputs{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
 }
 .FormHeader{
-    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 .genreparent{
     display: flex;
-    width: 100%;
     flex-direction: column;
     align-items: center;
 }
 .genre {
     width: 100%;
+    max-width: 150px;
     height: 40px;
     background-color: rgba(188, 187, 187, 0.281);
     border: none;
@@ -107,14 +123,8 @@
     align-items: center;
 }
 
-.DescriptionParent{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
 .DescriptionAlingn{
     display: flex;
-    width: 100%;
     align-items: center;
     flex-direction: column;
 }
@@ -135,19 +145,14 @@
     width: 100%;
     height: 300px;
 }
-.DateTimeGroup{
-    display: flex;
-    width: 100%;
-    gap: 10px;
-}
 .DateGroup{
     display: flex;
-    width: 100%;
     align-items: center;
     flex-direction: column;
     padding: 10px;
     border-radius: 10px;
     background-color: rgba(188, 187, 187, 0.281);
+    max-width: 200px;
 }
 .DateAlign{
     display: flex;
@@ -186,6 +191,7 @@
     border-radius: 5px;
     padding: 10px;
     width: 100%;
+    max-width: 150px;
 }
 .pricetag{
     width: 100px;
@@ -234,6 +240,12 @@
   display: flex;
   width: 100%;
   justify-content: flex-end;
+}
+.TicketCountParent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:20px
 }
 .Ticket_genre{
   padding: 5px;

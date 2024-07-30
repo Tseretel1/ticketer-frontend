@@ -1,5 +1,51 @@
 <div class="Profile_Container">
-    <div class="">
-        welcome to profile
+    <div class="ProfileSide" *ngIf="MyProfile">
+       <div class="ProfileData">
+        <div class="Profilestyle">
+            <div class="Imagecontainer">
+                <img [src]="MyProfile.profile_Picture" alt="" class="Profileimage">
+            </div>
+            <p class="Name">{{MyProfile.name}} </p>
+        </div>
+       </div>
+    </div>
+</div>
+<!-- <div *ngIf="MyTickets">
+    <div *ngFor="let tkt of MyTickets; let i = index">
+        <div class="Title">{{tkt.title}}</div>
+        <button type="submit" (click)="DeleteSubmit(tkt.id)">Delete Ticket</button>
+    </div>
+</div> -->
+<div class="TicketHeader">
+    <p class="ticketTitle">My Tickets</p>
+</div>
+
+<div class="Ticket_parent" *ngIf="MyTickets">
+    <div class="Ticket" *ngFor="let tkt of MyTickets; let i = index">
+        <div class="Ticket_genre_parent" >
+            <p class="Ticket_genre"> {{tkt.genre }}</p>
+        </div>
+        <div class="Ticket_HEader">
+            <p class="Ticket_Title"> {{tkt.title}}</p> 
+        </div>
+        <div class="TicketImageContainer">
+            <img [src]="tkt.photo" alt="" class="ticketimage">
+        </div>
+        <div class="publisherData">
+            <div class="PublisherProfile">
+                <img *ngIf="tkt.publisher.profile" [src]="tkt.publisher.profile" class="PublisherImg" alt="">
+                <p class="PublisherName">
+                    {{tkt.publisher.name}}
+                </p>
+            </div>
+            <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{tkt.price}}$</p></div>
+        </div>
+        <div class="Ticket_Data">
+           <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ (tkt.activation_Date) }}</p></div>
+           <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ (tkt.activation_Date) }}</p></div>
+       </div>
+       <div class="ViewCount">
+          <p class="view">Views {{tkt.viewCount}}</p>
+       </div>
     </div>
 </div>

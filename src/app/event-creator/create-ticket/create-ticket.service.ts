@@ -1,16 +1,27 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ticket } from './Interface';
-import { AbstractControl, ControlContainer, FormBuilder, FormControl, FormGroup, MaxLengthValidator, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../../auth.service';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateTicketService {
-  private TicketURL: string = "https://localhost:7081/Add%20New%20Tickets";
-  constructor(private http: HttpClient,private authService :AuthService) {    
+  private TicketURL: string = "https://localhost:7081/Add New Tickets Creator";
+
+  constructor(private http: HttpClient, private authService: AuthService, private datePipe: DatePipe) { }
+
+  formatDateToBackend(date: Date): string {
+    const datePart = this.datePipe.transform(date, 'yyyy-MM-dd');
+    const timePart = this.datePipe.transform(date, 'HH:mm:ss.SSS');
+    return `${datePart}T${timePart}`;
+  }
+
+  combineDateAndTime(date: string, time: string): string {
+    const combinedDateTime = `${date}T${time}:00.000`;
+    return this.formatDateToBackend(new Date(combinedDateTime));
   }
 
   createTicket(ticket: Ticket): Observable<any> {
@@ -18,8 +29,5 @@ export class CreateTicketService {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });
-  }
-  onLogin(user: Ticket): Observable<any> {
-    return this.http.post(this.TicketURL, user);
   }
 }

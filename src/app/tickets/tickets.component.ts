@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { TicketService } from './ticket.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
@@ -17,7 +17,11 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 })
 export class TicketsComponent implements OnInit, OnDestroy{
  
-  public tickets: any[] = [];
+  tickets: any[] = [];
+  page: number = 0;
+  size: number = 10;
+  loading: boolean = false;
+
   Popularevent: any[] = [];
   MostPopularEvent: any = null;
   private intervalId: any;
@@ -26,24 +30,42 @@ export class TicketsComponent implements OnInit, OnDestroy{
   constructor(
     private ticketService: TicketService,
     private datePipe: DatePipe ,
-    private FormBulilder :FormBuilder,
   ) {
+    this.datePipe = new DatePipe('en-US');
   }
 
   ngOnInit(): void {
     this.fetchPopularEvents();
-    this.Tickets();
+    this.loadTickets();
   }
-Tickets(){
-  this.ticketService.getTickets().subscribe(
-    (resp: any) => {
-      this.tickets = resp;
-    },
-    (error) => {
-      console.error('Error fetching ticket data:', error);
-    }
-  );
-}
+  TicketViewCount(id:number){
+    console.log("Ticket id " + id);
+    this.ticketService.TicketViewCount(id).subscribe(
+      (resp:any)=>{
+        console.log(resp);
+      },
+      (error:any)=>{
+
+      }
+    )
+  }
+
+
+  
+
+  loadTickets() {
+    this.loading = true;
+    this.ticketService.getTickets().subscribe(
+      (resp: any) => {
+        this.tickets = resp;
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error fetching ticket data:', error);
+        this.loading = false;
+      }
+    );
+  }
 
 fetchPopularEvents(): void {
   this.eventsSubscription = this.ticketService.PopularEvents().subscribe(
@@ -95,6 +117,7 @@ MonthNumber : number = 0;
 MonthName: string = " ";
 DayNumber: number = 0;
 Hour : string = "" ;
+
   formatDate(date: string | null): string {
     if (!date) {
       return ''; 
@@ -110,13 +133,12 @@ Hour : string = "" ;
   }
   formatHour(date: string | null): string {
     if (!date) {
-      return ''; 
+      return '';
     }
-    const Hourr = this.datePipe.transform(date,'h:mm')
-    if(Hourr){
-       this.Hour = Hourr;   
-    }
-
-    return  this.Hour;
+    const parsedDate = new Date(date);
+    const formattedHour = this.datePipe.transform(parsedDate, 'h:mm a'); 
+    return formattedHour || '';
   }
+  
 }
+

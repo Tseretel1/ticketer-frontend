@@ -99,11 +99,7 @@
     margin-bottom: 30px;
 }
 .Ticket{
-    background: linear-gradient(270deg, rgb(146, 191, 237), #b2b796, rgb(157, 134, 215));
-    background-size: 800% 800%;
-    -webkit-animation: AnimationName 20s ease infinite;
-    -moz-animation: AnimationName 20s ease infinite;
-    animation: AnimationName 20s ease infinite;
+  background-color: wheat;
     color: black;
     max-width: 300px;
     min-width: 200px;
@@ -117,19 +113,6 @@
     display: flex;
     flex-direction: column;
     height: auto;
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 50%
-  }
-
-   50% {
-    background-position: 100% 50%
-  }
-
-  100% {
-    background-position: 0% 50%
-  }
 }
 .Ticket:hover{
   scale: 1.02;

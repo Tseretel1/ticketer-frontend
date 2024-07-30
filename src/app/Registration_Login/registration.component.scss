@@ -8,7 +8,7 @@
     position: relative;
 }
 .Regirstration_Style{
-  background: rgba(0,0,0,.9);
+  background: rgb(40 38 38 / 90%);
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
     gap: 40px;
     padding: 0px 50px 40px 50px;
@@ -21,7 +21,7 @@
     transition: 0.3s all ease-in-out;
 }
 .Login_Style {
-    background: rgba(0,0,0,.9);
+    background: rgb(40 38 38 / 90%);
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     gap: 40px;
     padding: 0px 50px 40px 50px;
@@ -164,7 +164,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    height: 100%;
+    height: 70%;
 }
 .switchbtn{
     color: white;

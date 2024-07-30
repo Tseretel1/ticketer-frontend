@@ -1,11 +1,10 @@
 export interface Ticket{
     Title :string;
-    description :string;
-    activation : Date;
-    expiration :Date;
-    photo:string;
-    price:number;
-    ticketCount:number;
-    genre:string;
-    publisherID:number;
+    Description :string;
+    Genre:string;
+    Price:number;
+    Activation_Date : string;
+    Expiration_Date :string;
+    Photo:string;
+    TicketCount:number;
 }

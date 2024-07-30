@@ -15,9 +15,9 @@ import { CreatorProfileComponent } from "./creator-profile/creator-profile.compo
   styleUrl: './event-creator.component.scss'
 })
 export class EventCreatorComponent{
-  DashboardVisible : boolean = true;
+  DashboardVisible : boolean = false;
   StatisticVisible : boolean = false;
-  ProfileVisible : boolean = false;
+  ProfileVisible : boolean = true;
   Dashboard(){
     this.DashboardVisible= true;
     this.StatisticVisible = false;

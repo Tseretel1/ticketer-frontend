@@ -18,8 +18,8 @@
     </div>
     <div class="CenterBody">
         <div class="Ticket_parent" *ngIf="tickets">
-            <div class="Ticket" *ngFor="let tkt of tickets; let i = index"   [routerLink]="['/FullTicket', tkt.id]">
-                <div class="Ticket_genre_parent">
+            <div class="Ticket" *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)">
+                <div class="Ticket_genre_parent" >
                     <p class="Ticket_genre"> {{tkt.genre }}</p>
                 </div>
                 <div class="Ticket_HEader">
@@ -41,8 +41,14 @@
                    <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ formatDate(tkt.activation_Date) }}</p></div>
                    <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ formatHour(tkt.activation_Date) }}</p></div>
                </div>
+               <div class="ViewCount">
+                  <p class="view">Views {{tkt.viewCount}}</p>
+               </div>
             </div>
         </div>
+        <div *ngIf="loading" class="loader">
+            Loading...
+        </div>   
     </div>
 </div>
 
