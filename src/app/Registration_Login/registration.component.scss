@@ -186,3 +186,8 @@
 .SubmitBUttons:hover{
     background-color: rgba(0, 0, 0, 0.499);
 }
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

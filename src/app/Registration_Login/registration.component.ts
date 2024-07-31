@@ -60,7 +60,6 @@ export class RegistrationComponent implements OnInit {
         Validators.minLength(2),
       ]),
       password: new FormControl('', [Validators.required]),
-      Phone: new FormControl('', [Validators.required]),
     });
   }
 
@@ -96,6 +95,7 @@ export class RegistrationComponent implements OnInit {
       }, 300);
     }
   }
+  
   //Toggle of registration and login
   loginVisible = true;
   registrationVisible = false;

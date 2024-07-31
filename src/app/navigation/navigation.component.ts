@@ -51,6 +51,19 @@ export class NavigationComponent implements OnInit{
       return false;
     }
   }
+  User(){
+    const token = localStorage.getItem('token');
+    if (token && !this.authService.isTokenExpired(token)) {
+        const userRole = this.authService.getUserRole(token);
+        if (userRole == 'User') {
+          return true;
+        } else {
+          return false; 
+        }
+    } else {
+      return false;
+    }
+  }
  
 }
 

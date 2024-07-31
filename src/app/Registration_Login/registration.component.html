@@ -54,14 +54,6 @@
               <span *ngIf=" registrationForm.controls['password'].errors?.['required']"class="validationMessage">password is required</span>
             </div>         
         </div>
-         
-        <div class="">
-            <input type="number" formControlName="Phone" placeholder="+995" class="Reg_Input">
-            <div *ngIf="registrationForm.controls['Phone'].dirty || isFormSubmited">
-              <span *ngIf=" registrationForm.controls['Phone'].errors?.['required']" class="validationMessage">phone is required</span>
-              <span *ngIf=" registrationForm.controls['Phone'].errors?.['']" class="validationMessage">Phone Number is incorrect</span>
-            </div>         
-        </div> 
           <button type="submit" class="SubmitButton" (click)="submitRegistration()" [disabled]="!registrationForm.valid">Finish Registration!</button>
 
         </form>
@@ -79,8 +71,7 @@
             <div *ngIf="LoginForm.get('Email')?.touched || isFormSubmited">
               <span *ngIf="LoginForm.get('Email')?.errors?.['required']" class="validationMessage">Email is required</span>
               <span *ngIf="LoginForm.get('Email')?.errors?.['pattern']" class="validationMessage">You Forgot {{dog}}</span>
-            </div>
-                
+            </div> 
          </div>
 
           <div class="">

@@ -1,0 +1,121 @@
+.CenterBody{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.Header{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.HeaderText{
+    color:white;
+    font-size: 30px;
+}
+.MOdalParent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 500;
+}
+.modal {
+    background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 20s ease infinite;
+    animation: AnimationName 20s ease infinite;
+    padding: 50px 50px 50px 50px ;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    flex-direction: column;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    transition: 0.3s all ease-in-out;
+    box-shadow: 0px 0px 10px black;
+  }
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 50%
+    }
+  
+     50% {
+      background-position: 100% 50%
+    }
+  
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  .Registration_Response{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 280px;
+    text-wrap: wrap;
+    word-wrap: break-word;
+    max-height: 100%;
+  }
+  .Response_Style{
+    color: white;
+    font-family: sans-serif;
+    text-shadow: 0px 0px 2px black;
+    letter-spacing: 1x;
+}
+
+
+
+
+
+.CreatorForm{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    padding: 50px;
+    background-color: rgba(40, 38, 38, 0.9);
+}
+.photoContainer{
+    max-width: 250px;
+    max-height: 250px;
+    overflow: hidden;
+}
+.PhotoPreview{
+    max-width: 250px;
+    max-height: 250px;
+}
+.Label{
+    color: white;
+    font-family: sans-serif;
+}
+.InputColumns{
+    display: flex;
+    flex-direction: column;
+}
+.CreatorInputs{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-radius: 0px;
+    border-bottom: 1px solid white;
+    color: white;
+    padding: 10px 0px 10px 0px;
+}
+.validationMessage{
+    color: red;
+    position: absolute;
+    font-size: 13px;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

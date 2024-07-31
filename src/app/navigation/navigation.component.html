@@ -8,6 +8,9 @@
              <a [routerLink]="'Login'" class="RouterLink" routerLinkActive="active-link" (click)="HideNavigation()">Login</a>
              <a [routerLink]="'Tickets'" class="RouterLink" routerLinkActive="active-link" (click)="HideNavigation()">Tickets</a>
              <a [routerLink]="'EventCreator'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="HideNavigation()">Create event</a>
+             <a [routerLink]="'CreatorRegistration'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="User()" (click)="HideNavigation()">Become Creator</a>
+
+
          </div>
      </div>
      <div class="OtherHalf"  (click)="HideNavigation()">

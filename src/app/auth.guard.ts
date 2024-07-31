@@ -31,3 +31,20 @@ export const CreatorGuard: CanActivateFn = (route, state) => {
     return false;
   }
 };
+
+export const UserGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
+  const token = localStorage.getItem('token');
+  const router = inject(Router);
+  if (token) {
+    const userRole = authService.getUserRole(token);
+    if (userRole === 'User') {
+      return true;
+    } else {
+      router.navigate(['/login']);
+      return false; 
+    }
+  } else {
+    return false;
+  }
+};

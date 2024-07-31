@@ -1,0 +1,46 @@
+<div class="MOdalParent" *ngIf="modalVisible">
+    <div class="modal" *ngIf="modalVisible">
+        <div class="CloseModalParent">
+          <button (click)="hideModal()" class="close-modal-btn CloseModalbutton">X</button>
+        </div>
+        <div class="Registration_Response">
+          <p class="Response_Style">{{ Server_response }}</p>
+        </div>
+      </div>
+</div>
+<div class="CenterBody">
+    <header class="Header">
+        <p class="HeaderText">Become Creator and plan your events!</p>
+    </header>
+    <form [formGroup]="RegForm" class="CreatorForm" (submit)="RegisterCreator()">
+    
+        <div class="InputColumns">
+            <label for="" class="Label">Personal ID</label>
+            <input type="number" formControlName = "PersonalID" placeholder="1400102...." class="CreatorInputs">
+            <div *ngIf="RegForm.controls['PersonalID'].dirty" class="validparents">
+                <span *ngIf=" RegForm.controls['PersonalID'].errors?.['required']"class="validationMessage">Personal ID is required</span>
+                <span *ngIf="RegForm.controls['PersonalID']?.errors?.['minlength']" class="validationMessage">Please enter more than 2 characters</span>
+            </div> 
+        </div>
+
+        <div class="InputColumns">       
+           <label for="" class="Label">Phone Number</label>
+           <input type="text" formControlName ="PhoneNumber" placeholder="595..." class="CreatorInputs">
+           <div *ngIf="RegForm.controls['PhoneNumber'].dirty" class="validparents">
+               <span *ngIf=" RegForm.controls['PhoneNumber'].errors?.['required']"class="validationMessage">Phone number is required</span>
+               <span *ngIf="RegForm.controls['PhoneNumber']?.errors?.['minlength']" class="validationMessage">ID is invalid enter 12 Characters</span>
+           </div>  
+        </div>
+        <div class="InputColumns">        
+           <label for="" class="Label">Personal card Photo</label>
+           <input type="file" accept="image*" formControlName="IdCardPhoto">
+             <div *ngIf="RegForm.controls['IdCardPhoto'].dirty" class="validparents">
+                 <span *ngIf=" RegForm.controls['IdCardPhoto'].errors?.['required']"class="validationMessage">Card Photo is required</span>
+             </div>  
+           <div class="photoContainer">
+               <img src="" class="PhotoPreview" alt="">
+           </div>   
+        </div>
+        <button type="Submit" [disabled]="">Submit</button>
+    </form>
+</div>

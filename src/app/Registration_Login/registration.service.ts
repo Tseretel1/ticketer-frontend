@@ -6,6 +6,7 @@ import { User, LoginUser } from './User_Interface';
 @Injectable({
   providedIn: 'root',
 })
+
 export class RegistrationService {
   private ValidationURL = 'https://localhost:7081/Registration Validation';
 
@@ -36,7 +37,6 @@ export class RegistrationService {
   LoginURL = 'https://localhost:7081/Login';
 
   onLogin(user: LoginUser): Observable<any> {
-    return this.http.post(this.LoginURL, user);
-    
+    return this.http.post(this.LoginURL, user);    
   }
 }
