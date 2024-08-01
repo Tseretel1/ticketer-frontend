@@ -9,11 +9,15 @@
       </div>
 </div>
 <div class="CenterBody">
+    <div class="RegisteredDiv"  *ngIf="CreatorORNot">
+        <pre class="AlreadyRegistered">You are already registered!
+ wait for admins response
+        </pre>
+    </div>
     <header class="Header">
-        <p class="HeaderText">Become Creator and plan your events!</p>
+        <p class="HeaderText"  *ngIf="CreatorORNot == false">Become Creator and plan your events!</p>
     </header>
-    <form [formGroup]="RegForm" class="CreatorForm" (submit)="RegisterCreator()">
-    
+    <form [formGroup]="RegForm" class="CreatorForm" (submit)="RegisterCreator()"  *ngIf="CreatorORNot == false">   
         <div class="InputColumns">
             <label for="" class="Label">Personal ID</label>
             <input type="number" formControlName = "PersonalID" placeholder="1400102...." class="CreatorInputs">

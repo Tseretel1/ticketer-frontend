@@ -1,3 +1,13 @@
+<div *ngIf="loading" class="loader">
+    <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+        <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+        <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+        <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+    </svg>
+</div>  
+
+
 <div class="center">
     <div class="Tickets_Header" >
         <div class="PopularEvent" *ngIf="MostPopularEvent">
@@ -20,13 +30,24 @@
         <div class="Ticket_parent" *ngIf="tickets">
             <div class="Ticket" *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)">
                 <div class="Ticket_genre_parent" >
+                    <p class="Ticket_Title"> {{tkt.title}}</p> 
                     <p class="Ticket_genre"> {{tkt.genre }}</p>
                 </div>
-                <div class="Ticket_HEader">
-                    <p class="Ticket_Title"> {{tkt.title}}</p> 
-                </div>
-                <div class="TicketImageContainer">
-                    <img [src]="tkt.photo" alt="" class="ticketimage">
+                <div class="TicketFlex">
+                    <div class="leftSide">
+                        <div class="TicketImageContainer">
+                            <img [src]="tkt.photo" alt="" class="ticketimage">
+                        </div>
+                    </div>
+                    <div class="RightSide">
+                        <div class="Ticket_Data">
+                            <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ formatDate(tkt.activation_Date) }}</p></div>
+                            <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ formatHour(tkt.activation_Date) }}</p></div>
+                        </div>
+                        <div class="ViewCount">
+                           <p class="view">Views {{tkt.viewCount}}</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="publisherData">
                     <div class="PublisherProfile">
@@ -37,18 +58,8 @@
                     </div>
                     <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{tkt.price}}$</p></div>
                 </div>
-                <div class="Ticket_Data">
-                   <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ formatDate(tkt.activation_Date) }}</p></div>
-                   <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ formatHour(tkt.activation_Date) }}</p></div>
-               </div>
-               <div class="ViewCount">
-                  <p class="view">Views {{tkt.viewCount}}</p>
-               </div>
             </div>
-        </div>
-        <div *ngIf="loading" class="loader">
-            Loading...
-        </div>   
+        </div> 
     </div>
 </div>
 

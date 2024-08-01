@@ -98,11 +98,6 @@ $background :#1e3d59;
     cursor: pointer;
 }
 .Ticket_Information{
-    background: linear-gradient(270deg, rgb(224, 224, 140),lightskyblue,rgb(233, 238, 144));
-    background-size: 800% 800%;
-    -webkit-animation: AnimationName 10s ease infinite;
-    -moz-animation: AnimationName 10s ease infinite;
-    animation: AnimationName 10s ease infinite;
     padding: 50px 0px 50px 0px;
     width: 80%;
     display:flex;
@@ -110,20 +105,8 @@ $background :#1e3d59;
     align-items: center;
     border-radius: 5px;
     box-shadow: 0px 0px 10px black;
+    background-color: black;
 }
-@keyframes AnimationName {
-    0% {
-      background-position: 0% 50%
-    }
-  
-    50% {
-      background-position: 100% 50%
-    }
-  
-    100% {
-      background-position: 0% 50%
-    }
-  }
 //buy Button
 .fancy {
     background-color: transparent;

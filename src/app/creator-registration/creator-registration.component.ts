@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MinLengthValidator, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Creator, CreatorService } from './service.service';
 
@@ -10,12 +10,12 @@ import { Creator, CreatorService } from './service.service';
   templateUrl: './creator-registration.component.html',
   styleUrl: './creator-registration.component.scss'
 })
-export class CreatorRegistrationComponent {
+export class CreatorRegistrationComponent implements OnInit{
   RegForm:FormGroup;
   constructor(private fb :FormBuilder, private service :CreatorService,private el: ElementRef){
     this.RegForm = this.fb.group(
       {
-        PersonalID: new FormControl('', [Validators.required, Validators.minLength(12)]),
+        PersonalID: new FormControl('', [Validators.required, Validators.minLength(11)]),
         PhoneNumber: new FormControl('', [
           Validators.required,
           Validators.minLength(9),
@@ -24,6 +24,29 @@ export class CreatorRegistrationComponent {
       }
     )
   }
+  ngOnInit(): void {
+    this.CheckCreator();
+  }
+
+
+  CreatorORNot:boolean = false;
+  CheckCreator() {
+    this.service.CheckCreatorService().subscribe(
+      (resp: any) => {
+        this.CreatorORNot = resp.success;
+      },
+      (error) => {
+        this.CreatorORNot = false; 
+      }
+    );
+  }
+
+
+
+
+
+
+
   Server_response :string = "";
   modalVisible = false;
   showModal() {
@@ -35,6 +58,8 @@ export class CreatorRegistrationComponent {
   hideModal() {
     this.modalVisible = false;
   }
+
+
 
   RegisterCreator(){
     if(this.RegForm.valid){
@@ -51,6 +76,8 @@ export class CreatorRegistrationComponent {
           console.log(resp.message);
           this.showModal();
           this.Server_response = (resp.message);
+
+
         },
         (error)=>{
           console.log(error.message);
@@ -60,5 +87,4 @@ export class CreatorRegistrationComponent {
       )
     }
   }
-
 }

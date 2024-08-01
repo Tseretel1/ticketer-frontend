@@ -18,6 +18,15 @@ export class CreatorService {
       responseType: 'json',
     });
    }
+
+   private CheckURL = "https://localhost:7081/CheckCreator";
+   CheckCreatorService(): Observable<any> {
+    const CheckURL = 'https://localhost:7081/CheckCreator';
+    return this.http.get(CheckURL, {
+      headers: { 'Content-Type': 'application/json' },
+      responseType: 'json'
+    });
+  }
 }
 export interface Creator{
   PersonalID :number,
