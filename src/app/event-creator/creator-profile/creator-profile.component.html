@@ -23,13 +23,24 @@
 <div class="Ticket_parent" *ngIf="MyTickets">
     <div class="Ticket" *ngFor="let tkt of MyTickets; let i = index">
         <div class="Ticket_genre_parent" >
+            <p class="Ticket_Title"> {{tkt.title}}</p> 
             <p class="Ticket_genre"> {{tkt.genre }}</p>
         </div>
-        <div class="Ticket_HEader">
-            <p class="Ticket_Title"> {{tkt.title}}</p> 
-        </div>
-        <div class="TicketImageContainer">
-            <img [src]="tkt.photo" alt="" class="ticketimage">
+        <div class="TicketFlex">
+            <div class="leftSide">
+                <div class="TicketImageContainer">
+                    <img [src]="tkt.photo" alt="" class="ticketimage">
+                </div>
+            </div>
+            <div class="RightSide">
+                <div class="Ticket_Data">
+                    <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ (tkt.activation_Date) }}</p></div>
+                    <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ (tkt.activation_Date) }}</p></div>
+                </div>
+                <div class="ViewCount">
+                   <p class="view">Views {{tkt.viewCount}}</p>
+                </div>
+            </div>
         </div>
         <div class="publisherData">
             <div class="PublisherProfile">
@@ -40,12 +51,5 @@
             </div>
             <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{tkt.price}}$</p></div>
         </div>
-        <div class="Ticket_Data">
-           <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ (tkt.activation_Date) }}</p></div>
-           <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ (tkt.activation_Date) }}</p></div>
-       </div>
-       <div class="ViewCount">
-          <p class="view">Views {{tkt.viewCount}}</p>
-       </div>
     </div>
-</div>
+</div> 

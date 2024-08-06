@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UrlHandlingStrategy } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,7 +12,9 @@ export class CreatorService {
   {
 
   }
-  private CreatorURL = "https://localhost:7081/Register As creator";
+  private URL = "https://localhost:7081/api/Creator/"
+  
+  private CreatorURL = this.URL + "register-as-creator";
   CreatorRegistration(creatordata:Creator): Observable<any> {
     return this.http.post(this.CreatorURL, creatordata, {
       headers: { 'Content-Type': 'application/json' },
@@ -19,10 +22,9 @@ export class CreatorService {
     });
    }
 
-   private CheckURL = "https://localhost:7081/CheckCreator";
+   private CheckURL =this.URL + "check-creator";
    CheckCreatorService(): Observable<any> {
-    const CheckURL = 'https://localhost:7081/CheckCreator';
-    return this.http.get(CheckURL, {
+    return this.http.get(this.CheckURL, {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json'
     });

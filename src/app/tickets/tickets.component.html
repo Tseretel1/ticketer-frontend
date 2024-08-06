@@ -28,7 +28,7 @@
     </div>
     <div class="CenterBody">
         <div class="Ticket_parent" *ngIf="tickets">
-            <div class="Ticket" *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)">
+            <div class="Ticket" *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
                 <div class="Ticket_genre_parent" >
                     <p class="Ticket_Title"> {{tkt.title}}</p> 
                     <p class="Ticket_genre"> {{tkt.genre }}</p>

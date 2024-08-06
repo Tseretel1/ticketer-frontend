@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
   providedIn: 'root'
 })
 export class CreateTicketService {
-  private TicketURL: string = "https://localhost:7081/Add New Tickets Creator";
+  private URL = "https://localhost:7081/api/Creator/"
 
   constructor(private http: HttpClient, private authService: AuthService, private datePipe: DatePipe) { }
 
@@ -25,7 +25,7 @@ export class CreateTicketService {
   }
 
   createTicket(ticket: Ticket): Observable<any> {
-    return this.http.post(this.TicketURL, ticket, {
+    return this.http.post(this.URL + "add-new-tickets", ticket, {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });

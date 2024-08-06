@@ -53,6 +53,7 @@ export class CreatorProfileComponent implements OnInit{
       (resp:any)=>{
         this.MyTickets = [];
         this.MyTickets = resp;
+        console.log(resp)
       },
       (error) => {
         console.error('Error fetching ticket data:', error);

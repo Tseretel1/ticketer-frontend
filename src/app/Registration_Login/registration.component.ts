@@ -10,7 +10,6 @@ import {
 import { RegistrationService } from './registration.service';
 import { User, LoginUser } from './User_Interface';
 import { Router } from '@angular/router';
-import { NavigationComponent } from '../navigation/navigation.component';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -223,9 +222,11 @@ export class RegistrationComponent implements OnInit {
             const token = localStorage.getItem('token');
             if (token) {
               localStorage.setItem('token', res.message);
+              localStorage.removeItem("CreatorToken");
             }
             else{
               localStorage.setItem('token', res.message);
+              localStorage.removeItem("CreatorToken");
             }
             this.router.navigate(['/Tickets']);
           }

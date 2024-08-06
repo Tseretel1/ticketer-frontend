@@ -1,14 +1,14 @@
-<div class="EventParent">
+<div class="EventParent"  *ngIf="LoggedCheck()">
     <div class="DashboardHeader">
         <div class="DashboardRoutes">
             <div class="Nav_Routes">
                 <div class="Navigation_routes">
-                    <a class="RouterLink" routerLinkActive="active-link" (click)="Dashboard()">Create Event</a>
-                    <span class="underline" *ngIf="DashboardVisible"></span>
+                    <a class="RouterLink" routerLinkActive="active-link" (click)="TicketCreate()">Create Event</a>
+                    <span class="underline" *ngIf="CreateTicketVisible"></span>
                 </div>
                 <div class="Navigation_routes">
-                     <a  class="RouterLink" routerLinkActive="active-link">Dashboard</a>
-                     <span class="underline" *ngIf="StatisticVisible"></span>
+                     <a  class="RouterLink" routerLinkActive="active-link" (click)="Dashboard()">Dashboard</a>
+                     <span class="underline" *ngIf=" DashboardVisible"></span>
                  </div>
                 <div class="Navigation_routes">
                     <a class="RouterLink" routerLinkActive="active-link" (click)="Profile()">Profile</a>
@@ -17,6 +17,18 @@
             </div>
         </div>
     </div>
-    <app-create-ticket class="create_ticket" *ngIf="DashboardVisible"></app-create-ticket>
+    <app-create-ticket class="create_ticket" *ngIf="CreateTicketVisible"></app-create-ticket>
     <app-creator-profile class="Creator_Profile" *ngIf="ProfileVisible"></app-creator-profile>
+    <app-dashboard class="Creator_Dashboard" *ngIf="DashboardVisible"></app-dashboard>
+
+</div>
+<div class="AccountLoginCheck" *ngIf="LoggedCheck() == false">
+    <div class="LOgintotext">
+        Log into Your Account!
+    </div>
+    <form class="LogAccountForm" [formGroup]="Loginform" (submit)="LoginToaccount()">
+        <input type="text" class="LoginAccountInputs" placeholder="Username...." formControlName="username">
+        <input type="password" class="LoginAccountInputs" placeholder="******" formControlName="password"> 
+        <button class="submitbutton "> Submit</button>
+    </form>
 </div>

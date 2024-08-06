@@ -76,6 +76,7 @@ export class CreateTicketComponent implements OnInit {
       this.imagePreview = null;
     }
   }
+  
   //Ticket creation
   addTicket(): void {
     if (this.ticketForm.valid) {

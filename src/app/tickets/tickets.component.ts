@@ -18,8 +18,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 export class TicketsComponent implements OnInit, OnDestroy{
  
   tickets: any[] = [];
-  page: number = 0;
-  size: number = 10;
+  topTickets: any[] = [];
   loading: boolean = false;
 
   Popularevent: any[] = [];
@@ -52,20 +51,32 @@ export class TicketsComponent implements OnInit, OnDestroy{
 
 
   
+loadTickets() {
+  this.loading = true;
+  this.ticketService.getTickets().subscribe(
+    (resp: any) => {
+      this.tickets = resp;
+      this.topTickets = this.getTopTickets(resp, 'Animation');
+      this.loading = false;
+    },
+    (error) => {
+      console.error('Error fetching ticket data:', error);
+      this.loading = false;
+    }
+  );
+}
 
-  loadTickets() {
-    this.loading = true;
-    this.ticketService.getTickets().subscribe(
-      (resp: any) => {
-        this.tickets = resp;
-        this.loading = false;
-      },
-      (error) => {
-        console.error('Error fetching ticket data:', error);
-        this.loading = false;
-      }
-    );
-  }
+getTopTickets(tickets: any[], genre: string): any[] {
+  return tickets
+    .filter(ticket => ticket.genre === genre)
+    .sort((a, b) => b.viewCount - a.viewCount)
+    .slice(0, 5);
+}
+
+isTopTicket(ticket: any): boolean {
+  return this.topTickets.includes(ticket);
+}
+  
 
 fetchPopularEvents(): void {
   this.eventsSubscription = this.ticketService.PopularEvents().subscribe(

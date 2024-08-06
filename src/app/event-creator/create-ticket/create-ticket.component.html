@@ -55,35 +55,31 @@
                         <input id="description" [formControl]="Description" type="text" class=" DescriptionIput"  placeholder="Add Description Here..." [maxlength]="800">    
                     </div>        
                 </div>
-                <div class="Ticket" cdkDrag>
-                    <div class="Ticket_genre_parent">
-                        <p class="Ticket_genre">{{Genre.value}} </p>
+                <div class="Ticket">
+                    <div class="Ticket_genre_parent" >
+                        <p class="Ticket_Title"> {{title.value}}</p> 
+                        <p class="Ticket_genre"> {{Genre.value }}</p>
                     </div>
-                    <div class="Ticket_HEader">
-                        <p class="Ticket_Title">{{title.value}}</p> 
-                    </div>
-                    <div class="TicketImageContainer">
-                        <img [src]="imagePreview" alt="Preview" class="ticketimage" *ngIf="imagePreview" />
+                    <div class="TicketFlex">
+                        <div class="leftSide">
+                            <div class="TicketImageContainer">
+                                <img [src]="imagePreview" alt="" class="ticketimage">
+                            </div>
+                        </div>
+                        <div class="RightSide">
+                            <div class="Ticket_Data">
+                                <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ (Date.value) }}</p></div>
+                                <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ (Time.value) }}</p></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="publisherData">
                         <div class="PublisherProfile">
-                            <img  class="PublisherImg" alt="">
-                            <p class="PublisherName">
-                            </p>
+
                         </div>
-                        <div class="data_style Price"><p class="Data_Titles">Price: {{Price.value}}</p> <p>$</p></div>
-                    </div>
-                    <div class="Ticket_Data">
-                       <div class="data_style Price"><p class="Data_Titles">Date: {{Date.value}} </p> <p></p></div>
-                       <div class="data_style Price"><p class="Data_Titles">Start : {{Time.value}}</p> <p></p></div>
-                   </div>
-                   <div class="descriptionTicket">
-                    <b>Description:</b>
-                    <p class="DescriptionStyleTExt">
-                        {{Description.value}}
-                    </p>
-                   </div>
-               </div>
+                        <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{Price.value}}$</p></div>
+                    </div> 
+                </div>
            </div>
             <div class="TicketCountParent">
                 <label for="ticketCount">How many Tickets do you want to create?</label>

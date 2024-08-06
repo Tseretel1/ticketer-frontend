@@ -311,8 +311,8 @@
     margin-bottom: 30px;
 }
 .Ticket{
-    background-color: rgb(68, 66, 62);
-    color: white;
+    background-color: lightsteelblue;
+    color: black;
     min-width: 200px;
     padding: 0px 20px 0px 20px;
     font-family: sans-serif;
@@ -324,14 +324,38 @@
     flex-direction: column;
     height: auto;
     justify-content: space-between;
+    border-radius: 10px;
 }
 .Ticket:hover{
-  scale: 1.02;
+  scale: 1.05;
 }
+.top-ticket {
+  background: radial-gradient(circle, yellow 0%, rgb(176, 115, 1) 100%);
+  color: black;
+  position: relative;
+  transition: 0.3s all ease-in-out;
+}
+.top-ticket:before {
+  content: "Most viewed";
+  position: absolute;
+  top: -10px;
+  right: -30px;
+  background-color: gold;
+  width: 100px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px gold;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateZ(-342deg);
+}
+
 .TicketFlex{
   display: flex;
   width: 100%;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 20px;
 }
 .RightSide{
