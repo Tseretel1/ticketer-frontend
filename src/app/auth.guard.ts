@@ -21,7 +21,7 @@ export const CreatorGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   if (token) {
     const userRole = authService.getUserRole(token);
-    if (userRole === 'Creator') {
+    if (userRole === 'Creator' || userRole =="User") {
       return true;
     } else {
       router.navigate(['/login']);

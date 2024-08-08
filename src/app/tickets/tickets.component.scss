@@ -223,19 +223,48 @@
     display: flex;
     justify-content: center;
     max-width: 1500px;
+    overflow: hidden;
 }
 .PopularEvent{
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   width: 90%;
   min-height: 300px;
   max-height: 300px;
   margin-top: 30px;
   position: relative;
   backdrop-filter: blur(20px);
-  box-shadow: 0px 10px 50px black;
+  border-radius: 10px;
+  position: fixed;
+}
+.PopularEvent:before {
+  content: "Popular Events";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgb(216, 0, 0);
+  width: auto;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgb(216, 0, 0);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateZ(342deg);
+  z-index: 50;
+  position: fixed;
+  color: white;
+}
+.Photocontainer{
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 300px;
+  min-height: 300px;
+  height: 300px;
+  overflow: hidden;
 }
 .MostpopularEventPhoto{
     width: 100%;
@@ -262,7 +291,7 @@
   animation: AnimationName 10s ease infinite;
   color: white;
   font-size: 20px;
-  padding: 10px 40px 10px 40px;
+  padding: 10px;
   backdrop-filter: blur(5px);
   border-radius: 10px;
   font-family: sans-serif;
@@ -300,9 +329,12 @@
     align-items: center;
     gap: 50px;
     max-width: 1800px;
+    margin-top: 400px;
+    z-index: 5;
+    background: linear-gradient(to right, rgb(10 28 64) 30%, rgb(25 2 53) 60%);
 }
 .Ticket_parent{
-    width: 95%;
+    width: 100%;
     flex-wrap: wrap;
     display: flex;
     gap: 50px;
@@ -313,10 +345,9 @@
 .Ticket{
     background-color: lightsteelblue;
     color: black;
-    min-width: 200px;
+    min-width: 100px;
     padding: 0px 20px 0px 20px;
     font-family: sans-serif;
-    font-weight: 600;
     box-shadow: 0px 0px 10px black;
     transition: 0.2s all ease-in-out;
     cursor: pointer;
@@ -336,7 +367,7 @@
   transition: 0.3s all ease-in-out;
 }
 .top-ticket:before {
-  content: "Most viewed";
+  content: "Top Choice";
   position: absolute;
   top: -10px;
   right: -30px;
@@ -356,7 +387,6 @@
   width: 100%;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
 }
 .RightSide{
   display: flex;
@@ -411,4 +441,29 @@
 .PublisherImg{
   width: 30px;
   border-radius: 50%;
+}
+
+
+
+
+
+
+@media screen and (max-width : 700px){
+  .content_style{
+    padding: 5px;
+    font-size: 15px;
+  }
+  .Tickets_Header:before {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+}
+@media screen and (max-width : 400px){
+  .Ticket{
+    max-width: 250px;
+  }
+  .content_style{
+
+  }
 }

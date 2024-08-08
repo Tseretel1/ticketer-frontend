@@ -16,6 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${token}`
         }
       });
+      console.log(req.url.includes('/api/Creator/') ? "Creator Token sent" : "User Token sent");
       return next.handle(clonedReq);
     }
     return next.handle(req);

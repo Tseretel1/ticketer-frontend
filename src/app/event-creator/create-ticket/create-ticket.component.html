@@ -58,7 +58,10 @@
                 <div class="Ticket">
                     <div class="Ticket_genre_parent" >
                         <p class="Ticket_Title"> {{title.value}}</p> 
-                        <p class="Ticket_genre"> {{Genre.value }}</p>
+                        <div class="Ticket_genre"> 
+                            <p *ngIf="Genre.value == null">None</p>
+                            <p *ngIf="Genre.value">{{Genre.value}}</p>
+                         </div>
                     </div>
                     <div class="TicketFlex">
                         <div class="leftSide">

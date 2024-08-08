@@ -35,7 +35,7 @@ export class CreateTicketComponent implements OnInit {
   get Date(): FormControl {
     return this.ticketForm.get('Activation_Date') as FormControl || null;
   }
-  get Genre(): FormControl {
+  get Genre(): FormControl{
     return this.ticketForm.get('Genre') as FormControl || null;
   }
   get Time(): FormControl {

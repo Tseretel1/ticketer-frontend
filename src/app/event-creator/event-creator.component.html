@@ -1,3 +1,15 @@
+<div class="modalaprent" *ngIf="modalvisible">
+    <div class="modal">
+        <div class="CloseModalParent">
+          <button (click)="hideModal()" class="close-modal-btn CloseModalbutton">X</button>
+        </div>
+        <div class="Registration_Response">
+          <p class="Response_Style">{{ Server_response }}</p>
+        </div>
+    </div>
+</div>
+
+
 <div class="EventParent"  *ngIf="LoggedCheck()">
     <div class="DashboardHeader">
         <div class="DashboardRoutes">
@@ -24,11 +36,54 @@
 </div>
 <div class="AccountLoginCheck" *ngIf="LoggedCheck() == false">
     <div class="LOgintotext">
-        Log into Your Account!
+        Log into Creator Space!
     </div>
-    <form class="LogAccountForm" [formGroup]="Loginform" (submit)="LoginToaccount()">
-        <input type="text" class="LoginAccountInputs" placeholder="Username...." formControlName="username">
-        <input type="password" class="LoginAccountInputs" placeholder="******" formControlName="password"> 
-        <button class="submitbutton "> Submit</button>
-    </form>
+    <div class="FormParent">
+
+        <!--Log into creator account Form-->
+        <form class="LogAccountForm" [formGroup]="Loginform" (submit)="LoginToaccount()" *ngIf="Rolecheck() && switch ==false" >
+            <div>
+                <input type="text" class="LoginAccountInputs" placeholder="Username...." formControlName="username">
+                <div *ngIf="Loginform.controls['username']?.dirty" class="positionrelative">
+                    <span *ngIf="Loginform.controls['username']?.errors?.['required']" class="validationMessage">Username is required</span>
+                </div> 
+            </div>
+          
+          <div>
+            <input type="password" class="LoginAccountInputs" placeholder="******" formControlName="password"> 
+            <div *ngIf="Loginform.controls['password']?.dirty " class="positionrelative">
+                <span *ngIf="Loginform.controls['password']?.errors?.['required']" class="validationMessage">Password is required</span>
+            </div>   
+          </div>
+            <button class="submitbutton "> Submit</button>
+        </form>
+         <!--Register as creator  Form-->
+        <form class="LogAccountForm" [formGroup]="RegisterForm" (submit)="RegisterAscreator()" *ngIf="Rolecheck() == false">
+            <div>
+                <input type="number" class="LoginAccountInputs" placeholder="Personal ID" formControlName="PersonalID">
+                <div *ngIf="RegisterForm.controls['PersonalID']?.dirty " class="positionrelative">
+                    <span *ngIf="RegisterForm.controls['PersonalID']?.errors?.['required']" class="validationMessage">Personal ID is required</span>
+                </div>
+            </div>
+         
+           <div>
+             <input type="number" class="LoginAccountInputs" placeholder="Phone Number" formControlName="PhoneNumber"> 
+             <div *ngIf="RegisterForm.controls['PhoneNumber']?.dirty " class="positionrelative">
+                 <span *ngIf="RegisterForm.controls['PhoneNumber']?.errors?.['required']" class="validationMessage">Phone number is required</span>
+             </div>
+           </div>
+
+            <input type="number" class="LoginAccountInputs" placeholder="idcardphoto" formControlName="IdCardPhoto"> 
+            <button class="submitbutton ">Submit</button>
+        </form>
+        <!--Creator Account Form-->
+        <form [formGroup]="CreateAccountForm" class="LogAccountForm" *ngIf="Rolecheck() && switch">
+            <input type="text" formControlName="UserName" placeholder="UserName" class="LoginAccountInputs">
+            <input type="text" formControlName="Logo" placeholder="Photo" class="LoginAccountInputs">
+            <input type="password" formControlName="Password" placeholder="Password" class="LoginAccountInputs">,
+        </form>
+        <div class="">
+            <button class="RegisterAsCreator" (click)="SwitchForms()">{{switchText}}</button>
+        </div>
+    </div>
 </div>

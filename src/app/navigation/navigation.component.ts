@@ -42,7 +42,7 @@ export class NavigationComponent implements OnInit{
     const token = localStorage.getItem('token');
     if (token && !this.authService.isTokenExpired(token)) {
         const userRole = this.authService.getUserRole(token);
-        if (userRole == 'Creator') {
+        if (userRole === 'Creator' || userRole =="User") {
           return true;
         } else {
           return false; 

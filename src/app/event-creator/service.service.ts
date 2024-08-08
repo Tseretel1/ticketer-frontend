@@ -8,19 +8,36 @@ export class ServiceService {
 
   constructor(private http : HttpClient )
   { }
-  private URL = "https://localhost:7081/api/Creator/";  
+  private apicall = "https://localhost:7081/";  
 
-  private LoginURL = this.URL + 'creator-account-login';
+  private LoginURL = this.apicall + 'creator-account-login';
 
-  onLogin(login: CreatorAccountLogin): Observable<any> {
+  private RegisterURL = this.apicall + 'register-as-creator';
+  
+  onLogin(login: Login): Observable<any> {
     const params = new HttpParams()
       .set('username', login.userName)
       .set('password', login.password)
     return this.http.get(this.LoginURL, { params });
   }
+
+  onRegister(r: Register): Observable<any> {
+    return this.http.post(this.RegisterURL, r);
+  }  
 }
 
-export interface CreatorAccountLogin{
+
+export interface Login{
   userName :string,
   password:string
+}
+export interface Register{
+  PersonalID :number,
+  PhoneNumber :number,
+  IdCardPhoto:number
+}
+export interface CreatorAccount{
+  UserName : string,
+  Logo : string,
+  Password: string,
 }

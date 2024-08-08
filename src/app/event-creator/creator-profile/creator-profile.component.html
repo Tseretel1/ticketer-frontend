@@ -1,11 +1,19 @@
 <div class="Profile_Container">
     <div class="ProfileSide" *ngIf="MyProfile">
        <div class="ProfileData">
+        <div class="UserProfile">
+            <div class="namelastname">
+                <p class="userData">Name : {{MyProfile.name}}</p>
+                <p class="userData">Lastname :{{MyProfile.lastName}}</p>
+            </div>
+            <p class="userData">Role : {{MyProfile.userRole}}</p>
+               
+        </div>
         <div class="Profilestyle">
             <div class="Imagecontainer">
-                <img [src]="MyProfile.profile_Picture" alt="" class="Profileimage">
+                <img [src]="MyProfile.logo" alt="" class="Profileimage">
             </div>
-            <p class="Name">{{MyProfile.name}} </p>
+            <p class="Name">{{MyProfile.userName}} </p>
         </div>
        </div>
     </div>
@@ -34,8 +42,8 @@
             </div>
             <div class="RightSide">
                 <div class="Ticket_Data">
-                    <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ (tkt.activation_Date) }}</p></div>
-                    <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ (tkt.activation_Date) }}</p></div>
+                    <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ formatDate((tkt.activation_Date) )}}</p></div>
+                    <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ formatHour((tkt.activation_Date)) }}</p></div>
                 </div>
                 <div class="ViewCount">
                    <p class="view">Views {{tkt.viewCount}}</p>
@@ -44,9 +52,9 @@
         </div>
         <div class="publisherData">
             <div class="PublisherProfile">
-                <img *ngIf="tkt.publisher.profile" [src]="tkt.publisher.profile" class="PublisherImg" alt="">
+                <img *ngIf="tkt.publisher.logo" [src]="tkt.publisher.logo" class="PublisherImg" alt="">
                 <p class="PublisherName">
-                    {{tkt.publisher.name}}
+                    {{tkt.publisher.userName}}
                 </p>
             </div>
             <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{tkt.price}}$</p></div>

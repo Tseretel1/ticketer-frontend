@@ -9,7 +9,7 @@ import { CreatorProfileComponent } from "./creator-profile/creator-profile.compo
 import { AuthService } from '../auth.service';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CreatorAccountLogin, ServiceService } from './service.service';
+import { Login, Register, ServiceService } from './service.service';
 
 @Component({
   selector: 'app-event-creator',
@@ -27,16 +27,38 @@ import { CreatorAccountLogin, ServiceService } from './service.service';
   styleUrl: './event-creator.component.scss'
 })
 export class EventCreatorComponent implements OnInit{
+
   ngOnInit(): void {
-    this.Dashboard();
+    this.Profile();
   }
+
   Loginform :FormGroup;
+  RegisterForm :FormGroup;
+  CreateAccountForm :FormGroup
   constructor(private authService: AuthService, private fb :FormBuilder, private service :ServiceService){
     this.Loginform =  fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
+    });
+    this.RegisterForm = fb.group({
+      PersonalID :['',[Validators.required]],
+      PhoneNumber :['',[Validators.required]],
+      IdCardPhoto :['',[Validators.required]],
+    });
+    this.CreateAccountForm = fb.group({
+      UserName :['',[Validators.required]],
+      Logo :['',[Validators.required]],
+      Password :['',[Validators.required]],
     })
   }
+
+  modalvisible : boolean = false;
+  Server_response : string = "";
+  hideModal(){
+      this.modalvisible = false;
+  }
+
+
 
   LoggedCheck(){
     const token = localStorage.getItem('CreatorToken');
@@ -47,7 +69,8 @@ export class EventCreatorComponent implements OnInit{
     }
   }
   LoginToaccount(){
-    const Logincredentials: CreatorAccountLogin={
+    if(this.Loginform.valid){
+    const Logincredentials: Login={
       userName  :this.Loginform.value.username,
       password: this.Loginform.value.password
     }
@@ -62,10 +85,77 @@ export class EventCreatorComponent implements OnInit{
         }
       },
       (error)=>{
+        if (error.status === 404) {
+          this.Server_response = 'UserName or password is incorrect. please Try again!';
+        } else if (error.status === 400) {
+          this.Server_response = 'Bad request. Please verify the data you are sending.';
+        } else if (error.status === 500) {
+          this.Server_response = 'Server error. Please try again later.';
+        }
+
+        this.modalvisible = true;
         console.log(error);
       }
     )
   }
+  }
+  Rolecheck (){
+    const Token = localStorage.getItem("token");
+    if(Token){
+      var Role =  this.authService.getUserRole(Token);
+      if(Role == "Creator"){
+        return true;
+      }
+      else if(Role == "User")
+      {
+        return false;
+      }
+    }
+    return false;
+  }
+
+
+
+  switch : boolean = false;
+  switchText :string = "Register as Creator";
+  SwitchForms(){
+    if(this.switch == false){
+      this.switch = true;
+      this.switchText  = "Log into Creator Space";
+
+    }
+    else if(this.switch){
+      this.switch = false;
+      this.switchText  = "Register as Creator";
+    }
+  }
+
+  RegisterAscreator(){
+    const reg: Register={
+      IdCardPhoto : this.RegisterForm.value.IdCardPhoto,
+      PhoneNumber : this.RegisterForm.value.PhoneNumber,
+      PersonalID : this.RegisterForm.value.PersonalID
+    }
+    this.service.onRegister(reg).subscribe(
+      (resp)=>{
+        if(resp.message.success == true)
+        {
+          this.Server_response = resp.message;
+          this.modalvisible = true;
+        }
+        else{
+          this.Server_response = resp.message;
+          this.modalvisible = true;
+        }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+
+
+
   DashboardVisible : boolean = false;
   CreateTicketVisible : boolean = false;
   ProfileVisible : boolean = false;
