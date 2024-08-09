@@ -223,7 +223,6 @@
     display: flex;
     justify-content: center;
     max-width: 1500px;
-    overflow: hidden;
 }
 .PopularEvent{
   display: flex;
@@ -237,6 +236,8 @@
   backdrop-filter: blur(20px);
   border-radius: 10px;
   position: fixed;
+  box-shadow: 0px 0px 10px black;
+  border-radius: 10px;
 }
 .PopularEvent:before {
   content: "Popular Events";
@@ -257,20 +258,19 @@
   color: white;
 }
 .Photocontainer{
-  width: 100px;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 300px;
-  min-height: 300px;
-  height: 300px;
-  overflow: hidden;
+  border-radius: 10px;
 }
 .MostpopularEventPhoto{
     width: 100%;
-    position: fixed;
     z-index: 1;
     transition: 0.3s all ease-in-out;
+    border-radius: 10px;
 }
 .Header_Content{
   display: flex;
@@ -329,9 +329,47 @@
     align-items: center;
     gap: 50px;
     max-width: 1800px;
-    margin-top: 400px;
+    margin-top: 350px;
     z-index: 5;
     background: linear-gradient(to right, rgb(10 28 64) 30%, rgb(25 2 53) 60%);
+}
+.FilterParent{
+  display: flex;
+  width: 100%;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
+  justify-content: center;
+}
+.filterwidth{
+  display: flex;
+  gap: 20px;
+  width: 85%;
+  justify-content: space-between;
+}
+.filters{
+  display: flex;
+  background-color: rgb(44, 42, 42);
+  gap: 30px;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+}
+.option{
+  color: white;
+  cursor: pointer;
+}
+.searchbarparent{
+  width: 30%;
+}
+.searchbar{
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 10px;
+  outline: none;
+  width: 100%;
+  border-radius: 10px;
 }
 .Ticket_parent{
     width: 100%;
@@ -339,7 +377,6 @@
     display: flex;
     gap: 50px;
     justify-content: center;
-    margin-top: 20px;
     margin-bottom: 30px;
 }
 .Ticket{
@@ -462,8 +499,5 @@
 @media screen and (max-width : 400px){
   .Ticket{
     max-width: 250px;
-  }
-  .content_style{
-
   }
 }

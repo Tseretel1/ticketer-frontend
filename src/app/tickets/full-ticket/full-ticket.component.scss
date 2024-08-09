@@ -24,16 +24,27 @@ $background :#1e3d59;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 10px;
 }
 .PublisherContainer{
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     background-color: transparent;
     backdrop-filter: blur(20px);
     padding: 20px 20px 0px 0px ;
 }
+.MainTitle{
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    font-size: 40px;
+}
+
 .publisher{
     display: flex;
     justify-content: center;
@@ -59,7 +70,7 @@ $background :#1e3d59;
     justify-content: start;
     align-items: center;
     width: auto;
-    width: 80%;
+    width: 900px;
     overflow: hidden;
     height: 300px;
     border-radius: 10px;
@@ -70,9 +81,6 @@ $background :#1e3d59;
     height: auto;
     border-radius: 10px;
     transition: 0.5s all ease-in-out;
-}
-.TicketImage:hover{
-    scale :1.2;
 }
 .data_style{
     display: flex;
@@ -99,13 +107,13 @@ $background :#1e3d59;
 }
 .Ticket_Information{
     padding: 50px 0px 50px 0px;
-    width: 80%;
+    width: 900px;
     display:flex;
     flex-direction: column;
     align-items: center;
     border-radius: 5px;
     box-shadow: 0px 0px 10px black;
-    background-color: black;
+    background-color: rgb(68, 64, 64);
 }
 //buy Button
 .fancy {
@@ -210,3 +218,54 @@ $background :#1e3d59;
     right: 0;
     width: 0;
    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width : 950px){
+    .Imagecontainer{
+        width: 600px;
+        height: 250px;
+    }
+    .Ticket_Information{
+        width: 600px;
+    }
+    
+}
+
+@media screen and (max-width : 650px){
+    .Imagecontainer{
+        width: 400px;
+        height: 200px;
+    }
+    .Ticket_Information{
+        width: 400px;
+    }
+}
+@media screen and (max-width : 400px){
+    .Imagecontainer{
+        width: 280px;
+        height: 150px;
+    }
+    .Ticket_Information{
+        width: 280px;
+    }
+}
+@media screen and (max-width : 280px){
+    .Imagecontainer{
+        width: 220px;
+        height: 120px;
+    }
+    .Ticket_Information{
+        width: 220px;
+    }
+}

@@ -23,12 +23,33 @@
                     </p>
                   </div>
                 </div>
-                <div class="Photocontainer">
-                   <img [src]="MostPopularEvent.photo" alt="" class="MostpopularEventPhoto" [style.opacity.0]="PhotoOpacity">
-                </div>
-        </div>
+            <div class="Photocontainer">
+               <img [src]="MostPopularEvent.photo" alt="" class="MostpopularEventPhoto" [style.opacity.0]="PhotoOpacity">
+            </div>
+         </div>
     </div>
     <div class="CenterBody">
+        <div class="FilterParent">
+            <div class="filterwidth">
+                <div class="searchbarparent">
+                    <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="searchTickets()" placeholder="Search by name..." class="searchbar"/>
+                </div>
+                <select class="filters" (change)="onFilterChange($event)">
+                    <option class="option" value="all">
+                        All Ticket
+                    </option>
+                    <option class="option" value="Animation">
+                        Animation
+                    </option>
+                    <option class="option" value="Music">
+                        Music
+                    </option>
+                    <option class="option">
+                        Football
+                    </option>
+                </select>
+            </div>
+        </div>
         <div class="Ticket_parent" *ngIf="tickets">
             <div class="Ticket" *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
                 <div class="Ticket_genre_parent" >
@@ -60,6 +81,7 @@
                     </div>
                     <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{tkt.price}}$</p></div>
                 </div>
+
             </div>
         </div> 
     </div>

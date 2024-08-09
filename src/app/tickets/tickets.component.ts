@@ -3,21 +3,24 @@ import { TicketService } from './ticket.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { find, max, Subscription } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterOutlet,ReactiveFormsModule],
+  imports: [CommonModule,RouterLink,RouterOutlet,ReactiveFormsModule,FormsModule],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss',
   providers:[
-    DatePipe
+    DatePipe,
+    NgModel
   ]
 })
 export class TicketsComponent implements OnInit, OnDestroy{
  
+  AllTickets: any[] = [];
   tickets: any[] = [];
+  searchTerm: string = ''; 
   topTickets: any[] = [];
   loading: boolean = false;
 
@@ -50,21 +53,71 @@ export class TicketsComponent implements OnInit, OnDestroy{
   }
 
 
-  
-loadTickets() {
-  this.loading = true;
-  this.ticketService.getTickets().subscribe(
-    (resp: any) => {
-      this.tickets = resp;
-      this.topTickets = this.getTopTickets(resp, 'Animation');
-      this.loading = false;
-    },
-    (error) => {
-      console.error('Error fetching ticket data:', error);
-      this.loading = false;
+  loadTickets() {
+    this.loading = true;
+    this.ticketService.getTickets().subscribe(
+      (resp: any[]) => {
+        this.AllTickets = resp;
+        this.tickets = this.AllTickets;
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error fetching ticket data:', error);
+        this.loading = false;
+      }
+    );
+  }
+
+  AnimationFilter() {
+    this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Animation');
+  }
+
+  FootballFilter() {
+    this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Football');
+  }
+
+  MusicFilter() {
+    this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Music');
+  }
+
+  resetFilters() {
+    this.tickets = this.AllTickets;
+  }
+
+  onFilterChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+
+    switch (selectedValue) {
+      case 'Animation':
+        this.AnimationFilter();
+        break;
+      case 'Music':
+        this.MusicFilter();
+        break;
+      case 'Football':
+        this.FootballFilter();
+        break;
+      case 'All':
+        this.resetFilters();
+        break
+      default:
+        this.resetFilters();
+        break;
     }
-  );
-}
+  }
+  searchTickets() {
+    if (this.searchTerm) {
+      this.tickets = this.AllTickets.filter(ticket =>
+        ticket.title.toLowerCase().startsWith(this.searchTerm.toLowerCase())
+      );
+    } else {
+      this.tickets = this.AllTickets;
+    }
+  }
+
+
+
 
 getTopTickets(tickets: any[], genre: string): any[] {
   return tickets
