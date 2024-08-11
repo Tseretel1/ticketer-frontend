@@ -1,11 +1,14 @@
-<button (click)="ShowNavigation()" class="MenuButton" *ngIf="NavbUttonVisible">Menu</button>
+<button (click)="ShowNavigation()" class="MenuButton" *ngIf="NavbUttonVisible">
+    <mat-icon>home</mat-icon>
+</button>
 <div class="NavFull"  *ngIf="NavigationVisible" >
     <div class="Navbar"  [style.width.%]="width"  [style.minWidth.px]="minwidth">
         <div class="Xnav">
-          <button (click)="HideNavigation()" class="Xbutton"> X</button>  
+          <button (click)="HideNavigation()" class="Xbutton">  <mat-icon>close</mat-icon></button>  
          </div>
          <div class="Nav_Routes">
-             <a [routerLink]="'Login'" class="RouterLink" routerLinkActive="active-link" (click)="HideNavigation()">Login</a>
+             <a [routerLink]="'UserProfile'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="HideNavigation()">Profile</a>
+             <a [routerLink]="'Login'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin() == false" (click)="HideNavigation()">Login</a>
              <a [routerLink]="'Tickets'" class="RouterLink" routerLinkActive="active-link" (click)="HideNavigation()">Tickets</a>
          </div>
          <div class="CreatorSpace">

@@ -68,91 +68,128 @@
 }
 //Tickets
 
-.Ticket_parent{
-  width: 95%;
-  flex-wrap: wrap;
-  display: flex;
-  gap: 50px;
-  justify-content: center;
-  margin-top: 20px;
+.Ticket_parent {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   margin-bottom: 30px;
+  place-items: center;
+  align-items: flex-start;
+  row-gap: 20px;
 }
 .Ticket{
-  background-color: rgb(68, 66, 62);
-  color: white;
-  min-width: 200px;
-  padding: 0px 20px 0px 20px;
-  font-family: sans-serif;
-  font-weight: 600;
-  box-shadow: 0px 0px 10px black;
-  transition: 0.2s all ease-in-out;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  justify-content: space-between;
+    background-color: lightsteelblue;
+    color: black;
+    min-width: 100px;
+    padding: 0px 20px 0px 20px;
+    font-family: sans-serif;
+    box-shadow: 0px 0px 10px black;
+    transition: 0.2s all ease-in-out;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin: 0px 30px 0px 30px;
 }
+
 .Ticket:hover{
-scale: 1.02;
+  scale: 1.02;
+  background-color: rgb(213, 221, 232);
 }
+.top-ticket {
+  background: radial-gradient(circle, yellow 0%, rgb(176, 115, 1) 100%);
+  color: black;
+  position: relative;
+  transition: 0.3s all ease-in-out;
+}
+.top-ticket:before {
+  content: "Top Choice";
+  position: absolute;
+  top: -10px;
+  right: -30px;
+  background-color: gold;
+  width: 100px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px gold;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateZ(-342deg);
+}
+
 .TicketFlex{
-display: flex;
-width: 100%;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .RightSide{
-display: flex;
-flex-direction: column;
-height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .Ticket_genre_parent{
-display: flex;
-width: 100%;
-justify-content: space-between;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 .Ticket_genre{
-padding: 5px;
-background-color: rgba(0, 0, 0, 0.552);
-border-radius: 5px;
-color: white;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.552);
+  border-radius: 5px;
+  color: white;
 
-text-shadow: 0px 0px 4px black;
+  text-shadow: 0px 0px 4px black;
 }
 .Ticket_Title{
-font-size: 20px;
+  font-size: 20px;
 }
 .TicketImageContainer{
-  max-width: 250px;
-  min-width: 200px;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  max-height: 300px;
+    max-width: 250px;
+    min-width: 250px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    max-height: 230px;
 }
 .ticketimage{
-  width: 100%;
-  border-radius: 10px;
-  transition: 0.3s all ease-in-out;
-  max-height: 200px;
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.3s all ease-in-out;
+    max-height: 230px;
 }
 .data_style{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+}
+.iconsize{
+  font-size: 15px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
 }
 .publisherData{
-display: flex;
-align-items: center;
-justify-content :space-between;
-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content :space-between;
+  width: 100%;
 }
 .PublisherProfile{
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 .PublisherImg{
-width: 30px;
-border-radius: 50%;
+  width: 30px;
+  border-radius: 50%;
 }

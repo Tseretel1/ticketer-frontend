@@ -27,7 +27,6 @@
 <div class="TicketHeader">
     <p class="ticketTitle">My Tickets</p>
 </div>
-
 <div class="Ticket_parent" *ngIf="MyTickets">
     <div class="Ticket" *ngFor="let tkt of MyTickets; let i = index">
         <div class="Ticket_genre_parent" >
@@ -42,11 +41,11 @@
             </div>
             <div class="RightSide">
                 <div class="Ticket_Data">
-                    <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ formatDate((tkt.activation_Date) )}}</p></div>
-                    <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ formatHour((tkt.activation_Date)) }}</p></div>
+                    <div class="data_style Price"><p class="Data_Titles"><mat-icon  class="iconsize">calendar_today</mat-icon></p> <p>{{ formatDate(tkt.activation_Date) }}</p></div>
+                    <div class="data_style Price"><p class="Data_Titles"><mat-icon  class="iconsize">access_time</mat-icon></p> <p>{{ formatHour(tkt.activation_Date) }}</p></div>
                 </div>
                 <div class="ViewCount">
-                   <p class="view">Views {{tkt.viewCount}}</p>
+                   <p class="view data_style"><mat-icon class="iconsize">visibility</mat-icon>{{tkt.viewCount}}</p>
                 </div>
             </div>
         </div>
@@ -59,5 +58,6 @@
             </div>
             <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{tkt.price}}$</p></div>
         </div>
+
     </div>
 </div> 

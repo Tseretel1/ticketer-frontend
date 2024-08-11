@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from './profile.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-creator-profile',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,DatePipe],
+  imports: [CommonModule,ReactiveFormsModule,DatePipe,MatIcon],
   templateUrl: './creator-profile.component.html',
   styleUrl: './creator-profile.component.scss'
 })

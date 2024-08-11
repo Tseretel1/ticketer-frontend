@@ -1,0 +1,18 @@
+
+<div class="ExitModal" *ngIf="modalvisible">
+    <div class="modal">
+     <div class="">
+        <p>Exit from Account?</p>
+     </div>
+     <div class="buttoparent">
+        <button class="button exitbutton" (click)="ExitFromAccount()">Exit</button>
+        <button class="button cancelbutton" (click)="hidemodal()">Cancel</button>
+     </div>
+
+    </div>
+</div>
+
+
+<div class="Center">
+   <button (click)="Showmodal()" class="button"> exit from account</button>
+</div>

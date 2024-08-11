@@ -4,11 +4,12 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { find, max, Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterOutlet,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,RouterLink,RouterOutlet,ReactiveFormsModule,FormsModule,MatIcon],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss',
   providers:[

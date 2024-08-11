@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../auth.service';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [RouterLink,CommonModule, RouterLinkActive],
+  imports: [RouterLink,CommonModule, RouterLinkActive,MatIcon],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })
@@ -60,6 +61,15 @@ export class NavigationComponent implements OnInit{
         } else {
           return false; 
         }
+    } else {
+      return false;
+    }
+  }
+
+  Loggedin(){
+    const token = localStorage.getItem('token');
+    if (token && !this.authService.isTokenExpired(token)) {
+          return true; 
     } else {
       return false;
     }

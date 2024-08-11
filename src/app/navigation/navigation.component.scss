@@ -49,14 +49,14 @@
 }
 .MenuButton {
     position: relative;
-    background-color: black;
+    background-color: rgb(59, 59, 59);
     outline: none;
     border: none;
     cursor: pointer;
     position: fixed;
     z-index: 500;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
     color: white;
 }
 .Xnav{
@@ -65,15 +65,12 @@
     justify-content: flex-end;
 }
 .Xbutton{
-    padding: 10px;
+    padding: 5px;
     background-color: transparent;
     border: none;
     color:red;
     cursor: pointer;
-    font-size: 30px;
     transition: 0.2s all ease-in-out;
-    width: 50px;
-    height: 50px;
 }
 .Xbutton:hover{
     background-color: red;
