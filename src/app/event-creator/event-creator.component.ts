@@ -1,41 +1,42 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { OutletContext, Route, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { TicketsComponent } from '../tickets/tickets.component';
-import { RegistrationComponent } from "../Registration_Login/registration.component";
-import { FullTicketComponent } from "../tickets/full-ticket/full-ticket.component";
-import { CreateTicketComponent } from './create-ticket/create-ticket.component';
-import { CreatorProfileComponent } from "./creator-profile/creator-profile.component";
 import { AuthService } from '../auth.service';
-import { DashboardComponent } from "./dashboard/dashboard.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Login, Register, ServiceService } from './service.service';
+import { CreatorProfileComponent } from "./creator-profile/creator-profile.component";
+import { CreateTicketComponent } from "./create-ticket/create-ticket.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 @Component({
   selector: 'app-event-creator',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink, TicketsComponent, 
-    RegistrationComponent,
-    CreateTicketComponent,
+    RouterLink,
+    TicketsComponent,
+    ReactiveFormsModule,
+    RouterOutlet,
     CreatorProfileComponent,
-    DashboardComponent,
-    ReactiveFormsModule
-  ],
+    CreateTicketComponent,
+    DashboardComponent
+],
   templateUrl: './event-creator.component.html',
   styleUrl: './event-creator.component.scss'
 })
 export class EventCreatorComponent implements OnInit{
 
   ngOnInit(): void {
-    this.Profile();
+    if (this.LoggedCheck()) {
+      this.router.navigate(['/EventCreator/CreatorProfile']);
+    }
   }
 
   Loginform :FormGroup;
   RegisterForm :FormGroup;
   CreateAccountForm :FormGroup
-  constructor(private authService: AuthService, private fb :FormBuilder, private service :ServiceService){
+  constructor(private authService: AuthService, private fb :FormBuilder, private service :ServiceService, private router :Router){
     this.Loginform =  fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -152,26 +153,5 @@ export class EventCreatorComponent implements OnInit{
         console.log(error);
       }
     )
-  }
-
-
-
-  DashboardVisible : boolean = false;
-  CreateTicketVisible : boolean = false;
-  ProfileVisible : boolean = false;
-  TicketCreate(){
-    this.DashboardVisible= false;
-    this.CreateTicketVisible = true;
-    this.ProfileVisible = false;
-  }
-  Dashboard(){
-    this.DashboardVisible= true;
-    this.CreateTicketVisible = false;
-    this.ProfileVisible = false;
-  }
-  Profile(){
-    this.DashboardVisible= false;
-    this.CreateTicketVisible = false;
-    this.ProfileVisible = true;
   }
 }

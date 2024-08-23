@@ -1,12 +1,15 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, NgModule, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { FullTicketService } from './full-ticket.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-full-ticket',
   standalone: true,
-  imports: [CommonModule],
+  imports: [MatIcon,CommonModule,RouterLink],
   templateUrl: './full-ticket.component.html',
   styleUrls: ['./full-ticket.component.scss'],
   providers: [
@@ -16,48 +19,60 @@ import { ActivatedRoute } from '@angular/router';
 export class FullTicketComponent implements OnInit {
 
   id: number = 0;
-  tickets: any[] = [];
   matchingTicket: any = null;
+  foundtickets : any[] = [];
 
 
   constructor(
-     private router: ActivatedRoute, 
-     private http: HttpClient,
-     private datePipe: DatePipe, )
-      { 
-      }
+    private router: ActivatedRoute, 
+    private myService: FullTicketService,
+    private datePipe: DatePipe,
+    private Route: Router,
+  ) { }
   
   ngOnInit(): void {
     this.router.params.subscribe(params => {
       this.id = +params['id'];
       this.findMatchingTicket();
     });
+  }
 
-    this.http.get('https://localhost:7081/all Tickets').subscribe(
+  Exit(){
+    this.Route.navigate(['/Tickets']);
+  }
+
+
+
+  findMatchingTicket() {
+    this.myService.getMatchingTicket(this.id).subscribe(
       (resp: any) => {
-        this.tickets = resp;
-        this.findMatchingTicket();
+        this.foundtickets = resp;
+        console.log(this.foundtickets);
+        this.Matchingticketfound();
       },
       (error: any) => {
-        console.error('Error fetching tickets:', error);
+        console.error('Error fetching matching ticket:', error);
       }
     );
+  }
+  
+  Matchingticketfound() {
+    this.matchingTicket = this.foundtickets.find(ticket => ticket.id === this.id); 
     
-  }
-  findMatchingTicket() {
-    this.matchingTicket = null; 
-
-    for (let ticket of this.tickets) {
-      if (ticket.id === this.id) {
-        this.matchingTicket = ticket;
-        this.matchingTicket.photo = ticket.photo + '?v=' + new Date().getTime();
-        console.log('Matching Ticket Photo:', this.matchingTicket.photo);
-        break; 
-      }
+    if (this.matchingTicket) {
+      this.matchingTicket.photo = this.matchingTicket.photo + '?v=' + new Date().getTime();
+    } else {
+      console.error("Matching ticket not found.");
     }
-
-    console.log('Matching Ticket:', this.matchingTicket);
   }
+  NewMatchingTicket(id:number){
+    this.matchingTicket = this.foundtickets.find(ticket => ticket.id === id); 
+    
+    if (this.matchingTicket) {
+      this.matchingTicket.photo = this.matchingTicket.photo + '?v=' + new Date().getTime();
+    } 
+  }
+  
 
   monthNames:any = {
     1: 'January',   2: 'February',  3: 'March',     4: 'April',

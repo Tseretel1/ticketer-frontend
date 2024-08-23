@@ -7,12 +7,23 @@
           <button (click)="HideNavigation()" class="Xbutton">  <mat-icon>close</mat-icon></button>  
          </div>
          <div class="Nav_Routes">
-             <a [routerLink]="'UserProfile'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="HideNavigation()">Profile</a>
-             <a [routerLink]="'Login'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin() == false" (click)="HideNavigation()">Login</a>
-             <a [routerLink]="'Tickets'" class="RouterLink" routerLinkActive="active-link" (click)="HideNavigation()">Tickets</a>
+             <a [routerLink]="'UserProfile'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="HideNavigation()">
+                <div class="profile">
+                    <div class="profilecontainer">
+                        <img [src]="Profile.profile" alt="" class="userprofile">
+                    </div>
+                 
+                    <div class="username"> 
+                        <p>{{Profile.name}}</p>
+                        <p>{{Profile.lastName}}</p>
+                    </div>
+                </div>
+             </a>
+             <a [routerLink]="'Login'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin() == false" (click)="HideNavigation()"><mat-icon>login</mat-icon>Login</a>
+             <a [routerLink]="'Tickets'" class="RouterLink" routerLinkActive="active-link" (click)="HideNavigation()"><mat-icon>confirmation_number</mat-icon>Tickets</a>
          </div>
          <div class="CreatorSpace">
-            <a [routerLink]="'EventCreator'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="HideNavigation()">Creator Space</a>
+            <a [routerLink]="'EventCreator'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="HideNavigation()"><mat-icon>palette</mat-icon>Creator Space</a>
          </div>
      </div>
      <div class="OtherHalf"  (click)="HideNavigation()">

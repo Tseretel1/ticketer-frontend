@@ -329,8 +329,7 @@
     gap: 50px;
     max-width: 1800px;
     z-index: 5;
-    background: linear-gradient(to top, rgb(0, 4, 39) 10%, rgb(13, 1, 28)60%, rgb(16, 16, 16));
-
+    overflow: hidden;
     margin-top: 20px;
 }
 .FilterParent{
@@ -345,9 +344,8 @@
   display: flex;
   gap: 20px;
   width: 90%;
-  justify-content: space-between;
+  justify-content: center;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.426);
   border-radius: 10px;
 }
 .filters{
@@ -373,9 +371,10 @@
   outline: none;
   width: 100%;
   border-radius: 10px;
+  position: sticky;
 }
 .Ticket_parent {
-  width: 90%;
+  width: 95%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-bottom: 30px;
@@ -384,46 +383,44 @@
   row-gap: 20px;
 }
 .Ticket{
-    background-color: lightsteelblue;
-    color: black;
+    color: white;
     min-width: 100px;
-    padding: 0px 20px 0px 20px;
     font-family: sans-serif;
-    box-shadow: 0px 0px 10px black;
     transition: 0.2s all ease-in-out;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     height: auto;
     justify-content: space-between;
-    border-radius: 10px;
-    margin: 0px 30px 0px 30px;
 }
 
 .Ticket:hover{
   scale: 1.02;
-  background-color: rgb(213, 221, 232);
 }
 .top-ticket {
-  background: radial-gradient(circle, yellow 0%, rgb(176, 115, 1) 100%);
-  color: black;
+  color: white;
   position: relative;
   transition: 0.3s all ease-in-out;
+  .Ticket_Title{
+    background-color: darkred;
+  }
 }
 .top-ticket:before {
-  content: "Top Choice";
+  content: "Top";
   position: absolute;
   top: -10px;
   right: -30px;
-  background-color: gold;
-  width: 100px;
+  background-color: red;
+  width: 80px;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px gold;
+  box-shadow: 0px 0px 10px red;
   padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: rotateZ(-342deg);
+  z-index: 9;
+  color: white;
 }
 
 .TicketFlex{
@@ -432,41 +429,71 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.RightSide{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.Ticket_genre_parent{
+.titlecenter{
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  position: absolute;
+  height: 100%;
+  transition: 0.2s all ease-in-out;
+  justify-content: center;
 }
-.Ticket_genre{
-  padding: 5px;
-  background-color: rgba(0, 0, 0, 0.552);
-  border-radius: 5px;
-  color: white;
-
-  text-shadow: 0px 0px 4px black;
+.titlecenter:hover{
+  background-color: rgba(0, 0, 0, 0.536);
+}
+.leftSide{
+  position: relative;
 }
 .Ticket_Title{
   font-size: 20px;
+  padding: 5px;
+  color: white;
+  margin: 0;
+  height: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.TicketImageContainer{
-    max-width: 250px;
-    min-width: 250px;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-    max-height: 230px;
+.Editticket{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s all ease-in-out;
 }
-.ticketimage{
-    width: 100%;
-    border-radius: 10px;
-    transition: 0.3s all ease-in-out;
-    max-height: 230px;
+.Editticket:hover{
+  background-color: rgba(0, 0, 0, 0.319);
+  .edittext{
+    opacity: 1;
+  }
 }
+.edittext{
+  background-color: rgba(0, 0, 0, 0.651);
+  opacity: 0;
+  transition: 0.2s all ease-in-out;
+  padding: 5px;
+  border-radius: 5px;
+}
+.TicketImageContainer {
+  max-width: 300px;
+  min-width: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  position: relative;
+  border-radius: 5px 5px 0px 0px;
+}
+.ticketimage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s all ease-in-out;
+}
+
 .data_style{
     display: flex;
     align-items: center;
@@ -481,7 +508,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: white;
 }
 .publisherData{
   display: flex;
@@ -516,10 +543,19 @@
   .Ticket_parent {
     grid-template-columns: repeat(2, 1fr);
   }
+  .Ticket{
+    .TicketImageContainer{
+      width: 350px;
+      max-width: 350px;
+    }
+    .ticketimage{
+      width: 350px;
+    }
+  }
 }
 
 
-@media screen and (max-width : 700px){
+@media screen and (max-width : 715px){
   .content_style{
     padding: 5px;
     font-size: 15px;
@@ -540,6 +576,15 @@
   }
   .Ticket_parent {
     width: 100%;
+  }
+  .Ticket{
+    .TicketImageContainer{
+      width: 300px;
+      max-width: 300px;
+    }
+    .ticketimage{
+      width: 300px;
+    }
   }
 
 }
@@ -573,12 +618,18 @@
 }
 
 @media screen and (max-width : 400px){
-  .Ticket{
-    max-width: 250px;
+  .top-ticket::before{
+    width: 70px;
+    font-size: 12px;
+    top: -0px;
+    right: -0px;
   }
   .PopularEvent{
     width: 300px;
     height: 150px;
+  }
+  .TicketImageContainer{
+    width: 250px;
   }
   .Photocontainer{
     height: 150px;
@@ -589,23 +640,24 @@
   }
   .Ticket{
     .TicketImageContainer{
-      width: auto;
       max-width: 250px;
-    }
-    .ticketimage{
-      width: 250px;
     }
   }
 }
 @media screen and (max-width : 300px){
-  .Ticket{
-    max-width: 250px;
-  }
   .PopularEvent{
     width: 280px;
     height: 120;
   }
   .Photocontainer{
     height: 150px;
+  }
+  .Ticket{
+    .TicketImageContainer{
+      max-width: 220px;
+    }
+    .ticketimage{
+      width: 220px;
+    }
   }
 }

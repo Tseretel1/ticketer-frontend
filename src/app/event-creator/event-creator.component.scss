@@ -1,57 +1,26 @@
 
 .EventParent{
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.DashboardHeader{
-    width: 100%;
-    height: auto;
+.Navigation{
     display: flex;
-    justify-content: flex-end;
-}
-.DashboardRoutes{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    gap: 10px;
     position: fixed;
-    z-index: 100;
-}
-.Nav_Routes{
-    display: flex;
-    padding: 0px 20px 0px 20px;
+    z-index: 10;
     background-color: black;
+    padding: 10px;
     border-radius: 10px;
-    z-index: 1000;
+    flex-wrap: wrap;
 }
 .RouterLink{
     color: white;
     text-decoration: none;
-    padding: 10px;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
 }
-.Creator_Profile{
-    width: 100%;
-    overflow-x: hidden;
-}
-.create_ticket{
-    width: 100%;
-    overflow-x: hidden;
-}
-.underline{
-    width: 100%;
-    border: 1px solid white;
-    position: absolute;
-}
-.Navigation_routes{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    position: relative;
+.RouterLink.active-link {
+    border-bottom: 1px solid white;
 }
 .AccountLoginCheck{
     display: flex;

@@ -11,8 +11,19 @@
 
     </div>
 </div>
+<div class="exitButton">
+    <button (click)="Showmodal()" class="button"><mat-icon>exit_to_app</mat-icon>  Exit from account</button>
+</div>
 
 
-<div class="Center">
-   <button (click)="Showmodal()" class="button"> exit from account</button>
+<div class="Profilecenter">
+  <div class="Profilecard">
+     <div class="ProfilepictureContainer">
+         <img [src]="Profile.profile" alt="" class="profilephoto">
+     </div>
+     <div class="ProfileData"> 
+        <p class="Name">{{Profile.name}}</p>
+        <p class="Name">{{Profile.lastName}}</p>
+     </div>
+  </div>
 </div>

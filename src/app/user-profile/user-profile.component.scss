@@ -1,9 +1,7 @@
-.Center{
+.exitButton{
     display: flex;
     width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
 }
 
 .ExitModal{
@@ -34,6 +32,8 @@
     outline: none;
     color: white;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 .buttoparent{
     display: flex;
@@ -44,4 +44,37 @@
 }
 .exitbutton{
     background-color: green;
+}
+
+.Profilecenter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.Profilecard{
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    max-width: 300px;
+}
+.ProfilepictureContainer{
+    display: grid;
+    place-items: center;
+    width: 200px;
+    overflow: hidden;
+    height: 200px;
+    border-radius: 50%;
+}
+.profilephoto{
+    width: 150%;
+}
+.Name{
+    color: white;
+}
+.ProfileData{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }

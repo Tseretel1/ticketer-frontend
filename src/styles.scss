@@ -1,11 +1,10 @@
 $background :#171735;
 html,body{
-    width: 100%;
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgb(0, 4, 39) 10%, rgb(13, 1, 28)60%, rgb(16, 16, 16));
+    background: $background;
+    height: auto;
 }
 
 html, body { height: 100%; }

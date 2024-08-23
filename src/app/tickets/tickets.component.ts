@@ -53,7 +53,6 @@ export class TicketsComponent implements OnInit, OnDestroy{
     )
   }
 
-
   loadTickets() {
     this.loading = true;
     this.ticketService.getTickets().subscribe(
@@ -61,6 +60,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
         this.AllTickets = resp;
         this.tickets = this.AllTickets;
         this.loading = false;
+        this.topTickets = this.getTopTickets(this.tickets, 'Animation');
       },
       (error) => {
         console.error('Error fetching ticket data:', error);
@@ -68,7 +68,18 @@ export class TicketsComponent implements OnInit, OnDestroy{
       }
     );
   }
-
+  
+  getTopTickets(tickets: any[], genre: string): any[] {
+    console.log(tickets);
+    return tickets
+      .filter(ticket => ticket.genre === genre)
+      .sort((a, b) => b.viewCount - a.viewCount)
+      .slice(0, 5);
+  }
+  
+  isTopTicket(ticket: any): boolean {
+    return this.topTickets.includes(ticket);
+  }
   AnimationFilter() {
     this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Animation');
   }
@@ -116,20 +127,6 @@ export class TicketsComponent implements OnInit, OnDestroy{
       this.tickets = this.AllTickets;
     }
   }
-
-
-
-
-getTopTickets(tickets: any[], genre: string): any[] {
-  return tickets
-    .filter(ticket => ticket.genre === genre)
-    .sort((a, b) => b.viewCount - a.viewCount)
-    .slice(0, 5);
-}
-
-isTopTicket(ticket: any): boolean {
-  return this.topTickets.includes(ticket);
-}
   
 
 fetchPopularEvents(): void {

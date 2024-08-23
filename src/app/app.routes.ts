@@ -6,12 +6,33 @@ import { FullTicketComponent } from './tickets/full-ticket/full-ticket.component
 import { EventCreatorComponent } from './event-creator/event-creator.component';
 import { CreatorGuard,  } from './auth.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CreateTicketComponent } from './event-creator/create-ticket/create-ticket.component';
+import { DashboardComponent } from './event-creator/dashboard/dashboard.component';
+import { CreatorProfileComponent } from './event-creator/creator-profile/creator-profile.component';
 
 export const routes: Routes = [
   { path: 'Tickets', component: TicketsComponent },
   { path: 'Login', component: RegistrationComponent },
   { path: 'FullTicket/:id', component: FullTicketComponent},
-  { path: 'EventCreator', component:EventCreatorComponent,canActivate:[CreatorGuard]},
+  {
+    path: 'EventCreator',
+    component: EventCreatorComponent,
+    canActivate: [CreatorGuard],
+    children: [
+      {
+        path: 'TicketManagment',
+        component: CreateTicketComponent
+      },
+      {
+        path: 'Dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'CreatorProfile',
+        component: CreatorProfileComponent
+      }
+    ]
+  },
   { path: 'UserProfile', component:UserProfileComponent},
   { path: '', redirectTo: '/Tickets', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/Tickets' } 

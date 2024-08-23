@@ -1,3 +1,5 @@
+
+
 <div class="modalaprent" *ngIf="modalvisible">
     <div class="modal">
         <div class="CloseModalParent">
@@ -8,31 +10,13 @@
         </div>
     </div>
 </div>
-
-
-<div class="EventParent"  *ngIf="LoggedCheck()">
-    <div class="DashboardHeader">
-        <div class="DashboardRoutes">
-            <div class="Nav_Routes">
-                <div class="Navigation_routes">
-                    <a class="RouterLink" routerLinkActive="active-link" (click)="TicketCreate()">Create Event</a>
-                    <span class="underline" *ngIf="CreateTicketVisible"></span>
-                </div>
-                <div class="Navigation_routes">
-                     <a  class="RouterLink" routerLinkActive="active-link" (click)="Dashboard()">Dashboard</a>
-                     <span class="underline" *ngIf=" DashboardVisible"></span>
-                 </div>
-                <div class="Navigation_routes">
-                    <a class="RouterLink" routerLinkActive="active-link" (click)="Profile()">Profile</a>
-                    <span class="underline" *ngIf="ProfileVisible"></span>
-                </div>
-            </div>
-        </div>
+<div class="EventParent" *ngIf="LoggedCheck()" >
+    <div class="Navigation">
+        <a [routerLink]="['/EventCreator/TicketManagment']" routerLinkActive="active-link"  class="RouterLink" >Ticket Managment</a>
+        <a [routerLink]="['/EventCreator/Dashboard']"  routerLinkActive="active-link" class="RouterLink">Dashboard</a>
+        <a [routerLink]="['/EventCreator/CreatorProfile']" routerLinkActive="active-link" class="RouterLink">Profile</a>
     </div>
-    <app-create-ticket class="create_ticket" *ngIf="CreateTicketVisible"></app-create-ticket>
-    <app-creator-profile class="Creator_Profile" *ngIf="ProfileVisible"></app-creator-profile>
-    <app-dashboard class="Creator_Dashboard" *ngIf="DashboardVisible"></app-dashboard>
-
+    <router-outlet></router-outlet>
 </div>
 <div class="AccountLoginCheck" *ngIf="LoggedCheck() == false">
     <div class="LOgintotext">

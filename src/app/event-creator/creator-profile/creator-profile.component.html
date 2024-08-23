@@ -1,14 +1,7 @@
+
 <div class="Profile_Container">
     <div class="ProfileSide" *ngIf="MyProfile">
        <div class="ProfileData">
-        <div class="UserProfile">
-            <div class="namelastname">
-                <p class="userData">Name : {{MyProfile.name}}</p>
-                <p class="userData">Lastname :{{MyProfile.lastName}}</p>
-            </div>
-            <p class="userData">Role : {{MyProfile.userRole}}</p>
-               
-        </div>
         <div class="Profilestyle">
             <div class="Imagecontainer">
                 <img [src]="MyProfile.logo" alt="" class="Profileimage">
@@ -29,23 +22,16 @@
 </div>
 <div class="Ticket_parent" *ngIf="MyTickets">
     <div class="Ticket" *ngFor="let tkt of MyTickets; let i = index">
-        <div class="Ticket_genre_parent" >
-            <p class="Ticket_Title"> {{tkt.title}}</p> 
-            <p class="Ticket_genre"> {{tkt.genre }}</p>
-        </div>
         <div class="TicketFlex">
             <div class="leftSide">
                 <div class="TicketImageContainer">
+                    <div class="titlecenter">
+                        <p class="Ticket_Title"> {{tkt.title}}</p> 
+                    </div>
+                    <div class="Editticket"  [routerLink]="['/FullTicket', tkt.id]">
+                        <p class="edittext"><mat-icon class="editicon">edit</mat-icon> Edit Ticket</p>
+                    </div>
                     <img [src]="tkt.photo" alt="" class="ticketimage">
-                </div>
-            </div>
-            <div class="RightSide">
-                <div class="Ticket_Data">
-                    <div class="data_style Price"><p class="Data_Titles"><mat-icon  class="iconsize">calendar_today</mat-icon></p> <p>{{ formatDate(tkt.activation_Date) }}</p></div>
-                    <div class="data_style Price"><p class="Data_Titles"><mat-icon  class="iconsize">access_time</mat-icon></p> <p>{{ formatHour(tkt.activation_Date) }}</p></div>
-                </div>
-                <div class="ViewCount">
-                   <p class="view data_style"><mat-icon class="iconsize">visibility</mat-icon>{{tkt.viewCount}}</p>
                 </div>
             </div>
         </div>
@@ -56,8 +42,11 @@
                     {{tkt.publisher.userName}}
                 </p>
             </div>
-            <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{tkt.price}}$</p></div>
+            <div class="data_style Price"><p class="Data_Titles">
+                <mat-icon  class="iconsize">calendar_today</mat-icon></p>
+                <p>{{ formatDate(tkt.activation_Date) }}</p>
+            </div>
+            <p class="view data_style"><mat-icon class="iconsize">visibility</mat-icon>{{tkt.viewCount}}</p>
         </div>
-
     </div>
 </div> 

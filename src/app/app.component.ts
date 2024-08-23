@@ -15,7 +15,7 @@ import { TicketsComponent } from './tickets/tickets.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Ticket_App';
+  title = 'Ticketer';
   isLoading: Observable<boolean>;
 
   constructor(private router: Router, private loaderService: LoaderService) {

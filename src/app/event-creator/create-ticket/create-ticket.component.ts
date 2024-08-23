@@ -5,6 +5,7 @@ import { CreateTicketService } from './create-ticket.service';
 import { AuthService } from '../../auth.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { Ticket } from './Interface';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-ticket',
   standalone: true,
@@ -14,7 +15,7 @@ import { Ticket } from './Interface';
 })
 export class CreateTicketComponent implements OnInit {
   ticketForm : FormGroup;
-  constructor(private ticketservice :CreateTicketService, private authService :AuthService, private fb:FormBuilder,) {
+  constructor(private ticketservice :CreateTicketService, private authService :AuthService, private fb:FormBuilder,private route :Router) {
     this.ticketForm = this.fb.group({
       Title:  ['', Validators.required],
       Description: ['', Validators.required],
@@ -47,7 +48,7 @@ export class CreateTicketComponent implements OnInit {
   get Price(): FormControl {
     return this.ticketForm.get('Price') as FormControl || null;
   }
-
+  ticketId?: string;
   ngOnInit(): void {
   }
   ModalVisible : boolean = false;
