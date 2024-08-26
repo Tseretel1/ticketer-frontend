@@ -17,12 +17,14 @@
     align-items: center;
     z-index: 9;
     transition: 0.3s all ease-in-out;
-    border-radius: 0px 0px 50px 0px;
     box-shadow: 2px 2px 10px black;
     max-width: 300px;
 }
 .OtherHalf{
     width: 100%;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.378);
+    transition: 0.3s all ease-in-out;
 }
 .Nav_Routes{
     gap: 20px;

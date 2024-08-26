@@ -52,26 +52,18 @@
         </div>
         <div class="Ticket_parent" *ngIf="tickets">
             <div class="Ticket" *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
-                <div class="TicketFlex">
-                    <div class="leftSide">
-                        <div class="TicketImageContainer">
-                            <div class="Editticket">
-                                <p class="edittext">View Ticket</p>
-                            </div>
-                            <img [src]="tkt.photo" alt="" class="ticketimage">
+                    <div class="TicketImageContainer">
+                        <div class="Editticket">
+                            <p class="edittext">View Ticket</p>
                         </div>
+                        <img [src]="tkt.photo" alt="" class="ticketimage">
                     </div>
+                <div class="">
+                    <p class="Ticket_Title"> {{tkt.title}}</p> 
                 </div>
-                <p class="Ticket_Title"> {{tkt.title}}</p> 
                 <div class="publisherData">
-                    <div class="PublisherProfile">
-                        <img *ngIf="tkt.publisher.logo" [src]="tkt.publisher.logo" class="PublisherImg" alt="">
-                        <p class="PublisherName">
-                            {{tkt.publisher.userName}}
-                        </p>
-                    </div>
                     <div class="data_style Price"> <div class="data_style Price"><p class="Data_Titles"><mat-icon  class="iconsize">calendar_today</mat-icon></p> <p>{{ formatDate(tkt.activation_Date) }}</p></div>
-                </div>
+                    </div>
                    <p class="view data_style"><mat-icon class="iconsize">visibility</mat-icon>{{tkt.viewCount}}</p>
                 </div>
             </div>

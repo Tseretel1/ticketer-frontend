@@ -8,6 +8,7 @@ import { Login, Register, ServiceService } from './service.service';
 import { CreatorProfileComponent } from "./creator-profile/creator-profile.component";
 import { CreateTicketComponent } from "./create-ticket/create-ticket.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-event-creator',
@@ -18,9 +19,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
     TicketsComponent,
     ReactiveFormsModule,
     RouterOutlet,
-    CreatorProfileComponent,
-    CreateTicketComponent,
-    DashboardComponent
+    CdkDrag
 ],
   templateUrl: './event-creator.component.html',
   styleUrl: './event-creator.component.scss'

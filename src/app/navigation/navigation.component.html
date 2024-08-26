@@ -26,6 +26,6 @@
             <a [routerLink]="'EventCreator'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="HideNavigation()"><mat-icon>palette</mat-icon>Creator Space</a>
          </div>
      </div>
-     <div class="OtherHalf"  (click)="HideNavigation()">
+     <div class="OtherHalf"  [style.opacity]="opacity"  (click)="HideNavigation()">
      </div>
 </div>

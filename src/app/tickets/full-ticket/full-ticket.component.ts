@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe, NgFor } from '@angular/common';
+import { CommonModule, DatePipe, Location, NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
@@ -23,11 +23,13 @@ export class FullTicketComponent implements OnInit {
   foundtickets : any[] = [];
 
 
+
   constructor(
     private router: ActivatedRoute, 
     private myService: FullTicketService,
     private datePipe: DatePipe,
     private Route: Router,
+    private location :Location
   ) { }
   
   ngOnInit(): void {
@@ -37,9 +39,10 @@ export class FullTicketComponent implements OnInit {
     });
   }
 
-  Exit(){
-    this.Route.navigate(['/Tickets']);
+  Exit() {
+    this.location.back();
   }
+  
 
 
 
@@ -67,9 +70,9 @@ export class FullTicketComponent implements OnInit {
   }
   NewMatchingTicket(id:number){
     this.matchingTicket = this.foundtickets.find(ticket => ticket.id === id); 
-    
     if (this.matchingTicket) {
       this.matchingTicket.photo = this.matchingTicket.photo + '?v=' + new Date().getTime();
+      this.id === id;
     } 
   }
   
@@ -107,5 +110,29 @@ Hour : string = "" ;
     }
 
     return  this.Hour;
+  }
+
+
+  Modal :boolean  = false;
+  HideModal(){
+    this.Modal = false;
+  }
+  ShowModal(){
+    this.Modal = true;
+  }
+
+
+  //Buy ticket 
+  BuyTicket(){
+    this.myService.BuyTicket(this.id).subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.HideModal();
+      },
+      (error: any) => {
+        console.error('Error fetching matching ticket:', error);
+        this.HideModal();
+      }
+    );
   }
 }

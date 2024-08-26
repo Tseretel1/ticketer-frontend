@@ -1,3 +1,52 @@
+.ModalWindowParent{
+  width: 100%;
+  display: flex;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.177);
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.ModalWindow{
+  width: 300px;
+  height: 300px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px black;
+  border-radius: 20px;
+}
+.Question{
+  color: white;
+}
+.TicketModal{
+  width: 280px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.TicketImageModal{
+  object-fit: fit;
+  width: 280px;
+}
+.submitbuttons{
+  color: white;
+  border: none;
+  box-shadow: 0px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.buy{
+  background-color: green;
+}
+.cancel{
+  background-color: red;
+}
+
+
+
 $background :#1e3d59;
 .CenterBody{
     width: 100%;
@@ -430,7 +479,7 @@ $background :#1e3d59;
 
 //buy Button
 .fancy {
-    background-color: transparent;
+    background-color: red;
     border: 2px solid #000;
     border-radius: 0;
     box-sizing: border-box;

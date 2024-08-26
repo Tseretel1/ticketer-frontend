@@ -26,6 +26,7 @@ export class NavigationComponent implements OnInit{
   
   width = 0;
   minwidth = 0;
+  opacity = 0;
   NavigationVisible:Boolean = false;
   NavbUttonVisible:boolean = true;
   ShowNavigation(){
@@ -34,6 +35,7 @@ export class NavigationComponent implements OnInit{
       this.NavbUttonVisible = false;
       this.width = 30;
       this.minwidth = 150;
+      this.opacity =1;
     }, 0);
   }
   HideNavigation(){
@@ -43,6 +45,7 @@ export class NavigationComponent implements OnInit{
     this.width = 0;
     this.minwidth = 0;
     this.NavbUttonVisible = true;
+    this.opacity = 0;
   }
 
 

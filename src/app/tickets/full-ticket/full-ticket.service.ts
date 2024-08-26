@@ -14,5 +14,8 @@ export class FullTicketService {
   getMatchingTicket(ticketId: number): Observable<any> {
     return this.http.get(`${this.url}matching-ticket/${ticketId}`);
   }
-  
+
+  BuyTicket(ticketid: number): Observable<any> {
+    return this.http.post<any>(`${this.url}buy-ticket`, { ticketid });
+  }
 }

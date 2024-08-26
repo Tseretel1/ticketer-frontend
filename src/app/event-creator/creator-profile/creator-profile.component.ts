@@ -6,11 +6,12 @@ import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { CreateTicketComponent } from "../create-ticket/create-ticket.component";
 import { DashboardComponent } from "../dashboard/dashboard.component";
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-creator-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DatePipe, MatIcon, RouterLink, CreateTicketComponent, DashboardComponent],
+  imports: [CommonModule, ReactiveFormsModule, DatePipe, MatIcon, RouterLink],
   templateUrl: './creator-profile.component.html',
   styleUrl: './creator-profile.component.scss'
 })

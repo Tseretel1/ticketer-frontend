@@ -1,3 +1,16 @@
+<div class="ModalWindowParent" *ngIf="Modal">
+  <div class="ModalWindow">
+    <p class="Question">Are you sure you want to buy this ticket?</p>
+    <div class="TicketModal">
+      <img [src]="matchingTicket.photo" alt="" class="TicketImageModal">
+    </div>
+    <div class="modalButtonAlign">
+      <button class="submitbuttons buy" (click)="BuyTicket()">Buy</button>
+      <button class="submitbuttons cancel"  (click)="HideModal()">Cancel</button>
+    </div>
+  </div>
+</div> 
+
 
 <div class="CenterBody">
     <div class="FountTicketParent" *ngIf="matchingTicket">
@@ -33,7 +46,7 @@
               <div class="Description"><p class="Datatitle"> Description:</p>  <p>{{matchingTicket.description}}</p> </div>
             </div>
           </div>
-           <button class="fancy" href="#">
+           <button class="fancy" href="#" (click)="ShowModal()">
              <span class="top-key"></span>
              <span class="text">Buy Ticket {{matchingTicket.price}}$</span>
              <span class="bottom-key-1"></span>
