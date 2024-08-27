@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe, Location, NgFor } from '@angular/common';
+import { CommonModule, DatePipe, Location, NgClass, NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-full-ticket',
   standalone: true,
-  imports: [MatIcon,CommonModule,RouterLink],
+  imports: [MatIcon,CommonModule,RouterLink,NgClass],
   templateUrl: './full-ticket.component.html',
   styleUrls: ['./full-ticket.component.scss'],
   providers: [
@@ -50,7 +50,6 @@ export class FullTicketComponent implements OnInit {
     this.myService.getMatchingTicket(this.id).subscribe(
       (resp: any) => {
         this.foundtickets = resp;
-        console.log(this.foundtickets);
         this.Matchingticketfound();
       },
       (error: any) => {
@@ -68,13 +67,15 @@ export class FullTicketComponent implements OnInit {
       console.error("Matching ticket not found.");
     }
   }
-  NewMatchingTicket(id:number){
-    this.matchingTicket = this.foundtickets.find(ticket => ticket.id === id); 
+  NewMatchingTicket(id: number) {
+    this.matchingTicket = this.foundtickets.find(ticket => ticket.id === id);
+    
     if (this.matchingTicket) {
-      this.matchingTicket.photo = this.matchingTicket.photo + '?v=' + new Date().getTime();
-      this.id === id;
-    } 
+      this.matchingTicket.photo = this.matchingTicket.photo + '?v=' + new Date().getTime();      
+      this.id = id;
+    }
   }
+  
   
 
   monthNames:any = {
@@ -116,20 +117,36 @@ Hour : string = "" ;
   Modal :boolean  = false;
   HideModal(){
     this.Modal = false;
+    this.ShowSmallModal();
+    this.SmallModalText = "Canceled!";
   }
   ShowModal(){
     this.Modal = true;
   }
 
-
+  get isTicketAvailable(): boolean {
+    return this.matchingTicket && this.matchingTicket.ticketCount > 0;
+  }
+  SmallModal :boolean = false;
+  SmallModalText  :string = "";
+  ShowSmallModal(){
+    this.SmallModal = true;
+    setTimeout(() => {
+      this.SmallModal = false;
+    }, 5000);
+  }
   //Buy ticket 
   BuyTicket(){
     this.myService.BuyTicket(this.id).subscribe(
       (resp: any) => {
-        console.log(resp);
+        this.ShowSmallModal();
         this.HideModal();
+        this.SmallModalText = resp.message;
+        this.matchingTicket.ticketCount =  this.matchingTicket.ticketCount  -1;
       },
       (error: any) => {
+        this.ShowSmallModal();
+        this.SmallModalText = error.message;
         console.error('Error fetching matching ticket:', error);
         this.HideModal();
       }

@@ -60,7 +60,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
         this.AllTickets = resp;
         this.tickets = this.AllTickets;
         this.loading = false;
-        this.topTickets = this.getTopTickets(this.tickets, 'Animation');
+        this.topTickets = this.getTopTickets(this.tickets);
       },
       (error) => {
         console.error('Error fetching ticket data:', error);
@@ -69,11 +69,10 @@ export class TicketsComponent implements OnInit, OnDestroy{
     );
   }
   
-  getTopTickets(tickets: any[], genre: string): any[] {
+  getTopTickets(tickets: any[]): any[] {
     console.log(tickets);
     return tickets
-      .filter(ticket => ticket.genre === genre)
-      .sort((a, b) => b.viewCount - a.viewCount)
+      .sort((a, b) => b.sold - a.sold)
       .slice(0, 5);
   }
   

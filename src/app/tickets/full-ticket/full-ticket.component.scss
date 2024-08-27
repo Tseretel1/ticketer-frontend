@@ -3,47 +3,139 @@
   display: flex;
   height: 100%;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.177);
+  background-color: rgba(0, 0, 0, 0.347);
   align-items: center;
   justify-content: center;
   z-index: 1;
 }
-.ModalWindow{
-  width: 300px;
-  height: 300px;
-  background-color: black;
+.ModalWindow {
+  background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
+  background-size: 800% 800%;
+  -webkit-animation: AnimationName 20s ease infinite;
+  -moz-animation: AnimationName 20s ease infinite;
+  animation: AnimationName 20s ease infinite;
+  padding: 10px 20px 20px 20px ;
+  border-radius: 10px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  transition: 0.3s all ease-in-out;
   box-shadow: 0px 0px 10px black;
-  border-radius: 20px;
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%
+  }
+
+   50% {
+    background-position: 100% 50%
+  }
+
+  100% {
+    background-position: 0% 50%
+  }
 }
 .Question{
   color: white;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 .TicketModal{
-  width: 280px;
+  width: 250px;
   overflow: hidden;
   border-radius: 10px;
+  height: 250px;
 }
 .TicketImageModal{
-  object-fit: fit;
-  width: 280px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.modalButtonAlign{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
 }
 .submitbuttons{
   color: white;
   border: none;
   box-shadow: 0px;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 5px;
 }
 .buy{
   background-color: green;
+  transition: 0.3s all ease-in-out;
+  cursor: pointer;
+}
+.buy:hover{
+  background-color: rgba(0, 128, 0, 0.523);
+  letter-spacing: 2px;
+}
+.CloseModal{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 .cancel{
+  padding: 2px;
+  margin: 0;
+  padding: 0;
+  color: white;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+  display: grid;
+}
+.cancel:hover{
   background-color: red;
 }
+.disabled_button {
+  background-color: gray;
+  border: 10px solid blue;
+  cursor: not-allowed;
+  pointer-events: none; 
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.SmallModalParent{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.SmallModal{
+  padding: 0px 30px 0px 30px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+}
+.SmallModal::before{
+  content: '';
+  bottom: -2px;
+  left: -2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  border-radius: 50px 0px 50px 0px;
+}
+.SmallmodalText{
+  font-size: 15px;
+  font-weight: 600;
+  max-width: 200px; 
+  word-break: break-all;
+}
+
+
 
 
 

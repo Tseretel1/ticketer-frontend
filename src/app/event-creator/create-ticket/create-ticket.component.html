@@ -3,12 +3,10 @@
         <p class="ModalMessage">{{ModalMessgae}}</p>
     </div>
 </div>
-<div class="YourTicket">
-    <b class="YourTicketText">
-        Create your own Event!
-    </b>
-</div>
-<div class="ticketbody">      
+<div class="ticketbody" *ngIf="EditTicket"  >   
+    <div class="CancelAdingticket">
+        <button class="CancelAdingticketButton" (click)="CancelTicketCreation()"><mat-icon>close</mat-icon></button>   
+    </div>
     <form [formGroup]="ticketForm"  (submit)="addTicket()" class="TicketFormm">
         <div class="FormAlign">
             <div class="FirstHalf">
@@ -55,34 +53,6 @@
                         <input id="description" [formControl]="Description" type="text" class=" DescriptionIput"  placeholder="Add Description Here..." [maxlength]="800">    
                     </div>        
                 </div>
-                <div class="Ticket">
-                    <div class="Ticket_genre_parent" >
-                        <p class="Ticket_Title"> {{title.value}}</p> 
-                        <div class="Ticket_genre"> 
-                            <p *ngIf="Genre.value == null">None</p>
-                            <p *ngIf="Genre.value">{{Genre.value}}</p>
-                         </div>
-                    </div>
-                    <div class="TicketFlex">
-                        <div class="leftSide">
-                            <div class="TicketImageContainer">
-                                <img [src]="imagePreview" alt="" class="ticketimage">
-                            </div>
-                        </div>
-                        <div class="RightSide">
-                            <div class="Ticket_Data">
-                                <div class="data_style Price"><p class="Data_Titles">Date :</p> <p>{{ (Date.value) }}</p></div>
-                                <div class="data_style Price"><p class="Data_Titles">Start : </p> <p>{{ (Time.value) }}</p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="publisherData">
-                        <div class="PublisherProfile">
-
-                        </div>
-                        <div class="data_style Price"><p class="Data_Titles">Price: </p> <p>{{Price.value}}$</p></div>
-                    </div> 
-                </div>
            </div>
             <div class="TicketCountParent">
                 <label for="ticketCount">How many Tickets do you want to create?</label>
@@ -91,4 +61,53 @@
             <button type="submit">Create Ticket</button>
         </div>
     </form>   
-    </div>
+</div>
+
+
+
+<!--My tickets-->
+<div class="CenterEverything">  
+    <div class="Ticket_parent" *ngIf="EditTicket == false">
+      <div class="TicketWrap">
+        <div  class="AddTicketCard">
+            <button class="Createticketbutton" (click)="CreateTicketButton()">
+               <mat-icon>add</mat-icon>Add New Ticket
+            </button>
+        </div>
+        <div class="Ticket" *ngFor="let tkt of MyTickets; let i = index" [ngClass]="{'expired-ticket': isExpired(tkt)}">
+            <div class="SoldTicketCount"> Sold {{tkt.sold}} <mat-icon>confirmation_number</mat-icon></div>
+            {{i + 1}}
+            <div class="Editticket" [routerLink]="['/FullTicket', tkt.id]">
+              <p class="edittext"><mat-icon class="editicon">edit</mat-icon> Edit Ticket</p>
+            </div>
+            <div class="TicketFlex">
+              <div class="leftSide">
+    
+                <div class="TicketImageContainer">
+                  <div class="titlecenter">
+                    <p class="Ticket_Title"> {{tkt.title}}</p>
+                  </div>
+                  <img [src]="tkt.photo" alt="" class="ticketimage">
+                </div>
+              </div>
+            </div>
+            <div class="publisherData">
+              <div class="PublisherProfile">
+                <img *ngIf="tkt.publisher.logo" [src]="tkt.publisher.logo" class="PublisherImg" alt="">
+                <p class="PublisherName">{{tkt.publisher.userName}}</p>
+              </div>
+              <div class="data_style Price">
+                <p class="Data_Titles">
+                  <mat-icon class="iconsize">calendar_today</mat-icon>
+                </p>
+                <p>{{ formatDate(tkt.activation_Date) }}</p>
+              </div>
+              <p class="view data_style">
+                <mat-icon class="iconsize">visibility</mat-icon>{{tkt.viewCount}}
+              </p>
+         </div>
+      </div>
+      </div>
+    </div> 
+  </div>
+  

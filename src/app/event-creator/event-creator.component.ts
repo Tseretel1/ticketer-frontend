@@ -1,13 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { OutletContext, Route, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { TicketsComponent } from '../tickets/tickets.component';
 import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Login, Register, ServiceService } from './service.service';
-import { CreatorProfileComponent } from "./creator-profile/creator-profile.component";
-import { CreateTicketComponent } from "./create-ticket/create-ticket.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
 import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -28,7 +25,7 @@ export class EventCreatorComponent implements OnInit{
 
   ngOnInit(): void {
     if (this.LoggedCheck()) {
-      this.router.navigate(['/EventCreator/CreatorProfile']);
+      this.router.navigate(['/EventCreator/TicketManagment']);
     }
   }
 

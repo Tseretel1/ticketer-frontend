@@ -1,16 +1,27 @@
+<!--Modal-->
 <div class="ModalWindowParent" *ngIf="Modal">
   <div class="ModalWindow">
-    <p class="Question">Are you sure you want to buy this ticket?</p>
+    <div class="CloseModal">
+       <button class="cancel"  (click)="HideModal()"><mat-icon>close</mat-icon></button>
+    </div>
+    <p class="Question">{{matchingTicket.title}}</p>
     <div class="TicketModal">
       <img [src]="matchingTicket.photo" alt="" class="TicketImageModal">
     </div>
+    <p class="Question"><mat-icon>calendar_today </mat-icon> {{formatDate(matchingTicket.activation_Date)}}</p>
     <div class="modalButtonAlign">
-      <button class="submitbuttons buy" (click)="BuyTicket()">Buy</button>
-      <button class="submitbuttons cancel"  (click)="HideModal()">Cancel</button>
+      <button class="submitbuttons buy" (click)="BuyTicket()"><span class="text">Buy Ticket {{matchingTicket.price}}$</span></button>
     </div>
   </div>
 </div> 
 
+
+<!--Little Modal-->
+<div class="SmallModalParent" *ngIf="SmallModal">
+  <div class="SmallModal">
+    <p class="SmallmodalText">{{SmallModalText}}</p>
+  </div>
+</div>
 
 <div class="CenterBody">
     <div class="FountTicketParent" *ngIf="matchingTicket">
@@ -46,12 +57,18 @@
               <div class="Description"><p class="Datatitle"> Description:</p>  <p>{{matchingTicket.description}}</p> </div>
             </div>
           </div>
-           <button class="fancy" href="#" (click)="ShowModal()">
-             <span class="top-key"></span>
-             <span class="text">Buy Ticket {{matchingTicket.price}}$</span>
-             <span class="bottom-key-1"></span>
-             <span class="bottom-key-2"></span>
-           </button>
+          <button 
+          class="fancy" 
+          href="#" 
+          (click)="ShowModal()" 
+          [attr.disabled]="!isTicketAvailable ? true : null"
+          [ngClass]="{'disabled_button': !isTicketAvailable}">
+          <span class="top-key"></span>
+          <span class="text">Buy Ticket {{matchingTicket.price}}$</span>
+          <span class="bottom-key-1"></span>
+          <span class="bottom-key-2"></span>
+        </button>
+        
            <div class="TicketLeft">
             <p class="">Ticket Left: {{matchingTicket.ticketCount}}</p>     
           </div>  

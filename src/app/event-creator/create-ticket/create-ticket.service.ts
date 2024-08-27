@@ -13,6 +13,9 @@ export class CreateTicketService {
 
   constructor(private http: HttpClient, private authService: AuthService, private datePipe: DatePipe) { }
 
+  GetMytickets(): Observable<any> {
+    return this.http.get( this.URL+'my-tickets');
+  }
   formatDateToBackend(date: Date): string {
     const datePart = this.datePipe.transform(date, 'yyyy-MM-dd');
     const timePart = this.datePipe.transform(date, 'HH:mm:ss.SSS');
@@ -29,5 +32,6 @@ export class CreateTicketService {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });
+    
   }
 }
