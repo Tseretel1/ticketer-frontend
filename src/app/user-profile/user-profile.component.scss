@@ -4,6 +4,7 @@
     justify-content: flex-end;
 }
 
+
 .ExitModal{
     display: flex;
     width: 100%;
@@ -11,22 +12,31 @@
     position: fixed;
     align-items: center;
     justify-content: center;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.308);
+    backdrop-filter: blur(2px);
+    transition: 0.3s all ease-in-out;
 }
 .modal{
     display: flex;
     width: 300px;
-    height: 300px;
-    background-color: rgb(37, 36, 36);
+    height: 150px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     box-shadow: 0px 0px 10px black;
     color: white;
     border-radius: 20px;
+    z-index: 500;
+    background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 20s ease infinite;
+    animation: AnimationName 20s ease infinite;
 }
 .button{
     background-color: black;
-    padding: 10px;
+    padding: 10px 20px 10px 20px;
     border-radius: 10px;
     border: none;
     outline: none;
@@ -34,28 +44,35 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    transition: 0.2s all ease-in-out;
+    position: fixed;
 }
 .buttoparent{
     display: flex;
     gap: 20px;
 }
+.button:hover{
+    letter-spacing: 1px;
+}
 .cancelbutton{
-    background-color: red;
+    border:1px solid black;
+    background-color: transparent;
+    color: black;
 }
 .exitbutton{
-    background-color: green;
+    border: 1px solid black;
 }
+
 
 .Profilecenter{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100%;
 }
 .Profilecard{
     display: flex;
     flex-direction: column;
-    padding: 50px;
     max-width: 300px;
 }
 .ProfilepictureContainer{
@@ -77,4 +94,146 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+
+
+.title{
+    font-size: 30px;
+    color: white;
+    align-items: center;
+}
+
+
+.MyTicketsParent{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.TicketCenter{
+    width: 80%;
+    max-width: 1500px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    z-index: 1;
+}
+.Ticket{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    transition: 0.3s all ease-in-out;
+}
+.TicketPhoto{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    transition: 0.5s all ease-in-out;
+}
+.PhotoContainer{
+    width: 180px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+.singlephotoContainer{
+    width: 220px;
+    height: 220px;
+}
+.TicketPhoto:hover{
+    scale: 1.2;
+}
+.TicketsTitle{
+    margin-top: 100px;
+}
+.TicketDate{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.SingleTicketParent{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.SingleTicket{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    flex-direction: column;
+    background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 20s ease infinite;
+    animation: AnimationName 20s ease infinite;
+    box-shadow: 0px 0px 10px black;
+    margin-top: 20px;
+}
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 50%
+    }
+  
+     50% {
+      background-position: 100% 50%
+    }
+  
+    100% {
+      background-position: 0% 50%
+    }
+  }
+.SinglticketTitle{
+    font-size: 22px;
+    font-weight: 500;
+    color: white;
+}
+.date{
+    color: goldenrod;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+.tktdate{
+    display: flex;
+}
+.iconsize{
+    font-size: 15px;
+}
+.CodeAndPhoto{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.QrCode{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upside{
+    transform: rotate(180deg);
+}
+.backoff{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    gap: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    color: black;
+    transition: 0.3s all ease-in-out;
+    border-radius: 10px;
 }

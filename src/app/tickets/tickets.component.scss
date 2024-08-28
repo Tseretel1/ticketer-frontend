@@ -378,7 +378,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 30px;
-  gap: 30px;
+  gap: 40px;
   justify-content: center;
 
 }
@@ -393,23 +393,17 @@
     height: auto;
     justify-content: space-between;
 }
-
-.Ticket:hover{
-  scale: 1.02;
-}
 .top-ticket {
   color: white;
   position: relative;
   transition: 0.3s all ease-in-out;
 
 }
-.top-ticket:before {
-  content: "Hot";
+.TopTickets{
   position: absolute;
   top: -10px;
   right: -30px;
   background-color: red;
-  width: 40px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px red;
   padding: 5px;
@@ -417,9 +411,10 @@
   justify-content: center;
   align-items: center;
   transform: rotateZ(-342deg);
-  z-index: 1;
+  z-index: 30;
   color: white;
 }
+
 .titlecenter{
   display: flex;
   width: 100%;
@@ -564,7 +559,7 @@
     }
   }
 }
-@media screen and (max-width : 530px){
+@media screen and (max-width : 540px){
   .PopularEvent{
     width: 400px;
     height: 200px;

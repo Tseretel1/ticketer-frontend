@@ -52,6 +52,9 @@
         </div>
         <div class="Ticket_parent" *ngIf="tickets">
             <div class="Ticket" *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
+                <div *ngIf="isTopTicket(tkt)"  class="TopTickets">
+                    <mat-icon>star </mat-icon>Top
+                </div>
                     <div class="TicketImageContainer">
                         <div class="Editticket">
                             <p class="edittext">View Ticket</p>
@@ -64,7 +67,7 @@
                 <div class="publisherData">
                     <div class="data_style Price"> <div class="data_style Price"><p class="Data_Titles"><mat-icon  class="iconsize">calendar_today</mat-icon></p> <p>{{ formatDate(tkt.activation_Date) }}</p></div>
                     </div>
-                   <p class="view data_style"><mat-icon class="iconsize">visibility</mat-icon>{{tkt.viewCount}}</p>
+                   <p class="view data_style"><mat-icon class="iconsize">access_time</mat-icon>{{formatHour(tkt.activation_Date)}}</p>
                 </div>
             </div>
         </div> 

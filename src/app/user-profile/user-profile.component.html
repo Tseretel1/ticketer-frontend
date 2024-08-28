@@ -5,8 +5,8 @@
         <p>Exit from Account?</p>
      </div>
      <div class="buttoparent">
-        <button class="button exitbutton" (click)="ExitFromAccount()">Exit</button>
-        <button class="button cancelbutton" (click)="hidemodal()">Cancel</button>
+        <button class=" exitbutton" (click)="ExitFromAccount()">Exit</button>
+        <button class=" cancelbutton" (click)="hidemodal()">Cancel</button>
      </div>
 
     </div>
@@ -16,7 +16,33 @@
 </div>
 
 
-<div class="Profilecenter">
+
+<div class="SingleTicketParent" *ngIf="QRVisible">
+   <div class="exitButtonParent">
+      <button class="backoff" (click)="BcakFromTicket()">Back<mat-icon class="upside">exit_to_app</mat-icon></button>
+   </div>
+   <div class="SingleTicket">
+      <div class="SinglticketTitle">
+         {{SingleTicket.title}}
+      </div>
+      <div class="TicketDate">
+       <p class="date"><mat-icon>calendar_today</mat-icon> {{formatDate(SingleTicket.activation_Date)}}</p>
+       <p class="date"><mat-icon>access_time</mat-icon>{{formatHour(SingleTicket.activation_Date)}}</p>
+      </div>
+      <div class="CodeAndPhoto">
+         <div class="Ticket Singleticket" >
+            <div class="PhotoContainer singlephotoContainer">
+              <img [src]="SingleTicket.photo" alt="" class="TicketPhoto">
+            </div>
+         </div>
+         <div class="QrCode">
+            <qrcode class="qrcodeWidth" [qrdata]="QrData"></qrcode>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="Profilecenter" *ngIf="QRVisible ==false">
   <div class="Profilecard">
      <div class="ProfilepictureContainer">
          <img [src]="Profile.profile" alt="" class="profilephoto">
@@ -25,5 +51,26 @@
         <p class="Name">{{Profile.name}}</p>
         <p class="Name">{{Profile.lastName}}</p>
      </div>
+  </div>
+
+    <p class="title">My tickets <mat-icon>confirmation_number</mat-icon></p>
+
+
+  <div class="MyTicketsParent" *ngIf="Tickets">
+   <div class="TicketCenter">
+      <div class="Ticket" *ngFor="let tkt of Tickets">
+         <div class="PhotoContainer" (click)="viewTicket(tkt)">
+          <div class="AbsoluteHover"></div>
+           <img [src]="tkt.photo" alt="" class="TicketPhoto">
+         </div>
+         <div class="">
+            {{tkt.title}}
+         </div>
+         <div class="TicketDate">
+            <p class="tktdate"><mat-icon class="iconsize">calendar_today</mat-icon> {{formatDate(tkt.activation_Date)}}</p>
+            <p class="tktdate"><mat-icon class="iconsize">access_time</mat-icon>{{formatHour(tkt.activation_Date)}}</p>
+       </div>
+      </div>
+   </div>
   </div>
 </div>

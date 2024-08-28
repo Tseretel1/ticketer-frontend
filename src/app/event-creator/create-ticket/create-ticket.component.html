@@ -75,8 +75,7 @@
             </button>
         </div>
         <div class="Ticket" *ngFor="let tkt of MyTickets; let i = index" [ngClass]="{'expired-ticket': isExpired(tkt)}">
-            <div class="SoldTicketCount"> Sold {{tkt.sold}} <mat-icon>confirmation_number</mat-icon></div>
-            {{i + 1}}
+            <div class="SoldTicketCount"> Sold {{tkt.sold}}</div>
             <div class="Editticket" [routerLink]="['/FullTicket', tkt.id]">
               <p class="edittext"><mat-icon class="editicon">edit</mat-icon> Edit Ticket</p>
             </div>

@@ -11,6 +11,9 @@ export class UserService {
    { }
    private URL = "https://localhost:7081/"
    GetMyProfile(): Observable<any> {
-     return this.http.get( this.URL+'user-profile');
+     return this.http.get( this.URL+ 'user-profile');
    }
+   GetMyTickets(): Observable<any> {
+    return this.http.get( this.URL+ 'my-tickets');
+  }
 }
