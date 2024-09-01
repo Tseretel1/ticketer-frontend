@@ -22,8 +22,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
   AllTickets: any[] = [];
   tickets: any[] = [];
   searchTerm: string = ''; 
-  topTickets: any[] = [];
-  loading: boolean = false;
+  topTickets: Set<number> = new Set(); 
 
   Popularevent: any[] = [];
   MostPopularEvent: any = null;
@@ -48,51 +47,58 @@ export class TicketsComponent implements OnInit, OnDestroy{
         console.log(resp);
       },
       (error:any)=>{
-
       }
     )
   }
 
   loadTickets() {
-    this.loading = true;
     this.ticketService.getTickets().subscribe(
       (resp: any[]) => {
+        console.log(resp);
         this.AllTickets = resp;
         this.tickets = this.AllTickets;
-        this.loading = false;
-        this.topTickets = this.getTopTickets(this.tickets);
+        this.getTopTickets(this.tickets);
       },
       (error) => {
         console.error('Error fetching ticket data:', error);
-        this.loading = false;
       }
     );
   }
-  
-  getTopTickets(tickets: any[]): any[] {
-    console.log(tickets);
-    return tickets
+
+  getTopTickets(tickets: any[]): void {
+    const sortedTickets = [...tickets]
       .sort((a, b) => b.sold - a.sold)
       .slice(0, 5);
+    const topTicketIds = new Set(sortedTickets.map(tkt => tkt.id));
+    this.topTickets = topTicketIds;
   }
   
+
   isTopTicket(ticket: any): boolean {
-    return this.topTickets.includes(ticket);
+    return this.topTickets.has(ticket.id);
   }
+  
+  FilterText:string = "All Content"
+
+
   AnimationFilter() {
     this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Animation');
+    this.FilterText = 'Animation';
   }
 
   FootballFilter() {
     this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Football');
+    this.FilterText = 'Football';
   }
 
   MusicFilter() {
     this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Music');
+    this.FilterText = 'Music';
   }
 
   resetFilters() {
     this.tickets = this.AllTickets;
+    this.FilterText = 'All Content';
   }
 
   onFilterChange(event: Event) {
@@ -197,7 +203,7 @@ Hour : string = "" ;
       return '';
     }
     const parsedDate = new Date(date);
-    const formattedHour = this.datePipe.transform(parsedDate, 'h:mm a'); 
+    const formattedHour = this.datePipe.transform(parsedDate, 'h:mm '); 
     return formattedHour || '';
   }
   

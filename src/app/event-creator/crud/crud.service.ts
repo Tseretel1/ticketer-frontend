@@ -5,18 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class FullTicketService {
+export class CrudService {
 
-  private url = "https://localhost:7081/";
+  private url = "https://localhost:7081/api/Creator/";
 
   constructor(private http: HttpClient) { }
   
   getMatchingTicket(ticketId: number): Observable<any> {
     return this.http.get(`${this.url}matching-ticket/${ticketId}`);
   }
- 
-  BuyTicket(ticketid: number, ticketCount: number): Observable<any> {
-    return this.http.post<any>(`${this.url}buy-ticket`, { ticketid, ticketCount });
-  }
-
 }

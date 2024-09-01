@@ -28,30 +28,38 @@ export class UserProfileComponent implements OnInit{
   }
   Profile :any = {};
   Tickets : any[] = [];
+  Instances : any[] = [];
   SingleTicket :any = {};
   QRVisible : boolean = false;
   Userid :string = "";
   QrData :string = "";
+  ExitFromAccountVisible :boolean = true;
 
-  BcakFromTicket(){
+  BackFromTicket(){
     this.QRVisible = false;
+    this.ExitFromAccountVisible = true;
+    this.Instances = [];
   }
 
   viewTicket(tkt: any){
     this.QRVisible = true;
     this.SingleTicket = tkt;
-    const Token  = localStorage.getItem('token');
-    if(Token){
-       this.Userid = this.authservice.getUserId(Token);
-       this.QrData = this.Userid + " " + this.SingleTicket.title + this.SingleTicket.publisher + this.SingleTicket.activation_Date
-    }
+    this.ExitFromAccountVisible = false;
+    this.service.TicketInstances(tkt.id).subscribe(
+      (resp)=>{
+        this.Instances = resp;
+      },
+      (error)=>{
+      }
+     )
   }
+
+  
 
   UserProfile(){
      this.service.GetMyProfile().subscribe(
       (resp)=>{
         this.Profile = resp;
-        console.log(this.Profile);
       },
       (error)=>{
         console.log(error);
@@ -103,16 +111,13 @@ formatHour(date: string | null): string {
 }
 
 
-
-
-
   ExitFromAccount(){
     const token = localStorage.getItem('token');
     const CreatorToken = localStorage.getItem('CreatorToken');
     if(token || CreatorToken){
       localStorage.removeItem('token');
       localStorage.removeItem('CreatorToken');
-      this.router.navigate(['/Tickets']);
+      this.router.navigate(['/Login']);
     }
   }
   

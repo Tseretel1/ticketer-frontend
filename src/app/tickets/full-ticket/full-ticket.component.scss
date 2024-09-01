@@ -68,14 +68,36 @@
   border-radius: 3px;
   padding: 5px;
 }
+.sellingForm{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.sellinginput{
+  outline: none;
+  border: none;
+}
 .buy{
-  background-color: green;
+  background-color: transparent;
   transition: 0.3s all ease-in-out;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  border: 1px solid white;
 }
 .buy:hover{
   background-color: rgba(0, 128, 0, 0.523);
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+}
+.text{
+  display:flex;
+  align-items: center;
+  gap: 10px;
+}
+.price{
+  color: goldenrod;
+  font-weight: bold;
+  font-size: 20px;
 }
 .CloseModal{
   width: 100%;
@@ -288,6 +310,15 @@ $background :#1e3d59;
     border-radius: 5px;
     box-shadow: 0px 0px 10px black;
     background-color: lightslategray;
+}
+.TktSoldout{
+  display: flex;
+  align-items: center;
+  background-color: red;
+  color: white;
+  padding: 30px 0px 30px 0px;
+  font-size: 25px;
+  cursor: not-allowed;
 }
 .SecondSection{
     display: flex;

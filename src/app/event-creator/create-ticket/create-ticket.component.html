@@ -74,11 +74,11 @@
                <mat-icon>add</mat-icon>Add New Ticket
             </button>
         </div>
-        <div class="Ticket" *ngFor="let tkt of MyTickets; let i = index" [ngClass]="{'expired-ticket': isExpired(tkt)}">
+        <div class="Ticket" *ngFor="let tkt of MyTickets; let i = index" [ngClass]="{'expired-ticket': isExpired(tkt)}" [routerLink]="['/EventCreator/Crud', tkt.id]">
             <div class="SoldTicketCount"> Sold {{tkt.sold}}</div>
-            <div class="Editticket" [routerLink]="['/FullTicket', tkt.id]">
+            <div class="Editticket">
               <p class="edittext"><mat-icon class="editicon">edit</mat-icon> Edit Ticket</p>
-            </div>
+            </div> 
             <div class="TicketFlex">
               <div class="leftSide">
     

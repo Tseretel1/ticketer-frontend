@@ -234,8 +234,8 @@
     display:flex;
     background-color: rgba(0, 0, 0, 0.195);
     box-shadow: 0px 0px;
-    border-bottom: 2px solid white;
-    border-top: 2px solid white;
+    border-bottom: 2px solid green;
+    border-top: 2px solid green;
     position: relative;
     padding: 0;
     color: white;
@@ -243,8 +243,15 @@
     gap: 20px;
     justify-content: space-between;
 }
-.Ticket:hover{
-    scale: 1;
+.Ticket::before{
+    content: "Active";
+    top: -10px;
+    left: -10px;
+    position: absolute;
+    background-color: Green;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 2;
 }
 .TicketWrap{
     width: 100%;

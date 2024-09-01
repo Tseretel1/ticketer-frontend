@@ -16,4 +16,7 @@ export class UserService {
    GetMyTickets(): Observable<any> {
     return this.http.get( this.URL+ 'my-tickets');
   }
+  TicketInstances(id: number): Observable<any> {
+    return this.http.get<any>(`${this.URL}my-tickets-instances/${id}`);
+}
 }

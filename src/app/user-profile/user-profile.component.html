@@ -5,42 +5,46 @@
         <p>Exit from Account?</p>
      </div>
      <div class="buttoparent">
-        <button class=" exitbutton" (click)="ExitFromAccount()">Exit</button>
-        <button class=" cancelbutton" (click)="hidemodal()">Cancel</button>
+        <button class="answerButtons Yesbutton" (click)="ExitFromAccount()">Yes</button>
+        <button class="answerButtons Nobutton" (click)="hidemodal()">No</button>
      </div>
 
     </div>
 </div>
-<div class="exitButton">
+<div class="exitButton" *ngIf="ExitFromAccountVisible">
     <button (click)="Showmodal()" class="button"><mat-icon>exit_to_app</mat-icon>  Exit from account</button>
 </div>
 
 
-
+<div class="exitButtonParent" *ngIf="ExitFromAccountVisible == false">
+   <button class="backoff" (click)="BackFromTicket()">Back<mat-icon class="upside">exit_to_app</mat-icon></button>
+</div>
 <div class="SingleTicketParent" *ngIf="QRVisible">
-   <div class="exitButtonParent">
-      <button class="backoff" (click)="BcakFromTicket()">Back<mat-icon class="upside">exit_to_app</mat-icon></button>
+   <div class="SinglticketTitle">
+      {{SingleTicket.title}}
    </div>
-   <div class="SingleTicket">
-      <div class="SinglticketTitle">
-         {{SingleTicket.title}}
-      </div>
-      <div class="TicketDate">
-       <p class="date"><mat-icon>calendar_today</mat-icon> {{formatDate(SingleTicket.activation_Date)}}</p>
-       <p class="date"><mat-icon>access_time</mat-icon>{{formatHour(SingleTicket.activation_Date)}}</p>
+   <div class="SingleTicketDate">
+      <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{formatDate(SingleTicket.activation_Date)}}</p>
+      <p class="SingleDate"><mat-icon>access_time</mat-icon>{{formatHour(SingleTicket.activation_Date)}}</p>
+     </div>
+   <div class="SingleTicket" *ngFor="let i of Instances; let index = index" [ngClass]="{'scannedTicket': i.isActive == false}">
+      <div class="TicketNumber" >
+         {{ index + 1 }}
       </div>
       <div class="CodeAndPhoto">
-         <div class="Ticket Singleticket" >
-            <div class="PhotoContainer singlephotoContainer">
+         <div class="Singleticket" >
+            <div class=" singlephotoContainer">
               <img [src]="SingleTicket.photo" alt="" class="TicketPhoto">
             </div>
          </div>
          <div class="QrCode">
-            <qrcode class="qrcodeWidth" [qrdata]="QrData"></qrcode>
+            <qrcode class="qrcodeWidth" [qrdata]="i.uniqueID"></qrcode>
          </div>
       </div>
    </div>
 </div>
+
+
 
 <div class="Profilecenter" *ngIf="QRVisible ==false">
   <div class="Profilecard">
@@ -53,12 +57,13 @@
      </div>
   </div>
 
-    <p class="title">My tickets <mat-icon>confirmation_number</mat-icon></p>
+<p class="title">My tickets <mat-icon>confirmation_number</mat-icon></p>
 
 
   <div class="MyTicketsParent" *ngIf="Tickets">
    <div class="TicketCenter">
       <div class="Ticket" *ngFor="let tkt of Tickets">
+         <div class="SoldCount"><p class="soldcounttext">{{tkt.ticketCount}}</p> <mat-icon class="iconsize2">confirmation_number</mat-icon></div>
          <div class="PhotoContainer" (click)="viewTicket(tkt)">
           <div class="AbsoluteHover"></div>
            <img [src]="tkt.photo" alt="" class="TicketPhoto">

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
-import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +9,18 @@ export class TicketService {
 
   constructor(private http: HttpClient) { }
 
+   URL = "https://localhost:7081/"
+
   getTickets(): Observable<any> {
-    return this.http.get('https://localhost:7081/all Tickets');
+    return this.http.get(this.URL +  'all-tickets');
   }
   
   PopularEvents():Observable<any>{
-    return this.http.get('https://localhost:7081/Popular Events');
+    return this.http.get(this.URL + 'popular-events');
   }   
 
-  TicketURL = "https://localhost:7081/View Count";
   TicketViewCount(id: number): Observable<any> {
-    return this.http.patch(this.TicketURL, id, {
+    return this.http.patch(this.URL+ 'view-count', id, {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });

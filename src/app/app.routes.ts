@@ -9,6 +9,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CreateTicketComponent } from './event-creator/create-ticket/create-ticket.component';
 import { DashboardComponent } from './event-creator/dashboard/dashboard.component';
 import { CreatorProfileComponent } from './event-creator/creator-profile/creator-profile.component';
+import { CrudComponent } from './event-creator/crud/crud.component';
 
 export const routes: Routes = [
   { path: 'Tickets', component: TicketsComponent },
@@ -24,6 +25,10 @@ export const routes: Routes = [
         component: CreateTicketComponent
       },
       {
+        path: 'Crud/:id',
+        component: CrudComponent
+      },
+      {
         path: 'Dashboard',
         component: DashboardComponent
       },
@@ -34,6 +39,7 @@ export const routes: Routes = [
     ]
   },
   { path: 'UserProfile', component:UserProfileComponent},
+  { path: 'Cruddd/:id', component:CrudComponent},
   { path: '', redirectTo: '/Tickets', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/Tickets' } 
 ];

@@ -10,7 +10,10 @@
     </div>
     <p class="Question"><mat-icon>calendar_today </mat-icon> {{formatDate(matchingTicket.activation_Date)}}</p>
     <div class="modalButtonAlign">
-      <button class="submitbuttons buy" (click)="BuyTicket()"><span class="text">Buy Ticket {{matchingTicket.price}}$</span></button>
+      <form [formGroup]="SellingForm" class="sellingForm">
+         <input type="number" placeholder="1" formControlName="TicketCount" class="sellinginput">
+      </form>
+      <button class="submitbuttons buy" (click)="BuyTicket()"><span class="text">Ticket {{SellingForm.value.TicketCount}} : Price<p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span></button>
     </div>
   </div>
 </div> 
@@ -49,7 +52,7 @@
             <p class="Datetime DatetimeHour"><mat-icon>access_time </mat-icon> {{formatHour(matchingTicket.activation_Date)}}</p>
           </div>
         </div>  
-        <div class="Ticket_Information">
+        <div class="Ticket_Information" *ngIf="matchingTicket.ticketCount > 0">
           <div class="SecondSection">   
             <div class="matchingticketData">
             </div>
@@ -72,6 +75,9 @@
            <div class="TicketLeft">
             <p class="">Ticket Left: {{matchingTicket.ticketCount}}</p>     
           </div>  
+        </div>
+        <div class="Ticket_Information TktSoldout" *ngIf="matchingTicket.ticketCount <= 0">
+           All Tickets are sold out!
         </div>
         
    </div> 
