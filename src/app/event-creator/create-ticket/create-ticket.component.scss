@@ -1,14 +1,16 @@
 :host {
     display: block;
     width: 100%;
+    overflow-x: hidden;
+    height: 100%;
   }
 .ticketbody{
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: space-evenly;
     margin-top: 30px;
     flex-direction: column;
+    z-index: 3;
 }
 .Modal{
     width: 100%;
@@ -28,198 +30,12 @@
     justify-content: center;
     align-items: center;
     color: white;
+    z-index: 3;
 }
 .TicketFormm{
-    width: 100%;
     display: flex;
     justify-content: center;
-}
-.FormAlign{
-    display: flex;
-    flex-direction: column;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    gap: 20px;
-    background-color: #333;
-    box-shadow: 0px 0px 10px black;
-}
-.FirstHalf{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.SecondHalf{
-    display: flex;
-    justify-content: space-between;
-}
-.SecondHalfInputs{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-}
-.FormHeader{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.genreparent{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.genre {
-    width: 100%;
-    max-width: 150px;
-    height: 40px;
-    background-color: rgba(188, 187, 187, 0.281);
-    border: none;
-    border-radius: 10px;
-    padding: 8px;
-    color: white;
-    font-size: 16px;
-    outline: none;
-    appearance: none; 
-  }
-  .genre::after {
-    content: '\25BC'; 
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-  .genre option {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 10px;
-    transition: 0.3s all ease-in-out;
-  }
-  .genre option:hover,
-  .genre option:focus {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-  }
-  .genre option:checked {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-  }
-  select:focus {
-    border: none;
-    outline: none;
-  }
-  
-.photoAlign{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-}
-
-.DescriptionAlingn{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.DescriptionIput {
-    width: 100%;
-    height: 100px;
-    background-color: rgba(188, 187, 187, 0.281);
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    color: white;
-    display: flex;
-    text-align: top;
-    word-break: break-all;
-    overflow: hidden;
-}
-.description{
-    width: 100%;
-    height: 300px;
-}
-.DateGroup{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: rgba(188, 187, 187, 0.281);
-    max-width: 200px;
-}
-.DateAlign{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.dateStyle{
-    color: white;
-    background-color: #333; 
-    border: none;
-    outline: none;
-    padding: 5px;
-    border-radius: 5px;
-}
-.Time {
-    background-color: #333; 
-    width: 100px; 
-    height: 40px; 
-    border-radius: 8px; 
-    border: none;
-    color: #fff;
-    padding: 5px 10px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-.Time:focus {
-    outline: none;
-    background-color: #444;
-    box-shadow: 0 0 0 2px #00aaff; 
-}
-.TicketInputs{
-    outline: none;
-    color: white;
-    background-color: rgba(188, 187, 187, 0.281);
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    width: 100%;
-    max-width: 150px;
-}
-.pricetag{
-    width: 100px;
-}
-
-.CenterEverything{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-}
-.AddTicketCard{
-    width: 250px;
-}
-.Createticketbutton{
-    display: flex;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s all ease-in-out;
-    font-weight: 600;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(106 116 218 / 45%);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid white;
-    border-top: 2px solid white;
-    height: 340px;
-}
-.Createticketbutton:hover{
-    letter-spacing: 1px;
-    background-color: rgb(37, 37, 104);
+    z-index: 3;
 }
 .Ticket_parent{
     width: 100%;
@@ -232,7 +48,7 @@
 }
 .Ticket{
     display:flex;
-    background-color: rgba(0, 0, 0, 0.195);
+    background-color: rgba(0, 0, 0, 0.647);
     box-shadow: 0px 0px;
     border-bottom: 2px solid green;
     border-top: 2px solid green;
@@ -251,7 +67,7 @@
     background-color: Green;
     padding: 5px;
     border-radius: 5px;
-    z-index: 2;
+    z-index: 3;
 }
 .TicketWrap{
     width: 100%;
@@ -259,45 +75,41 @@
     display: flex;
     justify-content: center;
     gap: 50px;
+    z-index: 4;
 }
 .SoldTicketCount{
     position: absolute;
     top: -10px;
     right: -10px;
     background-color: black;
-    z-index: 2;
     padding: 5px;
     border-radius: 5px;
     display: flex;
     align-items: center;
+    z-index: 3;
 }
-.TicketImageContainer{
-    max-width: 250px;
-    min-width: 200px;
+  .TicketImageContainer {
+    width: 220px; 
+    height: 250px;
     overflow: hidden;
-    display: grid;
-    place-items: center;
-    max-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    border-radius: 5px 5px 0px 0px;
   }
-  .ticketimage{
+  .ticketimage {
     width: 100%;
-    border-radius: 10px;
+    height: 100%;
+    object-fit: cover;
     transition: 0.3s all ease-in-out;
-    max-height: 200px;
   }
   .publisherData{
     display: flex;
     width: 100%;
     justify-content: space-between;
-  }
-.PublisherProfile{
-    display: flex;
-}
-.PublisherImg{
-    width: 50px;
-    border-radius: 50%;
-    height: 50px;
-}  
+  } 
 .data_style{
     display: flex;
 }
@@ -305,9 +117,6 @@
     transition: 0.2s all ease-in-out;
     border-bottom:2px solid red;
     border-top:2px solid red;
-    .Editticket{
-        backdrop-filter: blur(3px);
-    }
 }
 .expired-ticket::before{
     content: "Expired";
@@ -316,7 +125,7 @@
     left: -10px;
     position: absolute;
     border-radius: 5px;
-    z-index: 2;
+    z-index: 3;
     padding: 5px;
 }
 .Editticket{
@@ -329,6 +138,7 @@
     transition: 0.2s all ease-in-out;
     padding: 0;
     cursor: pointer;
+    z-index: 2;
 }
 .edittext{
     opacity: 0;
@@ -345,6 +155,12 @@
     width: 100%;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 20px;
+    z-index: 3;
+}
+.CancelAdingticketButton{
+    width: 200px;
+    font-size: 20px;
 }
 .searchbarparent{
     width: 100%;
@@ -366,8 +182,313 @@
 
 
 
+
+
+
+
+
+.centerTicketMaker{
+    display: flex;
+    z-index: 3;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
+}
+.FormAlign{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    background: linear-gradient(270deg, rgba(18, 6, 50, 0), rgb(6, 11, 50));
+    backdrop-filter: blur(2px);
+    gap: 20px;
+}
+.FirstHalf{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.halfcolumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.wraperFlex{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.SecondHalf{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.FormHeader{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.genreparent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.genre {
+    width: 100%;
+    max-width: 120px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    appearance: none; 
+    background-color: transparent;
+    border: 1px solid white;
+  }
+  .genre option {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    transition: 0.3s all ease-in-out;
+  }
+  .genre option:hover,
+  .genre option:focus {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+  }
+  .genre option:checked {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+  }
+  select:focus {
+    border: none;
+    outline: none;
+  }
+.DescriptionAlingn{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.description{
+    width: 100%;
+}
+.TicketCountParent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.centercreationbutton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.CreateTicketButton{
+    width: auto;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.DateGroup{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 200px;
+}
+.DateAlign{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dateStyle{
+    color: white;
+    background-color: transparent; 
+    border: none;
+    outline: none;
+    padding: 2px;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+.Time {
+    background-color: transparent; 
+    width: 100px; 
+    border-radius: 8px; 
+    border: none;
+    color: #fff;
+    padding: 5px 10px; 
+    border: 1px solid white;
+    transition: all 0.3s ease;
+}
+.Time:focus {
+    outline: none;
+    background-color: #444;
+    box-shadow: 0 0 0 2px #00aaff; 
+}
+.iconsize{
+    width: 20px;
+    height: 15px;
+    font-size: 15px;
+}
+.Date{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.TicketInputs{
+    outline: none;
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    width: 100px;
+    width: auto;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.pricetag{
+    width: 100px;
+}
+
+.CenterEverything{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    z-index: 3;
+}
+.AddTicketCard{
+    width: 250px;
+}
+
+
+
+.Createticketbutton{
+    display: flex;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(106 116 218 / 45%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    height: 340px;
+}
+.Createticketbutton:hover{
+    letter-spacing: 1px;
+    background-color: rgb(37, 37, 104);
+}
+
+.MakingTitcket{
+    display: flex;
+    width: auto;
+    z-index: 3;
+    flex-direction: column;
+    align-items: center;
+}
+.TicketPreview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    gap: 10px;
+}
+.Preview{
+    color: white;
+}
+.DescriptionValue{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inputvalues{
+    margin:2px;
+    display: flex;
+}
+.ImagePreview{
+    width: 180px;
+    height: 240px;
+    overflow: hidden;
+    background: url(/Ticket_App/src/app/Photos/ticketpreview.jpg);
+    position: relative;
+}
+.photoAlign{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    transition: 0.2s all ease-in-out;
+}
+.photoAlign:hover{
+    opacity: 1;
+}
+.photoinput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    outline: none;
+    transition: 0.2s all ease-in-out;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.imagepreviewphoto{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width : 550px){
     .Createticketbutton{
         height: 60px;
+    }
+}
+@media screen and (max-width : 510px){
+    .FirstHalf{
+        flex-direction: column;
+        align-items: center;
     }
 }

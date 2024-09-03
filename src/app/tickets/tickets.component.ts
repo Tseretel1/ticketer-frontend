@@ -9,7 +9,7 @@ import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterOutlet,ReactiveFormsModule,FormsModule,MatIcon],
+  imports: [CommonModule,RouterLink,RouterOutlet,ReactiveFormsModule,FormsModule,MatIcon,],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss',
   providers:[
@@ -36,15 +36,19 @@ export class TicketsComponent implements OnInit, OnDestroy{
     this.datePipe = new DatePipe('en-US');
   }
 
+
+
+
+
+
+
   ngOnInit(): void {
     this.fetchPopularEvents();
     this.loadTickets();
   }
   TicketViewCount(id:number){
-    console.log("Ticket id " + id);
     this.ticketService.TicketViewCount(id).subscribe(
       (resp:any)=>{
-        console.log(resp);
       },
       (error:any)=>{
       }
@@ -54,7 +58,6 @@ export class TicketsComponent implements OnInit, OnDestroy{
   loadTickets() {
     this.ticketService.getTickets().subscribe(
       (resp: any[]) => {
-        console.log(resp);
         this.AllTickets = resp;
         this.tickets = this.AllTickets;
         this.getTopTickets(this.tickets);
@@ -78,27 +81,20 @@ export class TicketsComponent implements OnInit, OnDestroy{
     return this.topTickets.has(ticket.id);
   }
   
-  FilterText:string = "All Content"
-
-
   AnimationFilter() {
     this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Animation');
-    this.FilterText = 'Animation';
   }
 
   FootballFilter() {
     this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Football');
-    this.FilterText = 'Football';
   }
 
   MusicFilter() {
     this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Music');
-    this.FilterText = 'Music';
   }
 
   resetFilters() {
     this.tickets = this.AllTickets;
-    this.FilterText = 'All Content';
   }
 
   onFilterChange(event: Event) {

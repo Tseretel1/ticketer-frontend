@@ -56,6 +56,8 @@
           <div class="SecondSection">   
             <div class="matchingticketData">
             </div>
+            <div class="Description"><p class="Datatitle"> Price:</p>  <p>{{matchingTicket.price}}</p> </div>
+
             <div class="descriptionCenter">
               <div class="Description"><p class="Datatitle"> Description:</p>  <p>{{matchingTicket.description}}</p> </div>
             </div>
@@ -77,14 +79,14 @@
           </div>  
         </div>
         <div class="Ticket_Information TktSoldout" *ngIf="matchingTicket.ticketCount <= 0">
-           All Tickets are sold out!
+           sold out!
         </div>
         
    </div> 
 
    
    <div class="sugestions" *ngIf="foundtickets"> 
-    <p class="SugestionsText">Sugestions from {{matchingTicket.publisher.userName}}</p>
+    <p class="SugestionsText">Sugestions from</p>
     <div class="Ticket_parent">
       <div class="Ticket" *ngFor="let tkt of foundtickets; let i = index">
         <div class="TicketFlex" (click)="NewMatchingTicket(tkt.id)">

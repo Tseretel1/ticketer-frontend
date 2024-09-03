@@ -3,14 +3,24 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { CommonModule, DatePipe, formatDate } from '@angular/common';
 import { CreateTicketService } from './create-ticket.service';
 import { AuthService } from '../../auth.service';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDrag, DragDropModule } from '@angular/cdk/drag-drop';
 import { Ticket } from './Interface';
 import { Router, RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
+import { MatNativeDateModule,  } from '@angular/material/core';
 @Component({
   selector: 'app-create-ticket',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,DatePipe,FormsModule,DragDropModule,MatIcon,RouterLink],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DatePipe,
+    FormsModule,
+    DragDropModule,
+    MatIcon,
+    RouterLink,
+    CdkDrag,
+  ],
   templateUrl: './create-ticket.component.html',
   styleUrls: ['./create-ticket.component.scss']
 })
@@ -22,13 +32,13 @@ export class CreateTicketComponent implements OnInit {
       Title:  ['', Validators.required],
       Description: ['', Validators.required],
       Genre: ['', Validators.required],
-      Price: [0, Validators.required],
+      Price: ['', Validators.required],
       Activation_Date: ['', Validators.required],
       Expiration_Date: ['', Validators.required],
       ActivationTime: ['', Validators.required],
       ExpirationTime: ['', Validators.required],
       Photo: ['', Validators.required],
-      TicketCount: [0, [Validators.required, Validators.maxLength(3)]],
+      TicketCount: [50, [Validators.required, Validators.maxLength(3)]],
     });
     
   }
@@ -82,6 +92,19 @@ export class CreateTicketComponent implements OnInit {
     }
   }
 
+  triggerFileInput(): void {
+    const fileInput = document.getElementById('photo') as HTMLInputElement;
+    fileInput.click();
+  }
+
+  onFileChange2(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      const file = input.files[0];
+      console.log('Selected file:', file);
+    }
+  }
+
   EditTicket :boolean = false;
   CreateTicketButton(){
     this.EditTicket = true;
@@ -106,14 +129,11 @@ export class CreateTicketComponent implements OnInit {
 
       this.ticketservice.createTicket(ticket).subscribe(
         (res) => {
-          console.log(res);
-          console.log(ticket);
           this.ModalMessgae = res.message;
           this.ModalShow();
         },
         (error) => {
           console.error('Error creating ticket', error);
-          console.log(ticket);
           this.ModalMessgae = error.message;
           this.ModalShow();
         }
@@ -137,7 +157,6 @@ export class CreateTicketComponent implements OnInit {
         this.AllTickets = resp;
         this.sortTicketsByDate(this.AllTickets);
         this.ExpiredTickets = this.findExpiredTickets(this.AllTickets);
-        console.log(resp)
       },
       (error) => {
         console.error('Error fetching ticket data:', error);

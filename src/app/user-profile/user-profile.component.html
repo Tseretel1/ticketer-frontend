@@ -8,7 +8,6 @@
         <button class="answerButtons Yesbutton" (click)="ExitFromAccount()">Yes</button>
         <button class="answerButtons Nobutton" (click)="hidemodal()">No</button>
      </div>
-
     </div>
 </div>
 <div class="exitButton" *ngIf="ExitFromAccountVisible">
@@ -19,27 +18,35 @@
 <div class="exitButtonParent" *ngIf="ExitFromAccountVisible == false">
    <button class="backoff" (click)="BackFromTicket()">Back<mat-icon class="upside">exit_to_app</mat-icon></button>
 </div>
-<div class="SingleTicketParent" *ngIf="QRVisible">
-   <div class="SinglticketTitle">
-      {{SingleTicket.title}}
-   </div>
-   <div class="SingleTicketDate">
-      <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{formatDate(SingleTicket.activation_Date)}}</p>
-      <p class="SingleDate"><mat-icon>access_time</mat-icon>{{formatHour(SingleTicket.activation_Date)}}</p>
-     </div>
-   <div class="SingleTicket" *ngFor="let i of Instances; let index = index" [ngClass]="{'scannedTicket': i.isActive == false}">
-      <div class="TicketNumber" >
-         {{ index + 1 }}
+
+<div class="centersingleTicketParent" *ngIf="QRVisible">
+   <div class="SingleTicketParent">
+      <div class="SinglticketTitle">
+         {{SingleTicket.title}}
       </div>
-      <div class="CodeAndPhoto">
-         <div class="Singleticket" >
-            <div class=" singlephotoContainer">
-              <img [src]="SingleTicket.photo" alt="" class="TicketPhoto">
+      <div class="SingleTicketDate">
+         <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{formatDate(SingleTicket.activation_Date)}}</p>
+         <p class="SingleDate"><mat-icon>access_time</mat-icon>{{formatHour(SingleTicket.activation_Date)}}</p>
+        </div>
+      <div class="SingleTicket" *ngFor="let i of Instances; let index = index" [ngClass]="{'scannedTicket': i.isActive == false}">
+         <div class="ifScanned" *ngIf="i.isActive == false">
+   
+         </div>
+         <div class="TicketNumber" >
+            {{ index + 1 }}
+         </div>
+         <p class="Titleofcupon">{{SingleTicket.title}}</p>
+         <div class="CodeAndPhoto">
+            <div class="Singleticket" >
+               <div class=" singlephotoContainer">
+                 <img [src]="SingleTicket.photo" alt="" class="TicketPhoto">
+               </div>
             </div>
+               <div>
+                  <qrcode class="qrcodeWidth" [qrdata]="i.uniqueID"></qrcode>
+               </div>
          </div>
-         <div class="QrCode">
-            <qrcode class="qrcodeWidth" [qrdata]="i.uniqueID"></qrcode>
-         </div>
+         <div class="uniqueID">{{i.uniqueID}} </div>
       </div>
    </div>
 </div>

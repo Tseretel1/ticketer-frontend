@@ -12,7 +12,7 @@
     position: fixed;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    z-index: 4;
     background-color: rgba(0, 0, 0, 0.308);
     backdrop-filter: blur(2px);
     transition: 0.3s all ease-in-out;
@@ -78,11 +78,13 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    z-index: 2;
 }
 .Profilecard{
     display: flex;
     flex-direction: column;
     max-width: 300px;
+    z-index: 3;
 }
 .ProfilepictureContainer{
     display: grid;
@@ -140,6 +142,7 @@
     border: 1px solid rgba(128, 128, 128, 0.233);
     border-radius: 5px;
     box-shadow: 0px 0px 10px black;
+    backdrop-filter: blur(5px);
 }
 .Ticket:hover{
     scale: 1.03;
@@ -184,9 +187,6 @@
     overflow: hidden;
     border-radius: 10px;
 }
-.TicketsTitle{
-    margin-top: 100px;
-}
 .TicketDate{
     display: flex;
     justify-content: space-between;
@@ -210,15 +210,20 @@
     display: flex;
     justify-content: center;
 }
-.uniqueId{
-    color: black;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.uniqueID{
+    color: white;
+    margin-top: 20px;
+    background-color: #000000c9;
+    padding: 5px;
+    border-radius: 5px;
 }
 .ticketid{
     margin: 0;
+}
+.centersingleTicketParent{
+    width: 100%;
+    display: flex;
+    justify-content: center;   
 }
 .SingleTicketParent{
     display: flex;
@@ -226,16 +231,16 @@
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 50px;
+    max-width: 1800px;
 }
 .SingleTicket{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 5px;
     border-radius: 10px;
     color: black;
     flex-direction: column;
-    box-shadow: 0px 0px 10px black;
     margin-top: 20px;
     position: relative;
     flex-wrap: wrap;
@@ -243,18 +248,30 @@
     background-color: white;
 }
 .scannedTicket{
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.471);
+    box-shadow: 0px 0px 10px black;
+    border: 1px solid black;
 }
 .scannedTicket::before{
     content: "Scanned";
     top: -10px;
     right: -10px;
     background-color: red;
+    box-shadow: 10px 0px 10px black;
     color: white;
     position: absolute;
     z-index: 1;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
+    text-shadow: 0px 0px 2px black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.ifScanned{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
 }
 .TicketNumber{
     position: absolute;
@@ -272,7 +289,6 @@
     color: black;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
-    color: goldenrod;
 }
 .tktdate{
     display: flex;
@@ -284,13 +300,16 @@
     display: flex;
     align-items: center;
     gap: 30px;
-    flex-wrap: wrap;
     justify-content: center;
+    width: auto;
+    border-radius: 10px;
 }
-.QrCode{
-    display: flex;
-    align-items: center;
-    justify-content: center;  
+.Titleofcupon{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    text-shadow: 0px 0px 2px black
 }
 .qrcodeWidth{
     scale: 1.2;
@@ -317,4 +336,39 @@
     position: fixed;
     z-index: 10;
     color: black;
+}
+
+
+
+
+@media screen and (max-width : 385px){
+    .singlephotoContainer{
+        width: 130px;
+        height: 130px;
+    }
+    .qrcodeWidth{
+        scale: 1;
+    }
+    .SingleDate{
+        font-size: 20px;
+    }
+}
+@media screen and (max-width : 350px){
+    .singlephotoContainer{
+        width: 110px;
+        height: 110px;
+    }
+    .qrcodeWidth{
+        scale: 0.8;
+    }
+    .SingleDate{
+        font-size: 18px;
+    }
+    .SinglticketTitle{
+        font-size: 20px;
+    }
+    .CodeAndPhoto{
+        height: 100px;
+        gap: 10px;
+    }
 }

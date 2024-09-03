@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from './profile.service';
 import { CommonModule, DatePipe } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-creator-profile',
@@ -13,10 +13,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './creator-profile.component.scss'
 })
 export class CreatorProfileComponent implements OnInit{
-  constructor (private service :ProfileService, private fb :FormBuilder,private datepipe:DatePipe){
-
+  constructor (private service :ProfileService,){
   }
-
+  
   DeleteSubmit(id :number){
       console.log( id);
       this.service.deleteTicket(id).subscribe(
@@ -40,7 +39,6 @@ export class CreatorProfileComponent implements OnInit{
     this.service.GetMyProfile().subscribe(
       (resp: any) => {
         this.MyProfile = resp;
-        console.log(this.MyProfile);
       },
       (error) => {
         console.error('Error fetching Profile data:', error);

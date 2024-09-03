@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProfileService {
 
-  constructor(private http :HttpClient) 
+  constructor(private http :HttpClient, private datepipe:DatePipe) 
   {
 
   }

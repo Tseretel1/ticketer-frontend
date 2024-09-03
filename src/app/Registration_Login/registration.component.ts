@@ -11,6 +11,7 @@ import { RegistrationService } from './registration.service';
 import { User, LoginUser } from './User_Interface';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-registration',
@@ -34,7 +35,6 @@ export class RegistrationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private registrationService: RegistrationService,
     private router:Router,
-    private authService :AuthService,
   ) {
     this.LoginForm = this.formBuilder.group({
       Email: ['', [Validators.required, Validators.pattern('[^ @]*@[^ @]*')]],

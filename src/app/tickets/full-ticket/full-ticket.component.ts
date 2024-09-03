@@ -50,7 +50,6 @@ export class FullTicketComponent implements OnInit {
   Exit() {
     this.location.back();
   }
-  
 
 
 
@@ -77,7 +76,7 @@ export class FullTicketComponent implements OnInit {
   }
   NewMatchingTicket(id: number) {
     this.matchingTicket = this.foundtickets.find(ticket => ticket.id === id);
-    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (this.matchingTicket) {
       this.matchingTicket.photo = this.matchingTicket.photo + '?v=' + new Date().getTime();      
       this.id = id;

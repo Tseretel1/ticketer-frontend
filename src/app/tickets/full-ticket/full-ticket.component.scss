@@ -3,10 +3,10 @@
   display: flex;
   height: 100%;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.347);
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 3;
+  backdrop-filter: blur(5px);
 }
 .ModalWindow {
   background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
@@ -49,6 +49,7 @@
   overflow: hidden;
   border-radius: 10px;
   height: 250px;
+  z-index: 3;
 }
 .TicketImageModal{
   object-fit: cover;
@@ -139,6 +140,7 @@
   align-items: center;
   justify-content: center;
   position: fixed;
+  z-index: 5;
 }
 .SmallModal::before{
   content: '';
@@ -176,6 +178,7 @@ $background :#1e3d59;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 2;
 }
 .foundticket{
     transition: .4s ease-in-out;
@@ -309,12 +312,12 @@ $background :#1e3d59;
     align-items: center;
     border-radius: 5px;
     box-shadow: 0px 0px 10px black;
-    background-color: lightslategray;
+    background-color: rgb(158, 173, 188);
 }
 .TktSoldout{
   display: flex;
   align-items: center;
-  background-color: red;
+  background-color: rgb(122, 8, 8);
   color: white;
   padding: 30px 0px 30px 0px;
   font-size: 25px;
@@ -329,12 +332,13 @@ $background :#1e3d59;
     display: flex;
     width: 100%;
     justify-content: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 .Description{
-    color: white;
+    color: black;
     font-size: 20px;
-    font-weight: bold;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -342,7 +346,8 @@ $background :#1e3d59;
 
 .Datatitle{
     font-weight: 500;
-    margin: 0;
+    margin: 0;    
+    font-weight: bold;
 }
 .matchingticketData{
     display: flex;
@@ -438,6 +443,7 @@ $background :#1e3d59;
   margin: 0;
   height: 20px;
   border-radius: 5px;
+  z-index: 2;
 }
 .TicketImageContainer {
   max-width: 180px;
@@ -602,7 +608,7 @@ $background :#1e3d59;
 
 //buy Button
 .fancy {
-    background-color: red;
+    background-color: transparent;
     border: 2px solid #000;
     border-radius: 0;
     box-sizing: border-box;

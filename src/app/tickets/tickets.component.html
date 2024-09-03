@@ -42,13 +42,18 @@
                 </select> 
             </div>
         </div>
-        <div class="ContentType">
-            <p class="ContentTypeText">{{FilterText}}</p>
+        <div class="FilteringContent">
+            <button class="FilterButtons" (click)="resetFilters()">All Tickets</button>
+            <button class="FilterButtons" (click)="AnimationFilter()">Animation</button>
+            <button class="FilterButtons" (click)="MusicFilter()">Music</button>
+            <button class="FilterButtons" (click)="FootballFilter()">Football</button>
         </div>
-        <div class="Ticket_parent" *ngIf="tickets">
+        <div class="Ticket_parent" *ngIf="tickets" appScrollAnimation>
             <div class="Ticket" *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
                 <div *ngIf="isTopTicket(tkt)"  class="TopTickets">
-                    <mat-icon>star </mat-icon>Top {{tkt.sold}}
+                    <mat-icon>star </mat-icon>Top
+                </div>
+                <div class="viewcount">
                 </div>
                     <div class="TicketImageContainer">
                         <div class="Editticket">

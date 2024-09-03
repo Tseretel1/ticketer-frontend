@@ -64,6 +64,7 @@ export class NavigationComponent implements OnInit{
       return false;
     }
   }
+
   User(){
     const token = localStorage.getItem('token');
     if (token && !this.authService.isTokenExpired(token)) {
@@ -78,6 +79,8 @@ export class NavigationComponent implements OnInit{
     }
   }
 
+
+
   Loggedin(){
     const token = localStorage.getItem('token');
     if (token && !this.authService.isTokenExpired(token)) {
@@ -87,6 +90,8 @@ export class NavigationComponent implements OnInit{
     }
   }
   Profile :any = {};
+
+
 
   UserProfile(){
      this.service.GetMyProfile().subscribe(
