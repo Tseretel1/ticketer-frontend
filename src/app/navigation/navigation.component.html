@@ -10,7 +10,8 @@
              <a [routerLink]="'UserProfile'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="HideNavigation()">
                 <div class="profile">
                     <div class="profilecontainer">
-                        <img [src]="Profile.profile" alt="" class="userprofile">
+                        <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
+                        <mat-icon class="ProfileNot" *ngIf="Profile.profile == null">account_circle</mat-icon>
                     </div>
                  
                     <div class="username"> 

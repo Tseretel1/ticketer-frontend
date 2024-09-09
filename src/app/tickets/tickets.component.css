@@ -1,19 +1,19 @@
-.center{
+.center {
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-//Header______________________________________
-.Tickets_Header{
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    max-width: 1500px;
+.Tickets_Header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  max-width: 1500px;
 }
-.PopularEvent{
+
+.PopularEvent {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,12 +21,14 @@
   height: 300px;
   margin-top: 30px;
   position: relative;
-  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
   border-radius: 10px;
   box-shadow: 0px 0px 10px black;
   border-radius: 10px;
   max-width: 1700px;
 }
+
 .PopularEvent:before {
   content: "Popular Events";
   position: absolute;
@@ -45,7 +47,8 @@
   position: fixed;
   color: white;
 }
-.Photocontainer{
+
+.Photocontainer {
   width: 100%;
   height: 300px;
   overflow: hidden;
@@ -54,13 +57,15 @@
   justify-content: center;
   border-radius: 10px;
 }
-.MostpopularEventPhoto{
-    width: 100%;
-    z-index: 1;
-    transition: 0.3s all ease-in-out;
-    border-radius: 10px;
+
+.MostpopularEventPhoto {
+  width: 100%;
+  z-index: 1;
+  transition: 0.3s all ease-in-out;
+  border-radius: 10px;
 }
-.Header_Content{
+
+.Header_Content {
   display: flex;
   width: 100%;
   height: 100%;
@@ -71,16 +76,16 @@
   z-index: 5;
   cursor: pointer;
 }
-.content_style{
+
+.content_style {
   background: linear-gradient(270deg, rgb(0, 0, 0), gold, rgb(94, 64, 168));
   background-size: 800% 800%;
-  -webkit-animation: AnimationName 5s ease infinite;
-  -moz-animation: AnimationName 5s ease infinite;
   animation: AnimationName 10s ease infinite;
   color: white;
   font-size: 20px;
   padding: 10px;
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border-radius: 10px;
   font-family: sans-serif;
   margin: 20px;
@@ -88,10 +93,12 @@
   box-shadow: 0px 0px 5px black;
   transition: 0.2s all ease-in-out;
 }
-.content_style:hover{
+
+.content_style:hover {
   background-color: rgba(0, 0, 0, 0.242);
 }
-.firsthalf{
+
+.firsthalf {
   width: 60%;
   height: 100%;
   align-items: flex-end;
@@ -99,7 +106,8 @@
   justify-content: flex-start;
   margin: 0;
 }
-.secondhalf{
+
+.secondhalf {
   width: 40%;
   height: 100%;
   align-items: flex-start;
@@ -108,19 +116,19 @@
   margin: 0;
 }
 
-//Ticket______________________________________
-.CenterBody{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1800px;
-    z-index: 5;
-    overflow: hidden;
-    margin-top: 20px;
+.CenterBody {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1800px;
+  z-index: 5;
+  overflow: hidden;
+  margin-top: 20px;
 }
-.FilterParent{
+
+.FilterParent {
   display: flex;
   width: 100%;
   position: sticky;
@@ -128,7 +136,8 @@
   z-index: 10;
   justify-content: center;
 }
-.filterwidth{
+
+.filterwidth {
   display: flex;
   gap: 20px;
   width: 90%;
@@ -136,7 +145,8 @@
   padding: 10px;
   border-radius: 10px;
 }
-.filters{
+
+.filters {
   display: none;
   background-color: rgb(44, 42, 42);
   gap: 30px;
@@ -144,14 +154,17 @@
   padding: 10px;
   color: white;
 }
-.option{
+
+.option {
   color: white;
   cursor: pointer;
 }
-.searchbarparent{
+
+.searchbarparent {
   width: 50%;
 }
-.searchbar{
+
+.searchbar {
   background-color: white;
   border: none;
   color: black;
@@ -161,12 +174,14 @@
   border-radius: 10px;
   position: sticky;
 }
-.FilteringContent{
+
+.FilteringContent {
   width: 80%;
   justify-content: center;
   display: flex;
 }
-.FilterButtons{
+
+.FilterButtons {
   background-color: transparent;
   color: white;
   border: none;
@@ -176,9 +191,11 @@
   border: 1px solid transparent;
   font-size: 20px;
 }
-.FilterButtons:hover{
-  border-bottom:1px solid white;
+
+.FilterButtons:hover {
+  border-bottom: 1px solid white;
 }
+
 .Ticket_parent {
   width: 100%;
   display: flex;
@@ -188,6 +205,7 @@
   justify-content: center;
   margin-top: 30px;
 }
+
 .Ticket {
   color: #ecf7c5;
   min-width: 100px;
@@ -205,29 +223,29 @@
   0% {
     transform: translate(-900px);
   }
-  50%{
+  50% {
     transform: translate(100px);
   }
   100% {
     transform: scale(1);
   }
 }
-
-
-.Ticket:hover{
-  scale:1.02;
+.Ticket:hover {
+  scale: 1.02;
 }
+
 .top-ticket {
   color: white;
   position: relative;
   transition: 0.3s all ease-in-out;
-  .Ticket_Title{
-    background-color: rgba(255, 0, 0, 0.548);
-    color: white;
-    text-shadow: 0px;
-  }
 }
-.TopTickets{
+.top-ticket .Ticket_Title {
+  background-color: rgba(255, 0, 0, 0.548);
+  color: white;
+  text-shadow: 0px;
+}
+
+.TopTickets {
   position: absolute;
   top: -10px;
   right: -30px;
@@ -243,7 +261,7 @@
   color: white;
 }
 
-.titlecenter{
+.titlecenter {
   display: flex;
   width: 100%;
   position: absolute;
@@ -251,13 +269,16 @@
   transition: 0.2s all ease-in-out;
   justify-content: center;
 }
-.titlecenter:hover{
+
+.titlecenter:hover {
   background-color: rgba(0, 0, 0, 0.536);
 }
-.leftSide{
+
+.leftSide {
   position: relative;
 }
-.Ticket_Title{
+
+.Ticket_Title {
   font-size: 17px;
   color: whitesmoke;
   margin: 0;
@@ -265,7 +286,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   background-color: rgba(255, 255, 255, 0.097);
   border-radius: 5px 5px 0px 0px;
   font-weight: bold;
@@ -274,10 +295,12 @@
   font-size: 18px;
   max-width: 214px;
   text-align: center;
-  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
 }
-.Editticket{
-  display:flex;
+
+.Editticket {
+  display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -285,21 +308,24 @@
   height: 100%;
   transition: 0.2s all ease-in-out;
 }
-.Editticket:hover{
+
+.Editticket:hover {
   background-color: rgba(0, 0, 0, 0.467);
-  .edittext{
-    opacity: 1;
-  }
 }
-.edittext{
+.Editticket:hover .edittext {
+  opacity: 1;
+}
+
+.edittext {
   background-color: rgba(0, 0, 0, 0.851);
   opacity: 0;
   transition: 0.2s all ease-in-out;
   padding: 5px;
   border-radius: 5px;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-.viewcount{
+
+.viewcount {
   display: flex;
   position: absolute;
   align-items: flex-start;
@@ -307,26 +333,30 @@
   left: -10px;
   z-index: 1;
 }
-.viewflex{
+
+.viewflex {
   display: flex;
   align-items: center;
   margin: 0;
   background-color: rgba(0, 0, 0, 0.622);
   padding: 5px;
   border-radius: 10px;
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   font-size: 15px;
   justify-content: center;
-  margin:0;
+  margin: 0;
 }
-.eyesize{
+
+.eyesize {
   margin: 0;
   width: 20px;
   height: 15px;
   font-size: 15px;
 }
+
 .TicketImageContainer {
-  width: 220px; 
+  width: 220px;
   height: 250px;
   overflow: hidden;
   display: flex;
@@ -334,32 +364,36 @@
   justify-content: center;
   position: relative;
 }
+
 .ticketimage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   transition: 0.3s all ease-in-out;
 }
 
-.data_style{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 15px;
-    margin: 0;
-    padding: 0;
+.data_style {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
 }
-.iconsize{
+
+.iconsize {
   font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
 }
-.publisherData{
+
+.publisherData {
   display: flex;
   align-items: center;
-  justify-content :space-between;
+  justify-content: space-between;
   width: 100%;
   background-color: black;
   margin: 0;
@@ -367,26 +401,26 @@
   height: 20px;
   border-radius: 3px;
 }
-.calendar{
+
+.calendar {
   margin: 0;
   color: orange;
 }
-.PublisherProfile{
+
+.PublisherProfile {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
 }
-.PublisherImg{
+
+.PublisherImg {
   width: 30px;
   border-radius: 50%;
 }
 
-
-
-
-@media screen and (max-width : 830px){
-  .content_style{
+@media screen and (max-width: 830px) {
+  .content_style {
     padding: 5px;
     font-size: 15px;
   }
@@ -394,161 +428,147 @@
     font-size: 12px;
     padding: 5px;
   }
-  .PopularEvent{
+  .PopularEvent {
     width: 700px;
     height: 280px;
   }
-  .Photocontainer{
+  .Photocontainer {
     height: 280px;
   }
-  .PopularEvent::before{
+  .PopularEvent::before {
     padding: 4px;
   }
   .Ticket_parent {
     width: 100%;
   }
-  .Ticket{
-    .TicketImageContainer{
-      width: 180px;
-      max-width: 300px;
-    }
-    .ticketimage{
-      width: 180px;
-    }
+  .Ticket .TicketImageContainer {
+    width: 180px;
+    max-width: 300px;
   }
-  .Ticket_Title{
+  .Ticket .ticketimage {
+    width: 180px;
+  }
+  .Ticket_Title {
     font-size: 15px;
     max-width: 180px;
   }
-
 }
-@media screen and (max-width : 730px){
-  .PopularEvent{
+@media screen and (max-width: 730px) {
+  .PopularEvent {
     width: 600px;
     height: 280px;
   }
 }
-@media screen and (max-width : 650px){
-  .Ticket{
-    .TicketImageContainer{
-      width: 160px;
-    }
-    .ticketimage{
-      width: 160px;
-    }
+@media screen and (max-width: 650px) {
+  .Ticket .TicketImageContainer {
+    width: 160px;
   }
-  .PopularEvent{
+  .Ticket .ticketimage {
+    width: 160px;
+  }
+  .PopularEvent {
     width: 550px;
     height: 280px;
   }
-  .Ticket_parent{
+  .Ticket_parent {
     gap: 15px;
   }
-  .Ticket_Title{
+  .Ticket_Title {
     max-width: 154px;
   }
 }
-@media screen and (max-width : 550px){
-  .PopularEvent{
+@media screen and (max-width: 550px) {
+  .PopularEvent {
     width: 450px;
     height: 200px;
   }
-  .Photocontainer{
+  .Photocontainer {
     height: 200px;
   }
-  .content_style{
+  .content_style {
     border-radius: 5px;
   }
-  .Ticket{
-    .TicketImageContainer{
-      width: 220px;
-    }
-    .ticketimage{
-      width: 220px;
-    }
+  .Ticket .TicketImageContainer {
+    width: 220px;
   }
-  .Ticket_Title{
+  .Ticket .ticketimage {
+    width: 220px;
+  }
+  .Ticket_Title {
     max-width: 214px;
   }
-  .FilteringContent{
+  .FilteringContent {
     display: none;
   }
-  .filters{
+  .filters {
     display: flex;
   }
 }
-@media screen and (max-width : 475px){
-  .PopularEvent{
+@media screen and (max-width: 475px) {
+  .PopularEvent {
     width: 400px;
     height: 200px;
   }
-  .Ticket{
-    .TicketImageContainer{
-      width: 180px;
-    }
-    .ticketimage{
-      width: 180px;
-    }
+  .Ticket .TicketImageContainer {
+    width: 180px;
   }
-  .Ticket_Title{
+  .Ticket .ticketimage {
+    width: 180px;
+  }
+  .Ticket_Title {
     max-width: 174px;
   }
 }
-
-@media screen and (max-width : 400px){
-  .top-ticket::before{
+@media screen and (max-width: 400px) {
+  .top-ticket::before {
     width: 40px;
     font-size: 12px;
     top: -10px;
     right: -10px;
     font-size: 10px;
   }
-  .PopularEvent{
+  .PopularEvent {
     width: 350px;
     height: 150px;
   }
-  .TicketImageContainer{
+  .TicketImageContainer {
     width: 150px;
     max-width: 150px;
   }
-  .Photocontainer{
+  .Photocontainer {
     height: 150px;
   }
-  .PopularEvent::before{
+  .PopularEvent::before {
     padding: 2px;
     font-size: 10px;
     left: -15px;
   }
-  .Ticket{
-    .TicketImageContainer{
-      max-width: 160px;
-    }
+  .Ticket .TicketImageContainer {
+    max-width: 160px;
   }
-  .Ticket_Title  {
+  .Ticket_Title {
     max-width: 154px;
   }
-  .calendar{
+  .calendar {
     font-size: 12px;
   }
-  .data_style{
+  .data_style {
     font-size: 12px;
     gap: 0px;
   }
 }
-@media screen and (max-width : 300px){
-  .PopularEvent{
+@media screen and (max-width: 300px) {
+  .PopularEvent {
     width: 280px;
     height: 120;
   }
-  .Photocontainer{
+  .Photocontainer {
     height: 150px;
   }
-  .Ticket{
-    .TicketImageContainer{
-      max-width: 220px;
-    }
-    .ticketimage{
-      width: 220px;
-    }
+  .Ticket .TicketImageContainer {
+    max-width: 220px;
   }
-}
+  .Ticket .ticketimage {
+    width: 220px;
+  }
+}/*# sourceMappingURL=tickets.component.css.map */

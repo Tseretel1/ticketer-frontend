@@ -1,0 +1,825 @@
+.BAckgroundBlur {
+  width: 100%;
+  height: 100%;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  position: fixed;
+  z-index: -1;
+}
+
+.ModalWindowParent {
+  width: 100%;
+  display: flex;
+  height: 100%;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
+.ModalWindow {
+  background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
+  background-size: 800% 800%;
+  animation: AnimationName 20s ease infinite;
+  padding: 10px 20px 20px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  transition: 0.3s all ease-in-out;
+  box-shadow: 0px 0px 10px black;
+}
+
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.Question {
+  color: white;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.TicketModal {
+  width: 250px;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 250px;
+  z-index: 3;
+}
+
+.TicketImageModal {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.modalButtonAlign {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.submitbuttons {
+  color: white;
+  border: none;
+  box-shadow: 0px;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.sellingForm {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sellinginput {
+  outline: none;
+  border: none;
+}
+
+.buy {
+  background-color: transparent;
+  transition: 0.3s all ease-in-out;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  border: 1px solid white;
+}
+
+.buy:hover {
+  background-color: rgba(0, 128, 0, 0.523);
+  letter-spacing: 1px;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price {
+  color: goldenrod;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.CloseModal {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancel {
+  padding: 2px;
+  margin: 0;
+  padding: 0;
+  color: white;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+  display: grid;
+}
+
+.cancel:hover {
+  background-color: red;
+}
+
+.disabled_button {
+  background-color: gray;
+  border: 10px solid blue;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.SmallModalParent {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.SmallModal {
+  padding: 0px 30px 0px 30px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 5;
+}
+
+.SmallModal::before {
+  content: "";
+  bottom: -2px;
+  left: -2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  border-radius: 50px 0px 50px 0px;
+}
+
+.SmallmodalText {
+  font-size: 15px;
+  font-weight: 600;
+  max-width: 200px;
+  word-break: break-all;
+}
+
+.CenterBody {
+  width: 100%;
+  display: flex;
+  height: auto;
+  flex-direction: column;
+}
+
+.FountTicketParent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.foundticket {
+  transition: 0.4s ease-in-out;
+  width: 100%;
+  min-width: 200px;
+  border-radius: 10px;
+  font-family: sans-serif;
+  font-weight: 600;
+  transition: 0.2s all ease-in-out;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.MainTitle {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.Exitbutton {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  gap: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  color: black;
+  transition: 0.3s all ease-in-out;
+  border-radius: 10px;
+}
+
+.Exitbutton:hover {
+  letter-spacing: 5px;
+}
+
+.flipicon {
+  rotate: 180deg;
+}
+
+.publisher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.publisherPhoto {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.publisherName {
+  color: white;
+}
+
+.FirstSection {
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Imagecontainer {
+  width: auto;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: auto;
+  width: 1000px;
+  overflow: hidden;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.heightzero {
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.TicketImage {
+  height: auto;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: 0.5s all ease-in-out;
+}
+
+.datetimeparent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dataalign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Title {
+  font-size: 30px;
+  color: white;
+  text-shadow: 0px 0px 2px black;
+  margin-top: 0;
+}
+
+.dateflex {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.Datetime {
+  color: gold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 40px;
+  margin: 0;
+}
+
+.DatetimeHour {
+  color: white;
+}
+
+.BuyTicketButton {
+  padding: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.Ticket_Information {
+  padding: 10px 0px 0px 0px;
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px black;
+  background-color: rgb(158, 173, 188);
+}
+
+.TktSoldout {
+  display: flex;
+  align-items: center;
+  background-color: rgb(122, 8, 8);
+  color: white;
+  padding: 30px 0px 30px 0px;
+  font-size: 25px;
+  cursor: not-allowed;
+}
+
+.SecondSection {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.descriptionCenter {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.Description {
+  color: black;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Datatitle {
+  font-weight: 500;
+  margin: 0;
+  font-weight: bold;
+}
+
+.matchingticketData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.TicketLeft {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.sugestions {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SugestionsText {
+  font-size: 20px;
+  color: white;
+}
+
+.Ticket_parent {
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 30px;
+  margin-top: 30px;
+  place-items: center;
+  align-items: flex-start;
+  row-gap: 20px;
+  max-width: 1000px;
+}
+
+.Ticket {
+  color: white;
+  min-width: 100px;
+  font-family: sans-serif;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.Ticket:hover {
+  scale: 1.02;
+}
+
+.top-ticket {
+  color: white;
+  position: relative;
+  transition: 0.3s all ease-in-out;
+}
+
+.top-ticket:before {
+  content: "Top";
+  position: absolute;
+  top: -10px;
+  right: -30px;
+  background-color: red;
+  width: 80px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px red;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateZ(-342deg);
+  z-index: 9;
+  color: white;
+}
+
+.TicketFlex {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.titlecenter {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  transition: 0.2s all ease-in-out;
+  max-width: 180px;
+  overflow: hidden;
+}
+
+.Ticket_Title {
+  font-size: 20px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.692);
+  color: white;
+  margin: 0;
+  height: 20px;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+.TicketImageContainer {
+  max-width: 180px;
+  min-width: 180px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.ticketimage {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: 0.3s all ease-in-out;
+}
+
+.data_style {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+}
+
+.iconsize {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.publisherData {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.PublisherProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.PublisherImg {
+  width: 30px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 1320px) {
+  .Ticket_parent {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .Ticket_parent {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 990px) {
+  .Ticket_parent {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .Ticket .TicketImageContainer {
+    width: 170px;
+    max-width: 170px;
+  }
+  .Ticket .ticketimage {
+    width: 170px;
+  }
+}
+@media screen and (max-width: 715px) {
+  .Photocontainer {
+    height: 280px;
+  }
+  .PopularEvent::before {
+    padding: 4px;
+  }
+  .Ticket_parent {
+    width: 100%;
+  }
+  .Ticket_parent {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 600px) {
+  .Ticket_parent {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .Ticket .TicketImageContainer {
+    width: 150px;
+    max-width: 150px;
+  }
+  .Ticket .ticketimage {
+    width: 150px;
+  }
+}
+@media screen and (max-width: 485px) {
+  .Ticket_parent {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .Ticket .TicketImageContainer {
+    width: 180px;
+    max-width: 180px;
+  }
+  .Ticket .ticketimage {
+    width: 180px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .Ticket_parent {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .Ticket .TicketImageContainer {
+    width: 280px;
+    max-width: 280px;
+  }
+  .Ticket .ticketimage {
+    width: 280px;
+  }
+}
+@media screen and (max-width: 300px) {
+  .PopularEvent {
+    width: 280px;
+    height: 120;
+  }
+  .Photocontainer {
+    height: 150px;
+  }
+  .Ticket .TicketImageContainer {
+    max-width: 220px;
+  }
+  .Ticket .ticketimage {
+    width: 220px;
+  }
+}
+.fancy {
+  background-color: transparent;
+  border: 2px solid #000;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 1.25em 2em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  transition: all 0.3s ease-in-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-size: 13px;
+}
+
+.fancy::before {
+  content: " ";
+  width: 1.5625rem;
+  height: 2px;
+  background: black;
+  top: 50%;
+  left: 1.5em;
+  position: absolute;
+  transform: translateY(-50%);
+  transform-origin: center;
+}
+
+.fancy .text {
+  font-size: 1.125em;
+  line-height: 1.33333em;
+  padding-left: 2em;
+  display: block;
+  text-align: left;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+}
+
+.fancy .top-key {
+  height: 2px;
+  width: 1.5625rem;
+  top: -2px;
+  left: 0.625rem;
+  position: absolute;
+  background: #e8e8e8;
+  transition: width 0.5s ease-out, left 0.3s ease-out;
+}
+
+.fancy .bottom-key-1 {
+  height: 2px;
+  width: 1.5625rem;
+  right: 1.875rem;
+  bottom: -2px;
+  position: absolute;
+  background: #e8e8e8;
+  transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.fancy .bottom-key-2 {
+  height: 2px;
+  width: 0.625rem;
+  right: 0.625rem;
+  bottom: -2px;
+  position: absolute;
+  background: #e8e8e8;
+  transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.fancy:hover {
+  color: white;
+  background: black;
+}
+
+.fancy:hover::before {
+  width: 0.9375rem;
+  background: white;
+}
+
+.fancy:hover .text {
+  color: white;
+  padding-left: 1.5em;
+}
+
+.fancy:hover .top-key {
+  left: -2px;
+  width: 0px;
+}
+
+.fancy:hover .bottom-key-1,
+.fancy:hover .bottom-key-2 {
+  right: 0;
+  width: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .Imagecontainer {
+    width: 800px;
+    height: 300px;
+  }
+  .heightzero {
+    height: auto;
+  }
+  .Ticket_Information {
+    width: 800px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .Imagecontainer {
+    width: 600px;
+    height: 200px;
+  }
+  .heightzero {
+    height: auto;
+  }
+  .Ticket_Information {
+    width: 600px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .Imagecontainer {
+    width: 400px;
+    height: 150px;
+  }
+  .heightzero {
+    height: auto;
+  }
+  .Ticket_Information {
+    width: 400px;
+  }
+  .Datetime {
+    font-size: 30px;
+  }
+  .publisherPhoto {
+    width: 60px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .Imagecontainer {
+    width: 300px;
+    height: 150px;
+  }
+  .heightzero {
+    height: auto;
+  }
+  .Ticket_Information {
+    width: 300px;
+  }
+  .Datetime {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 300px) {
+  .Imagecontainer {
+    width: 220px;
+    height: 120px;
+  }
+  .heightzero {
+    height: auto;
+  }
+  .Ticket_Information {
+    width: 220px;
+  }
+  .Datetime {
+    font-size: 15px;
+  }
+  .dateflex {
+    gap: 20px;
+  }
+}/*# sourceMappingURL=full-ticket.component.css.map */

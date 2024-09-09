@@ -95,7 +95,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 50%; 
+    border:1px solid white;
+}
+.ProfileNot{
+    width: 70px;
+    height: 70px;
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
 }
 .userprofile{
     width: 150%;

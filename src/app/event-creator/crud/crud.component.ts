@@ -142,6 +142,8 @@ export class CrudComponent implements OnInit{
     this.location.back();
   }
   
+
+  
   //Ticket creation
   UPdateTicket(): void {
     if (this.ticketForm.valid) {

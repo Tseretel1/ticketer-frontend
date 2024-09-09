@@ -1,0 +1,449 @@
+.exitButton {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.ExitFromAccountbutton {
+  background-color: rgba(0, 0, 0, 0.459);
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.3s all ease-in-out;
+  z-index: 2;
+}
+
+.ExitFromAccountbutton:hover {
+  background-color: white;
+  color: black;
+  text-shadow: 0px 0px 10px white;
+  box-shadow: 0px 0px 10px white;
+}
+
+.ExitModal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.308);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  transition: 0.3s all ease-in-out;
+}
+
+.modal {
+  display: flex;
+  width: 300px;
+  height: 150px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 10px black;
+  color: white;
+  border-radius: 20px;
+  z-index: 500;
+  background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
+  background-size: 800% 800%;
+  animation: AnimationName 20s ease infinite;
+}
+
+.buttoparent {
+  display: flex;
+  gap: 20px;
+}
+
+.answerButtons {
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+  border: 1px solid white;
+  outline: none;
+}
+
+.Nobutton {
+  border: 1px solid white;
+  background-color: transparent;
+  transition: 0.2s all ease-in-out;
+  color: white;
+  border: 1px solid white;
+  outline: none;
+}
+
+.Profilecenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+}
+
+.Profilecard {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  z-index: 3;
+}
+
+.ProfilepictureContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  overflow: hidden;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.profilephoto {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.ProfileNot {
+  width: 200px;
+  height: 200px;
+  font-size: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.Name {
+  color: white;
+}
+
+.ProfileData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.title {
+  font-size: 30px;
+  color: white;
+  align-items: center;
+}
+
+.MyTicketsParent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.TicketCenter {
+  width: 100%;
+  max-width: 1500px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  z-index: 1;
+}
+
+.Ticket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  transition: 0.3s all ease-in-out;
+  position: relative;
+  justify-content: space-between;
+  border: 1px solid rgba(128, 128, 128, 0.233);
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px black;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
+.Ticket:hover {
+  scale: 1.03;
+}
+
+.SoldCount {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+.iconsize2 {
+  color: white;
+  font-size: 20px;
+  margin-top: 3px;
+  transform: rotate(10deg);
+}
+
+.soldcounttext {
+  margin: 0;
+}
+
+.TicketPhoto {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.PhotoContainer {
+  width: 180px;
+  height: 230px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.singlephotoContainer {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+
+.AbsoluteHover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.156);
+  opacity: 0;
+}
+
+.Ticket:hover .AbsoluteHover {
+  animation: PhotoAnimation 0.5s;
+}
+
+@keyframes PhotoAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.TicketDate {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.SingleTicketDate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.SingleDate {
+  color: white;
+  font-size: 30px;
+  font-family: "Courier New", Courier, monospace;
+  align-items: center;
+}
+
+.exitButtonParent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.uniqueID {
+  color: white;
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.7882352941);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.ticketid {
+  margin: 0;
+}
+
+.centersingleTicketParent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.SingleTicketParent {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  max-width: 1800px;
+}
+
+.SingleTicket {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 10px;
+  color: black;
+  flex-direction: column;
+  margin-top: 20px;
+  position: relative;
+  flex-wrap: wrap;
+  margin: 15px;
+  background-color: white;
+}
+
+.scannedTicket {
+  background-color: rgba(255, 0, 0, 0.471);
+  box-shadow: 0px 0px 10px black;
+  border: 1px solid black;
+}
+
+.scannedTicket::before {
+  content: "Scanned";
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  box-shadow: 10px 0px 10px black;
+  color: white;
+  position: absolute;
+  z-index: 1;
+  padding: 5px;
+  border-radius: 5px;
+  text-shadow: 0px 0px 2px black;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.ifScanned {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  border-radius: 10px;
+}
+
+.TicketNumber {
+  position: absolute;
+  top: -7px;
+  left: -2px;
+  color: white;
+  background-color: black;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px white;
+}
+
+.SinglticketTitle {
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+}
+
+.tktdate {
+  display: flex;
+}
+
+.iconsize {
+  font-size: 15px;
+}
+
+.CodeAndPhoto {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+  width: auto;
+  border-radius: 10px;
+}
+
+.Titleofcupon {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  text-shadow: 0px 0px 2px black;
+}
+
+.qrcodeWidth {
+  scale: 1.2;
+}
+
+.upside {
+  transform: rotate(180deg);
+}
+
+.backoff {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.655);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  border-radius: 10px;
+  color: black;
+  transition: 0.3s all ease-in-out;
+  border-radius: 10px;
+  justify-content: center;
+  position: fixed;
+  z-index: 10;
+  color: black;
+}
+
+@media screen and (max-width: 385px) {
+  .singlephotoContainer {
+    width: 130px;
+    height: 130px;
+  }
+  .qrcodeWidth {
+    scale: 1;
+  }
+  .SingleDate {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .singlephotoContainer {
+    width: 110px;
+    height: 110px;
+  }
+  .qrcodeWidth {
+    scale: 0.8;
+  }
+  .SingleDate {
+    font-size: 18px;
+  }
+  .SinglticketTitle {
+    font-size: 20px;
+  }
+  .CodeAndPhoto {
+    height: 100px;
+    gap: 10px;
+  }
+}/*# sourceMappingURL=user-profile.component.css.map */

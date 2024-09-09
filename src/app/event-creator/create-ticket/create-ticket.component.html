@@ -16,6 +16,7 @@
               <p class="inputvalues">Price</p>
               <p class="inputvalues"><input id="price" [formControl]="Price" type="number" class="TicketInputs pricetag" placeholder="Price">  </p> 
             </div>
+            
             <div class="DateGroup">
               <label for="activation-date" class="Date">Activation Date</label>
               <div class="DateAlign">
@@ -100,10 +101,10 @@
             <div class="TicketFlex">
               <div class="leftSide">
     
+                <div class="titlecenter">
+                  <p class="Ticket_Title"> {{tkt.title}}</p>
+                </div>
                 <div class="TicketImageContainer">
-                  <div class="titlecenter">
-                    <p class="Ticket_Title"> {{tkt.title}}</p>
-                  </div>
                   <img [src]="tkt.photo" alt="" class="ticketimage" *ngIf="tkt.photo">
                 </div>
               </div>

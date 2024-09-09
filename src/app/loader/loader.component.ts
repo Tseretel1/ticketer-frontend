@@ -10,9 +10,13 @@ import { LoaderService } from './loader.service';
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent {
-  constructor(private loader: LoaderService){
-  
-  }
-  loaderstate =   this.loader.loaderState;
+  loaderState = false;
 
+  constructor(private loaderService: LoaderService) {}
+
+  ngOnInit(): void {
+    this.loaderService.loaderState.subscribe(state => {
+      this.loaderState = state;
+    });
+  }
 }

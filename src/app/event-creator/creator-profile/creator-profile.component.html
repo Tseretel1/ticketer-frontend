@@ -1,19 +1,100 @@
 
+<div class="ParentOfThemall">   
+<div class="ExitModal" *ngIf="ModalPressed">
+    <div class="modal">
+     <div class="">
+        <p>Exit from Account?</p>
+     </div>
+     <div class="buttoparent">
+        <button class="answerButtons Yesbutton" (click)="ExitFromAccunt()">Yes</button>
+        <button class="answerButtons Nobutton" (click)="hidemodal()">No</button>
+     </div>
+    </div>
+</div>
+
+
+<div class="exitbuttonparent"><button class="exitButton" (click)="Showmodal()">Exit From Account</button> </div>
+
 <div class="Profile_Container">
     <div class="ProfileSide" *ngIf="MyProfile">
-       <div class="ProfileData">
         <div class="Profilestyle">
             <div class="Imagecontainer">
                 <img [src]="MyProfile.logo" alt="" class="Profileimage">
             </div>
-            <p class="Name">{{MyProfile.userName}} </p>
+            <p class="AccountUsername">{{MyProfile.userName}} </p>
         </div>
-       </div>
     </div>
 </div>
-<div class="TicketHeader">
-    <p class="ticketTitle">My Tickets</p>
+
+
+<div class="ManagmentParent">
+    <div class="Managment">
+        <p class="ManagmentTitle">Account Managment</p>
+        <div class="ManagmentMain" >
+           <div class="ManagmentCard" *ngFor="let x of Managment; let i = index">
+               <div class="BorderLine">
+                {{i+1}} 
+                <div class="nameflex" [ngClass]="{'logged-account': LoggedAccount(x.userID)}">
+                    <p class="userinfo namewhite">{{x.name}}</p>
+                    <p class="userinfo namewhite">{{x.lastName}}</p>
+                  </div>
+               </div> 
+               <div class="Usermanagment" (click)="UsertoModify(x.userID)">
+                  <div class="Column ColumnProfile"> 
+                    <div class="userimagecontainer">
+                        <img [src]="x.profile" alt="" class="userimage" *ngIf="x.profile">
+                        <mat-icon class="ProfileIcon" *ngIf="x.profile == null">account_circle</mat-icon>
+                      </div>
+                  </div>
+                  <div class="Column">
+                    <p class="columnTitle">Role</p> 
+                    <p class="userinfo AdministratorRole">{{x.accountRole}}</p>
+                  </div>
+               </div>
+           </div>
+        </div>
+    </div>
 </div>
 
 
 
+<div class="RoleManagmentModal" *ngIf="switch">
+    <div class="ModifyUserParent">
+        <div class="Column Rolecolumn">
+            <p class="userinfo RoleText">{{RoleToChange.accountRole}}</p>
+        </div>
+        <button class="RemoveAdministratorButton" *ngIf="RoleToChange.accountRole!= 'AccountAdmin'">Remove {{RoleToChange.name}}{{ RoleToChange.lastName}}  </button>
+        <div class="usermodifycard"> 
+            <div class="Column ColumnProfile"> 
+              <div class="userimagecontainer modifyimagecontainer">
+                  <img [src]="RoleToChange.profile" alt="" class="userimage" *ngIf="RoleToChange.profile">
+                  <mat-icon class="modifyicon" *ngIf="RoleToChange.profile == null">account_circle</mat-icon>
+                </div>
+            <div class="nameflex">
+              <p class="userinfo namewhite modifyName">{{RoleToChange.name}}</p>
+              <p class="userinfo namewhite modifyName">{{RoleToChange.lastName}}</p>
+            </div>
+            </div>
+            <div class="modifyData">
+                <div class="Column">
+                    <p class="columnTitle modifytitle">Personal ID</p> 
+                    <p class="userinfo modifyName">{{RoleToChange.personalID}}</p>
+                  </div>
+                  <div class="Column">
+                    <p class="columnTitle modifytitle">Phone</p> 
+                    <p class="userinfo modifyName">{{RoleToChange.phoneNumber}}</p>
+                  </div>
+                  <div class="Column">
+                    <p class="columnTitle modifytitle">Email</p> 
+                    <p class="userinfo modifyName">{{RoleToChange.email}}</p>
+                  </div>
+            </div>
+        </div>
+        <div class="ModalButtons">
+            <button class="BackBUtton Submit" (click)="exitfromediting()" *ngIf="RoleToChange.accountRole!= 'AccountAdmin'">Submit</button>
+            <button class="BackBUtton Dismiss" (click)="exitfromediting()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+</div>

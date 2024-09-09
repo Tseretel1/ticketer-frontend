@@ -20,12 +20,7 @@ export class ProfileService {
   GetMyProfile():Observable<any>{
     return this.http.get(this.URL + 'my-profile');
   } 
-  deleteTicket(id: number): Observable<any> {
-    const url = this.URL + `delete-tickets`;
-  
-    return this.http.request('DELETE', url, {
-      body: id,
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    });
+  GetAccountManagment():Observable<any>{
+    return this.http.get(this.URL + 'account-managment');
   } 
 }

@@ -4,6 +4,25 @@
     justify-content: flex-end;
 }
 
+.ExitFromAccountbutton{
+    background-color: rgba(0, 0, 0, 0.459);
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: 0.3s all ease-in-out;
+    z-index: 2;
+}
+.ExitFromAccountbutton:hover{
+    background-color: white;
+    color: black;
+    text-shadow: 0px 0px 10px white;
+    box-shadow: 0px 0px 10px white;
+}
 
 .ExitModal{
     display: flex;
@@ -34,27 +53,12 @@
     -moz-animation: AnimationName 20s ease infinite;
     animation: AnimationName 20s ease infinite;
 }
-.button{
-    background-color: black;
-    padding: 10px 20px 10px 20px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: 0.2s all ease-in-out;
-    position: fixed;
-    z-index: 2;
-}
+
 .buttoparent{
     display: flex;
     gap: 20px;
 }
-.button:hover{
-    letter-spacing: 1px;
-}
+
 .answerButtons{
     padding: 10px 20px 10px 20px ;
     border-radius: 5px;
@@ -87,8 +91,9 @@
     z-index: 3;
 }
 .ProfilepictureContainer{
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 200px;
     overflow: hidden;
     height: 200px;
@@ -96,7 +101,17 @@
     border: 1px solid white;
 }
 .profilephoto{
-    width: 150%;
+    width: 100%;
+    object-fit: cover;
+}
+.ProfileNot{
+    width: 200px;
+    height: 200px;
+    font-size: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 .Name{
     color: white;
@@ -186,6 +201,28 @@
     height: 150px;
     overflow: hidden;
     border-radius: 10px;
+    position: relative;
+}
+.AbsoluteHover{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.156);
+    opacity: 0;
+}
+.Ticket:hover  .AbsoluteHover{
+    animation: PhotoAnimation 0.5s ;   
+}
+@keyframes PhotoAnimation {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
 }
 .TicketDate{
     display: flex;
@@ -286,7 +323,7 @@
 .SinglticketTitle{
     font-size: 25px;
     font-weight: 500;
-    color: black;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
 }

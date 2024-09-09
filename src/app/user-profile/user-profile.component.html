@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="exitButton" *ngIf="ExitFromAccountVisible">
-    <button (click)="Showmodal()" class="button"><mat-icon>exit_to_app</mat-icon>  Exit from account</button>
+    <button (click)="Showmodal()" class="ExitFromAccountbutton"><mat-icon>exit_to_app</mat-icon>  Exit from account</button>
 </div>
 
 
@@ -39,7 +39,7 @@
          <div class="CodeAndPhoto">
             <div class="Singleticket" >
                <div class=" singlephotoContainer">
-                 <img [src]="SingleTicket.photo" alt="" class="TicketPhoto">
+                  <img [src]="SingleTicket.photo" alt="" class="TicketPhoto">
                </div>
             </div>
                <div>
@@ -56,7 +56,8 @@
 <div class="Profilecenter" *ngIf="QRVisible ==false">
   <div class="Profilecard">
      <div class="ProfilepictureContainer">
-         <img [src]="Profile.profile" alt="" class="profilephoto">
+         <img [src]="Profile.profile" alt="" class="profilephoto" *ngIf="Profile.profile">
+         <mat-icon class="ProfileNot" *ngIf="Profile.profile == null">account_circle</mat-icon>
      </div>
      <div class="ProfileData"> 
         <p class="Name">{{Profile.name}}</p>

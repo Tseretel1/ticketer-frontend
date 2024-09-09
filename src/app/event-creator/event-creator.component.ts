@@ -25,10 +25,17 @@ export class EventCreatorComponent implements OnInit{
 
   ngOnInit(): void {
     if (this.LoggedCheck()) {
-      this.router.navigate(['/EventCreator/TicketManagment']);
+      if(this.UserRole =='AccountAdmin'){
+        this.router.navigate(['/EventCreator/CreatorProfile']);
+      }
+      else{
+        this.router.navigate(['/EventCreator/TicketManagment']);
+      }
     }
+    this.Rolecheck();
   }
 
+  
   Loginform :FormGroup;
   RegisterForm :FormGroup;
   CreateAccountForm :FormGroup
@@ -55,7 +62,7 @@ export class EventCreatorComponent implements OnInit{
       this.modalvisible = false;
   }
 
-
+  FormsTitleText :string = "Welcome Creator";
 
   LoggedCheck(){
     const token = localStorage.getItem('CreatorToken');
@@ -65,6 +72,7 @@ export class EventCreatorComponent implements OnInit{
       return false;
     }
   }
+  UserRole :string = "";
   LoginToaccount(){
     if(this.Loginform.valid){
     const Logincredentials: Login={
@@ -73,9 +81,17 @@ export class EventCreatorComponent implements OnInit{
     }
     this.service.onLogin(Logincredentials).subscribe(
       (resp)=>{
+        localStorage.setItem('CreatorToken', resp.message);
         const token = localStorage.getItem('CreatorToken');
         if (token) {
-          localStorage.setItem('CreatorToken', resp.message);
+          var UserRole = this.authService.getUserRole(token);
+          if(UserRole == 'AccountAdmin'){
+            this.UserRole = UserRole;
+            this.router.navigate(['/EventCreator/CreatorProfile']);
+          }
+          else{
+            this.router.navigate(['/EventCreator/TicketManagment']);
+          }
         }
         else{
           localStorage.setItem('CreatorToken', resp.message);
@@ -89,22 +105,24 @@ export class EventCreatorComponent implements OnInit{
         } else if (error.status === 500) {
           this.Server_response = 'Server error. Please try again later.';
         }
-
         this.modalvisible = true;
         console.log(error);
       }
     )
   }
   }
+  CreatorOrNot : boolean = false;
   Rolecheck (){
     const Token = localStorage.getItem("token");
     if(Token){
       var Role =  this.authService.getUserRole(Token);
       if(Role == "Creator"){
+        this.CreatorOrNot = true;
         return true;
       }
       else if(Role == "User")
       {
+        this.CreatorOrNot = false;
         return false;
       }
     }
@@ -113,7 +131,7 @@ export class EventCreatorComponent implements OnInit{
 
 
 
-  switch : boolean = false;
+  switch : boolean = true;
   switchText :string = "Register as Creator";
   SwitchForms(){
     if(this.switch == false){

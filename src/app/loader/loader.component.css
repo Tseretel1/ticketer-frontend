@@ -1,0 +1,9 @@
+.Loader {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  color: white;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+}/*# sourceMappingURL=loader.component.css.map */
