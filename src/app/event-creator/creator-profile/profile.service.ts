@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/signals';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -23,4 +24,7 @@ export class ProfileService {
   GetAccountManagment():Observable<any>{
     return this.http.get(this.URL + 'account-managment');
   } 
+  RemoveUserfromAccount(userid :number):Observable<any>{
+    return this.http.delete(`${this.URL}remove-user-from-account/${userid}`);
+  }
 }

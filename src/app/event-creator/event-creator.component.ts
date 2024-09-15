@@ -25,12 +25,6 @@ export class EventCreatorComponent implements OnInit{
 
   ngOnInit(): void {
     if (this.LoggedCheck()) {
-      if(this.UserRole =='AccountAdmin'){
-        this.router.navigate(['/EventCreator/CreatorProfile']);
-      }
-      else{
-        this.router.navigate(['/EventCreator/TicketManagment']);
-      }
     }
     this.Rolecheck();
   }
@@ -72,7 +66,7 @@ export class EventCreatorComponent implements OnInit{
       return false;
     }
   }
-  UserRole :string = "";
+  IsUserAdmin :boolean = false;
   LoginToaccount(){
     if(this.Loginform.valid){
     const Logincredentials: Login={
@@ -86,11 +80,13 @@ export class EventCreatorComponent implements OnInit{
         if (token) {
           var UserRole = this.authService.getUserRole(token);
           if(UserRole == 'AccountAdmin'){
-            this.UserRole = UserRole;
+            this.IsUserAdmin = true;
             this.router.navigate(['/EventCreator/CreatorProfile']);
+            this.Loginform.reset();
           }
           else{
             this.router.navigate(['/EventCreator/TicketManagment']);
+            this.IsUserAdmin = false;
           }
         }
         else{

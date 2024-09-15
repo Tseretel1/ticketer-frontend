@@ -114,13 +114,13 @@
                 <p class="Data_Titles">
                   <mat-icon class="iconsize">calendar_today</mat-icon>
                 </p>
-                <p>{{ formatDate(tkt.activation_Date) }}</p>
+                <p>{{ tkt.activation_Date | date: 'MMM d' }}</p>
               </div>
               <p class="view data_style">
                 <mat-icon class="iconsize">visibility</mat-icon>{{tkt.viewCount}}
               </p>
          </div>
-      </div>
+        </div>
       </div>
     </div> 
   </div>

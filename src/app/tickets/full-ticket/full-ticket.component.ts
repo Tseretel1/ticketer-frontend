@@ -9,12 +9,9 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 @Component({
   selector: 'app-full-ticket',
   standalone: true,
-  imports: [MatIcon,CommonModule,RouterLink,NgClass,ReactiveFormsModule],
+  imports: [MatIcon,CommonModule,RouterLink,NgClass,ReactiveFormsModule,DatePipe],
   templateUrl: './full-ticket.component.html',
   styleUrls: ['./full-ticket.component.scss'],
-  providers: [
-    DatePipe
-  ]
 })
 export class FullTicketComponent implements OnInit {
 
@@ -51,7 +48,18 @@ export class FullTicketComponent implements OnInit {
     this.location.back();
   }
 
+  ticketCount: number = 1;
+  increment(): void {
+    this.ticketCount++;
+    this.SellingForm.get('TicketCount')?.setValue(this.ticketCount);
+  }
 
+  decrement(): void {
+    if (this.ticketCount > 1) {  // Ensure ticket count does not go below 1
+      this.ticketCount--;
+      this.SellingForm.get('TicketCount')?.setValue(this.ticketCount);
+    }
+  }
 
   findMatchingTicket() {
     this.myService.getMatchingTicket(this.id).subscribe(
@@ -83,42 +91,6 @@ export class FullTicketComponent implements OnInit {
     }
   }
   
-  
-
-  monthNames:any = {
-    1: 'January',   2: 'February',  3: 'March',     4: 'April',
-    5: 'May',       6: 'June',      7: 'July',      8: 'August',
-    9: 'September', 10: 'October',  11: 'November', 12: 'December'
-};
-
-MonthNumber : number = 0;
-MonthName: string = " ";
-DayNumber: number = 0;
-Hour : string = "" ;
-  formatDate(date: string | null): string {
-    if (!date) {
-      return ''; 
-    }
-    const Month = this.datePipe.transform(date, 'M');
-    if (Month) {
-      this.MonthNumber = parseInt(Month, 10);
-    }
-    const Day = this.datePipe.transform(date, 'd');
-    const Hour = this.datePipe.transform(date,'h : mm')
-    this.MonthName = this.monthNames[ this.MonthNumber ];
-    return this.MonthName + " " + Day;
-  }
-  formatHour(date: string | null): string {
-    if (!date) {
-      return ''; 
-    }
-    const Hourr = this.datePipe.transform(date,'h : mm')
-    if(Hourr){
-       this.Hour = Hourr;   
-    }
-
-    return  this.Hour;
-  }
 
 
   Modal :boolean  = false;

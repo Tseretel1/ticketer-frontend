@@ -11,10 +11,24 @@
     <div class="TicketModal">
       <img [src]="matchingTicket.photo" alt="" class="TicketImageModal">
     </div>
-    <p class="Question"><mat-icon>calendar_today </mat-icon> {{formatDate(matchingTicket.activation_Date)}}</p>
+    <p class="Question"><mat-icon>calendar_today </mat-icon> {{ matchingTicket.activation_Date | date: 'MMM d' }}</p>
     <div class="modalButtonAlign">
       <form [formGroup]="SellingForm" class="sellingForm">
-         <input type="number" placeholder="1" formControlName="TicketCount" class="sellinginput">
+        <div class="input-container">
+          <button class="decrement-button" (click)="decrement()">-</button>
+          <div class="countDisplay">
+            <mat-icon>confirmation_number</mat-icon>
+            <input 
+              type="number" 
+              formControlName="TicketCount" 
+              class="sellinginput" 
+              [value]="ticketCount" 
+              readonly
+            />
+          </div>
+          <button class="increment-button" (click)="increment()">+</button>
+        </div>
+        
       </form>
       <button class="submitbuttons buy" (click)="BuyTicket()"><span class="text">Ticket {{SellingForm.value.TicketCount}} : Price<p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span></button>
     </div>
@@ -50,9 +64,9 @@
             <p class="Title">{{matchingTicket.title}}</p>
           </div>
           <div class="dateflex">
-            <p class="Datetime"><mat-icon>calendar_today </mat-icon> {{formatDate(matchingTicket.activation_Date)}}</p>
+            <p class="Datetime"><mat-icon>calendar_today </mat-icon> {{ matchingTicket.activation_Date | date: 'MMM d' }}</p>
             <p class="Datetime">|</p>
-            <p class="Datetime DatetimeHour"><mat-icon>access_time </mat-icon> {{formatHour(matchingTicket.activation_Date)}}</p>
+            <p class="Datetime DatetimeHour"><mat-icon>access_time </mat-icon> {{ matchingTicket.activation_Date | date: 'h:mm a' }}</p>
           </div>
         </div>  
         <div class="Ticket_Information" *ngIf="matchingTicket.ticketCount > 0">

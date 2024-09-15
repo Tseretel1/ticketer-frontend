@@ -45,7 +45,7 @@ export class CreatorProfileComponent implements OnInit{
       (error:any)=>{
         console.log(error);
       }
-      )
+    )
   }
 
 
@@ -74,11 +74,10 @@ export class CreatorProfileComponent implements OnInit{
   return false;
 }
 
-
   ModalPressed:boolean = false
   ExitFromAccunt(){
     localStorage.removeItem("CreatorToken");
-    this.router.navigate(["/EventParent"]);
+    this.router.navigate(["/EventCreator"]);
   } ;
 
 
@@ -88,5 +87,18 @@ export class CreatorProfileComponent implements OnInit{
 
   hidemodal(){
     this.ModalPressed = false;
+  }
+
+
+
+  Removeuser(id:number){
+    this.service.RemoveUserfromAccount(id).subscribe(
+      (resp:any)=>{
+        console.log(resp.message)
+      },
+      (error:any)=>{
+        console.log(error.message);
+      }
+    )
   }
 }

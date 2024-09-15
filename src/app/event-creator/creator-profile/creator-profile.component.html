@@ -63,7 +63,6 @@
         <div class="Column Rolecolumn">
             <p class="userinfo RoleText">{{RoleToChange.accountRole}}</p>
         </div>
-        <button class="RemoveAdministratorButton" *ngIf="RoleToChange.accountRole!= 'AccountAdmin'">Remove {{RoleToChange.name}}{{ RoleToChange.lastName}}  </button>
         <div class="usermodifycard"> 
             <div class="Column ColumnProfile"> 
               <div class="userimagecontainer modifyimagecontainer">
@@ -89,6 +88,9 @@
                     <p class="userinfo modifyName">{{RoleToChange.email}}</p>
                   </div>
             </div>
+        </div>
+        <div *ngIf="RoleToChange.accountRole!= 'AccountAdmin'" class="RemoveButtonParent">
+            <button class="RemoveAdministratorButton" (click)="Removeuser(RoleToChange.userID)">Remove {{RoleToChange.name}}{{ RoleToChange.lastName}}  </button>
         </div>
         <div class="ModalButtons">
             <button class="BackBUtton Submit" (click)="exitfromediting()" *ngIf="RoleToChange.accountRole!= 'AccountAdmin'">Submit</button>

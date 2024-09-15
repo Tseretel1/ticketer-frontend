@@ -9,13 +9,10 @@ import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterOutlet,ReactiveFormsModule,FormsModule,MatIcon,],
+  imports: [CommonModule,RouterLink,RouterOutlet,ReactiveFormsModule,FormsModule,MatIcon,DatePipe],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss',
-  providers:[
-    DatePipe,
-    NgModel
-  ]
+
 })
 export class TicketsComponent implements OnInit, OnDestroy{
  
@@ -31,9 +28,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
   
   constructor(
     private ticketService: TicketService,
-    private datePipe: DatePipe ,
   ) {
-    this.datePipe = new DatePipe('en-US');
   }
 
 
@@ -119,6 +114,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
         break;
     }
   }
+
   searchTickets() {
     if (this.searchTerm) {
       this.tickets = this.AllTickets.filter(ticket =>
@@ -170,38 +166,5 @@ ngOnDestroy(): void {
   }
 }
 
-  monthNames:any = {
-    1: 'January',   2: 'February',  3: 'March',     4: 'April',
-    5: 'May',       6: 'June',      7: 'July',      8: 'August',
-    9: 'September', 10: 'October',  11: 'November', 12: 'December'
-};
-
-MonthNumber : number = 0;
-MonthName: string = " ";
-DayNumber: number = 0;
-Hour : string = "" ;
-
-  formatDate(date: string | null): string {
-    if (!date) {
-      return ''; 
-    }
-    const Month = this.datePipe.transform(date, 'M');
-    if (Month) {
-      this.MonthNumber = parseInt(Month, 10);
-    }
-    const Day = this.datePipe.transform(date, 'd');
-    const Hour = this.datePipe.transform(date,'h : mm')
-    this.MonthName = this.monthNames[ this.MonthNumber ];
-    return this.MonthName + " " + Day;
-  }
-  formatHour(date: string | null): string {
-    if (!date) {
-      return '';
-    }
-    const parsedDate = new Date(date);
-    const formattedHour = this.datePipe.transform(parsedDate, 'h:mm '); 
-    return formattedHour || '';
-  }
-  
 }
 

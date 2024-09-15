@@ -128,7 +128,6 @@
 .ManagmentParent {
   width: 100%;
   display: flex;
-  justify-content: center;
 }
 
 .Managment {
@@ -362,6 +361,12 @@
   color: white;
 }
 
+.RemoveButtonParent {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 .RemoveAdministratorButton {
   border: none;
   background-color: darkred;
@@ -370,11 +375,9 @@
   color: white;
   padding: 5px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  position: absolute;
-  top: -30px;
-  right: -20px;
   transition: 0.2s all ease-in-out;
   cursor: pointer;
+  width: 100%;
 }
 
 .RemoveAdministratorButton:hover {

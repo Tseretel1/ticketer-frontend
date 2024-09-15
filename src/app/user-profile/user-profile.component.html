@@ -25,8 +25,8 @@
          {{SingleTicket.title}}
       </div>
       <div class="SingleTicketDate">
-         <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{formatDate(SingleTicket.activation_Date)}}</p>
-         <p class="SingleDate"><mat-icon>access_time</mat-icon>{{formatHour(SingleTicket.activation_Date)}}</p>
+         <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{ SingleTicket.activation_Date | date: 'MMM d' }}</p>
+         <p class="SingleDate"><mat-icon>access_time</mat-icon>{{ SingleTicket.activation_Date | date: 'h : m a' }}</p>
         </div>
       <div class="SingleTicket" *ngFor="let i of Instances; let index = index" [ngClass]="{'scannedTicket': i.isActive == false}">
          <div class="ifScanned" *ngIf="i.isActive == false">
@@ -68,22 +68,21 @@
 <p class="title">My tickets <mat-icon>confirmation_number</mat-icon></p>
 
 
-  <div class="MyTicketsParent" *ngIf="Tickets">
+<div class="MyTicketsParent" *ngIf="Tickets">
    <div class="TicketCenter">
-      <div class="Ticket" *ngFor="let tkt of Tickets">
-         <div class="SoldCount"><p class="soldcounttext">{{tkt.ticketCount}}</p> <mat-icon class="iconsize2">confirmation_number</mat-icon></div>
-         <div class="PhotoContainer" (click)="viewTicket(tkt)">
-          <div class="AbsoluteHover"></div>
-           <img [src]="tkt.photo" alt="" class="TicketPhoto">
+      <div class="Ticket_parent" *ngIf="Tickets" appScrollAnimation>
+         <div class="Ticket"  *ngFor="let tkt of Tickets; let i = index">
+            <div class="SoldCount"><p class="soldcounttext">{{tkt.ticketCount}}</p> <mat-icon class="iconsize2">confirmation_number</mat-icon></div>
+             <div class="card_box" (click)="viewTicket(tkt)">
+                     <div class="TicketImageContainer">
+                         <img [src]="tkt.photo" alt="" class="ticketimage">
+                     </div>
+             </div>
+             <div class="">
+                 <p class="ticketTitle"> {{tkt.title}}</p> 
+             </div>
          </div>
-         <div class="">
-            {{tkt.title}}
-         </div>
-         <div class="TicketDate">
-            <p class="tktdate"><mat-icon class="iconsize">calendar_today</mat-icon> {{formatDate(tkt.activation_Date)}}</p>
-            <p class="tktdate"><mat-icon class="iconsize">access_time</mat-icon>{{formatHour(tkt.activation_Date)}}</p>
-       </div>
-      </div>
+     </div> 
    </div>
   </div>
 </div>

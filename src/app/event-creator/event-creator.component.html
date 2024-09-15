@@ -1,5 +1,3 @@
-
-<div class="EventBackground"></div>
 <div class="modalaprent" *ngIf="modalvisible">
     <div class="modal">
         <div class="CloseModalParent">
@@ -13,8 +11,8 @@
 <div class="EventParent" *ngIf="LoggedCheck()" >
     <div class="Navigation">
         <a [routerLink]="['/EventCreator/TicketManagment']" routerLinkActive="active-link"  class="RouterLink" >Ticket Managment</a>
-        <a [routerLink]="['/EventCreator/Dashboard']"  routerLinkActive="active-link" class="RouterLink">Dashboard</a>
-        <a [routerLink]="['/EventCreator/CreatorProfile']" *ngIf="UserRole =='AccountAdmin'" routerLinkActive="active-link" class="RouterLink">Profile</a>
+        <a [routerLink]="['/EventCreator/Dashboard']"  routerLinkActive="active-link" class="RouterLink">Scanner</a>
+        <a [routerLink]="['/EventCreator/CreatorProfile']" routerLinkActive="active-link" class="RouterLink">Profile</a>
     </div>
     <router-outlet></router-outlet>
 </div>

@@ -81,10 +81,37 @@
   display: flex;
   justify-content: center;
 }
-.sellinginput{
-  outline: none;
-  border: none;
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
+.countDisplay{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.sellinginput {
+  width: 30px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: white;
+}
+
+.increment-button, .decrement-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.increment-button:hover, .decrement-button:hover {
+  background-color: #0056b3;
+}
+
 .buy{
   background-color: transparent;
   transition: 0.3s all ease-in-out;

@@ -1,6 +1,37 @@
 
-
-<div class="center">
+<header class="ticketerHeader">
+    <p class="HeaderTitle">
+        Ticketer
+    </p>
+        <div class="searchingParent">
+            <div class="filterwidth" *ngIf="tickets">
+                <div class="searchbarparent">
+                    <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="searchTickets()" placeholder="Search by name..." class="searchbar"/>
+                </div>
+                <select class="filters" (change)="onFilterChange($event)">
+                    <option class="option" value="all">
+                        All Ticket
+                    </option>
+                    <option class="option" value="Animation">
+                        Animation
+                    </option>
+                    <option class="option" value="Music">
+                        Music
+                    </option>
+                    <option class="option">
+                        Football
+                    </option>
+                </select> 
+            </div>
+        <div class="FilteringContent">
+            <button class="FilterButtons" (click)="resetFilters()">All Tickets</button>
+            <button class="FilterButtons" (click)="AnimationFilter()">Animation</button>
+            <button class="FilterButtons" (click)="MusicFilter()">Music</button>
+            <button class="FilterButtons" (click)="FootballFilter()">Football</button>
+        </div>
+    </div>
+</header>
+<div class="centerCover">
     <div class="Tickets_Header" >
         <div class="PopularEvent" *ngIf="MostPopularEvent">
                 <div class="Header_Content"  [routerLink]="['/FullTicket', MostPopularEvent.id]">
@@ -21,53 +52,16 @@
          </div>
     </div>
     <div class="CenterBody">
-        <div class="FilterParent">
-            <div class="filterwidth" *ngIf="tickets">
-                <div class="searchbarparent">
-                    <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="searchTickets()" placeholder="Search by name..." class="searchbar"/>
-                </div>
-                <select class="filters" (change)="onFilterChange($event)">
-                    <option class="option" value="all">
-                        All Ticket
-                    </option>
-                    <option class="option" value="Animation">
-                        Animation
-                    </option>
-                    <option class="option" value="Music">
-                        Music
-                    </option>
-                    <option class="option">
-                        Football
-                    </option>
-                </select> 
-            </div>
-        </div>
-        <div class="FilteringContent">
-            <button class="FilterButtons" (click)="resetFilters()">All Tickets</button>
-            <button class="FilterButtons" (click)="AnimationFilter()">Animation</button>
-            <button class="FilterButtons" (click)="MusicFilter()">Music</button>
-            <button class="FilterButtons" (click)="FootballFilter()">Football</button>
-        </div>
         <div class="Ticket_parent" *ngIf="tickets" appScrollAnimation>
-            <div class="Ticket" *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
-                <div *ngIf="isTopTicket(tkt)"  class="TopTickets">
-                    <mat-icon>star </mat-icon>Top
-                </div>
-                <div class="viewcount">
+            <div class="Ticket"  *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
+                <div class="card_box" >
+                    <span *ngIf="isTopTicket(tkt)" class="TopTicket"></span>
+                        <div class="TicketImageContainer">
+                            <img [src]="tkt.photo" alt="" class="ticketimage">
+                        </div>
                 </div>
                 <div class="">
                     <p class="Ticket_Title"> {{tkt.title}}</p> 
-                </div>
-                    <div class="TicketImageContainer">
-                        <div class="Editticket">
-                            <p class="edittext">View Ticket</p>
-                        </div>
-                        <img [src]="tkt.photo" alt="" class="ticketimage">
-                    </div>
-                <div class="publisherData">
-                    <div class="data_style Price"> <div class="data_style Price"><p class="Data_Titles"><mat-icon  class="iconsize">calendar_today</mat-icon></p> <p class="calendar">{{ formatDate(tkt.activation_Date) }}</p></div>
-                    </div>
-                   <p class="data_style"><mat-icon class="iconsize">access_time</mat-icon>{{formatHour(tkt.activation_Date)}}</p>
                 </div>
             </div>
         </div> 
