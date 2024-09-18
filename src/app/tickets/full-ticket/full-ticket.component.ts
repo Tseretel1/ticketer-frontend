@@ -55,7 +55,7 @@ export class FullTicketComponent implements OnInit {
   }
 
   decrement(): void {
-    if (this.ticketCount > 1) {  // Ensure ticket count does not go below 1
+    if (this.ticketCount > 1) {  
       this.ticketCount--;
       this.SellingForm.get('TicketCount')?.setValue(this.ticketCount);
     }

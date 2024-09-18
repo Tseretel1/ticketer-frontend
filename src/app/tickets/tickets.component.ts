@@ -1,9 +1,9 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TicketService } from './ticket.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { find, max, Subscription } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -39,7 +39,8 @@ export class TicketsComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.fetchPopularEvents();
-    this.loadTickets();
+    this.MostpopularTickets();
+    this.UpcomingTickets();
   }
   TicketViewCount(id:number){
     this.ticketService.TicketViewCount(id).subscribe(
@@ -50,17 +51,84 @@ export class TicketsComponent implements OnInit, OnDestroy{
     )
   }
 
-  loadTickets() {
-    this.ticketService.getTickets().subscribe(
+  popularTickets :any[] = [];
+  MostpopularTickets() {
+    this.ticketService.MostPopularTickets().subscribe(
       (resp: any[]) => {
-        this.AllTickets = resp;
-        this.tickets = this.AllTickets;
-        this.getTopTickets(this.tickets);
+        this.popularTickets = resp
       },
       (error) => {
         console.error('Error fetching ticket data:', error);
       }
     );
+  }
+
+
+  upcomingTickets :any[] = [];
+  UpcomingTickets() {
+    this.ticketService.UpcomingTickets().subscribe(
+      (resp: any[]) => {
+        this.upcomingTickets = resp;
+      },
+      (error) => {
+        console.error('Error fetching ticket data:', error);
+      }
+    );
+  }
+
+  allTicketsVisible = false;
+  everyTicketTitle = "";
+
+  seeAllPopularTickets(){
+    this.tickets = this.popularTickets;
+    this.allTicketsVisible = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.everyTicketTitle = "Most popular events";
+  }
+
+  seeAllUpcomingTickets(){
+    this.tickets = this.upcomingTickets;
+    this.allTicketsVisible = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.everyTicketTitle = `Upcoming events `;
+    console.log(this.upcomingTickets);
+  }
+
+  BackButton(){
+    this.allTicketsVisible = false;
+    this.tickets = [];
+  }
+
+
+  @ViewChild('Ticket_parent') ticketParent!: ElementRef;
+  @ViewChild('card_box_main') TciketWidth!: ElementRef;
+
+  scrollLeft() {
+    const ticketWidthElement = this.TciketWidth.nativeElement;
+    const ticketWidth = ticketWidthElement.offsetWidth;
+    this.ticketParent.nativeElement.scrollBy({ left: -ticketWidth + 30, behavior: 'smooth' });
+  }
+
+  scrollRight() {
+    const ticketWidthElement = this.TciketWidth.nativeElement;
+    const ticketWidth = ticketWidthElement.offsetWidth;
+    this.ticketParent.nativeElement.scrollBy({ left: ticketWidth + 30, behavior: 'smooth' });
+  }
+
+
+  @ViewChild('Ticket_parent2') ticketParent2!: ElementRef;
+  @ViewChild('card_box_main2') TciketWidth2!: ElementRef;
+
+  scrollLeft2() {
+    const ticketWidthElement = this.TciketWidth2.nativeElement;
+    const ticketWidth = ticketWidthElement.offsetWidth;
+    this.ticketParent2.nativeElement.scrollBy({ left: -ticketWidth + 30, behavior: 'smooth' });
+  }
+
+  scrollRight2() {
+    const ticketWidthElement = this.TciketWidth2.nativeElement;
+    const ticketWidth = ticketWidthElement.offsetWidth;
+    this.ticketParent2.nativeElement.scrollBy({ left: ticketWidth + 30, behavior: 'smooth' });
   }
 
   getTopTickets(tickets: any[]): void {
@@ -75,57 +143,6 @@ export class TicketsComponent implements OnInit, OnDestroy{
   isTopTicket(ticket: any): boolean {
     return this.topTickets.has(ticket.id);
   }
-  
-  AnimationFilter() {
-    this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Animation');
-  }
-
-  FootballFilter() {
-    this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Football');
-  }
-
-  MusicFilter() {
-    this.tickets = this.AllTickets.filter(ticket => ticket.genre === 'Music');
-  }
-
-  resetFilters() {
-    this.tickets = this.AllTickets;
-  }
-
-  onFilterChange(event: Event) {
-    const selectElement = event.target as HTMLSelectElement;
-    const selectedValue = selectElement.value;
-
-    switch (selectedValue) {
-      case 'Animation':
-        this.AnimationFilter();
-        break;
-      case 'Music':
-        this.MusicFilter();
-        break;
-      case 'Football':
-        this.FootballFilter();
-        break;
-      case 'All':
-        this.resetFilters();
-        break
-      default:
-        this.resetFilters();
-        break;
-    }
-  }
-
-  searchTickets() {
-    if (this.searchTerm) {
-      this.tickets = this.AllTickets.filter(ticket =>
-        ticket.title.toLowerCase().startsWith(this.searchTerm.toLowerCase())
-      );
-    } else {
-      this.tickets = this.AllTickets;
-    }
-  }
-  
-
 fetchPopularEvents(): void {
   this.eventsSubscription = this.ticketService.PopularEvents().subscribe(
     (resp: any) => {
@@ -148,7 +165,6 @@ startEventLoop(): void {
 
   setInterval(() => {
     this.PhotoOpacity = 0;
-
     setTimeout(() => {
       currentIndex = (currentIndex + 1) % this.Popularevent.length;
       this.MostPopularEvent = this.Popularevent[currentIndex];

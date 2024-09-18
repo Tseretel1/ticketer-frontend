@@ -33,24 +33,7 @@
   border-radius: 10px;
   max-width: 1700px;
 }
-.PopularEvent:before {
-  content: "Popular Events";
-  position: absolute;
-  top: 4px;
-  left: -27px;
-  background-color: rgb(216, 0, 0);
-  width: auto;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgb(216, 0, 0);
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotateZ(342deg);
-  z-index: 50;
-  position: fixed;
-  color: white;
-}
+
 .Photocontainer{
   width: 100%;
   height: 300px;
@@ -65,6 +48,8 @@
     z-index: 1;
     transition: 0.3s all ease-in-out;
     border-radius: 10px;
+    height: 100%;
+    object-fit:cover;
 }
 .Header_Content{
   display: flex;
@@ -123,77 +108,7 @@
     align-items: center;
     max-width: 1800px;
     z-index: 5;
-    overflow: hidden;
-    margin-top: 20px;
 }
-.ticketerHeader{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.632);
-  padding: 5px;position: fixed;
-  z-index: 15;
-}
-.searchingParent{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.filterwidth{
-  display: flex;
-  gap: 20px;
-  width: 90%;
-  justify-content: center;
-  padding: 10px;
-  border-radius: 10px;
-}
-.filters{
-  display: none;
-  background-color: rgb(44, 42, 42);
-  gap: 30px;
-  border-radius: 10px;
-  padding: 10px;
-  color: white;
-}
-.option{
-  color: white;
-  cursor: pointer;
-}
-.searchbarparent{
-  width: 50%;
-}
-.searchbar{
-  background-color: white;
-  border: none;
-  color: black;
-  padding: 10px;
-  outline: none;
-  width: 100%;
-  border-radius: 10px;
-  position: sticky;
-}
-.FilteringContent{
-  width: 80%;
-  justify-content: center;
-  display: flex;
-  gap: 20px;
-}
-.FilterButtons{
-  background-color: transparent;
-  color: white;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  transition: 0.2s all ease-in-out;
-  border: 1px solid transparent;
-  font-size: 20px;
-}
-.FilterButtons:hover{
-  border-bottom:1px solid white;
-}
-
-
 
 
 
@@ -209,13 +124,15 @@
 }
 
 .card_box {
-  width: 400px;
+  width: 320px;
   height: auto;
   border-radius: 10px;
   position: relative;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
-  padding: 5px;
+}
+.card_box_main{
+  width: 320px;
 }
 .card_box span {
   position: absolute;
@@ -259,20 +176,51 @@
   background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
 }
 
-
-.Ticket_parent {
+.TicketCarouselContainer{
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-  gap: 40px;
   justify-content: center;
-  margin-top: 30px;
-  row-gap: 30px;
 }
+.Ticket_parent_Carousel {
+  width: 90%;
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: auto; 
+  position: absolute;
+  gap: 30px;
+
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.Ticket_parent_Carousel::-webkit-scrollbar {
+  display: none;
+}
+.Ticket_parent {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+.allticketHeader{
+  color: white;
+  margin-top: 50px;
+  width: 80%;
+}
+.allticketHeaderTitle{
+  font-size: 25px;
+}
+.BackButton{
+  padding: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .Ticket {
   color: #ecf7c5;
-  min-width: 100px;
   font-family: sans-serif;
   transition: 0.3s all ease-in-out;
   cursor: pointer;
@@ -294,34 +242,117 @@
     transform: scale(1);
   }
 }
-.titlecenter{
+
+.testFlex{
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  top: 50%;
+}
+.scrolBUttonsParent{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.scroll-btn{
+  z-index: 90;
+  height: 100%;
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+  padding: 10px;
+}
+.leftScrollButton{
+  left: 0;
+}
+.rightScrollbutton{
+  right: 0;
+  height: 100%;
+}
+.sectionHeader{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  margin-top: 50px;
+}
+.sectionHeaderAlign{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.sectionTitletext{
+  color: lightcyan;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  font-weight: bolder;
+}
+.starIcon{
+  color: orangered;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+.section{
   display: flex;
   width: 100%;
-  position: absolute;
-  height: 100%;
-  transition: 0.2s all ease-in-out;
-  justify-content: center;
-}
-.titlecenter:hover{
-  background-color: rgba(0, 0, 0, 0.536);
-}
-.leftSide{
+  align-items: center;
+  flex-direction: column;
   position: relative;
+  justify-content: center;
+  height: 230px;
+}
+.seeAllTickets {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  border-bottom: 1px solid white;
+  border: 0%;
+}
+
+.seeAllTickets:hover {
+  border-bottom: 1px solid white; 
+  border: 100%; 
+}
+
+.CenterCatousel{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+.aligncarouselParent{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 .Ticket_Title{
-  font-size: 17px;
-  color: whitesmoke;
+  color: white;
   margin: 0;
   z-index: 10;
   display: flex;
   align-items: center;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: bold;
-  text-shadow: 0px 0px 1px black;
-  padding: 3px;
-  font-size: 18px;
+  font-size: 20px;
 }
-
+.ticketDate{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.datetimeofTicket{
+  color: white;
+  display: flex;
+  align-items: center;
+}
 .viewcount{
   display: flex;
   position: absolute;
@@ -348,9 +379,9 @@
   height: 15px;
   font-size: 15px;
 }
-.TicketImageContainer {
+.TicketImageContainer{
   width: 100%; 
-  height: 250px;
+  height: 200px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -358,9 +389,62 @@
   position: relative;
   border-radius: 10px;
   border: 1px solid rgba(128, 128, 128, 0.273);
-  transition: 0.2s all ease-in-out;
+  transition: 0.3s all ease-in-out;
 }
 .TicketImageContainer:hover{
+  border: 1px solid white;
+}
+.ticketfooter{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.558);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: 0.3s all ease-in-out;
+  backdrop-filter: blur(10px);
+  padding:10px;
+}
+.Ticket:hover .ticketfooter{
+  background-color: rgba(0, 0, 0, 0.764);
+  backdrop-filter: blur(10px);
+}
+.Ticket:hover .ticketimage{
+  scale: 1.1;
+}
+.ticketTitleMain{
+  color: white;
+  font-size: 20px;
+}
+.ticketIconMain{
+  font-size: 15px;
+  width: 15px;
+  height: 15px;
+}
+.datetimeofTicketMain{
+  color: white;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+.ticketDateMain{
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+.TicketImageContainerMain {
+  width: 100%; 
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.273);
+  transition: 0.3s all ease-in-out;
+}
+.TicketImageContainerMain:hover{
   border: 1px solid white;
 }
 .ticketimage {
@@ -377,25 +461,13 @@
 
 
 
-
 @media screen and (max-width : 860px){
   .content_style{
     padding: 5px;
     font-size: 15px;
   }
-  .Tickets_Header:before {
-    font-size: 12px;
-    padding: 5px;
-  }
-  .PopularEvent{
-    width: 700px;
-    height: 280px;
-  }
   .Photocontainer{
     height: 280px;
-  }
-  .PopularEvent::before{
-    padding: 4px;
   }
   .Ticket_parent {
     width: 100%;
@@ -405,38 +477,60 @@
     max-width: 180px;
   }
 .card_box{
-  width: 100%;
-}  .Ticket{
-  width: 90%;
+  width: 290px;
+} 
+.Tickets_Header{
+  margin-top: 50px;
 }
 
 }
 @media screen and (max-width : 730px){
   .PopularEvent{
-    width: 600px;
-    height: 280px;
+    width: 90%;
+  }
+  .card_box_main{
+    width: 250px;
+  }
+  .TicketImageContainerMain{
+    height: 150px;
+  }
+  .section{
+    height: 200px;
+  }
+  .ticketTitleMain{
+    font-size: 16px;
+  }
+  .Ticket_parent_Carousel{
+    gap: 20px;
   }
 }
 @media screen and (max-width : 650px){
-  .PopularEvent{
-    width: 550px;
-    height: 280px;
-  }
-  .Ticket_parent{
-    gap: 15px;
-  }
   .Ticket_Title{
     max-width: 154px;
   }
+  .Ticket{
+    width: 80%;
+  }
+  .card_box{
+    width: 100%;
+  }
+  .PopularEvent{
+    height: 240px;
+    overflow: hidden;
+  }
+  .sectionHeaderAlign{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .scroll-btn{
+    padding: 5px;
+    height: 25px;
+  }
+  .section{
+    height: 150px;
+  }
 }
 @media screen and (max-width : 550px){
-  .PopularEvent{
-    width: 450px;
-    height: 200px;
-  }
-  .Photocontainer{
-    height: 200px;
-  }
   .content_style{
     border-radius: 5px;
   }
@@ -449,36 +543,47 @@
   .filters{
     display: flex;
   }
+  .card_box_main{
+    width: 200px;
+  }
+  .TicketImageContainerMain{
+    height: 120px;
+  }
+  .section{
+    height: 150px;
+  }
+  .scroll-btn{
+    padding: 5px;
+  }
+  .Ticket_parent_Carousel{
+    gap: 10px;
+  }
 }
 @media screen and (max-width : 475px){
   .PopularEvent{
-    width: 400px;
     height: 200px;
+    overflow: hidden;
   }
   .Ticket_Title{
     max-width: 174px;
   }
+  .sectionTitletext{
+    font-size: 20px;
+  }
+  .section{
+    height: 120px;
+  }
+  .ticketTitleMain{
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width : 400px){
-  .top-ticket::before{
-    width: 40px;
-    font-size: 12px;
-    top: -10px;
-    right: -10px;
-    font-size: 10px;
-  }
   .PopularEvent{
-    width: 350px;
     height: 150px;
   }
   .Photocontainer{
     height: 150px;
-  }
-  .PopularEvent::before{
-    padding: 2px;
-    font-size: 10px;
-    left: -15px;
   }
   .Ticket_Title  {
     max-width: 154px;

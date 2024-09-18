@@ -9,7 +9,7 @@ export class TicketService {
 
   constructor(private http: HttpClient) { }
 
-   URL = "https://localhost:7081/"
+  URL = "https://localhost:7081/"
 
   getTickets(): Observable<any> {
     return this.http.get(this.URL +  'all-tickets');
@@ -17,8 +17,16 @@ export class TicketService {
   
   PopularEvents():Observable<any>{
     return this.http.get(this.URL + 'popular-events');
-  }   
+  }  
 
+  MostPopularTickets():Observable<any>{
+    return this.http.get(this.URL + 'popular-tickets ');
+  } 
+
+
+  UpcomingTickets():Observable<any>{
+    return this.http.get(this.URL + 'upcoming-tickets');
+  } 
   TicketViewCount(id: number): Observable<any> {
     return this.http.patch(this.URL+ 'view-count', id, {
       headers: { 'Content-Type': 'application/json' },

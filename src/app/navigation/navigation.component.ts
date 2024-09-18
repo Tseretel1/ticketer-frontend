@@ -5,13 +5,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../auth.service';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { NavService } from './nav.service';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [RouterLink,CommonModule, RouterLinkActive,MatIcon],
+  imports: [RouterLink,CommonModule, RouterLinkActive,MatIcon,],
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.scss'
+  styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent implements OnInit{
   constructor(private authService:AuthService, private service :NavService) {
@@ -21,6 +22,34 @@ export class NavigationComponent implements OnInit{
   ngOnInit(): void {  
     this.Creator();
     this.UserProfile();
+  }
+
+
+  searchbarVisible = true;
+  
+  searchbarShow(){
+    this.searchbarVisible  = true;
+    this.HideNavigation();
+  }
+  searchbarHide(){
+    this.searchbarVisible = false;
+    this.HideNavigation();
+  }
+
+  AllTickets: any[] = [];
+  tickets: any[] = [];
+  searchTerm: string = ''; 
+  topTickets: Set<number> = new Set(); 
+
+    
+  searchTickets() {
+    if (this.searchTerm) {
+      this.tickets = this.AllTickets.filter(ticket =>
+        ticket.title.toLowerCase().startsWith(this.searchTerm.toLowerCase())
+      );
+    } else {
+      this.tickets = this.AllTickets;
+    }
   }
 
   
@@ -102,6 +131,8 @@ export class NavigationComponent implements OnInit{
       }
      )
   }
+
+
 }
 
 
