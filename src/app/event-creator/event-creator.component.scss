@@ -9,6 +9,7 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
+    z-index: 1000;
 }
 .Navigation{
     display: flex;
@@ -19,6 +20,7 @@
     padding: 10px;
     border-radius: 10px;
     flex-wrap: wrap;
+    margin-top: 150px;
 }
 .RouterLink{
     color: white;

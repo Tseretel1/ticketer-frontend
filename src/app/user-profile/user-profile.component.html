@@ -65,13 +65,22 @@
      </div>
   </div>
 
-<p class="title">My tickets <mat-icon>confirmation_number</mat-icon></p>
+  <div class="ticketswitchParent">
+   <div class = "">
+      <button class="switch" (click)="switchToActive()">Active</button>  
+      <div class="spanline" *ngIf="ticketSwitch"></div>
+   </div>
+   <div class = "">
+      <button class="switch" (click)="switchToExpired()">Expired</button> 
+      <div class="spanline" *ngIf="ticketSwitch == false"></div>
+   </div>
+  </div>
 
 
-<div class="MyTicketsParent" *ngIf="Tickets">
+<div class="MyTicketsParent" *ngIf="actTickets && ticketSwitch">
    <div class="TicketCenter">
-      <div class="Ticket_parent" *ngIf="Tickets" appScrollAnimation>
-         <div class="Ticket"  *ngFor="let tkt of Tickets; let i = index">
+      <div class="Ticket_parent" *ngIf="actTickets" appScrollAnimation>
+         <div class="Ticket"  *ngFor="let tkt of actTickets; let i = index">
             <div class="SoldCount"><p class="soldcounttext">{{tkt.ticketCount}}</p> <mat-icon class="iconsize2">confirmation_number</mat-icon></div>
              <div class="card_box" (click)="viewTicket(tkt)">
                      <div class="TicketImageContainer">
@@ -80,9 +89,32 @@
              </div>
              <div class="">
                  <p class="ticketTitle"> {{tkt.title}}</p> 
-             </div>
+            </div>
          </div>
      </div> 
    </div>
-  </div>
 </div>
+
+<div class="MyTicketsParent" *ngIf="expTickets && ticketSwitch ==false">
+   <div class="TicketCenter">
+      <div class="Ticket_parent" *ngIf="expTickets" appScrollAnimation>
+         <div class="Ticket"  *ngFor="let tkt of expTickets; let i = index">
+            <div class="SoldCount"><p class="soldcounttext">{{tkt.ticketCount}}</p> <mat-icon class="iconsize2">confirmation_number</mat-icon></div>
+             <div class="card_box" (click)="viewTicket(tkt)">
+                     <div class="TicketImageContainer">
+                        <div class="expiredDiv">
+                           <div class="expiredText">Expired</div>
+                        </div>
+                         <img [src]="tkt.photo" alt="" class="ticketimage">
+                     </div>
+             </div>
+             <div class="">
+                 <p class="ticketTitle"> {{tkt.title}}</p> 
+            </div>
+         </div>
+     </div> 
+   </div>
+</div>
+</div>
+
+  

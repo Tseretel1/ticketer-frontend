@@ -2,8 +2,8 @@ import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } fro
 import { TicketService } from './ticket.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { find, max, Subscription } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({

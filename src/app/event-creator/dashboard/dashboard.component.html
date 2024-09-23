@@ -22,37 +22,16 @@
     <div *ngIf="Expired" class="ticketExpiredcontainer">
         <div class="ticketExpired">
             <p>This Ticket is Expired!</p>
-            <div class="Ticket">
-                <p class="TicketTitle">{{Response.ticketTitle}}</p>
-                <div class="imageContainer">
-                    <img [src]="Response.ticketPhoto" alt="" class="TicketPhoto">
-                </div>
-            </div>
-            <p>Expired at {{formatDate( Response.expirationDate)}} <mat-icon  class="iconsize">calendar_today</mat-icon></p>
         </div>
       </div>
       <div *ngIf="!IsActive && showNotActive " class="ticketExpiredcontainer">
         <div class="ticketExpired">
             <p>This Ticket is Already Used!</p>
-            <div class="Ticket">
-                <p class="TicketTitle">{{Response.ticketTitle}}</p>
-                <div class="imageContainer">
-                    <img [src]="Response.ticketPhoto" alt="" class="TicketPhoto">
-                </div>
-            </div>
-            <p><mat-icon  class="iconsize">calendar_today</mat-icon>{{formatDate( Response.activationDate)}}</p>
         </div>
       </div>
       <div *ngIf="!Expired && IsActive" class="ticketExpiredcontainer GreenTicketContainer">
         <div class="ticketExpired">
             <p>Passed</p>
-            <div class="Ticket">
-                <p class="TicketTitle">{{Response.ticketTitle}}</p>
-                <div class="imageContainer">
-                    <img [src]="Response.ticketPhoto" alt="" class="TicketPhoto">
-                </div>
-            </div>
-            <p><mat-icon  class="iconsize">calendar_today</mat-icon>{{formatDate( Response.activationDate)}}</p>
         </div>
       </div>
   </div>

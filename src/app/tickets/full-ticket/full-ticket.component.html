@@ -1,36 +1,32 @@
-<!--BAckgroundBlur-->
-<div class="BAckgroundBlur"></div>
 
 <!--Modal-->
 <div class="ModalWindowParent" *ngIf="Modal">
   <div class="ModalWindow">
     <div class="CloseModal">
-       <button class="cancel"  (click)="HideModal()"><mat-icon>close</mat-icon></button>
+       <button class="cancel"  (click)="hideModal()"><mat-icon>close</mat-icon></button>
     </div>
-    <p class="Question">{{matchingTicket.title}}</p>
+    <p class="Question modalName">{{matchingTicket.title}}</p>
     <div class="TicketModal">
       <img [src]="matchingTicket.photo" alt="" class="TicketImageModal">
     </div>
-    <p class="Question"><mat-icon>calendar_today </mat-icon> {{ matchingTicket.activation_Date | date: 'MMM d' }}</p>
+    <div class="modalDates">
+      <div class="modalDateAlign">
+         <mat-icon class="datecolor">calendar_today</mat-icon>
+         <p class="Question">{{ matchingTicket.activation_Date | date: 'MMM d' }}</p>
+      </div>
+      <div class="modalDateAlign">
+        <mat-icon class="datecolor">access_time </mat-icon> 
+        <p class="Question">{{ matchingTicket.activation_Date | date: 'h : mm' }}</p>
+     </div>
+     
+    </div>
+    <div class="bottomQuestion">
+      <div class="ticketsellingCo">
+      <div class="buyCountFlex">Buy <b> {{ticketCount}} </b>  <p class="alignHard"><mat-icon class="datecolor"> confirmation_number</mat-icon>Ticket?</p></div>
+      </div> 
+    </div>
     <div class="modalButtonAlign">
-      <form [formGroup]="SellingForm" class="sellingForm">
-        <div class="input-container">
-          <button class="decrement-button" (click)="decrement()">-</button>
-          <div class="countDisplay">
-            <mat-icon>confirmation_number</mat-icon>
-            <input 
-              type="number" 
-              formControlName="TicketCount" 
-              class="sellinginput" 
-              [value]="ticketCount" 
-              readonly
-            />
-          </div>
-          <button class="increment-button" (click)="increment()">+</button>
-        </div>
-        
-      </form>
-      <button class="submitbuttons buy" (click)="BuyTicket()"><span class="text">Ticket {{SellingForm.value.TicketCount}} : Price<p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span></button>
+      <button class="submitbuttons buy" (click)="BuyTicket()"><span class="text">Pay:<p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span></button>
     </div>
   </div>
 </div> 
@@ -44,79 +40,105 @@
 </div>
 
 <div class="CenterBody">
-    <div class="FountTicketParent" *ngIf="matchingTicket">
-        <div class="foundticket">
-          <div class="Imagecontainer heightzero">
-            <button class="Exitbutton" (click)="Exit()"><mat-icon class="flipicon">exit_to_app</mat-icon>Back</button>
-            <div class="publisher">
-              <img [src]="matchingTicket.publisher.logo" class="publisherPhoto" alt="">
-              <p class="publisherName">{{matchingTicket.publisher.userName}}</p>
-            </div>
-          </div>
-            <div class="FirstSection">
-               <div class="Imagecontainer">
-                 <img [src]="matchingTicket.photo" alt="" class="TicketImage">
-               </div>
-            </div>
-        </div>
-        <div class="datetimeparent">
-          <div class="dataalign">
-            <p class="Title">{{matchingTicket.title}}</p>
-          </div>
-          <div class="dateflex">
-            <p class="Datetime"><mat-icon>calendar_today </mat-icon> {{ matchingTicket.activation_Date | date: 'MMM d' }}</p>
-            <p class="Datetime">|</p>
-            <p class="Datetime DatetimeHour"><mat-icon>access_time </mat-icon> {{ matchingTicket.activation_Date | date: 'h:mm a' }}</p>
-          </div>
-        </div>  
-        <div class="Ticket_Information" *ngIf="matchingTicket.ticketCount > 0">
-          <div class="SecondSection">   
-            <div class="matchingticketData">
-            </div>
-            <div class="Description"><p class="Datatitle"> Price:</p>  <p>{{matchingTicket.price}}</p> </div>
-
-            <div class="descriptionCenter">
-              <div class="Description"><p class="Datatitle"> Description:</p>  <p>{{matchingTicket.description}}</p> </div>
-            </div>
-          </div>
-          <button 
-          class="fancy" 
-          href="#" 
-          (click)="ShowModal()" 
-          [attr.disabled]="!isTicketAvailable ? true : null"
-          [ngClass]="{'disabled_button': !isTicketAvailable}">
-          <span class="top-key"></span>
-          <span class="text">Buy Ticket {{matchingTicket.price}}$</span>
-          <span class="bottom-key-1"></span>
-          <span class="bottom-key-2"></span>
-        </button>
-        
-           <div class="TicketLeft">
-            <p class="">Ticket Left: {{matchingTicket.ticketCount}}</p>     
-          </div>  
-        </div>
-        <div class="Ticket_Information TktSoldout" *ngIf="matchingTicket.ticketCount <= 0">
-           sold out!
-        </div>
-        
-   </div> 
-
-   
-   <div class="sugestions" *ngIf="foundtickets"> 
-    <p class="SugestionsText">Sugestions from</p>
-    <div class="Ticket_parent">
-      <div class="Ticket" *ngFor="let tkt of foundtickets; let i = index">
-        <div class="TicketFlex" (click)="NewMatchingTicket(tkt.id)">
-            <div class="leftSide">
-                <div class="TicketImageContainer">
-                    <img [src]="tkt.photo" alt="" class="ticketimage">
-                </div>
-                <div class="titlecenter">
-                  <p class="Ticket_Title"> {{tkt.title}}</p> 
-              </div>
-            </div>
-        </div>
-      </div>    
-     </div> 
+  <div class="heightzeroheader">
+   <div class="exitAlign">
+    <button class="Exitbutton" (click)="Exit()"><mat-icon class="flipicon">exit_to_app</mat-icon>Back</button>
+    <div class="viewCount">
+      <mat-icon>visibility</mat-icon>
+      {{matchingTicket?.viewCount}}
+    </div>
    </div>
+  </div>
+    <div class="FountTicketParent" *ngIf="matchingTicket">
+        <div class="firstSection">
+          <div class="heightzero">
+            <div class="titleParent">
+              <div class="dataalign">
+                <p class="Title"> {{matchingTicket.title}}</p>
+              </div>
+            </div>  
+
+
+            <div class="ticketInformation">
+              <div class="data">
+                <b class="datatitles">Date :</b>
+                <p class="Datetime">{{ matchingTicket.activation_Date | date: 'MMM d' }}</p>
+                <p class="Datetime">|</p>
+                <p class="Datetime DatetimeHour">{{ matchingTicket.activation_Date | date: 'h:mm a' }}</p>
+              </div>
+              <div class="data">
+                <b class="datatitles">Genre :</b><p class="datatext"> {{matchingTicket.genre}} </p>
+              </div>
+              <div class="data">
+                <b class="datatitles">Price :</b> <p class="datatext">{{matchingTicket.price}}$</p>
+              </div>
+              <div class="data description">
+                <b class="datatitles">Description :</b> 
+                <p class="datatext scrolldescription">{{matchingTicket.description}}</p>
+              </div>
+
+              <div class="buyPannel" *ngIf="matchingTicket.ticketCount > 0"> 
+                <div class="data">
+                  <b class="datatitles">Buy Ticket</b>
+                </div>
+                <div class="paymentAlign">
+                  <form [formGroup]="SellingForm" class="sellingForm" *ngIf="soldOut">
+                    <div class="input-container">
+                      <button class="decrement-button" (click)="decrement()">-</button>
+                      <div class="countDisplay">
+                        <div class="ticketsellingCount">
+                          <mat-icon>confirmation_number</mat-icon>
+                          <input 
+                          type="number" 
+                          formControlName="TicketCount" 
+                          class="sellinginput" 
+                          [value]="ticketCount" 
+                          hidden />
+                          <div sellinginput>{{ticketCount}}</div>
+                        </div> 
+                        <div class="imageCard">
+                          <img [src]="matchingTicket.photo" class="imageCardPhoto" alt="">
+                        </div>                   
+                      </div>
+                      <button class="increment-button" (click)="increment()" *ngIf="increment">+</button>
+                    </div> 
+                  </form>
+                  <button 
+                  class="fancy" 
+                  (click)="showModal()" 
+                  [attr.disabled]="!isTicketAvailable ? true : null"
+                  [ngClass]="{'disabled_button': !isTicketAvailable}">
+                  <span class="text">Price<p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span>
+                </button>
+                </div>
+              </div>
+            </div> 
+          </div>
+
+          <div class="buyPannel TktSoldout" *ngIf="matchingTicket.ticketCount <= 0">
+            sold out!
+          </div>
+        </div>
+        <div class="foundticket">
+          <div class="Imagecontainer">
+            <img [src]="matchingTicket.photo" alt="" class="TicketImage">
+          </div>
+        </div>
+   </div> 
 </div>
+
+
+
+<div class="sugestions" *ngIf="foundtickets"> 
+  <div class="SugestionsText">Sugestions from {{matchingTicket?.publisher.userName}} </div>
+  <div class="Ticket_parent">
+    <div class="Ticket" *ngFor="let tkt of foundtickets; let i = index">
+      <div class="TicketFlex" (click)="NewMatchingTicket(tkt.id)">
+          <div class="TicketImageContainer">
+              <img [src]="tkt.photo" alt="" class="ticketimage">
+          </div>
+          <p class="sugestionTicketTitle">{{tkt.title}}</p>
+      </div>
+    </div>    
+   </div> 
+ </div>

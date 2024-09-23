@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, NgIf } from '@angular/common';
 import { Component, Directive, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
@@ -24,10 +24,11 @@ export class UserProfileComponent implements OnInit{
     { }
   ngOnInit(): void {
     this.UserProfile();
-    this.myTickets();
+    this.activeTickets();
   }
   Profile :any = {};
-  Tickets : any[] = [];
+  actTickets : any[] = [];
+  expTickets : any[] = [];
   Instances : any[] = [];
   SingleTicket :any = {};
   QRVisible : boolean = false;
@@ -66,17 +67,40 @@ export class UserProfileComponent implements OnInit{
       }
      )
   }
-  myTickets(){
-    this.service.GetMyTickets().subscribe(
-     (resp)=>{
-      this.Tickets  = resp;
-      console.log(resp);
-     },
-     (error)=>{
-       console.log(error);
-     }
-    )
- }
+
+
+ activeTickets(){
+  this.service.GetActiveTickets().subscribe(
+   (resp)=>{
+    this.actTickets  = resp;
+    console.log(resp);
+   },
+   (error)=>{
+     console.log(error);
+   }
+  )
+}
+expiredTickets(){
+  this.service.GetExpiredTickets().subscribe(
+   (resp)=>{
+    this.expTickets  = resp;
+   },
+   (error)=>{
+     console.log(error);
+   }
+  )
+}
+ticketSwitch : boolean = true;
+
+switchToActive(){
+  this.ticketSwitch = true;
+}
+switchToExpired(){
+  this.ticketSwitch = false;
+  if(this.expTickets != null){
+    this.expiredTickets();
+  }
+}
 
   ExitFromAccount(){
     const token = localStorage.getItem('token');

@@ -1,24 +1,28 @@
+<header class="searchbarParent"  *ngIf="searchbarVisible">
+    <div class="Navbarflex2">
+        <div class="searchingParent">         
+            <button (click)="ShowNavigation()" class="MenuButton">
+                <mat-icon>home</mat-icon>
+            </button>
 
-<header class="searchbarParent">
-    <button (click)="ShowNavigation()" class="MenuButton" *ngIf="NavbUttonVisible">
-        <mat-icon>home</mat-icon>
-    </button>
-        <div class="searchingParent" *ngIf="searchbarVisible">
-            <div class="filterwidth" *ngIf="tickets">
-                <div class="searchbarparent">
-                    <input type="text" (ngModelChange)="searchTickets()" placeholder="Search by name..." class="searchbar"/>
-                </div>
-            </div>
-            <a [routerLink]="'UserProfile'" class="routerwhite" *ngIf="Loggedin() && searchbarVisible" (click)="searchbarHide()">
-                <div class="profileflex" >
-                    <p class="userNameflex" [classList]="">My Tickets <mat-icon>confirmation_number</mat-icon></p>
-                    <div class="profilecontainermain">
-                        <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
-                        <mat-icon class="ProfileNot" *ngIf="Profile.profile == null">account_circle</mat-icon>
+            <input type="text" (ngModelChange)="searchTickets()" placeholder="Search by name..." class="searchbar"/>
+         </div>
+         <div class="Nav_Routesflex">
+             <a [routerLink]="'UserProfile'"  class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="searchbarShow()">
+                <div class="profile">
+                    <div class="profileflex" >
+                        <p class="userNameflex" [classList]="">Profile <mat-icon>confirmation_number</mat-icon></p>
+                        <div class="profilecontainermain">
+                            <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
+                            <mat-icon class="ProfileNot" *ngIf="Profile.profile == null">account_circle</mat-icon>
+                        </div>
                     </div>
                 </div>
-            </a>
-       </div>
+             </a>
+             <a [routerLink]="'Login'" class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin() == false" (click)="searchbarShow()"><mat-icon>login</mat-icon>Login</a>
+             <a [routerLink]="'Tickets'" class="RouterLinkflex" routerLinkActive="active-link" (click)="searchbarShow()"><mat-icon>confirmation_number</mat-icon>Tickets</a>
+         </div>
+     </div>
 </header>
 <div class="NavFull"  *ngIf="NavigationVisible" >
     <div class="Navbar"  [style.width.%]="width"  [style.minWidth.px]="minwidth">
@@ -26,7 +30,7 @@
           <button (click)="HideNavigation()" class="Xbutton">  <mat-icon>close</mat-icon></button>  
          </div>
          <div class="Nav_Routes">
-             <a [routerLink]="'UserProfile'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="searchbarHide()">
+             <a [routerLink]="'UserProfile'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()"  (click)="searchbarShow()">
                 <div class="profile">
                     <div class="profilecontainer">
                         <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">

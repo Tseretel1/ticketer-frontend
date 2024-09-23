@@ -38,11 +38,7 @@
                 </div>
             </div>
         </div>
-        <section class="section" *ngIf="popularTickets">
-
-
-            
-            <div class="aligncarouselParent">
+        <section class="section" *ngIf="popularTickets">    
                 <div class="CenterCatousel">
                     <div class="Ticket_parent_Carousel" #Ticket_parent *ngIf="popularTickets" appScrollAnimation>
                         <div class="Ticket" *ngFor="let tkt of popularTickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
@@ -60,8 +56,7 @@
                             </div>
                         </div>
                     </div>  
-                </div>    
-            </div>   
+                </div>   
         </section>   
 
 
@@ -77,7 +72,6 @@
             </div>
         </div>
         <section class="section" *ngIf="popularTickets">
-            <div class="aligncarouselParent">
                 <div class="CenterCatousel">
                     <div class="Ticket_parent_Carousel" #Ticket_parent2 *ngIf="upcomingTickets" appScrollAnimation>
                         <div class="Ticket" *ngFor="let tkt of upcomingTickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
@@ -96,9 +90,21 @@
                         </div>
                     </div>  
                 </div>    
-            </div>   
         </section>   
+
+
+        <footer class="footer">
+          <div class="footerChild">
+            <a class="CreatorSpace" [routerLink]="'/EventCreator'" >
+                <div class="RouterLink" routerLinkActive="active-link"><mat-icon class="creatorIcon">palette</mat-icon>Creator Space</div>
+            </a>
+          </div>
+        </footer>
     </div>
+
+
+
+
     <div class="CenterBody" *ngIf="allTicketsVisible">
         <div class="allticketHeader">
             <div class="allticketHeaderTitle">{{everyTicketTitle}}  </div>
@@ -118,8 +124,8 @@
                         <div class="ticketDate">
                            <p class="datetimeofTicket"><mat-icon>calendar_today </mat-icon> {{ tkt.activation_Date | date: 'MMM d' }}</p>
                            <p class="datetimeofTicket"><mat-icon>access_time </mat-icon> {{ tkt.activation_Date | date: 'h:mm a' }}</p>
-                        </div>
-                </div>
+                    </div>
+             </div>
         </div> 
      </div>
 </div>

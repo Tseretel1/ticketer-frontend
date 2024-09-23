@@ -11,7 +11,6 @@
     height: auto;
     display: flex;
     justify-content: center;
-    max-width: 1500px;
     margin-top: 100px;
 }
 .HeaderTitle{
@@ -31,7 +30,7 @@
   position: relative;
   backdrop-filter: blur(20px);
   border-radius: 10px;
-  max-width: 1700px;
+  max-width: 1600px;
 }
 
 .Photocontainer{
@@ -180,6 +179,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  max-width: 1600px;
 }
 .Ticket_parent_Carousel {
   width: 90%;
@@ -188,20 +188,21 @@
   overflow-x: auto; 
   position: absolute;
   gap: 30px;
-
   scrollbar-width: none; 
   -ms-overflow-style: none; 
+  max-width: 1600px;
 }
 
 .Ticket_parent_Carousel::-webkit-scrollbar {
   display: none;
 }
 .Ticket_parent {
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  max-width: 1600px;
 }
 .allticketHeader{
   color: white;
@@ -282,6 +283,7 @@
   width: 90%;
   display: flex;
   justify-content: space-between;
+  max-width: 1600px;
 }
 .sectionTitletext{
   color: lightcyan;
@@ -457,6 +459,50 @@
   scale: 1.1;
 }
 
+
+
+
+
+
+.footer{
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  width: 100%;
+}
+.footerChild{
+  width: 90%;
+  max-width: 1600px;
+}
+.CreatorSpace{
+  background-color: rgba(0, 0, 0, 0.381);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border: 1px solid rgba(128, 128, 128, 0.257);
+  text-decoration: none;
+  width: 30%;
+  transition:0.3s all ease-in-out;
+  margin-bottom: 50px;
+}
+.CreatorSpace:hover{
+  background-color: rgba(70, 70, 70, 0.381);
+  
+}
+.RouterLink{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.creatorIcon{
+  font-size: 50px;
+  height: 50px;
+  width: 50px;
+}
 
 
 

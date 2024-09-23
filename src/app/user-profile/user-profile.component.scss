@@ -16,6 +16,7 @@
     align-items: center;
     transition: 0.3s all ease-in-out;
     z-index: 2;
+    margin-top: 50px;
 }
 .ExitFromAccountbutton:hover{
     background-color: white;
@@ -179,6 +180,15 @@
     margin: 0;
 }
 
+.ticketswitchParent{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.spanline{
+    border-bottom: 1px solid green;
+    margin-top: 10px;
+}
 .Ticket_parent {
     width: 100%;
     display: flex;
@@ -223,6 +233,24 @@
   .TicketImageContainer:hover .ticketimage{
     scale: 1.1;
   }
+.expiredDiv{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}  
+.expiredText{
+    width: 80px;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+}
 .TicketPhoto{
     width: 100%;
     height: 100%;
@@ -293,6 +321,7 @@
     width: 100%;
     display: flex;
     justify-content: center;   
+    margin-top: 50px;
 }
 .SingleTicketParent{
     display: flex;
@@ -405,6 +434,7 @@
     position: fixed;
     z-index: 10;
     color: black;
+    margin-top: 50px;
 }
 
 

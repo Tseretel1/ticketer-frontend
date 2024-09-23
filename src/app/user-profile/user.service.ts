@@ -13,8 +13,11 @@ export class UserService {
    GetMyProfile(): Observable<any> {
      return this.http.get( this.URL+ 'user-profile');
    }
-   GetMyTickets(): Observable<any> {
-    return this.http.get( this.URL+ 'my-tickets');
+   GetActiveTickets(): Observable<any> {
+    return this.http.get( this.URL+ 'my-active-tickets');
+  }
+  GetExpiredTickets(): Observable<any> {
+    return this.http.get( this.URL+ 'my-expired-tickets');
   }
   TicketInstances(id: number): Observable<any> {
     return this.http.get<any>(`${this.URL}my-tickets-instances/${id}`);
