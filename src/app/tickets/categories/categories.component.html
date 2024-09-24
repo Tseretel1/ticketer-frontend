@@ -1,0 +1,23 @@
+
+<div class="CenterBody">
+    <div class="allticketHeader">
+        <div class="allticketHeaderTitle">{{everyTicketTitle}}  </div>
+    </div>
+    <div class="Ticket_parent" *ngIf="categorisedTickets" appScrollAnimation>
+             <div class="Ticket" *ngFor="let tkt of categorisedTickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
+                <div class="">
+                    <p class="Ticket_Title"> {{tkt.title}}</p> 
+                </div>
+                 <div class="card_box" >
+                     <span *ngIf="isTopTicket(tkt)" class="TopTicket"></span>
+                         <div class="TicketImageContainer">
+                             <img [src]="tkt.photo" alt="" class="ticketimage">
+                         </div>
+                 </div>
+                    <div class="ticketDate">
+                       <p class="datetimeofTicket"><mat-icon>calendar_today </mat-icon> {{ tkt.activation_Date | date: 'MMM d' }}</p>
+                       <p class="datetimeofTicket"><mat-icon>access_time </mat-icon> {{ tkt.activation_Date | date: 'h:mm a' }}</p>
+                </div>
+         </div>
+    </div> 
+</div>

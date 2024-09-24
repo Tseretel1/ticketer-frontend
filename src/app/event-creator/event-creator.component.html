@@ -10,9 +10,9 @@
 </div>
 <div class="EventParent" *ngIf="LoggedCheck()" >
     <div class="Navigation">
-        <a [routerLink]="['/EventCreator/TicketManagment']" routerLinkActive="active-link"  class="RouterLink" >Ticket Managment</a>
-        <a [routerLink]="['/EventCreator/Dashboard']"  routerLinkActive="active-link" class="RouterLink">Scanner</a>
-        <a [routerLink]="['/EventCreator/CreatorProfile']" routerLinkActive="active-link" class="RouterLink">Profile</a>
+        <a [routerLink]="this.routes.creatorTicketManagement" routerLinkActive="active-link"  class="RouterLink" >Ticket Managment</a>
+        <a [routerLink]="this.routes.creatorScanner"  routerLinkActive="active-link" class="RouterLink">Scanner</a>
+        <a [routerLink]="this.routes.creatorProfile" routerLinkActive="active-link" class="RouterLink">Profile</a>
     </div>
     <router-outlet></router-outlet>
 </div>

@@ -5,13 +5,85 @@
   flex-direction: column;
 }
 
+//Categories
+.categories{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px 20px 0px;
+}
+.categoriesAlign{
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  max-width: 1600px;
+  align-items: center;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+  max-width: 1600px;
+  gap: 30px;
+}
+
+
+.Ticket_parent_Carousel::-webkit-scrollbar {
+display: none;
+}
+.categoryTitle{
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 5px;
+  cursor: pointer;
+}
+.categoryIcons{
+  color: rgb(225, 132, 97);
+}
+.categoryIcons{
+  color: rgb(225, 132, 97);
+}
+.football{
+  color: lightgreen;
+}
+.music{
+  color: red;
+}
+.theater{
+  color: lightgreen;
+}
+.film{
+  color: lightgreen;
+}
+
 //Header______________________________________
 .Tickets_Header{
     width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    overflow: hidden;
+}
+.PopularEvent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  position: relative;
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+}
+
+.headercarousel{
+  display: flex;
+  max-width: 1600px;
+  justify-content: center;
+  overflow: hidden;
+  gap: 20px;
+  width: 90%;
+  max-width: 1600px;
 }
 .HeaderTitle{
   color: white;
@@ -20,21 +92,9 @@
   left: 50px;
   top: 30%;
 }
-.PopularEvent{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  height: 300px;
-  margin-top: 30px;
-  position: relative;
-  backdrop-filter: blur(20px);
-  border-radius: 10px;
-  max-width: 1600px;
-}
 
 .Photocontainer{
-  width: 100%;
+  width: 1200px;
   height: 300px;
   overflow: hidden;
   display: flex;
@@ -256,21 +316,26 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+  align-items: center;
 }
 .scroll-btn{
   z-index: 90;
-  height: 100%;
+  height: 20px;
   background-color: white;
   border-radius: 20px;
   border: none;
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  cursor: pointer;
 }
 .leftScrollButton{
   left: 0;
 }
 .rightScrollbutton{
   right: 0;
-  height: 100%;
 }
 .sectionHeader{
   width: 100%;
@@ -460,8 +525,56 @@
 }
 
 
-
-
+//Theater Component
+.theater-section-parent{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.theater-section{
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  max-width: 1600px;
+  padding-top: 10px;
+}
+.theater-photo-container{
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.3s all ease-in-out;
+}
+.theater-photo-container:hover{
+  border: 1px solid white;
+}
+.theater-photo-container:hover .theater-photos{
+  scale: 1.2;
+}
+.theater-big{
+  width: 500px;
+  height: 250px;
+}
+.theater-small{
+  width: 300px;
+  height: 250px;
+}
+.theater-photos{
+  width: 100%;
+  height: 100%;
+  transition: 0.3s all ease-in-out;
+  object-fit: cover;
+}
+.theater-title{
+  border-bottom: 1px solid white;
+}
+.thater-ticket-name{
+  color: white;
+  font-size: 18px;
+}
 
 
 .footer{
@@ -504,9 +617,11 @@
   width: 50px;
 }
 
-
-
-
+@media screen and (min-width : 1200px){
+  .Photocontainer{
+    width: 1600px;
+  }
+}
 @media screen and (max-width : 860px){
   .content_style{
     padding: 5px;
@@ -525,15 +640,9 @@
 .card_box{
   width: 290px;
 } 
-.Tickets_Header{
-  margin-top: 50px;
-}
 
 }
 @media screen and (max-width : 730px){
-  .PopularEvent{
-    width: 90%;
-  }
   .card_box_main{
     width: 250px;
   }
@@ -549,6 +658,32 @@
   .Ticket_parent_Carousel{
     gap: 20px;
   }
+  .sectionHeader{
+    margin-top: 30px;
+  }
+  .starIcon{
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+  }
+  .sectionTitletext{
+    font-size: 20px;
+  }
+  .Ticket_parent_Carousel{
+    margin-top: 20px;
+  }
+  .sectionHeaderAlign{
+    gap: 10px;
+  }
+  .staritself{
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+  }
+  .scroll-btn{
+    width: 20px;
+    height: 10px;
+  }
 }
 @media screen and (max-width : 650px){
   .Ticket_Title{
@@ -562,15 +697,10 @@
   }
   .PopularEvent{
     height: 240px;
-    overflow: hidden;
   }
   .sectionHeaderAlign{
     flex-direction: column;
     align-items: flex-start;
-  }
-  .scroll-btn{
-    padding: 5px;
-    height: 25px;
   }
   .section{
     height: 150px;
@@ -598,17 +728,13 @@
   .section{
     height: 150px;
   }
-  .scroll-btn{
-    padding: 5px;
-  }
   .Ticket_parent_Carousel{
     gap: 10px;
   }
 }
 @media screen and (max-width : 475px){
   .PopularEvent{
-    height: 200px;
-    overflow: hidden;
+    height: 180px;
   }
   .Ticket_Title{
     max-width: 174px;

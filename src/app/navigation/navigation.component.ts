@@ -1,11 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { CommonModule, Location } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { NavService } from './nav.service';
-import { NgModel } from '@angular/forms';
+import { appRoutes, Routes } from '../route-paths';
 
 @Component({
   selector: 'app-navigation',
@@ -14,25 +13,38 @@ import { NgModel } from '@angular/forms';
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
 })
-export class NavigationComponent implements OnInit{
-  constructor(private authService:AuthService, private service :NavService) {
+export class NavigationComponent implements OnInit, OnDestroy{
+  constructor(
+    private authService:AuthService,
+    private service :NavService,
+    private location :Location, 
+    private router :Router,
+  ) 
+  {
   }
+  routes: Routes = appRoutes;
 
-
+  Back() {
+    this.location.back();
+  }
+  
+  Forward(){
+    this.location.forward();
+  }
   ngOnInit(): void {  
     this.Creator();
     this.UserProfile();
   }
+  ngOnDestroy(): void {
+   this.Profile ={};
+  }
 
 
-  searchbarVisible = true;
-  
+
   searchbarShow(){
-    this.searchbarVisible  = true;
     this.HideNavigation();
   }
   searchbarHide(){
-    this.searchbarVisible = false;
     this.HideNavigation();
   }
 

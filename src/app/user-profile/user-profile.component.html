@@ -16,18 +16,20 @@
 
 
 <div class="exitButtonParent" *ngIf="ExitFromAccountVisible == false">
-   <button class="backoff" (click)="BackFromTicket()">Back<mat-icon class="upside">exit_to_app</mat-icon></button>
+   <div class="exitbuttonAlign">
+      <button class="backoff" (click)="BackFromTicket()">Back<mat-icon class="upside">exit_to_app</mat-icon></button>
+   </div>
 </div>
 
-<div class="centersingleTicketParent" *ngIf="QRVisible">
+<div class="centersingleTicketParent" *ngIf="QRVisible && Instances">
+   <div class="SinglticketTitle">
+      {{SingleTicket.title}}
+   </div>
+   <div class="SingleTicketDate">
+      <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{ SingleTicket.activation_Date | date: 'MMM d' }}</p>
+      <p class="SingleDate"><mat-icon>access_time</mat-icon>{{ SingleTicket.activation_Date | date: 'h : m a' }}</p>
+   </div>
    <div class="SingleTicketParent">
-      <div class="SinglticketTitle">
-         {{SingleTicket.title}}
-      </div>
-      <div class="SingleTicketDate">
-         <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{ SingleTicket.activation_Date | date: 'MMM d' }}</p>
-         <p class="SingleDate"><mat-icon>access_time</mat-icon>{{ SingleTicket.activation_Date | date: 'h : m a' }}</p>
-        </div>
       <div class="SingleTicket" *ngFor="let i of Instances; let index = index" [ngClass]="{'scannedTicket': i.isActive == false}">
          <div class="ifScanned" *ngIf="i.isActive == false">
    
@@ -42,8 +44,11 @@
                   <img [src]="SingleTicket.photo" alt="" class="TicketPhoto">
                </div>
             </div>
-               <div>
-                  <qrcode class="qrcodeWidth" [qrdata]="i.uniqueID"></qrcode>
+               <div class="qrsection">
+                  <qrcode class="c" [qrdata]="i.uniqueID"></qrcode>
+                  <div class="ticketerbrandingTitle">
+                     Ticketer
+                  </div>
                </div>
          </div>
          <div class="uniqueID">{{i.uniqueID}} </div>
@@ -53,32 +58,31 @@
 
 
 
-<div class="Profilecenter" *ngIf="QRVisible ==false">
-  <div class="Profilecard">
-     <div class="ProfilepictureContainer">
-         <img [src]="Profile.profile" alt="" class="profilephoto" *ngIf="Profile.profile">
-         <mat-icon class="ProfileNot" *ngIf="Profile.profile == null">account_circle</mat-icon>
-     </div>
-     <div class="ProfileData"> 
-        <p class="Name">{{Profile.name}}</p>
-        <p class="Name">{{Profile.lastName}}</p>
-     </div>
-  </div>
-
-  <div class="ticketswitchParent">
-   <div class = "">
-      <button class="switch" (click)="switchToActive()">Active</button>  
-      <div class="spanline" *ngIf="ticketSwitch"></div>
+<div class="Profilecenter" *ngIf="QRVisible == false">
+   <div class="headerleAlign">
+      <div class="myTicketsHeader">
+         <div class="headerTitle">
+            My Tickets
+         </div>
+         <div class="ticketswitchParent">
+            <div class = "">
+               <button class="switchButton" (click)="switchToActive()">Active</button>  
+               <div class="spanline" *ngIf="ticketSwitch"></div>
+            </div>
+            <div class = "">
+               <button class="switchButton" (click)="switchToExpired()">Expired</button> 
+               <div class="spanline expired" *ngIf="ticketSwitch == false"></div>
+            </div>
+         </div>
+      </div>
    </div>
-   <div class = "">
-      <button class="switch" (click)="switchToExpired()">Expired</button> 
-      <div class="spanline" *ngIf="ticketSwitch == false"></div>
-   </div>
-  </div>
 
 
-<div class="MyTicketsParent" *ngIf="actTickets && ticketSwitch">
+<div class="MyTicketsParent" *ngIf="ticketSwitch">
    <div class="TicketCenter">
+      <div class="noTicketFound" *ngIf="noTicketsMessage">
+         No Ticket was Found
+      </div>
       <div class="Ticket_parent" *ngIf="actTickets" appScrollAnimation>
          <div class="Ticket"  *ngFor="let tkt of actTickets; let i = index">
             <div class="SoldCount"><p class="soldcounttext">{{tkt.ticketCount}}</p> <mat-icon class="iconsize2">confirmation_number</mat-icon></div>
@@ -102,9 +106,6 @@
             <div class="SoldCount"><p class="soldcounttext">{{tkt.ticketCount}}</p> <mat-icon class="iconsize2">confirmation_number</mat-icon></div>
              <div class="card_box" (click)="viewTicket(tkt)">
                      <div class="TicketImageContainer">
-                        <div class="expiredDiv">
-                           <div class="expiredText">Expired</div>
-                        </div>
                          <img [src]="tkt.photo" alt="" class="ticketimage">
                      </div>
              </div>

@@ -6,14 +6,24 @@
     transition: 0.3s all ease-in-out;
     position: fixed;
 }
+.ticketerTitle{
+    color: white;
+    font-size: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
 .Navbar{
     width: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.467);
-    backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.877);
+    backdrop-filter: blur(2px);
     align-items: center;
     z-index: 509;
     transition: 0.3s all ease-in-out;
@@ -70,6 +80,7 @@
     flex-direction: column;
     height: 50px;
     align-items: center;
+    justify-content: center;
 }
 .Navbarflex2{
     display: flex;
@@ -81,9 +92,7 @@
 .Nav_Routesflex{
     display: flex;
     align-items: center;
-    width: 50%;
     justify-content: center;
-    gap: 40px;
 }
 .RouterLinkflex{
     color: white;
@@ -91,7 +100,6 @@
     align-items: center;
     border: none;
     text-decoration: none;
-    padding: 10px;
     border-radius: 10px;
 }
 .RouterLinkflex.active-link {
@@ -191,9 +199,9 @@
     border:1px solid white;
 }
 .ProfileNot{
-    width: 70px;
-    height: 70px;
-    font-size: 70px;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
     display: flex;
     justify-content: center;
 }
@@ -208,7 +216,28 @@
     width: 100%;
 }
 
-
+.backAndForward{
+    width: auto;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+    box-shadow: 0px 0px 10px black;
+}
+.backAndForward:hover{
+    box-shadow: 0px 0px 10px white;
+}
+.flipicon{
+    rotate: (180deg);
+}
+.backforwardicons{
+    font-size: 15px;
+    width: 15px;
+    height: 15px;
+}
 
 
 
@@ -229,5 +258,8 @@
     }
     .searchingParent{
         width: 80%;
+    }
+    .ticketerTitle{
+        display: none;
     }
 }

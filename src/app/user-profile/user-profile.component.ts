@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe, NgIf } from '@angular/common';
-import { Component, Directive, OnInit } from '@angular/core';
+import { Component, Directive, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { QRCodeModule } from 'angularx-qrcode';
@@ -13,7 +13,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })
-export class UserProfileComponent implements OnInit{
+export class UserProfileComponent implements OnInit,OnDestroy{
 
   constructor(
     private router:Router,
@@ -22,6 +22,9 @@ export class UserProfileComponent implements OnInit{
     private authservice : AuthService,
     )
     { }
+  ngOnDestroy(): void {
+    this.Profile ={};
+  }
   ngOnInit(): void {
     this.UserProfile();
     this.activeTickets();
@@ -67,19 +70,23 @@ export class UserProfileComponent implements OnInit{
       }
      )
   }
+  noTicketsMessage: boolean = false;
 
-
- activeTickets(){
-  this.service.GetActiveTickets().subscribe(
-   (resp)=>{
-    this.actTickets  = resp;
-    console.log(resp);
-   },
-   (error)=>{
-     console.log(error);
-   }
-  )
-}
+  checkTickets() {
+    this.noTicketsMessage = this.actTickets == null || this.actTickets.length === 0;
+  }
+  
+  activeTickets() {
+    this.service.GetActiveTickets().subscribe(
+      (resp) => {
+        this.actTickets = resp;
+        this.checkTickets();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 expiredTickets(){
   this.service.GetExpiredTickets().subscribe(
    (resp)=>{

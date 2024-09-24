@@ -23,9 +23,11 @@ export class TicketService {
     return this.http.get(this.URL + 'popular-tickets ');
   } 
 
-
   UpcomingTickets():Observable<any>{
     return this.http.get(this.URL + 'upcoming-tickets');
+  } 
+  theaterTickets():Observable<any>{
+    return this.http.get(this.URL + 'theater-tickets');
   } 
   TicketViewCount(id: number): Observable<any> {
     return this.http.patch(this.URL+ 'view-count', id, {

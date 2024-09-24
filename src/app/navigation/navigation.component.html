@@ -1,17 +1,21 @@
-<header class="searchbarParent"  *ngIf="searchbarVisible">
+<header class="searchbarParent">
     <div class="Navbarflex2">
         <div class="searchingParent">         
             <button (click)="ShowNavigation()" class="MenuButton">
                 <mat-icon>home</mat-icon>
             </button>
-
+<!--             <button class="backAndForward" (click)="Back()"><mat-icon class="flipicon backforwardicons">exit_to_app</mat-icon>Back</button>
+            <button class="backAndForward" (click)="Forward()"><mat-icon class="backforwardicons">exit_to_app</mat-icon>Forward</button> -->
+            <div class="ticketerTitle"[routerLink]="this.routes.ticket">
+                Ticketer
+                <mat-icon>confirmation_number</mat-icon>
+            </div>
             <input type="text" (ngModelChange)="searchTickets()" placeholder="Search by name..." class="searchbar"/>
          </div>
          <div class="Nav_Routesflex">
-             <a [routerLink]="'UserProfile'"  class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="searchbarShow()">
+             <a [routerLink]="this.routes.userProfile"  class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="searchbarShow()">
                 <div class="profile">
                     <div class="profileflex" >
-                        <p class="userNameflex" [classList]="">Profile <mat-icon>confirmation_number</mat-icon></p>
                         <div class="profilecontainermain">
                             <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
                             <mat-icon class="ProfileNot" *ngIf="Profile.profile == null">account_circle</mat-icon>
@@ -19,8 +23,7 @@
                     </div>
                 </div>
              </a>
-             <a [routerLink]="'Login'" class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin() == false" (click)="searchbarShow()"><mat-icon>login</mat-icon>Login</a>
-             <a [routerLink]="'Tickets'" class="RouterLinkflex" routerLinkActive="active-link" (click)="searchbarShow()"><mat-icon>confirmation_number</mat-icon>Tickets</a>
+             <a [routerLink]="this.routes.login" class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin() == false"><mat-icon>login</mat-icon>Login</a>
          </div>
      </div>
 </header>
@@ -30,7 +33,7 @@
           <button (click)="HideNavigation()" class="Xbutton">  <mat-icon>close</mat-icon></button>  
          </div>
          <div class="Nav_Routes">
-             <a [routerLink]="'UserProfile'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()"  (click)="searchbarShow()">
+             <a [routerLink]="this.routes.userProfile" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()"  (click)="searchbarShow()">
                 <div class="profile">
                     <div class="profilecontainer">
                         <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
@@ -43,11 +46,11 @@
                     </div>
                 </div>
              </a>
-             <a [routerLink]="'Login'" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin() == false" (click)="searchbarHide()"><mat-icon>login</mat-icon>Login</a>
-             <a [routerLink]="'Tickets'" class="RouterLink" routerLinkActive="active-link" (click)="searchbarShow()"><mat-icon>confirmation_number</mat-icon>Tickets</a>
+             <a [routerLink]="this.routes.login" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin() == false" (click)="searchbarHide()"><mat-icon>login</mat-icon>Login</a>
+             <a [routerLink]="this.routes.ticket" class="RouterLink" routerLinkActive="active-link" (click)="searchbarShow()"><mat-icon>confirmation_number</mat-icon>Tickets</a>
          </div>
          <div class="CreatorSpace">
-            <a [routerLink]="'EventCreator'" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="searchbarHide()"><mat-icon>palette</mat-icon>Creator Space</a>
+            <a [routerLink]="this.routes.creator" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="searchbarHide()"><mat-icon>palette</mat-icon>Creator Space</a>
          </div>
      </div>
      <div class="OtherHalf"  [style.opacity]="opacity"  (click)="HideNavigation()">

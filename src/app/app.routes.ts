@@ -10,38 +10,39 @@ import { CreateTicketComponent } from './event-creator/create-ticket/create-tick
 import { DashboardComponent } from './event-creator/dashboard/dashboard.component';
 import { CreatorProfileComponent } from './event-creator/creator-profile/creator-profile.component';
 import { CrudComponent } from './event-creator/crud/crud.component';
+import { CategoriesComponent } from './tickets/categories/categories.component';
 
 export const routes: Routes = [
-  { path: 'Tickets', component: TicketsComponent },
-  { path: 'Login', component: RegistrationComponent },
-  { path: 'FullTicket/:id', component: FullTicketComponent},
+  { path: 'tickets', component: TicketsComponent },
+  { path: 'login', component: RegistrationComponent },
+  { path: 'full-ticket/:id', component: FullTicketComponent},
   {
-    path: 'EventCreator',
+    path: 'event-creator',
     component: EventCreatorComponent,
     canActivate: [CreatorGuard],
     children: [
       {
-        path: 'TicketManagment',
+        path: 'ticket-management',
         component: CreateTicketComponent
       },
       {
-        path: 'Crud/:id',
+        path: 'crud/:id',
         component: CrudComponent
       },
       {
-        path: 'Dashboard',
+        path: 'scanner',
         component: DashboardComponent
       },
       {
-        path: 'CreatorProfile',
+        path: 'creator-profile',
         component: CreatorProfileComponent,canActivate:[AccountAdminGuard]
       }
     ]
   },
-  { path: 'UserProfile', component:UserProfileComponent},
-  { path: 'Cruddd/:id', component:CrudComponent},
-  { path: '', redirectTo: '/Tickets', pathMatch: 'full' }, 
-  { path: '**', redirectTo: '/Tickets' } 
+  { path: 'user-profile', component:UserProfileComponent},
+  { path:'ticket-categories/:id', component:CategoriesComponent},
+  { path: '', redirectTo: '/tickets', pathMatch: 'full' }, 
+  { path: '**', redirectTo: '/tickets' } 
 ];
 
 @NgModule({

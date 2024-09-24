@@ -6,6 +6,8 @@ import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Login, Register, ServiceService } from './service.service';
 import { CdkDrag } from '@angular/cdk/drag-drop';
+import { appRoutes, Routes} from '../route-paths'
+
 
 @Component({
   selector: 'app-event-creator',
@@ -22,10 +24,10 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
   styleUrl: './event-creator.component.scss'
 })
 export class EventCreatorComponent implements OnInit{
+  routes: Routes = appRoutes;
 
   ngOnInit(): void {
-    if (this.LoggedCheck()) {
-    }
+    this.LoggedCheck();
     this.Rolecheck();
   }
 
@@ -66,6 +68,8 @@ export class EventCreatorComponent implements OnInit{
       return false;
     }
   }
+
+  
   IsUserAdmin :boolean = false;
   LoginToaccount(){
     if(this.Loginform.valid){
@@ -81,11 +85,11 @@ export class EventCreatorComponent implements OnInit{
           var UserRole = this.authService.getUserRole(token);
           if(UserRole == 'AccountAdmin'){
             this.IsUserAdmin = true;
-            this.router.navigate(['/EventCreator/CreatorProfile']);
+            this.router.navigate([this.routes.creatorProfile]);
             this.Loginform.reset();
           }
           else{
-            this.router.navigate(['/EventCreator/TicketManagment']);
+            this.router.navigate([this.routes.creatorTicketManagement]);
             this.IsUserAdmin = false;
           }
         }

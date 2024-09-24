@@ -242,7 +242,6 @@ $background :#1e3d59;
     height: auto;
     display: flex;
     z-index: 2;
-    margin-top: 50px;
 }
 .firstSection{
   display: flex;
@@ -298,15 +297,6 @@ $background :#1e3d59;
 }
 .Exitbutton:hover{
     letter-spacing: 5px;
-}
-.heightzeroheader{
-  display: flex;
-  align-items: center;
-  width: 64%;
-  justify-content: center;
-  margin-top: 55px;
-  position: absolute;
-  z-index: 3;
 }
 .exitAlign{
   display: flex;
@@ -700,10 +690,6 @@ $background :#1e3d59;
     .sugestions{
       width: 100%;
     }
-    .heightzeroheader{
-      position: relative;
-      width: 99%;
-    }
 }
 @media screen and (max-width : 640px){
   .TicketImageContainer{
@@ -713,9 +699,6 @@ $background :#1e3d59;
 @media screen and (max-width : 600px){
   .foundticket{
     height: 200px;
-  }
-  .heightzeroheader{
-    width: 90%;
   }
   .data{
     width: 90%;

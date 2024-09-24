@@ -5,18 +5,27 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
+import { appRoutes, Routes} from '../route-paths'
+
 
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterOutlet,ReactiveFormsModule,FormsModule,MatIcon,DatePipe],
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterOutlet,
+    ReactiveFormsModule,
+    FormsModule,
+    MatIcon,
+    DatePipe],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss',
 
 })
 export class TicketsComponent implements OnInit, OnDestroy{
- 
-  AllTickets: any[] = [];
+  routes: Routes = appRoutes;
+
   tickets: any[] = [];
   searchTerm: string = ''; 
   topTickets: Set<number> = new Set(); 
@@ -26,22 +35,20 @@ export class TicketsComponent implements OnInit, OnDestroy{
   private intervalId: any;
   private eventsSubscription: Subscription | undefined;
   
-  constructor(
+  constructor
+  (
     private ticketService: TicketService,
-  ) {
+  ) 
+  {
   }
-
-
-
-
-
-
 
   ngOnInit(): void {
     this.fetchPopularEvents();
     this.MostpopularTickets();
     this.UpcomingTickets();
+    this.theaterTickets();
   }
+
   TicketViewCount(id:number){
     this.ticketService.TicketViewCount(id).subscribe(
       (resp:any)=>{
@@ -76,6 +83,17 @@ export class TicketsComponent implements OnInit, OnDestroy{
     );
   }
 
+  theaterticketss :any[] = [];
+  theaterTickets() {
+    this.ticketService.theaterTickets().subscribe(
+      (resp: any[]) => {
+        this.theaterticketss = resp;
+      },
+      (error) => {
+        console.error('Error fetching ticket data:', error);
+      }
+    );
+  }
   allTicketsVisible = false;
   everyTicketTitle = "";
 
@@ -131,17 +149,20 @@ export class TicketsComponent implements OnInit, OnDestroy{
     this.ticketParent2.nativeElement.scrollBy({ left: ticketWidth + 30, behavior: 'smooth' });
   }
 
-  getTopTickets(tickets: any[]): void {
-    const sortedTickets = [...tickets]
-      .sort((a, b) => b.sold - a.sold)
-      .slice(0, 5);
-    const topTicketIds = new Set(sortedTickets.map(tkt => tkt.id));
-    this.topTickets = topTicketIds;
-  }
   
+  @ViewChild('Headercarousel') coverscroll!: ElementRef;
+  @ViewChild('eventParent') coverscrollchild!: ElementRef;
 
-  isTopTicket(ticket: any): boolean {
-    return this.topTickets.has(ticket.id);
+  coverScroolLeft() {
+    const ticketWidthElement = this.coverscrollchild.nativeElement;
+    const ticketWidth = ticketWidthElement.offsetWidth;
+    this.coverscroll.nativeElement.scrollBy({ left: -ticketWidth + 20, behavior: 'smooth' });
+  }
+
+  coverScroolRight() {
+    const ticketWidthElement = this.coverscrollchild.nativeElement;
+    const ticketWidth = ticketWidthElement.offsetWidth;
+    this.coverscroll.nativeElement.scrollBy({ left: ticketWidth + 30, behavior: 'smooth' });
   }
 fetchPopularEvents(): void {
   this.eventsSubscription = this.ticketService.PopularEvents().subscribe(
@@ -154,21 +175,15 @@ fetchPopularEvents(): void {
     }
   );
 }
-PhotoOpacity: number = 1;
 intervalMs: number = 5000;
 fadeDurationMs: number = 200;
 
-startEventLoop(): void {
-  const maxIndex = 2;
-  let currentIndex = Math.floor(Math.random() * (maxIndex + 1));
-  this.MostPopularEvent = this.Popularevent[currentIndex];
 
+
+startEventLoop(): void {
   setInterval(() => {
-    this.PhotoOpacity = 0;
     setTimeout(() => {
-      currentIndex = (currentIndex + 1) % this.Popularevent.length;
-      this.MostPopularEvent = this.Popularevent[currentIndex];
-      this.PhotoOpacity = 1;
+      this.coverScroolRight();
     }, this.fadeDurationMs);
   }, this.intervalMs);
 }

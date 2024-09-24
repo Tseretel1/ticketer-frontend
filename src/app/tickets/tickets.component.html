@@ -1,22 +1,33 @@
 <div class="centerCover">
+    <div class="categories">
+        <div class="categoriesAlign">
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Music'">Music <mat-icon class="categoryIcons music">music_note</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Film'">Film <mat-icon class="categoryIcons">camera_alt</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Theater'">Teather <mat-icon class="categoryIcons theater">theater_comedy</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Animation'">Animation <mat-icon class="categoryIcons">animation</mat-icon></div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Football'">Football <mat-icon class="categoryIcons football">sports_soccer</mat-icon> </div>
+        </div>
+    </div>
     <div class="Tickets_Header" *ngIf="allTicketsVisible == false">
-        <div class="PopularEvent" *ngIf="MostPopularEvent">
-                <div class="Header_Content"  [routerLink]="['/FullTicket', MostPopularEvent.id]">
+        <div class="headercarousel" #Headercarousel>
+            <div class="PopularEvent"#eventParent *ngFor="let pop of Popularevent">
+                <div class="Header_Content"  [routerLink]="[this.routes.fullticket, pop.id]">
                   <div class="firsthalf">
                     <p class="content_style">
-                        {{MostPopularEvent.title}}
+                        {{pop.title}}
                     </p>
                   </div>
                   <div class="secondhalf">
                     <p class="content_style">
-                        {{MostPopularEvent.genre}}
+                        {{pop.genre}}
                     </p>
                   </div>
                 </div>
             <div class="Photocontainer">
-               <img [src]="MostPopularEvent.photo" alt="" class="MostpopularEventPhoto" [style.opacity.0]="PhotoOpacity">
+               <img [src]="pop.photo" alt="" class="MostpopularEventPhoto">
             </div>
          </div>
+        </div>
     </div>
 
 
@@ -24,15 +35,15 @@
      <!--------------Tickets-------------->
 
 
-    <div class="CenterBody" *ngIf="allTicketsVisible == false">
+    <div class="CenterBody" *ngIf="allTicketsVisible == false && popularTickets">
 
 
         <!--Popular Tickets-->
         <div class="sectionHeader" *ngIf="popularTickets">
             <div class="sectionHeaderAlign">
-                <p class="sectionTitletext">Most popular events <mat-icon class = "starIcon">star</mat-icon></p>
+                <p class="sectionTitletext">Popular events <mat-icon class = "starIcon staritself">star</mat-icon></p>
                 <div class="scrolBUttonsParent">
-                    <div class="seeAllTickets" (click)="seeAllPopularTickets()">See all Tickets <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+                    <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories+'popular'">See all Tickets <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
                     <button class="scroll-btn leftScrollButton" (click)="scrollLeft()">&#9664;</button>
                     <button class="scroll-btn rightScrollbutton" (click)="scrollRight()">&#9654;</button> 
                 </div>
@@ -41,7 +52,7 @@
         <section class="section" *ngIf="popularTickets">    
                 <div class="CenterCatousel">
                     <div class="Ticket_parent_Carousel" #Ticket_parent *ngIf="popularTickets" appScrollAnimation>
-                        <div class="Ticket" *ngFor="let tkt of popularTickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
+                        <div class="Ticket" *ngFor="let tkt of popularTickets; let i = index" [routerLink]="[this.routes.fullticket, tkt.id]"  (click)="TicketViewCount(tkt.id)">
                             <div #card_box_main class="card_box_main">
                                 <div class="TicketImageContainerMain">
                                     <img [src]="tkt.photo" alt="" class="ticketimage">
@@ -63,18 +74,20 @@
         <!--Upcoming Tickets-->
         <div class="sectionHeader headerTop" *ngIf="popularTickets">
             <div class="sectionHeaderAlign">
-                <p class="sectionTitletext">Upcoming events</p>
+                <div class="">
+                    <p class="sectionTitletext">Upcoming events<mat-icon class = "starIcon">calendar_today/mat-icon></mat-icon></p> 
+                </div>
                 <div class="scrolBUttonsParent">
-                    <div class="seeAllTickets" (click)="seeAllUpcomingTickets()">See all Tickets <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+                    <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'upcoming'">See all Tickets <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
                     <button class="scroll-btn leftScrollButton" (click)="scrollLeft2()">&#9664;</button>
                     <button class="scroll-btn rightScrollbutton" (click)="scrollRight2()">&#9654;</button> 
                 </div>
             </div>
         </div>
         <section class="section" *ngIf="popularTickets">
-                <div class="CenterCatousel">
+                <div class="CenterCatousel" >
                     <div class="Ticket_parent_Carousel" #Ticket_parent2 *ngIf="upcomingTickets" appScrollAnimation>
-                        <div class="Ticket" *ngFor="let tkt of upcomingTickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
+                        <div class="Ticket" *ngFor="let tkt of upcomingTickets; let i = index" [routerLink]="this.routes.fullticket+tkt.id"  (click)="TicketViewCount(tkt.id)">
                             <div #card_box_main2 class="card_box_main">
                                 <div class="TicketImageContainerMain">
                                     <img [src]="tkt.photo" alt="" class="ticketimage">
@@ -91,42 +104,37 @@
                     </div>  
                 </div>    
         </section>   
-
-
-        <footer class="footer">
-          <div class="footerChild">
-            <a class="CreatorSpace" [routerLink]="'/EventCreator'" >
-                <div class="RouterLink" routerLinkActive="active-link"><mat-icon class="creatorIcon">palette</mat-icon>Creator Space</div>
-            </a>
-          </div>
-        </footer>
     </div>
 
+    
 
-
-
-    <div class="CenterBody" *ngIf="allTicketsVisible">
-        <div class="allticketHeader">
-            <div class="allticketHeaderTitle">{{everyTicketTitle}}  </div>
-            <button class="BackButton" (click)="BackButton()">Back</button>
+    <div class="sectionHeader headerTop" *ngIf="theaterticketss">
+        <div class="">
+            <p class="sectionTitletext">Theater<mat-icon class = "starIcon">theater_comedy</mat-icon></p> 
         </div>
-        <div class="Ticket_parent" *ngIf="tickets" appScrollAnimation>
-                 <div class="Ticket"  *ngFor="let tkt of tickets; let i = index" [routerLink]="['/FullTicket', tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
-                    <div class="">
-                        <p class="Ticket_Title"> {{tkt.title}}</p> 
-                    </div>
-                     <div class="card_box" >
-                         <span *ngIf="isTopTicket(tkt)" class="TopTicket"></span>
-                             <div class="TicketImageContainer">
-                                 <img [src]="tkt.photo" alt="" class="ticketimage">
-                             </div>
-                     </div>
-                        <div class="ticketDate">
-                           <p class="datetimeofTicket"><mat-icon>calendar_today </mat-icon> {{ tkt.activation_Date | date: 'MMM d' }}</p>
-                           <p class="datetimeofTicket"><mat-icon>access_time </mat-icon> {{ tkt.activation_Date | date: 'h:mm a' }}</p>
-                    </div>
-             </div>
-        </div> 
-     </div>
+    </div>
+    <section class="theater-section-parent" *ngIf="theaterticketss">
+        <div class="theater-section">
+            <div class="theater-align" *ngFor="let tkt of theaterticketss; let i = index">
+                <p class="thater-ticket-name">{{tkt.title}}</p>
+                <div class="theater-photo-container theater-big" *ngIf="i === 0">
+                    <img [src]="tkt.photo" alt="" class="theater-photos">
+                </div>
+                <div class="theater-photo-container theater-small" *ngIf="i > 0">
+                    <img [src]="tkt.photo" alt="" class="theater-photos">
+                </div>
+            </div>                
+        </div>    
+    </section>  
+    
+
+
+    <footer class="footer">
+      <div class="footerChild">
+        <a class="CreatorSpace" [routerLink]="this.routes.creator">
+            <div class="RouterLink"><mat-icon class="creatorIcon">palette</mat-icon>Creator Space</div>
+        </a>
+      </div>
+    </footer>
 </div>
 
