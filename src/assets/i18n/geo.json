@@ -1,0 +1,47 @@
+{
+
+    "LANGUAGE" : "ენა",
+
+    "NOTFOUND" : "ინფორმაცია ვერ მოიძებნა :(",
+
+    "EXITFROMACCOUNT" : "გასვლა",
+    "SUREWANTTOEXIT" : "ნამდვილად გსურთ აქაუნთიდან გასვლა?",
+    "YES" : "კი",
+    "NO" : "არა",
+
+
+    "POPULAREVENTS": "პოპულარული ივენთები",
+    "UPCOMINGEVENTS": "მოახლოვებული ივენთები",
+    "THEATEREVENTS": "თეატრი",
+    "SEEALLTICKETS": "ყველა ბილეთის ნახვა",
+    "MUSIC": "მუსიკა",
+    "THEATER": "თეატრი",
+    "ANIMATION": "ანიმაცია",
+    "FOOTBALL": "ფეხბურთი",
+    "FILM": "ფილმები",
+
+    "TICKETS": "ბილეთები",
+    "TICKET": "ბილეთი",
+    
+    "CREATORSPACE": "კრეატორის სივრცე",
+
+    "MYTICKETS": "ჩემი ბილეთები",
+    "ACTIVE": "აქტიური",
+    "EXPIRED": "ისტორია",
+
+    "DATE": "თარიღი",
+    "GENRE": "ჟანრი",
+    "PRICE": "ფასი",
+    "DESCRIPTION": "აღწერა",
+    "BUYTICKET": "ბილეთის შეძენა",
+    "SOLDOUT": "ყველა ბილეთი გაყიდულია!",
+    "SUGGESTIONS": "შემოთავაზებები",
+    "CHOSEN": "არჩეულია",
+    "PAY": "გადახდა",
+
+
+
+    "LOGIN": "შესვლა",
+    "REGISTRATION": "რეგისტრაცია",
+    "SWITCHTO": "-ზე გადართვა"
+}

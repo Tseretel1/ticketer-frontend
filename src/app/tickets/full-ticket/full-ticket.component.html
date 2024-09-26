@@ -22,11 +22,11 @@
     </div>
     <div class="bottomQuestion">
       <div class="ticketsellingCo">
-      <div class="buyCountFlex">Buy <b> {{ticketCount}} </b>  <p class="alignHard"><mat-icon class="datecolor"> confirmation_number</mat-icon>Ticket?</p></div>
+      <div class="buyCountFlex"> {{"CHOSEN"|translate}}  <b> {{ticketCount}} </b>  <p class="alignHard"><mat-icon class="datecolor"> confirmation_number</mat-icon>{{"TICKET"|translate}} </p></div>
       </div> 
     </div>
     <div class="modalButtonAlign">
-      <button class="submitbuttons buy" (click)="BuyTicket()"><span class="text">Pay:<p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span></button>
+      <button class="submitbuttons buy" (click)="BuyTicket()"><span class="text">{{"PAY" |translate}}:<p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span></button>
     </div>
   </div>
 </div> 
@@ -52,25 +52,25 @@
 
             <div class="ticketInformation">
               <div class="data">
-                <b class="datatitles">Date :</b>
+                <b class="datatitles"> {{"DATE"|translate}} : </b>
                 <p class="Datetime">{{ matchingTicket.activation_Date | date: 'MMM d' }}</p>
                 <p class="Datetime">|</p>
                 <p class="Datetime DatetimeHour">{{ matchingTicket.activation_Date | date: 'h:mm a' }}</p>
               </div>
               <div class="data">
-                <b class="datatitles">Genre :</b><p class="datatext"> {{matchingTicket.genre}} </p>
+                <b class="datatitles"> {{"GENRE"|translate}}  :</b><p class="datatext"> {{matchingTicket.genre}} </p>
               </div>
               <div class="data">
-                <b class="datatitles">Price :</b> <p class="datatext">{{matchingTicket.price}}$</p>
+                <b class="datatitles"> {{"PRICE"|translate}}  :</b> <p class="datatext">{{matchingTicket.price}}$</p>
               </div>
               <div class="data description">
-                <b class="datatitles">Description :</b> 
+                <b class="datatitles"> {{"DESCRIPTION"|translate}}  :</b> 
                 <p class="datatext scrolldescription">{{matchingTicket.description}}</p>
               </div>
 
               <div class="buyPannel" *ngIf="matchingTicket.ticketCount > 0"> 
                 <div class="data">
-                  <b class="datatitles">Buy Ticket</b>
+                  <b class="datatitles"> {{"BUYTICKET"|translate}} </b>
                 </div>
                 <div class="paymentAlign">
                   <form [formGroup]="SellingForm" class="sellingForm" *ngIf="soldOut">
@@ -99,7 +99,7 @@
                   (click)="showModal()" 
                   [attr.disabled]="!isTicketAvailable ? true : null"
                   [ngClass]="{'disabled_button': !isTicketAvailable}">
-                  <span class="text">Price<p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span>
+                  <span class="text"> {{"PRICE"|translate}} <p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span>
                 </button>
                 </div>
               </div>
@@ -107,7 +107,7 @@
           </div>
 
           <div class="buyPannel TktSoldout" *ngIf="matchingTicket.ticketCount <= 0">
-            sold out!
+            {{"SOLDOUT"|translate}} 
           </div>
         </div>
         <div class="foundticket">
@@ -121,7 +121,7 @@
 
 
 <div class="sugestions" *ngIf="foundtickets"> 
-  <div class="SugestionsText">Sugestions from {{matchingTicket?.publisher.userName}} </div>
+  <div class="SugestionsText">{{matchingTicket?.publisher.userName}}  {{"SUGGESTIONS" | translate}}</div>
   <div class="Ticket_parent">
     <div class="Ticket" *ngFor="let tkt of foundtickets; let i = index">
       <div class="TicketFlex" (click)="NewMatchingTicket(tkt.id)">

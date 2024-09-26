@@ -1,0 +1,52 @@
+{
+
+    "LANGUAGE" : "Language",
+    
+    "NOTFOUND" : "Information not found :(",
+
+    "EXITFROMACCOUNT" : "Exit From Account",
+    "SUREWANTTOEXIT" : "Are you sure you want to exit?",
+    "YES" : "YES",
+    "NO" : "NO",
+
+
+    "POPULAREVENTS": "Popular events",
+    "UPCOMINGEVENTS": "Upcoming events",
+    "THEATEREVENTS": "Theater",
+    "SEEALLTICKETS": "view tickets",
+    "MUSIC": "Music",
+    "THEATER": "Theater",
+    "ANIMATION": "Animation",
+    "FOOTBALL": "Football",
+    "FILM": "Film",
+
+
+    "TICKETS": "Tickets",
+    "TICKET": "Ticket",
+    "CREATORSPACE": "Creator Space",
+
+
+    "MYTICKETS": "My Tickets",
+    "ACTIVE": "Active",
+    "EXPIRED": "Expired",
+
+    
+
+    "DATE": "Date",
+    "GENRE": "Genre",
+    "PRICE": "Price",
+    "DESCRIPTION": "Description",
+    "BUYTICKET": "Buy Tikcet",
+    "SOLDOUT": "Every Ticket is sold!",
+    "SUGGESTIONS": "Suggestions",
+    "CHOSEN": "Selected",
+    "PAY": "Pay",
+
+
+
+
+
+    "LOGIN": "Login",
+    "REGISTRATION": "Registration",
+    "SWITCHTO": "-ზე გადართვა"
+}

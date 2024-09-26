@@ -12,11 +12,16 @@ import { User, LoginUser } from './User_Interface';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { NavigationComponent } from '../navigation/navigation.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule,
+    TranslateModule
+  ],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
 })

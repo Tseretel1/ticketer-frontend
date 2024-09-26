@@ -1,17 +1,17 @@
 
 <div class="ExitModal" *ngIf="modalvisible">
     <div class="modal">
-     <div class="">
-        <p>Exit from Account?</p>
+     <div class="exita-lign">
+        <p class="exit-text">{{"SUREWANTTOEXIT" | translate}}</p>
      </div>
      <div class="buttoparent">
-        <button class="answerButtons Yesbutton" (click)="ExitFromAccount()">Yes</button>
-        <button class="answerButtons Nobutton" (click)="hidemodal()">No</button>
+        <button class="answerButtons Yesbutton" (click)="ExitFromAccount()">{{"YES" | translate}}</button>
+        <button class="answerButtons Nobutton" (click)="hidemodal()">{{"NO" | translate}}</button>
      </div>
     </div>
 </div>
 <div class="exitButton" *ngIf="ExitFromAccountVisible">
-    <button (click)="Showmodal()" class="ExitFromAccountbutton"><mat-icon>exit_to_app</mat-icon>  Exit from account</button>
+    <button (click)="Showmodal()" class="ExitFromAccountbutton"><mat-icon>exit_to_app</mat-icon>{{"EXITFROMACCOUNT" | translate}}</button>
 </div>
 
 
@@ -46,9 +46,6 @@
             </div>
                <div class="qrsection">
                   <qrcode class="c" [qrdata]="i.uniqueID"></qrcode>
-                  <div class="ticketerbrandingTitle">
-                     Ticketer
-                  </div>
                </div>
          </div>
          <div class="uniqueID">{{i.uniqueID}} </div>
@@ -62,15 +59,15 @@
    <div class="headerleAlign">
       <div class="myTicketsHeader">
          <div class="headerTitle">
-            My Tickets
+            {{"MYTICKETS" | translate}}
          </div>
          <div class="ticketswitchParent">
             <div class = "">
-               <button class="switchButton" (click)="switchToActive()">Active</button>  
+               <button class="switchButton" (click)="switchToActive()">{{"ACTIVE" | translate}}</button>  
                <div class="spanline" *ngIf="ticketSwitch"></div>
             </div>
             <div class = "">
-               <button class="switchButton" (click)="switchToExpired()">Expired</button> 
+               <button class="switchButton" (click)="switchToExpired()"> {{"EXPIRED" | translate}}</button> 
                <div class="spanline expired" *ngIf="ticketSwitch == false"></div>
             </div>
          </div>
@@ -81,7 +78,7 @@
 <div class="MyTicketsParent" *ngIf="ticketSwitch">
    <div class="TicketCenter">
       <div class="noTicketFound" *ngIf="noTicketsMessage">
-         No Ticket was Found
+         {{"NOTFOUND" | translate}}
       </div>
       <div class="Ticket_parent" *ngIf="actTickets" appScrollAnimation>
          <div class="Ticket"  *ngFor="let tkt of actTickets; let i = index">
@@ -101,6 +98,9 @@
 
 <div class="MyTicketsParent" *ngIf="expTickets && ticketSwitch ==false">
    <div class="TicketCenter">
+      <div class="noTicketFound" *ngIf="noTicketsMessage">
+         {{"NOTFOUND" | translate}}
+      </div>
       <div class="Ticket_parent" *ngIf="expTickets" appScrollAnimation>
          <div class="Ticket"  *ngFor="let tkt of expTickets; let i = index">
             <div class="SoldCount"><p class="soldcounttext">{{tkt.ticketCount}}</p> <mat-icon class="iconsize2">confirmation_number</mat-icon></div>

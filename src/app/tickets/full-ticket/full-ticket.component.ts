@@ -6,11 +6,19 @@ import { FullTicketService } from './full-ticket.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-full-ticket',
   standalone: true,
-  imports: [MatIcon, CommonModule, RouterLink, ReactiveFormsModule, DatePipe],
+  imports: [
+    MatIcon,
+    CommonModule,
+    RouterLink, 
+    ReactiveFormsModule, 
+    DatePipe,
+    TranslateModule
+  ],
   templateUrl: './full-ticket.component.html',
   styleUrls: ['./full-ticket.component.scss'],
 })

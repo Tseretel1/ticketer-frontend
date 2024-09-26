@@ -20,9 +20,15 @@
                             <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
                             <mat-icon class="ProfileNot" *ngIf="Profile.profile == null">account_circle</mat-icon>
                         </div>
+         
                     </div>
                 </div>
-             </a>
+             </a>                   
+             <select (change)="changeLanguage($event)">
+                <option value="" disabled selected>{{ 'LANGUAGE' | translate }}</option>
+                <option value="en">En</option>
+                <option value="geo">ქარ</option>
+            </select>    
              <a [routerLink]="this.routes.login" class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin() == false"><mat-icon>login</mat-icon>Login</a>
          </div>
      </div>
@@ -33,6 +39,11 @@
           <button (click)="HideNavigation()" class="Xbutton">  <mat-icon>close</mat-icon></button>  
          </div>
          <div class="Nav_Routes">
+            <select (change)="changeLanguage($event)">
+                <option value="" disabled selected>{{ 'LANGUAGE' | translate }}</option>
+                <option value="en">En</option>
+                <option value="geo">ქარ</option>
+            </select> 
              <a [routerLink]="this.routes.userProfile" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()"  (click)="searchbarShow()">
                 <div class="profile">
                     <div class="profilecontainer">
@@ -47,10 +58,10 @@
                 </div>
              </a>
              <a [routerLink]="this.routes.login" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin() == false" (click)="searchbarHide()"><mat-icon>login</mat-icon>Login</a>
-             <a [routerLink]="this.routes.ticket" class="RouterLink" routerLinkActive="active-link" (click)="searchbarShow()"><mat-icon>confirmation_number</mat-icon>Tickets</a>
+             <a [routerLink]="this.routes.ticket" class="RouterLink" routerLinkActive="active-link" (click)="searchbarShow()"><mat-icon>confirmation_number</mat-icon>{{ 'TICKETS' | translate }}</a>
          </div>
          <div class="CreatorSpace">
-            <a [routerLink]="this.routes.creator" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="searchbarHide()"><mat-icon>palette</mat-icon>Creator Space</a>
+            <a [routerLink]="this.routes.creator" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="searchbarHide()"><mat-icon>palette</mat-icon>{{ 'CREATORSPACE' | translate }}</a>
          </div>
      </div>
      <div class="OtherHalf"  [style.opacity]="opacity"  (click)="HideNavigation()">

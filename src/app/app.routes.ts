@@ -7,7 +7,6 @@ import { EventCreatorComponent } from './event-creator/event-creator.component';
 import { AccountAdminGuard, CreatorGuard,  } from './auth.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CreateTicketComponent } from './event-creator/create-ticket/create-ticket.component';
-import { DashboardComponent } from './event-creator/dashboard/dashboard.component';
 import { CreatorProfileComponent } from './event-creator/creator-profile/creator-profile.component';
 import { CrudComponent } from './event-creator/crud/crud.component';
 import { CategoriesComponent } from './tickets/categories/categories.component';
@@ -28,10 +27,6 @@ export const routes: Routes = [
       {
         path: 'crud/:id',
         component: CrudComponent
-      },
-      {
-        path: 'scanner',
-        component: DashboardComponent
       },
       {
         path: 'creator-profile',

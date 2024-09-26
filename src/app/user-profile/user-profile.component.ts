@@ -5,11 +5,18 @@ import { MatIcon } from '@angular/material/icon';
 import { QRCodeModule } from 'angularx-qrcode';
 import { UserService } from './user.service';
 import { AuthService } from '../auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule,MatIcon,QRCodeModule,DatePipe],
+  imports: [
+    CommonModule,
+    MatIcon,
+    QRCodeModule,
+    DatePipe,
+    TranslateModule
+  ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })

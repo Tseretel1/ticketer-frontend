@@ -1,11 +1,11 @@
 <div class="centerCover">
     <div class="categories">
         <div class="categoriesAlign">
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Music'">Music <mat-icon class="categoryIcons music">music_note</mat-icon> </div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Film'">Film <mat-icon class="categoryIcons">camera_alt</mat-icon> </div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Theater'">Teather <mat-icon class="categoryIcons theater">theater_comedy</mat-icon> </div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Animation'">Animation <mat-icon class="categoryIcons">animation</mat-icon></div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Football'">Football <mat-icon class="categoryIcons football">sports_soccer</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Music'">{{ 'MUSIC' | translate }} <mat-icon class="categoryIcons music">music_note</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Film'">{{ 'FILM' | translate }} <mat-icon class="categoryIcons">camera_alt</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Theater'">{{ 'THEATER' | translate }} <mat-icon class="categoryIcons theater">theater_comedy</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Animation'">{{ 'ANIMATION' | translate }} <mat-icon class="categoryIcons">animation</mat-icon></div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Football'">{{ 'FOOTBALL' | translate }} <mat-icon class="categoryIcons football">sports_soccer</mat-icon> </div>
         </div>
     </div>
     <div class="Tickets_Header" *ngIf="allTicketsVisible == false">
@@ -41,28 +41,22 @@
         <!--Popular Tickets-->
         <div class="sectionHeader" *ngIf="popularTickets">
             <div class="sectionHeaderAlign">
-                <p class="sectionTitletext">Popular events <mat-icon class = "starIcon staritself">star</mat-icon></p>
+                <p class="sectionTitletext">{{ 'POPULAREVENTS' | translate }}<mat-icon class = "starIcon staritself">star</mat-icon></p>
                 <div class="scrolBUttonsParent">
-                    <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories+'popular'">See all Tickets <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
-                    <button class="scroll-btn leftScrollButton" (click)="scrollLeft()">&#9664;</button>
-                    <button class="scroll-btn rightScrollbutton" (click)="scrollRight()">&#9654;</button> 
+                    <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories+'popular'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
                 </div>
             </div>
         </div>
         <section class="section" *ngIf="popularTickets">    
                 <div class="CenterCatousel">
-                    <div class="Ticket_parent_Carousel" #Ticket_parent *ngIf="popularTickets" appScrollAnimation>
+                    <div class="Ticket_parent_Carousel" *ngIf="popularTickets" appScrollAnimation>
                         <div class="Ticket" *ngFor="let tkt of popularTickets; let i = index" [routerLink]="[this.routes.fullticket, tkt.id]"  (click)="TicketViewCount(tkt.id)">
-                            <div #card_box_main class="card_box_main">
+                            <div class="card_box_main">
                                 <div class="TicketImageContainerMain">
                                     <img [src]="tkt.photo" alt="" class="ticketimage">
-                                    <div class="ticketfooter">
-                                        <p class="ticketTitleMain">{{tkt.title}}</p>
-                                        <div class="ticketDateMain">
-                                            <p class="datetimeofTicketMain"><mat-icon class="ticketIconMain">calendar_today </mat-icon> {{ tkt.activation_Date | date: 'MMM d' }}</p>
-                                            <p class="datetimeofTicketMain"><mat-icon class="ticketIconMain">access_time </mat-icon> {{ tkt.activation_Date | date: 'h:mm a' }}</p>
-                                         </div>
-                                    </div>
+                                </div>
+                                <div class="ticketfooter">
+                                    <p class="ticketTitleMain">{{tkt.title}}</p>
                                 </div>
                             </div>
                         </div>
@@ -75,29 +69,23 @@
         <div class="sectionHeader headerTop" *ngIf="popularTickets">
             <div class="sectionHeaderAlign">
                 <div class="">
-                    <p class="sectionTitletext">Upcoming events<mat-icon class = "starIcon">calendar_today/mat-icon></mat-icon></p> 
+                    <p class="sectionTitletext">{{ 'UPCOMINGEVENTS' | translate }}<mat-icon class = "starIcon">calendar_today/mat-icon></mat-icon></p> 
                 </div>
                 <div class="scrolBUttonsParent">
-                    <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'upcoming'">See all Tickets <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
-                    <button class="scroll-btn leftScrollButton" (click)="scrollLeft2()">&#9664;</button>
-                    <button class="scroll-btn rightScrollbutton" (click)="scrollRight2()">&#9654;</button> 
+                    <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'upcoming'">{{ 'SEEALLTICKETS' | translate }} <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
                 </div>
             </div>
         </div>
         <section class="section" *ngIf="popularTickets">
                 <div class="CenterCatousel" >
-                    <div class="Ticket_parent_Carousel" #Ticket_parent2 *ngIf="upcomingTickets" appScrollAnimation>
+                    <div class="Ticket_parent_Carousel"  *ngIf="upcomingTickets" appScrollAnimation>
                         <div class="Ticket" *ngFor="let tkt of upcomingTickets; let i = index" [routerLink]="this.routes.fullticket+tkt.id"  (click)="TicketViewCount(tkt.id)">
-                            <div #card_box_main2 class="card_box_main">
+                            <div class="card_box_main">
                                 <div class="TicketImageContainerMain">
                                     <img [src]="tkt.photo" alt="" class="ticketimage">
-                                    <div class="ticketfooter">
-                                        <p class="ticketTitleMain">{{tkt.title}}</p>
-                                        <div class="ticketDateMain">
-                                            <p class="datetimeofTicketMain"><mat-icon class="ticketIconMain">calendar_today </mat-icon> {{ tkt.activation_Date | date: 'MMM d' }}</p>
-                                            <p class="datetimeofTicketMain"><mat-icon class="ticketIconMain">access_time </mat-icon> {{ tkt.activation_Date | date: 'h:mm a' }}</p>
-                                         </div>
-                                    </div>
+                                </div>
+                                <div class="ticketfooter">
+                                    <p class="ticketTitleMain">{{tkt.title}}</p>
                                 </div>
                             </div>
                         </div>
@@ -106,21 +94,23 @@
         </section>   
     </div>
 
-    
-
-    <div class="sectionHeader headerTop" *ngIf="theaterticketss">
-        <div class="">
-            <p class="sectionTitletext">Theater<mat-icon class = "starIcon">theater_comedy</mat-icon></p> 
+    <div class="theater-header" *ngIf="theaterticketss">
+        <div class="theater-title">
+            <p class="theater-title-text">{{ 'THEATEREVENTS' | translate }}<mat-icon class = "theater-icon">theater_comedy</mat-icon></p> 
+        </div>
+        <div class="see-all-tickets-parent"> 
+            <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories + 'Theater'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
         </div>
     </div>
     <section class="theater-section-parent" *ngIf="theaterticketss">
         <div class="theater-section">
-            <div class="theater-align" *ngFor="let tkt of theaterticketss; let i = index">
-                <p class="thater-ticket-name">{{tkt.title}}</p>
-                <div class="theater-photo-container theater-big" *ngIf="i === 0">
+            <div class="theater-align" *ngFor="let tkt of theaterticketss; let i = index" [ngClass]="{'theater-align-small': i > 0}">
+                <div class="theater-photo-container" *ngIf="i === 0" [routerLink]="this.routes.fullticket+tkt.id"  (click)="TicketViewCount(tkt.id)">
+                    <div class="theater-name-parent"><p class="thater-ticket-name">{{tkt.title}}</p></div>
                     <img [src]="tkt.photo" alt="" class="theater-photos">
                 </div>
-                <div class="theater-photo-container theater-small" *ngIf="i > 0">
+                <div class="theater-photo-container" *ngIf="i > 0" [routerLink]="this.routes.fullticket+tkt.id" (click)="TicketViewCount(tkt.id)" >
+                    <div class="theater-name-parent"><p class="thater-ticket-name">{{tkt.title}}</p></div>
                     <img [src]="tkt.photo" alt="" class="theater-photos">
                 </div>
             </div>                
@@ -131,8 +121,11 @@
 
     <footer class="footer">
       <div class="footerChild">
+        <div class="footer-ticketer-title"> 
+            Ticketer
+        </div>
         <a class="CreatorSpace" [routerLink]="this.routes.creator">
-            <div class="RouterLink"><mat-icon class="creatorIcon">palette</mat-icon>Creator Space</div>
+            <div class="RouterLink"><mat-icon class="creatorIcon">palette</mat-icon>{{ 'CREATORSPACE' | translate }}</div>
         </a>
       </div>
     </footer>

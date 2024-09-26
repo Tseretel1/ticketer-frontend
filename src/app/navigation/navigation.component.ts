@@ -5,11 +5,18 @@ import { AuthService } from '../auth.service';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { NavService } from './nav.service';
 import { appRoutes, Routes } from '../route-paths';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [RouterLink,CommonModule, RouterLinkActive,MatIcon,],
+  imports: [
+    RouterLink,
+    CommonModule,
+    RouterLinkActive,
+    MatIcon,
+    TranslateModule
+    ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
 })
@@ -19,11 +26,21 @@ export class NavigationComponent implements OnInit, OnDestroy{
     private service :NavService,
     private location :Location, 
     private router :Router,
+    private translate :TranslateService
   ) 
   {
   }
-  routes: Routes = appRoutes;
 
+
+  changeLanguage(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const lang = selectElement.value;
+  
+    this.translate.use(lang);
+    localStorage.setItem('language', lang);
+  }
+
+  routes: Routes = appRoutes;
   Back() {
     this.location.back();
   }

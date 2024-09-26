@@ -6,7 +6,8 @@ import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Login, Register, ServiceService } from './service.service';
 import { CdkDrag } from '@angular/cdk/drag-drop';
-import { appRoutes, Routes} from '../route-paths'
+import { appRoutes, Routes} from '../route-paths';
+
 
 
 @Component({

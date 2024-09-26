@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { appRoutes, Routes} from '../route-paths'
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
@@ -18,7 +19,9 @@ import { appRoutes, Routes} from '../route-paths'
     ReactiveFormsModule,
     FormsModule,
     MatIcon,
-    DatePipe],
+    DatePipe,
+    TranslateModule
+  ],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.scss',
 
@@ -116,39 +119,6 @@ export class TicketsComponent implements OnInit, OnDestroy{
     this.allTicketsVisible = false;
     this.tickets = [];
   }
-
-
-  @ViewChild('Ticket_parent') ticketParent!: ElementRef;
-  @ViewChild('card_box_main') TciketWidth!: ElementRef;
-
-  scrollLeft() {
-    const ticketWidthElement = this.TciketWidth.nativeElement;
-    const ticketWidth = ticketWidthElement.offsetWidth;
-    this.ticketParent.nativeElement.scrollBy({ left: -ticketWidth + 30, behavior: 'smooth' });
-  }
-
-  scrollRight() {
-    const ticketWidthElement = this.TciketWidth.nativeElement;
-    const ticketWidth = ticketWidthElement.offsetWidth;
-    this.ticketParent.nativeElement.scrollBy({ left: ticketWidth + 30, behavior: 'smooth' });
-  }
-
-
-  @ViewChild('Ticket_parent2') ticketParent2!: ElementRef;
-  @ViewChild('card_box_main2') TciketWidth2!: ElementRef;
-
-  scrollLeft2() {
-    const ticketWidthElement = this.TciketWidth2.nativeElement;
-    const ticketWidth = ticketWidthElement.offsetWidth;
-    this.ticketParent2.nativeElement.scrollBy({ left: -ticketWidth + 30, behavior: 'smooth' });
-  }
-
-  scrollRight2() {
-    const ticketWidthElement = this.TciketWidth2.nativeElement;
-    const ticketWidth = ticketWidthElement.offsetWidth;
-    this.ticketParent2.nativeElement.scrollBy({ left: ticketWidth + 30, behavior: 'smooth' });
-  }
-
   
   @ViewChild('Headercarousel') coverscroll!: ElementRef;
   @ViewChild('eventParent') coverscrollchild!: ElementRef;

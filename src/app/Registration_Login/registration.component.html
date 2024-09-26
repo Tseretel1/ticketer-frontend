@@ -10,7 +10,7 @@
     <!-------------------------Registration-------------------->
     <div class="Regirstration_Style"[style.opacity.0]="RegisterOpacity" *ngIf="registrationVisible">
       
-      <div class="reg_label"><b class="reg_Font">Registration</b></div>
+      <div class="reg_label"><b class="reg_Font">{{"REGISTRATION" |translate}}</b></div>
         <!--Email validation Form-->
       <form action="" [formGroup]="EmailValidationForm" [ngClass]="{'show-modal': EmailValidationForm_Visible}" class="EmailForm" (ngSubmit)="EmailValidation()">      
         <div> 
@@ -64,7 +64,7 @@
 
 
       <div class="Login_Style" id="loginform" [style.opacity.0]="LoginOpacity" *ngIf="loginVisible">
-        <div class="reg_label"><b class="reg_Font">Login</b></div>
+        <div class="reg_label"><b class="reg_Font">{{"LOGIN" |translate}}</b></div>
         <form [formGroup]="LoginForm" class="Login_Form" (ngSubmit)="Login()">
          <div class="">
             <input type="Email" formControlName="Email" placeholder="Email" class="Reg_Input">
@@ -89,7 +89,7 @@
 
      <!--Switch-->
      <div class="switch">
-      <p class="switchbtn" id="loginswitch" (click)="changeWidth()">Switch to {{ToggleInnerText}}</p>
+      <p class="switchbtn" id="loginswitch" (click)="changeWidth()">{{ToggleInnerText}} {{"SWITCHTO" |translate}}
     </div>
 </div>
  
