@@ -6,10 +6,11 @@ import { FullTicketComponent } from './tickets/full-ticket/full-ticket.component
 import { EventCreatorComponent } from './event-creator/event-creator.component';
 import { AccountAdminGuard, CreatorGuard,  } from './auth.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { CreateTicketComponent } from './event-creator/create-ticket/create-ticket.component';
 import { CreatorProfileComponent } from './event-creator/creator-profile/creator-profile.component';
 import { CrudComponent } from './event-creator/crud/crud.component';
 import { CategoriesComponent } from './tickets/categories/categories.component';
+import { ScannerComponent } from './event-creator/scanner/scanner.component';
+import { ticketmanagmentComponent } from './event-creator/ticket-managment/ticket-managment.component';
 
 export const routes: Routes = [
   { path: 'tickets', component: TicketsComponent },
@@ -22,7 +23,11 @@ export const routes: Routes = [
     children: [
       {
         path: 'ticket-management',
-        component: CreateTicketComponent
+        component: ticketmanagmentComponent
+      },
+      {
+        path: 'scanner',
+        component: ScannerComponent
       },
       {
         path: 'crud/:id',

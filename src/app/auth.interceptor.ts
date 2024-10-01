@@ -25,7 +25,6 @@ export class AuthInterceptor implements HttpInterceptor {
           }
         })
       : req;
-      console.log(req.url.includes('/api/Creator/') ? "Creator Token sent" : "User Token sent");
     return next.handle(clonedReq).pipe(
       finalize(() => {
         this.loaderService.hide();

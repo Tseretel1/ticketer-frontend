@@ -2,7 +2,11 @@
 
     "LANGUAGE" : "ენა",
 
-    "NOTFOUND" : "ინფორმაცია ვერ მოიძებნა :(",
+    "NOTFOUND" : "404 ინფორმაცია ვერ მოიძებნა :(",
+    "BACK" : "უკან",
+
+
+
 
     "EXITFROMACCOUNT" : "გასვლა",
     "SUREWANTTOEXIT" : "ნამდვილად გსურთ აქაუნთიდან გასვლა?",
@@ -13,7 +17,7 @@
     "POPULAREVENTS": "პოპულარული ივენთები",
     "UPCOMINGEVENTS": "მოახლოვებული ივენთები",
     "THEATEREVENTS": "თეატრი",
-    "SEEALLTICKETS": "ყველა ბილეთის ნახვა",
+    "SEEALLTICKETS": "ყველას ნახვა",
     "MUSIC": "მუსიკა",
     "THEATER": "თეატრი",
     "ANIMATION": "ანიმაცია",
@@ -22,8 +26,10 @@
 
     "TICKETS": "ბილეთები",
     "TICKET": "ბილეთი",
-    
     "CREATORSPACE": "კრეატორის სივრცე",
+    "BECOMECREATOR": "გახდი კრეატორი და დაგეგმე შენი ივენთები!",
+
+
 
     "MYTICKETS": "ჩემი ბილეთები",
     "ACTIVE": "აქტიური",
@@ -43,5 +49,21 @@
 
     "LOGIN": "შესვლა",
     "REGISTRATION": "რეგისტრაცია",
-    "SWITCHTO": "-ზე გადართვა"
+    "SWITCHTO": "-ზე გადართვა",
+
+
+
+    "TICKETMANAGMENT": "ბილეთების მართვა",
+    "SCANNER": "სკანერი",
+    "PROFILE": "პროფილი",
+    "ADDTICKET": "დაამატე ბილეთი",
+
+    "TITLE": "სათაური",
+    "SELECTGENRE": "აირჩიე ჟანრი",
+    "ACTIVATIONDATE": "დასაწყისის თარიღი",
+    "EXPIRATIONDATE": "გაუქმების თარიღი",
+    "EDITTICKET": "ბილეთის დაედითება",
+    "HOWMANYTICKETS": "რამდენი ბილეთის შექმნა გსურთ?",
+    "SAVETICKET": "ბილეთის შენახვა"
+    
 }

@@ -1,11 +1,11 @@
 <div class="centerCover">
     <div class="categories">
         <div class="categoriesAlign">
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Music'">{{ 'MUSIC' | translate }} <mat-icon class="categoryIcons music">music_note</mat-icon> </div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Film'">{{ 'FILM' | translate }} <mat-icon class="categoryIcons">camera_alt</mat-icon> </div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Theater'">{{ 'THEATER' | translate }} <mat-icon class="categoryIcons theater">theater_comedy</mat-icon> </div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Animation'">{{ 'ANIMATION' | translate }} <mat-icon class="categoryIcons">animation</mat-icon></div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Football'">{{ 'FOOTBALL' | translate }} <mat-icon class="categoryIcons football">sports_soccer</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'MUSIC'"> {{'MUSIC' | translate }} <mat-icon class="categoryIcons music">music_note</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'FILM'"> {{'FILM' | translate }} <mat-icon class="categoryIcons">camera_alt</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'THEATER'"> {{'THEATER' | translate }} <mat-icon class="categoryIcons theater">theater_comedy</mat-icon> </div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'ANIMATION'"> {{'ANIMATION' | translate }} <mat-icon class="categoryIcons">animation</mat-icon></div>
+            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'FOOTBALL'"> {{'FOOTBALL' | translate }} <mat-icon class="categoryIcons football">sports_soccer</mat-icon> </div>
         </div>
     </div>
     <div class="Tickets_Header" *ngIf="allTicketsVisible == false">
@@ -99,7 +99,7 @@
             <p class="theater-title-text">{{ 'THEATEREVENTS' | translate }}<mat-icon class = "theater-icon">theater_comedy</mat-icon></p> 
         </div>
         <div class="see-all-tickets-parent"> 
-            <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories + 'Theater'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+            <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories + 'THEATER'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
         </div>
     </div>
     <section class="theater-section-parent" *ngIf="theaterticketss">
@@ -121,12 +121,18 @@
 
     <footer class="footer">
       <div class="footerChild">
-        <div class="footer-ticketer-title"> 
-            Ticketer
+        <div class="become-creator">
+            {{"BECOMECREATOR" |translate}}
         </div>
-        <a class="CreatorSpace" [routerLink]="this.routes.creator">
-            <div class="RouterLink"><mat-icon class="creatorIcon">palette</mat-icon>{{ 'CREATORSPACE' | translate }}</div>
-        </a>
+        <div class="creator-flex">
+            <a class="creator-space" [routerLink]="this.routes.creator" >
+                <div class="RouterLink"><mat-icon class="creatorIcon">palette</mat-icon>{{ 'CREATORSPACE' | translate }}</div>
+            </a>
+            <div class="footer-ticketer-title" (click)="scrollonTop()">  
+                Ticketer
+                <mat-icon>confirmation_number</mat-icon>
+            </div>
+        </div>
       </div>
     </footer>
 </div>

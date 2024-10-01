@@ -1,8 +1,12 @@
 {
 
-    "LANGUAGE" : "Language",
+    "LANGUAGE" : "En",
     
-    "NOTFOUND" : "Information not found :(",
+    
+    "NOTFOUND" : "404 not found :(",
+    "BACK" : "Back",
+
+
 
     "EXITFROMACCOUNT" : "Exit From Account",
     "SUREWANTTOEXIT" : "Are you sure you want to exit?",
@@ -24,11 +28,12 @@
     "TICKETS": "Tickets",
     "TICKET": "Ticket",
     "CREATORSPACE": "Creator Space",
+    "BECOMECREATOR": "Become creator and plan your Events!",
 
 
     "MYTICKETS": "My Tickets",
     "ACTIVE": "Active",
-    "EXPIRED": "Expired",
+    "EXPIRED": "History",
 
     
 
@@ -43,10 +48,29 @@
     "PAY": "Pay",
 
 
-
-
-
     "LOGIN": "Login",
     "REGISTRATION": "Registration",
-    "SWITCHTO": "-ზე გადართვა"
+    "SWITCHTO": "Switch",
+
+
+
+    "TICKETMANAGMENT": "Ticket Managment",
+    "SCANNER": "Scanner",
+    "PROFILE": "Profile",
+    "ADDTICKET": "Add new Ticket",
+
+    "TITLE": "Title",
+    "SELECTGENRE": "select a genre",
+    "ACTIVATIONDATE": "Activation Date",
+    "EXPIRATIONDATE": "Expiration Date",
+    "EDITTICKET": "Edit Ticket",
+    "HOWMANYTICKETS": "How many Tickets do you want to create?",
+    "SAVETICKET": "Save Ticket"
+
+
+
+
+
+
+    
 }

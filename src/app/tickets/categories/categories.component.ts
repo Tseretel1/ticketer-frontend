@@ -1,18 +1,22 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { CategoriesService } from './categories.service';
 import { ObservableInput, Subject, takeUntil } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
+import { appRoutes ,Routes} from '../../route-paths';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [CommonModule, MatIcon,DatePipe,RouterLink],
+  imports: [CommonModule, MatIcon,DatePipe,RouterLink,TranslateModule],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })
 export class CategoriesComponent implements OnInit, OnDestroy{
+
+  routes: Routes = appRoutes;
 
   constructor(private service :CategoriesService, private router : ActivatedRoute ){
   }

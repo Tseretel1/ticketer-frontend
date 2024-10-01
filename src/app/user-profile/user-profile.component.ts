@@ -1,32 +1,28 @@
 import { CommonModule, DatePipe, NgIf } from '@angular/common';
-import { Component, Directive, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
-import { QRCodeModule } from 'angularx-qrcode';
 import { UserService } from './user.service';
-import { AuthService } from '../auth.service';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
   imports: [
     CommonModule,
     MatIcon,
-    QRCodeModule,
     DatePipe,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })
 export class UserProfileComponent implements OnInit,OnDestroy{
 
+  qrData: string = '';
   constructor(
     private router:Router,
     private service :UserService,
-    private datepipe : DatePipe, 
-    private authservice : AuthService,
     )
     { }
   ngOnDestroy(): void {

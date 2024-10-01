@@ -249,12 +249,10 @@ $background :#1e3d59;
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  backdrop-filter: blur(20px);
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.204);
+  background-color: rgba(0, 0, 0, 0.511);
+  align-items: centergba(0, 0, 0, 0.701);
   padding-bottom: 50px;
   border-bottom: 2px  solid black;
-  box-shadow: 2px 0px 10px black;
 }
 .foundticket{
     transition: .4s ease-in-out;
@@ -364,13 +362,19 @@ $background :#1e3d59;
 }
 .dataalign{
     display: flex;
-    flex-direction: column;
     width: 85%;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.view-count{
+  color: white;
+  display: flex;
+  align-items: center;
 }
 .Title{
     font-size: 30px;
     color: white;
-    margin-top: 20px;
     border-bottom: 1px solid white;
 }
 .dateflex{
@@ -668,7 +672,10 @@ $background :#1e3d59;
 
 
 
-@media screen and (max-width : 775px){
+@media screen and (max-width : 1075px){
+    .titleParent{
+      margin-top: 0px;
+    }
     .FountTicketParent{
       flex-direction: column-reverse;
       margin-top: 0px;

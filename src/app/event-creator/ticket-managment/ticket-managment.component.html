@@ -1,0 +1,96 @@
+<div class="Modal" *ngIf="ModalVisible">
+    <div class="ModalWindow">
+        <p class="ModalMessage">{{ModalMessgae}}</p>
+    </div>
+</div>
+
+
+<!--My tickets-->
+
+
+<div class="center-body">
+<div class="my-tickets">
+  <div class="my-tickets-text">{{"MYTICKETS"|translate}}</div>
+    <div class="active-expired-align">
+      <div class="act-line-align">
+        <p class="active-tickets" (click)="switchToActive()">{{"ACTIVE"|translate}}</p>
+        <div class="active-line" *ngIf="ticketSwtich"></div>
+      </div>
+      <div class="act-line-align">
+          <p class="active-tickets" (click)="switchToExpired()">{{"EXPIRED"|translate}}</p>
+       <div class="active-line active-line-red" *ngIf="ticketSwtich == false"></div>
+      </div>
+   </div>
+   <div class="AddTicketCard">
+    <button class="add-ticket-button" [routerLink]="this.routes.creatorCrud + 'add'">
+        <mat-icon>add</mat-icon>{{"ADDTICKET" | translate}}
+    </button>
+   </div>
+</div>
+<div class="ticket-managment-body">  
+
+  <!-- Active Tickets -->
+      <div class="TicketWrap" *ngIf="ticketSwtich">
+        <div class="Ticket" *ngFor="let tkt of activeTickets; let i = index"[routerLink]="['/EventCreator/Crud', tkt.id]">
+            <div class="SoldTicketCount"> <mat-icon class="iconsize">confirmation_number</mat-icon> {{tkt.ticketCount}}</div>
+            <div class="TicketFlex">
+              <div class="leftSide">
+                <div class="titlecenter">
+                  <p class="Ticket_Title"> {{tkt.title}}</p>
+                </div>
+                <div class="TicketImageContainer">
+                  <img [src]="tkt.photo" alt="" class="ticketimage" *ngIf="tkt.photo">
+                  <div class="Editticket" [routerLink]="this.routes.creatorCrud + tkt.id">
+                    <p class="edittext"><mat-icon class="editicon">edit</mat-icon>{{"EDITTICKET" |translate}}</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+            <div class="publisherData">
+              <div class="data_style Price">
+                <p class="Data_Titles">
+                  <mat-icon class="iconsize">calendar_today</mat-icon>
+                </p>
+                <p>{{ tkt.activation_Date | date: 'MMM d' }}</p>
+              </div>
+              <p class="view data_style">
+                <mat-icon class="iconsize">visibility</mat-icon>{{tkt.viewCount}}
+              </p>
+         </div>
+        </div>
+      </div>
+
+  <!-- Expired Tickets -->
+
+      <div class="TicketWrap" *ngIf="ticketSwtich == false">
+        <div class="Ticket Ticket-expired" *ngFor="let tkt of expiredTickets; let i = index"[routerLink]="['/EventCreator/Crud', tkt.id]">
+            <div class="SoldTicketCount"> <mat-icon class="iconsize">confirmation_number</mat-icon> {{tkt.ticketCount}}</div>
+            <div class="TicketFlex">
+              <div class="leftSide">
+    
+                <div class="titlecenter">
+                  <p class="Ticket_Title"> {{tkt.title}}</p>
+                </div>
+                <div class="TicketImageContainer">
+                  <img [src]="tkt.photo" alt="" class="ticketimage" *ngIf="tkt.photo">
+                  <div class="Editticket" [routerLink]="this.routes.creatorCrud + tkt.id">
+                    <p class="edittext"><mat-icon class="editicon">edit</mat-icon> Edit Ticket</p>
+                  </div> 
+                </div>
+              </div>
+            </div>
+            <div class="publisherData">
+              <div class="data_style Price">
+                <p class="Data_Titles">
+                  <mat-icon class="iconsize">calendar_today</mat-icon>
+                </p>
+                <p>{{ tkt.activation_Date | date: 'MMM d' }}</p>
+              </div>
+              <p class="view data_style">
+                <mat-icon class="iconsize">visibility</mat-icon>{{tkt.viewCount}}
+              </p>
+         </div>
+        </div>
+      </div>
+    </div> 
+</div>

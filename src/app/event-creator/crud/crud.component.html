@@ -1,76 +1,78 @@
 
-<div class="ticketbody">   
-  <div class="centerTicketMaker">
     <div class="CancelAdingticket">
-        <button class="CancelAdingticketButton" (click)="CancelTicketCreation()">Back</button>   
+        <div class="cancel-ticket-align">
+          <button class="CancelAdingticketButton" (click)="CancelTicketCreation()">{{"BACK" | translate}}</button> 
+        </div>  
     </div>
-    <form [formGroup]="ticketForm"  (submit)="UPdateTicket()" class="TicketFormm">
-      <div class="FormAlign" cdkDrag>
-        <div class="FirstHalf">
-          <div class="halfcolumn">
-            <div class="DescriptionValue">
-              <p class="inputvalues">Price</p>
-              <p class="inputvalues"><input id="price" [formControl]="Price" type="number" class="TicketInputs pricetag" placeholder="Price">  </p> 
-            </div>
-            <div class="DateGroup">
-              <label for="activation-date" class="Date">Activation Date</label>
-              <div class="DateAlign">
-                  <input  id="activationdate" [formControl]="Date" type="date" class="dateStyle">
-                  <label for="activation-date" class="Date">Time <mat-icon class="iconsize">access_time</mat-icon></label>
-                  <input  [formControl]="Time" class="Time" type="time" id="activationtime">    
-              </div>            
-           </div>
-          </div>
-         <!--TicketPreview-->
-            <div class="MakingTitcket">
-              <div class="TicketPreview">
-                <div class="DateAlign">
-                  <label>Title</label>
-                  <input id="title" [formControl]="title" type="text" class="TicketInputs" maxlength="80" placeholder="Add Title here..">
-                </div>
-                <div class="ImagePreview">
-                  <div class="photoAlign">
-                    <button (click)="triggerFileInput()" class="photoinput"><mat-icon>photo_camera</mat-icon>Upload Photo</button>
-                    <input id="photo" formControlName="Photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden>
-                  </div>
-                  <img [src]="imagePreview" class="imagepreviewphoto">
-                </div>
-                <div class="DescriptionValue">
-                  <p class="inputvalues">Description</p>
-                  <input id="description" [formControl]="Description" type="text" class="DescriptionIput TicketInputs"  placeholder="Add Description Here..." [maxlength]="800">   
-                </div>
+    <form [formGroup]="ticketForm"  (submit)="addOrUpdate()" class="ticket-form">
+      <div class="center-form">
+        <div class="image-preview-parent">
+            <div class="image-preview">
+              <div class="photoAlign">
+                <button (click)="triggerFileInput()" class="photoinput"><mat-icon>photo_camera</mat-icon>Upload Photo</button>
+                <input id="photo" formControlName="Photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden>
               </div>
+              <img [src]="imagePreview" class="imagepreviewphoto">
             </div>
-            <div class="halfcolumn">
-              <div class="genreparent">
-                <label for="genre">Genre</label>
-                <select id="genre" formControlName="Genre" [formControl]="Genre" class="genre"> 
-                  <option class="GenreOption" value="" disabled selected>Select a genre</option>
-                  <option class="GenreOption" value="Football">Football</option>
-                  <option class="GenreOption" value="Animation">Animation</option>
-                  <option class="GenreOption" value="Music">Music</option>
-                </select>
-              </div>
-              <div class="DateGroup">
-                <label for="activation-date" class="Date">Expiration Date</label>
-                <div class="DateAlign">
-                    <input  id="activation-date" formControlName="Expiration_Date"type="date" class="dateStyle" id="expirationdate">
-                    <label for="activation-date" class="Date">Time <mat-icon class="iconsize">access_time</mat-icon></label>
-                    <input id="activation-time" formControlName="ExpirationTime" type="time"class="Time" id="expirationtime">    
-                </div>     
-            </div> 
-           </div>
         </div>
-       <div class="SecondHalf">
-          <div class="TicketCountParent">
-            <label for="ticketCount">How many Tickets do you want to create?</label>
-            <input type="number" formControlName="TicketCount" class="TicketInputs" placeholder="00000">
+        <div class="input-align-parent">
+          <div class="input-align">
+              <label class="input-names"> {{"TITLE" | translate}} </label>
+              <input id="title" [formControl]="title" type="text" class="ticket-inputs" maxlength="80" placeholder="Add Title here..">
           </div>
-          <div class="centercreationbutton">
-             <button type="submit" class="CreateTicketButton" >Save Ticket</button>
+          <div class="input-align">
+            <label class="input-names">{{"GENRE" | translate}} </label>
+            <select id="genre" formControlName="Genre" [formControl]="Genre" class="ticket-inputs"> 
+              <option class="GenreOption" value="" disabled selected>{{"SELECTGENRE" | translate}} </option>
+              <option class="GenreOption" value="Football">{{"FOOTBALL" | translate}} </option>
+              <option class="GenreOption" value="Film">{{"FILM" | translate}} </option>
+              <option class="GenreOption" value="Theater">{{"THEATER" | translate}} </option>
+              <option class="GenreOption" value="Animation">{{"ANIMATION" | translate}} </option>
+              <option class="GenreOption" value="Music">{{"MUSIC" | translate}} </option>
+            </select>
+          </div>
+          <div class="input-align">
+            <p class="input-names">{{"PRICE" | translate}} </p>
+            <input id="price" [formControl]="Price" type="number" class="ticket-inputs" placeholder="Price">
+          </div>
+          <div class="input-align datetime-container">
+            <label class="input-names">{{"ACTIVATIONDATE" | translate}} </label>
+            <div class="date-align-time">
+              <input  id="activationdate" [formControl]="Date" type="date" class="dateStyle">
+                <input  [formControl]="Time" class="Time" type="time" id="activationtime">    
+            </div>            
+          </div>
+        </div>
+
+        <div class="description-align">
+            <div class="description-width">
+              <p class="input-names">{{"DESCRIPTION" | translate}}</p>
+              <textarea class="resizable-textarea" id="description"
+              [formControl]="Description"
+              class="resizable-description"
+              placeholder="Add Description Here..."
+              [maxlength]="800"></textarea> 
+            </div> 
+            <div class="input-align datetime-container">
+              <label class="input-names">{{"EXPIRATIONDATE" | translate}}</label>
+              <div class="date-align-time">
+                  <input  id="activation-date" formControlName="Expiration_Date"type="date" class="dateStyle" id="expirationdate">
+                  <input id="activation-time" formControlName="ExpirationTime" type="time"class="Time" id="expirationtime">    
+              </div>  
+            </div> 
+        </div>
+
+
+        <div class="input-align-parent">
+          <div class="ticket-count">
+            <div class="ticket-count-align">
+              <label class="input-names">{{"HOWMANYTICKETS" | translate}}</label>
+              <input type="number" formControlName="TicketCount" class="ticket-inputs" placeholder="0">
+            </div>
+            <div class="create-ticket-parent">
+               <button type="submit" class="create-ticket-button" (click)="addOrUpdate()" >{{"SAVETICKET" | translate}}</button>
+            </div>
           </div>
         </div>
       </div>
    </form>  
-  </div>
-</div>

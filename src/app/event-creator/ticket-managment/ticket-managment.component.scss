@@ -1,0 +1,276 @@
+:host {
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
+    height: 100%;
+  }
+.Modal{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+.ModalWindow{
+    width: 500px;
+    height: 300px;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 3;
+}
+.center-body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.ticket-managment-body{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.my-tickets{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    width: 90%;
+    max-width: 1600px;
+    gap: 20px;
+}
+.my-tickets-text{
+    font-size: 25px;
+    font-weight: bold;
+}
+.active-expired-align{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.active-tickets{
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.act-line-align{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.active-line{
+    width: 100%;
+    border-bottom: 2px solid green;
+    padding-top: 5px;
+}
+.active-line-red{
+    width: 100%;
+    border-bottom: 2px solid red;
+}
+.add-ticket-button{
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    transition: 0.2s all ease-in-out;
+    cursor: pointer;
+}
+.add-ticket-button:hover{
+    background-color: rgba(245, 245, 245, 0.484);
+}
+.TicketWrap{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    row-gap: 30px;
+    max-width: 1600px;
+    width: 90%;
+}
+.Ticket{
+    display:flex;
+    box-shadow: 0px 0px;
+    position: relative;
+    padding: 0;
+    color: white;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.4s all ease-in-out;
+}
+.Ticket::before{
+    content: "Active";
+    top: 10px;
+    left: -10px;
+    position: absolute;
+    background-color: Green;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 3;
+}
+.Ticket-expired::before{
+    content: "Expired";
+    top: 10px;
+    left: -10px;
+    position: absolute;
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 3;
+}
+.TicketFlex{
+    position: relative;
+}
+.SoldTicketCount{
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    background-color: black;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+.titlecenter{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.TicketImageContainer {
+    width: 100%; 
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: 0.2s all ease-in-out;
+    border: 1px solid white;
+  }
+  .TicketImageContainer:hover{
+    border: 1px solid green;
+  }
+  .TicketImageContainer:hover .ticketimage{
+    scale: 1.1;
+  }
+  .Ticket-expired:hover .TicketImageContainer{
+    border: 1px solid red;
+  }
+  .ticketimage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s all ease-in-out;
+  }
+  .publisherData{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  } 
+.data_style{
+    display: flex;
+}
+.expired-ticket{
+    transition: 0.2s all ease-in-out;
+    border-bottom: 3px solid red;
+    border-top: 3px solid red;
+}
+.expired-ticket::before{
+    content: "Expired";
+    background-color: rgb(255, 0, 0);
+    top: -10px;
+    left: -10px;
+    position: absolute;
+    border-radius: 5px;
+    z-index: 3;
+    padding: 5px;
+}
+.Editticket{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: 0.2s all ease-in-out;
+    padding: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+.edittext{
+    opacity: 0;
+    transition: 0.3s all ease-in-out;
+}
+.Ticket:hover .Editticket{
+    background-color: rgba(0, 0, 0, 0.778);
+    .edittext{
+        opacity: 1;
+    }
+}
+
+
+
+
+
+@media screen and (min-width : 1365px){
+    .TicketWrap{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width : 1065px){
+    .TicketWrap{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width : 665px){
+    .TicketWrap{
+        gap: 10px;
+    }
+}
+@media screen and (max-width : 600px){
+    .TicketWrap{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width : 510px){
+    .FirstHalf{
+        flex-direction: column;
+        align-items: center;
+    }
+}

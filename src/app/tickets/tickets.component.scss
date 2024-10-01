@@ -85,14 +85,6 @@ display: none;
   width: 90%;
   max-width: 1600px;
 }
-.HeaderTitle{
-  color: white;
-  position: absolute;
-  z-index: 2;
-  left: 50px;
-  top: 30%;
-}
-
 .Photocontainer{
   width: 1200px;
   height: 300px;
@@ -168,28 +160,6 @@ display: none;
     max-width: 1800px;
     z-index: 5;
 }
-
-
-
-
-
-
-
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card_box {
-  width: 320px;
-  height: auto;
-  border-radius: 10px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.4s ease-in-out;
-}
 .card_box_main{
   width: 320px;
 }
@@ -234,13 +204,6 @@ display: none;
   box-shadow: 140px -140px #cc3f47;
   background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
 }
-
-.TicketCarouselContainer{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  max-width: 1600px;
-}
 .Ticket_parent_Carousel {
   width: 90%;
   display: flex;
@@ -255,29 +218,6 @@ display: none;
 
 .Ticket_parent_Carousel::-webkit-scrollbar {
   display: none;
-}
-.Ticket_parent {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  max-width: 1600px;
-}
-.allticketHeader{
-  color: white;
-  margin-top: 50px;
-  width: 80%;
-}
-.allticketHeaderTitle{
-  font-size: 25px;
-}
-.BackButton{
-  padding: 10px;
-  font-size: 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
 }
 
 .Ticket {
@@ -304,14 +244,6 @@ display: none;
   }
 }
 
-.testFlex{
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  top: 50%;
-}
 .scrolBUttonsParent{
   display: flex;
   justify-content: center;
@@ -338,6 +270,16 @@ display: none;
   display: flex;
   align-items: center;
   font-weight: bolder;
+}
+.sectionTitletext::before{
+  content: "";
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  color: green;
+  top: 0;
+  background-color: green;
+  margin-right: 5px;
 }
 .starIcon{
   color: orangered;
@@ -376,72 +318,6 @@ display: none;
   height: 100%;
   align-items: center;
 }
-.aligncarouselParent{
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-}
-.Ticket_Title{
-  color: white;
-  margin: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 20px;
-}
-.ticketDate{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-.datetimeofTicket{
-  color: white;
-  display: flex;
-  align-items: center;
-}
-.viewcount{
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  top: -10px;
-  left: -10px;
-  z-index: 1;
-}
-.viewflex{
-  display: flex;
-  align-items: center;
-  margin: 0;
-  background-color: rgba(0, 0, 0, 0.622);
-  padding: 5px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  font-size: 15px;
-  justify-content: center;
-  margin:0;
-}
-.eyesize{
-  margin: 0;
-  width: 20px;
-  height: 15px;
-  font-size: 15px;
-}
-.TicketImageContainer{
-  width: 100%; 
-  height: 200px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border-radius: 10px;
-  border: 1px solid rgba(128, 128, 128, 0.273);
-  transition: 0.3s all ease-in-out;
-}
-.TicketImageContainer:hover{
-  border: 1px solid white;
-}
 .ticketfooter{
   width: 100%;
   display: flex;
@@ -457,23 +333,6 @@ display: none;
 .ticketTitleMain{
   color: whitesmoke;
   font-size: 16px;
-}
-.ticketIconMain{
-  font-size: 15px;
-  width: 15px;
-  height: 15px;
-}
-.datetimeofTicketMain{
-  color: white;
-  opacity: 0.7;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-}
-.ticketDateMain{
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
 }
 .TicketImageContainerMain {
   width: 100%; 
@@ -599,10 +458,20 @@ display: none;
   width: 90%;
   max-width: 1600px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
 }
-.CreatorSpace{
+.creator-flex{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.become-creator{
+  color: white;
+  font-size: 20px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+.creator-space{
   background-color: rgba(0, 0, 0, 0.381);
   border-radius: 20px;
   display: flex;
@@ -611,12 +480,10 @@ display: none;
   padding: 30px;
   border: 1px solid rgba(128, 128, 128, 0.257);
   text-decoration: none;
-  width: 20%;
   transition:0.3s all ease-in-out;
 }
-.CreatorSpace:hover{
+.creator-space:hover{
   background-color: rgba(70, 70, 70, 0.381);
-  
 }
 .RouterLink{
   color: white;
@@ -631,8 +498,15 @@ display: none;
   width: 50px;
 }
 .footer-ticketer-title{
-  color: white;
-  font-size: 30px;
+  color: whitesmoke;
+  font-size: 25px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  outline: none;
 }
 
 
@@ -668,16 +542,6 @@ display: none;
   .Photocontainer{
     height: 280px;
   }
-  .Ticket_parent {
-    width: 100%;
-  }
-  .Ticket_Title{
-    font-size: 15px;
-    max-width: 180px;
-  }
-.card_box{
-  width: 290px;
-} 
 
 }
 @media screen and (max-width : 730px){
@@ -720,9 +584,6 @@ display: none;
   }
 }
 @media screen and (max-width : 650px){
-  .Ticket_Title{
-    max-width: 154px;
-  }
   .Ticket{
     width: 80%;
   }
@@ -743,15 +604,6 @@ display: none;
 @media screen and (max-width : 550px){
   .content_style{
     border-radius: 5px;
-  }
-  .Ticket_Title{
-    max-width: 214px;
-  }
-  .FilteringContent{
-    display: none;
-  }
-  .filters{
-    display: flex;
   }
   .card_box_main{
     width: 200px;
@@ -776,9 +628,6 @@ display: none;
   .PopularEvent{
     height: 180px;
   }
-  .Ticket_Title{
-    max-width: 174px;
-  }
   .sectionTitletext{
     font-size: 20px;
   }
@@ -796,16 +645,6 @@ display: none;
   }
   .Photocontainer{
     height: 150px;
-  }
-  .Ticket_Title  {
-    max-width: 154px;
-  }
-  .calendar{
-    font-size: 12px;
-  }
-  .data_style{
-    font-size: 12px;
-    gap: 0px;
   }
 }
 @media screen and (max-width : 300px){

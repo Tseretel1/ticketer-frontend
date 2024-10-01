@@ -45,6 +45,10 @@ export class TicketsComponent implements OnInit, OnDestroy{
   {
   }
 
+  scrollonTop(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   ngOnInit(): void {
     this.fetchPopularEvents();
     this.MostpopularTickets();

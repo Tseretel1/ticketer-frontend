@@ -23,13 +23,13 @@
          
                     </div>
                 </div>
-             </a>                   
-             <select (change)="changeLanguage($event)">
-                <option value="" disabled selected>{{ 'LANGUAGE' | translate }}</option>
-                <option value="en">En</option>
-                <option value="geo">ქარ</option>
+             </a>   
+             <a [routerLink]="this.routes.login" class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin() == false"><mat-icon>login</mat-icon>{{"LOGIN" |translate}}</a>
+             <select (change)="changeLanguage($event)" class="language">
+                <option class="language-options" value="" disabled selected>{{ 'LANGUAGE' | translate }}</option>
+                <option class="language-options"  value="en">En</option>
+                <option class="language-options"  value="geo">ქარ</option>
             </select>    
-             <a [routerLink]="this.routes.login" class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin() == false"><mat-icon>login</mat-icon>Login</a>
          </div>
      </div>
 </header>
@@ -39,10 +39,10 @@
           <button (click)="HideNavigation()" class="Xbutton">  <mat-icon>close</mat-icon></button>  
          </div>
          <div class="Nav_Routes">
-            <select (change)="changeLanguage($event)">
-                <option value="" disabled selected>{{ 'LANGUAGE' | translate }}</option>
-                <option value="en">En</option>
-                <option value="geo">ქარ</option>
+            <select (change)="changeLanguage($event)" class="language">
+                <option class="language-options" value="" disabled selected>{{ 'LANGUAGE' | translate }}</option>
+                <option class="language-options" value="en">En</option>
+                <option class="language-options" value="geo">ქარ</option>
             </select> 
              <a [routerLink]="this.routes.userProfile" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()"  (click)="searchbarShow()">
                 <div class="profile">

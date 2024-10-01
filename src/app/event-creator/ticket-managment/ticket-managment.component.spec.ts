@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateTicketComponent } from './create-ticket.component';
+import { CreateTicketComponent } from './ticket-managment.component';
 
 describe('CreateTicketComponent', () => {
   let component: CreateTicketComponent;

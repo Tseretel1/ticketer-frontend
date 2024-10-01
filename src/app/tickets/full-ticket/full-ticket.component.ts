@@ -51,7 +51,6 @@ export class FullTicketComponent implements OnInit, OnDestroy {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 50);
   }
-
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -95,6 +94,7 @@ export class FullTicketComponent implements OnInit, OnDestroy {
 
   matchingTicketFound() {
     this.matchingTicket = this.foundtickets.find(ticket => ticket.id === this.id); 
+    console.log(this.matchingTicket);
     if (this.matchingTicket) {
       this.matchingTicket.photo = `${this.matchingTicket.photo}?v=${new Date().getTime()}`;
       this.soldOut = this.matchingTicket.ticketCount <= 0;

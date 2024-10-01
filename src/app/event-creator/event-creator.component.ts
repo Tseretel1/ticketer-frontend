@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { TicketsComponent } from '../tickets/tickets.component';
 import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Login, Register, ServiceService } from './service.service';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { appRoutes, Routes} from '../route-paths';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -19,7 +20,9 @@ import { appRoutes, Routes} from '../route-paths';
     TicketsComponent,
     ReactiveFormsModule,
     RouterOutlet,
-    CdkDrag
+    CdkDrag,
+    TranslateModule,
+    RouterLinkActive
 ],
   templateUrl: './event-creator.component.html',
   styleUrl: './event-creator.component.scss'
