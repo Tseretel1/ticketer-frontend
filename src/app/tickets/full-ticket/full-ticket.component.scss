@@ -535,7 +535,7 @@ $background :#1e3d59;
     color: white;
 }
 .Ticket_parent {
-  width: 100%;
+  width: 90%;
   margin-bottom: 30px;
   margin-top: 30px;
   row-gap: 20px;
@@ -543,8 +543,8 @@ $background :#1e3d59;
   justify-content: center;
   flex-direction: row;
   align-items: flex-start; 
-  flex-wrap: wrap;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
 }
 
 .Ticket {
@@ -591,7 +591,7 @@ $background :#1e3d59;
   z-index: 2;
 }
 .TicketImageContainer {
-  width: 380px;
+  width: 100%;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -669,7 +669,11 @@ $background :#1e3d59;
 
 
 
-
+   @media screen and (min-width : 1375px){
+    .Ticket_parent{
+      grid-template-columns: repeat(3,1fr);
+    }
+   }
 
 
 @media screen and (max-width : 1075px){
@@ -688,31 +692,36 @@ $background :#1e3d59;
     .firstSection{
       width: 100%;
     }
-    .Ticket_parent{
-      width: 100%;
-    }
-    .TicketImageContainer{
-      width: 300px;
-    }
     .sugestions{
       width: 100%;
     }
+    .Ticket_parent{
+      width: 90%;
+      grid-template-columns: repeat(3,1fr);
+    }
+    .data{
+      width: 90%;
+    }
+    .dataalign{
+      width: 90%;
+    }
 }
-@media screen and (max-width : 640px){
-  .TicketImageContainer{
-    width: 400px;
+@media screen and (max-width : 950px){
+  .Ticket_parent{
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media screen and (max-width : 700px){
+  .Ticket_parent{
+    grid-template-columns: repeat(1,1fr);
   }
 }
 @media screen and (max-width : 600px){
   .foundticket{
     height: 200px;
   }
-  .data{
-    width: 90%;
-  }
   .datatitles{
-    font-size: 18px;
-    
+    font-size: 18px;    
   }
   .darainfo{
     font-size: 15px;
@@ -723,7 +732,6 @@ $background :#1e3d59;
 }
 @media screen and (max-width : 450px){
   .TicketImageContainer{
-    width: 350px;
     height: 120px;
   }
   .foundticket{
@@ -733,14 +741,8 @@ $background :#1e3d59;
     gap: 10px;
   }
 }
-@media screen and (max-width : 350px){
-  .TicketImageContainer{
-    width: 250px;
-  }
-}
 @media screen and (max-width : 280px){
   .TicketImageContainer{
-    width: 220px;
     height: 100px;
   }
 }

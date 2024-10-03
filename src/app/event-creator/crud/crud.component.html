@@ -1,7 +1,26 @@
 
+<div class="delete-modal-parent" *ngIf="modalvisible">
+  <div class="delete-modal">
+    <div class="modal-question">
+      <p class="are-you-sure">{{"SURETODELETE"|translate}}</p>
+      <div class="warning-flex">
+        <mat-icon class="warn">warning</mat-icon>
+        <p class="note">{{"DELETENOTE"|translate}}</p>
+      </div>
+    </div>
+    <div class="modal-buttons">
+      <button class="CancelAdingticketButton delete-ticket-button" (click)="deleteTicket(this.id)"> {{"DELETETICKET" | translate}}</button>
+      <button class="CancelAdingticketButton" (click)="closedeletemodal()"> {{"CANCEL" | translate}}</button>
+    </div>
+  </div>
+</div>
+
     <div class="CancelAdingticket">
         <div class="cancel-ticket-align">
           <button class="CancelAdingticketButton" (click)="CancelTicketCreation()">{{"BACK" | translate}}</button> 
+          <div *ngIf="TicketToedit !=null">
+            <button class="CancelAdingticketButton delete-ticket-button" (click)="opendeletemodal()"> {{"DELETETICKET" | translate}}</button>
+          </div>
         </div>  
     </div>
     <form [formGroup]="ticketForm"  (submit)="addOrUpdate()" class="ticket-form">
@@ -14,63 +33,89 @@
               </div>
               <img [src]="imagePreview" class="imagepreviewphoto">
             </div>
+            <div *ngIf="ticketForm.controls['Photo'].dirty || ticketForm.valid">
+              <span *ngIf=" ticketForm.controls['Photo'].errors?.['required']"class="validation-message">Title is required</span>
+            </div>  
         </div>
-        <div class="input-align-parent">
-          <div class="input-align">
-              <label class="input-names"> {{"TITLE" | translate}} </label>
-              <input id="title" [formControl]="title" type="text" class="ticket-inputs" maxlength="80" placeholder="Add Title here..">
-          </div>
-          <div class="input-align">
-            <label class="input-names">{{"GENRE" | translate}} </label>
-            <select id="genre" formControlName="Genre" [formControl]="Genre" class="ticket-inputs"> 
-              <option class="GenreOption" value="" disabled selected>{{"SELECTGENRE" | translate}} </option>
-              <option class="GenreOption" value="Football">{{"FOOTBALL" | translate}} </option>
-              <option class="GenreOption" value="Film">{{"FILM" | translate}} </option>
-              <option class="GenreOption" value="Theater">{{"THEATER" | translate}} </option>
-              <option class="GenreOption" value="Animation">{{"ANIMATION" | translate}} </option>
-              <option class="GenreOption" value="Music">{{"MUSIC" | translate}} </option>
-            </select>
-          </div>
-          <div class="input-align">
-            <p class="input-names">{{"PRICE" | translate}} </p>
-            <input id="price" [formControl]="Price" type="number" class="ticket-inputs" placeholder="Price">
-          </div>
-          <div class="input-align datetime-container">
-            <label class="input-names">{{"ACTIVATIONDATE" | translate}} </label>
-            <div class="date-align-time">
-              <input  id="activationdate" [formControl]="Date" type="date" class="dateStyle">
-                <input  [formControl]="Time" class="Time" type="time" id="activationtime">    
-            </div>            
-          </div>
-        </div>
-
-        <div class="description-align">
-            <div class="description-width">
-              <p class="input-names">{{"DESCRIPTION" | translate}}</p>
-              <textarea class="resizable-textarea" id="description"
-              [formControl]="Description"
-              class="resizable-description"
-              placeholder="Add Description Here..."
-              [maxlength]="800"></textarea> 
-            </div> 
-            <div class="input-align datetime-container">
-              <label class="input-names">{{"EXPIRATIONDATE" | translate}}</label>
-              <div class="date-align-time">
-                  <input  id="activation-date" formControlName="Expiration_Date"type="date" class="dateStyle" id="expirationdate">
-                  <input id="activation-time" formControlName="ExpirationTime" type="time"class="Time" id="expirationtime">    
-              </div>  
-            </div> 
-        </div>
-
-
-        <div class="input-align-parent">
-          <div class="ticket-count">
-            <div class="ticket-count-align">
-              <label class="input-names">{{"HOWMANYTICKETS" | translate}}</label>
-              <input type="number" formControlName="TicketCount" class="ticket-inputs" placeholder="0">
+        <div class="content-background">
+          <div class="input-align-parent">
+            <div class="input-align">
+                <label class="input-names"> {{"TITLE" | translate}} </label>
+                <input id="title"  [ngClass]="{'empty-input': ticketForm.controls['Title'].errors?.['required']}" [formControl]="title" type="text" class="ticket-inputs" maxlength="80" placeholder="Add Title here..">
+                <div *ngIf="ticketForm.controls['Title'].dirty || isFormSubmited">
+                  <span *ngIf=" ticketForm.controls['Title'].errors?.['required']"class="validation-message">{{"TITLE" | translate}} {{"ISNECESSARY" | translate}}</span>
+                </div>    
             </div>
-            <div class="create-ticket-parent">
-               <button type="submit" class="create-ticket-button" (click)="addOrUpdate()" >{{"SAVETICKET" | translate}}</button>
+            <div class="input-align">
+              <label class="input-names">{{"GENRE" | translate}} </label>
+              <select id="genre" formControlName="Genre" [formControl]="Genre" class="ticket-inputs"  [ngClass]="{'empty-input': ticketForm.controls['Genre'].errors?.['required']}"> 
+                <option class="GenreOption" value="" disabled selected>{{"SELECTGENRE" | translate}} </option>
+                <option class="GenreOption" value="Football">{{"FOOTBALL" | translate}} </option>
+                <option class="GenreOption" value="Film">{{"FILM" | translate}} </option>
+                <option class="GenreOption" value="Theater">{{"THEATER" | translate}} </option>
+                <option class="GenreOption" value="Animation">{{"ANIMATION" | translate}} </option>
+                <option class="GenreOption" value="Music">{{"MUSIC" | translate}} </option>
+                <option class="GenreOption" value="Other">{{"OTHER" | translate}} </option>
+              </select>
+              <div *ngIf="ticketForm.controls['Genre'].dirty">
+                <span *ngIf=" ticketForm.controls['Genre'].errors?.['required']"class="validation-message">{{"GENRE" | translate}} {{"ISNECESSARY" | translate}}</span>
+              </div>  
+            </div>
+            <div class="input-align">
+              <p class="input-names">{{"PRICE" | translate}} </p>
+              <input id="price" [formControl]="Price" type="number" class="ticket-inputs" placeholder="Price"  [ngClass]="{'empty-input': ticketForm.controls['Price'].errors?.['required']}">
+              <div *ngIf="ticketForm.controls['Price'].dirty || ticketForm.valid">
+                <span *ngIf=" ticketForm.controls['Price'].errors?.['required']"class="validation-message">{{"PRICE" | translate}} {{"ISNECESSARY" | translate}}</span>
+              </div>  
+            </div>
+            <div class="input-align datetime-container">
+              <label class="input-names">{{"ACTIVATIONDATE" | translate}} </label>
+              <div class="date-align-time">
+                  <input  id="activationdate" [formControl]="Date" type="date" class="dateStyle">
+                  <input  [formControl]="Time" class="Time" type="time" id="activationtime">    
+              </div>  
+              <div *ngIf="ticketForm.controls['Activation_Date'].dirty || ticketForm.valid">
+                <span *ngIf=" ticketForm.controls['ActivationTime'].errors?.['required']"class="validation-message">{{"ACTIVATIONDATE" | translate}} {{"ISNECESSARY" | translate}}</span>
+              </div>           
+            </div>
+          </div>
+  
+          <div class="description-align">
+              <div class="description-validation">
+                <div class="description-width">
+                    <p class="input-names">{{"DESCRIPTION" | translate}}</p>
+                    <textarea class="resizable-textarea" id="description"  [ngClass]="{'empty-input full-border': ticketForm.controls['Description'].errors?.['required']}"
+                    [formControl]="Description"
+                    class="resizable-description"
+                    placeholder="Add Description Here..."
+                    [maxlength]="800"></textarea> 
+                  </div> 
+                  <div *ngIf="ticketForm.controls['Description'].dirty || ticketForm.valid" class="val-absolute">
+                    <span *ngIf=" ticketForm.controls['Description'].errors?.['required']"class="validation-message">{{"DESCRIPTION" | translate}} {{"ISNECESSARY" | translate}}</span>
+                  </div> 
+              </div>
+              <div class="input-align datetime-container">
+                <label class="input-names">{{"EXPIRATIONDATE" | translate}}</label>
+                <div class="date-align-time">
+                    <input  id="activation-date" formControlName="Expiration_Date"type="date" class="dateStyle" id="expirationdate">
+                    <input id="activation-time" formControlName="ExpirationTime" type="time"class="Time" id="expirationtime">    
+                </div>  
+                <div *ngIf="ticketForm.controls['Expiration_Date'].dirty || ticketForm.valid">
+                  <span *ngIf=" ticketForm.controls['ExpirationTime'].errors?.['required']"class="validation-message">{{"EXPIRATIONDATE" | translate}} {{"ISNECESSARY" | translate}}</span>
+                </div> 
+              </div> 
+          </div>
+  
+  
+          <div class="input-align-parent">
+            <div class="ticket-count">
+              <div class="ticket-count-align">
+                <label class="input-names">{{"HOWMANYTICKETS" | translate}}</label>
+                <input type="number" formControlName="TicketCount" class="ticket-inputs" placeholder="0">
+              </div>
+              <div class="create-ticket-parent">
+                 <button type="submit" class="create-ticket-button" (click)="addOrUpdate()" [disabled]="!ticketForm.valid">{{"SAVETICKET" | translate}}</button>
+              </div>
             </div>
           </div>
         </div>

@@ -204,6 +204,25 @@ display: none;
   box-shadow: 140px -140px #cc3f47;
   background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
 }
+.ticketDate{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.923);
+  bottom: -50px;
+  transition: 0.2s all ease-in-out;
+}
+.card_box_main:hover .ticketDate{
+  bottom: 0px;
+}
+.date-ticket{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: whitesmoke;
+  padding: 10px;
+}
 .Ticket_parent_Carousel {
   width: 90%;
   display: flex;
@@ -270,6 +289,7 @@ display: none;
   display: flex;
   align-items: center;
   font-weight: bolder;
+  cursor: pointer;
 }
 .sectionTitletext::before{
   content: "";
@@ -323,7 +343,7 @@ display: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: 0.3s all ease-in-out;
+  transition: 0.2s all ease-in-out;
   top: 0;
   padding-top: 5px;
 }
@@ -512,6 +532,15 @@ display: none;
 
 
 
+
+
+
+
+
+
+
+
+
 @media screen and (min-width : 1200px){
   .Photocontainer{
     width: 1600px;
@@ -593,9 +622,8 @@ display: none;
   .PopularEvent{
     height: 240px;
   }
-  .sectionHeaderAlign{
-    flex-direction: column;
-    align-items: flex-start;
+  .seeAllTickets{
+    display: none;
   }
   .section{
     height: 200px;

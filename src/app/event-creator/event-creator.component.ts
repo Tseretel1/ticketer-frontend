@@ -8,6 +8,7 @@ import { Login, Register, ServiceService } from './service.service';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { appRoutes, Routes} from '../route-paths';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatIcon } from '@angular/material/icon';
 
 
 
@@ -22,7 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterOutlet,
     CdkDrag,
     TranslateModule,
-    RouterLinkActive
+    RouterLinkActive,
+    MatIcon
 ],
   templateUrl: './event-creator.component.html',
   styleUrl: './event-creator.component.scss'
@@ -32,7 +34,7 @@ export class EventCreatorComponent implements OnInit{
 
   ngOnInit(): void {
     this.LoggedCheck();
-    this.Rolecheck();
+    this.mycreatorAccounts();
   }
 
   
@@ -50,9 +52,7 @@ export class EventCreatorComponent implements OnInit{
       IdCardPhoto :['',[Validators.required]],
     });
     this.CreateAccountForm = fb.group({
-      UserName :['',[Validators.required]],
-      Logo :['',[Validators.required]],
-      Password :['',[Validators.required]],
+      accountName :['',[Validators.required]],
     })
   }
 
@@ -73,60 +73,49 @@ export class EventCreatorComponent implements OnInit{
     }
   }
 
-  
-  IsUserAdmin :boolean = false;
-  LoginToaccount(){
-    if(this.Loginform.valid){
-    const Logincredentials: Login={
-      userName  :this.Loginform.value.username,
-      password: this.Loginform.value.password
-    }
-    this.service.onLogin(Logincredentials).subscribe(
+ myAccounts :any []= [];
+  mycreatorAccounts(){
+    this.service.myCreatorAccounts().subscribe(
+      (resp)=>{
+        this.myAccounts = resp;
+        console.log(resp);
+        if(resp.length<=0){
+          this.switch = false;
+        }
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+  LoginToaccount(accountID :number){
+    this.service.loginToAccount(accountID).subscribe(
       (resp)=>{
         localStorage.setItem('CreatorToken', resp.message);
         const token = localStorage.getItem('CreatorToken');
         if (token) {
-          var UserRole = this.authService.getUserRole(token);
-          if(UserRole == 'AccountAdmin'){
-            this.IsUserAdmin = true;
             this.router.navigate([this.routes.creatorProfile]);
             this.Loginform.reset();
-          }
-          else{
-            this.router.navigate([this.routes.creatorTicketManagement]);
-            this.IsUserAdmin = false;
-          }
         }
         else{
           localStorage.setItem('CreatorToken', resp.message);
         }
       },
       (error)=>{
-        if (error.status === 404) {
-          this.Server_response = 'UserName or password is incorrect. please Try again!';
-        } else if (error.status === 400) {
-          this.Server_response = 'Bad request. Please verify the data you are sending.';
-        } else if (error.status === 500) {
-          this.Server_response = 'Server error. Please try again later.';
-        }
-        this.modalvisible = true;
         console.log(error);
       }
     )
-  }
-  }
-  CreatorOrNot : boolean = false;
-  Rolecheck (){
+}
+
+  creatorCheck(){
     const Token = localStorage.getItem("token");
     if(Token){
       var Role =  this.authService.getUserRole(Token);
       if(Role == "Creator"){
-        this.CreatorOrNot = true;
         return true;
       }
       else if(Role == "User")
       {
-        this.CreatorOrNot = false;
         return false;
       }
     }
@@ -148,6 +137,7 @@ export class EventCreatorComponent implements OnInit{
       this.switchText  = "Register as Creator";
     }
   }
+
 
   RegisterAscreator(){
     const reg: Register={
@@ -172,4 +162,25 @@ export class EventCreatorComponent implements OnInit{
       }
     )
   }
+
+  createNewAccount() {
+    if (this.CreateAccountForm.valid) {
+        const accountName = this.CreateAccountForm.value.accountName;
+        console.log(accountName);
+        this.service.accountCreation(accountName).subscribe(
+            (resp) => {
+                if (resp!=null) {
+                  this.myAccounts.push(resp);
+                  this.LoginToaccount(resp.id);
+                }
+            },
+            (error) => {
+                console.error("Error creating account:", error);
+            }
+        );
+    } else {
+        console.error("Form is invalid");
+    }
+}
+
 }

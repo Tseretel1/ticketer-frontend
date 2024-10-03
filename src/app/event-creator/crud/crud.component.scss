@@ -3,10 +3,76 @@
     height: 100%;
 }
 
+.delete-modal-parent{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 2;
+}
+
+.delete-modal{
+    background-color: #000000;
+    background: linear-gradient(270deg, rgb(18, 6, 50), #222c05, rgb(18, 6, 50));
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 20s ease infinite;
+    animation: AnimationName 20s ease infinite;
+    padding: 10px 20px 20px 20px ;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px black;
+}
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 50%
+    }
+  
+     50% {
+      background-position: 100% 50%
+    }
+  
+    100% {
+      background-position: 0% 50%
+    }
+  }
+.modal-question{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.are-you-sure{
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+.warning-flex{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 20px;
+}
+.warn{
+    color: yellow;
+}
+.note{
+    color: #9f9f00;
+    
+}
+.modal-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
 .center-form{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
 }
 .CancelAdingticket{
     display: flex;
@@ -17,14 +83,25 @@
     width: 90%;
     max-width: 1000px;
     padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .CancelAdingticketButton{
-    width: 200px;
-    font-size: 20px;
     border-radius: 10px;
     cursor: pointer;
     border: none;
     transition: 0.3s all ease-in-out;
+    padding: 5px;
+}
+.delete-ticket-button{
+    background-color: transparent;
+    border: 1px solid red;
+    color: white;
+    transition: 0.2s all ease-in-out;
+}
+.delete-ticket-button:hover{
+    background-color: red;
 }
 .image-preview-parent{
     width: 100%;
@@ -38,6 +115,8 @@
     position: relative;
     border-radius: 10px;
     max-width: 1000px;
+    background-color: rgba(0, 0, 0, 0.503);
+    border: 1px solid grey;
 }
 .photoAlign{
     display: flex;
@@ -79,11 +158,11 @@
 
 
 .input-align-parent{
-    width: 90%;
+    width: 100%;
     display: flex;
-    max-width: 1000px;
     padding: 30px;
     justify-content: space-between;
+    gap: 30px;
 }
 .input-align{
     display: flex;
@@ -103,18 +182,21 @@
     color: lightpink;
     padding: 10px;
 }
-
+.ticket-inputs Option{
+    background-color: black;
+}
 .input-center{
     justify-content: space-evenly;
 }
 .datetime-container{
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: rgba(0, 0, 0, 0.542);
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px black;
+    min-width: 180px;
+    max-height: 90px;
 }
 .date-align-time{
     display: flex;
@@ -122,13 +204,22 @@
 }
 .description-align{
     display: flex;
-    max-width: 1000px;
-    width: 90%;
+    width: 100%;
     justify-content: space-between;
-    gap: 20px;
+}
+.description-validation{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.val-absolute{
+    position: absolute;
+    bottom: -40px;
 }
 .description-width{
     width: 100%;
+    height: 100%;
 }
 .resizable-description {
     width: 90%;
@@ -177,25 +268,39 @@
     color: black;
 }
 
+.content-background{
+    display: flex;
+    flex-direction: column;
+    width: 84%;
+    max-width: 950px;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.434);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+.validation-message{
+    color: red;
+    font-size: 14px;
+}
+.empty-input{
+    border-bottom: 1px solid red;
+}
+.full-border{
+    border: 1px solid red;
+}
 
 
 
 
 
-
-
-
-
-
-@media screen and (max-width : 600px){
+@media screen and (max-width : 880px){
     .input-align-parent{
         flex-direction: column;
     }
-}
-@media screen and (max-width : 510px){
     .description-align{
         flex-direction: column-reverse;
-        margin-top: 20px;
+        gap: 20px;
     }
     .datetime-column{
         flex-direction: row;
@@ -203,5 +308,17 @@
     }
     .resizable-description {
         width: 100%;
+    }
+    .val-absolute{
+        bottom: -20px;
+    }
+}
+
+@media screen and (max-width : 550px){
+    .image-preview{
+        height: 200px;
+    }
+    .CancelAdingticketButton{
+        padding: 5px;
     }
 }

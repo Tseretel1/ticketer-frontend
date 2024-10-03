@@ -53,6 +53,8 @@ export class RegistrationComponent implements OnInit {
       ]),
     });
 
+    
+
     this.registrationForm = this.formBuilder.group({
       passcode: new FormControl('', [
         Validators.required,

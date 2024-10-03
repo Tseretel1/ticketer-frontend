@@ -41,7 +41,7 @@
         <!--Popular Tickets-->
         <div class="sectionHeader" *ngIf="popularTickets">
             <div class="sectionHeaderAlign">
-                <p class="sectionTitletext">{{ 'POPULAREVENTS' | translate }}<mat-icon class = "starIcon staritself">star</mat-icon></p>
+                <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'popular'">{{ 'POPULAREVENTS' | translate }}<mat-icon class = "starIcon staritself">star</mat-icon></p>
                 <div class="scrolBUttonsParent">
                     <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories+'popular'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
                 </div>
@@ -54,6 +54,10 @@
                             <div class="card_box_main">
                                 <div class="TicketImageContainerMain">
                                     <img [src]="tkt.photo" alt="" class="ticketimage">
+                                    <div class="ticketDate">
+                                        <p class="date-ticket"><mat-icon>calendar_today </mat-icon> {{ tkt.activation_Date | date: 'MMM d' }}</p>
+                                        <p class="date-ticket"><mat-icon>access_time </mat-icon> {{ tkt.activation_Date | date: 'h:mm a' }}</p>
+                                    </div>
                                 </div>
                                 <div class="ticketfooter">
                                     <p class="ticketTitleMain">{{tkt.title}}</p>
@@ -69,7 +73,7 @@
         <div class="sectionHeader headerTop" *ngIf="popularTickets">
             <div class="sectionHeaderAlign">
                 <div class="">
-                    <p class="sectionTitletext">{{ 'UPCOMINGEVENTS' | translate }}<mat-icon class = "starIcon">calendar_today/mat-icon></mat-icon></p> 
+                    <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'upcoming'"> {{ 'UPCOMINGEVENTS' | translate }} <mat-icon class = "starIcon">calendar_today/mat-icon></mat-icon></p> 
                 </div>
                 <div class="scrolBUttonsParent">
                     <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'upcoming'">{{ 'SEEALLTICKETS' | translate }} <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
@@ -83,6 +87,10 @@
                             <div class="card_box_main">
                                 <div class="TicketImageContainerMain">
                                     <img [src]="tkt.photo" alt="" class="ticketimage">
+                                    <div class="ticketDate">
+                                        <p class="date-ticket"><mat-icon>calendar_today </mat-icon> {{ tkt.activation_Date | date: 'MMM d' }}</p>
+                                        <p class="date-ticket"><mat-icon>access_time </mat-icon> {{ tkt.activation_Date | date: 'h:mm a' }}</p>
+                                    </div>
                                 </div>
                                 <div class="ticketfooter">
                                     <p class="ticketTitleMain">{{tkt.title}}</p>

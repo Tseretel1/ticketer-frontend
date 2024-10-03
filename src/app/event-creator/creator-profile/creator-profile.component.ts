@@ -6,15 +6,18 @@ import { MatIcon } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { AuthService } from '../../auth.service';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { appRoutes, Routes} from '../../route-paths';
 @Component({
   selector: 'app-creator-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DatePipe, MatIcon, RouterLink,CdkDrag],
+  imports: [CommonModule, ReactiveFormsModule, DatePipe, MatIcon, RouterLink,CdkDrag,TranslateModule],
   templateUrl: './creator-profile.component.html',
   styleUrl: './creator-profile.component.scss'
 })
 export class CreatorProfileComponent implements OnInit{
+routes: Routes = appRoutes;
+
   constructor (private service :ProfileService, private authservice :AuthService, private router :Router){
   }
   ngOnInit(): void {
@@ -49,7 +52,7 @@ export class CreatorProfileComponent implements OnInit{
   }
 
 
-  switch:boolean = true
+  switch:boolean = false
 
 
   RoleToChange: any = {};
@@ -77,7 +80,7 @@ export class CreatorProfileComponent implements OnInit{
   ModalPressed:boolean = false
   ExitFromAccunt(){
     localStorage.removeItem("CreatorToken");
-    this.router.navigate(["/EventCreator"]);
+    this.router.navigate([this.routes.creator]);
   } ;
 
 

@@ -4,7 +4,6 @@ import { CrudService, Ticket, TicketToAdd } from './crud.service';
 import { CommonModule, DatePipe, Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
-import { Title } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -54,6 +53,9 @@ export class CrudComponent implements OnInit{
       this.isUpdateMode = true;
       this.MatchingTicket(); 
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
   }
 
   photoTicket: string | null = '';
@@ -151,6 +153,29 @@ export class CrudComponent implements OnInit{
     this.location.back();
   }
   
+  modalvisible :boolean = false;
+  opendeletemodal(){
+    this.modalvisible = true;
+  }
+  closedeletemodal(){
+    this.modalvisible = false;
+  }
+
+  deleteTicket(id:number){
+    this.service.deleteTicket(id).subscribe(
+      (res) => {
+        console.log(res.message);
+        this.closedeletemodal();
+      },
+      (error) => {
+        console.error(error.message);
+      }
+    );
+    console.log("id of this ticket" ,id)
+  }
+
+
+
 
   addOrUpdate(): void {
     if (this.isUpdateMode) {
@@ -162,8 +187,10 @@ export class CrudComponent implements OnInit{
   
   
   //Ticket creation
+  isFormSubmited: boolean = false;
   UPdateTicket(): void {
     if (this.ticketForm.valid) {
+      this.isFormSubmited = true;
       const TicketToUpdate: Ticket = {
         ID :this.id,
         title: this.ticketForm.value.Title,
@@ -197,6 +224,7 @@ export class CrudComponent implements OnInit{
   }
   addticket(): void {
     if (this.ticketForm.valid) {
+      this.isFormSubmited = true;
       const TicketADD: TicketToAdd = {
         title: this.ticketForm.value.Title,
         description: this.ticketForm.value.Description,

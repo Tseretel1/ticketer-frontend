@@ -7,11 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CrudService {
-  deleteTicket(id: number) {
-    throw new Error('Method not implemented.');
-  }
-
   private url = "https://localhost:7081/api/Creator/";
+  deleteTicket(id: number): Observable<any> {
+    return this.http.delete(`${this.url}delete-tickets/${id}`);
+  }
 
   constructor(private http: HttpClient,private datePipe: DatePipe) { }
   
@@ -35,14 +34,14 @@ export class CrudService {
         responseType: 'json',
     });   
 }
-
 createTicket(ticket: TicketToAdd): Observable<any> {
     return this.http.post(this.url + "add-new-tickets", ticket, {
         headers: { 'Content-Type': 'application/json' },
         responseType: 'json',
     });
-}
-}
+  }
+}  
+
 export interface Ticket{
   ID :number;
   title :string;

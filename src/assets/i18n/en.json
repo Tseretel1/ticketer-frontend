@@ -5,6 +5,13 @@
     
     "NOTFOUND" : "404 not found :(",
     "BACK" : "Back",
+    "DELETETICKET" : "Delete Ticket",
+    "SURETODELETE" : "Are you sure to delete Ticket?",
+    "DELETENOTE" : "Warning: this ticket will be deleted permanently!",
+    "CANCEL" : "Cancel",
+
+    "ISNECESSARY" : "is Required",
+
 
 
 
@@ -23,6 +30,7 @@
     "ANIMATION": "Animation",
     "FOOTBALL": "Football",
     "FILM": "Film",
+    "OTHER": "Other",
 
 
     "TICKETS": "Tickets",
@@ -52,6 +60,17 @@
     "REGISTRATION": "Registration",
     "SWITCHTO": "Switch",
 
+    "MYACCOUNTS": "My Accounts",
+    "REGISTERASCREATOR": "Register as creator",
+    "CREATENEWACCOUNT": "Create new Account!",
+    "SUBMIT": "Submit",
+    "ACCOUNTNAME": "Account Name",
+    "WELCOMETOCREATOR":"Welcome to creator space!",
+    
+
+
+
+
 
 
     "TICKETMANAGMENT": "Ticket Managment",
@@ -66,11 +85,6 @@
     "EDITTICKET": "Edit Ticket",
     "HOWMANYTICKETS": "How many Tickets do you want to create?",
     "SAVETICKET": "Save Ticket"
-
-
-
-
-
 
     
 }

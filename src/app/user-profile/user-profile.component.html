@@ -15,11 +15,6 @@
 </div>
 
 
-<div class="exitButtonParent" *ngIf="ExitFromAccountVisible == false">
-   <div class="exitbuttonAlign">
-      <button class="backoff" (click)="BackFromTicket()">Back<mat-icon class="upside">exit_to_app</mat-icon></button>
-   </div>
-</div>
 
 <div class="centersingleTicketParent" *ngIf="QRVisible && Instances">
    <div class="SinglticketTitle">
@@ -28,6 +23,11 @@
    <div class="SingleTicketDate">
       <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{ SingleTicket.activation_Date | date: 'MMM d' }}</p>
       <p class="SingleDate"><mat-icon>access_time</mat-icon>{{ SingleTicket.activation_Date | date: 'h : m a' }}</p>
+   </div>
+   <div class="exitButtonParent" *ngIf="ExitFromAccountVisible == false">
+      <div class="exitbuttonAlign">
+         <button class="backoff" (click)="BackFromTicket()">Back<mat-icon class="upside">exit_to_app</mat-icon></button>
+      </div>
    </div>
    <div class="SingleTicketParent">
       <div class="SingleTicket" *ngFor="let i of Instances; let index = index" [ngClass]="{'scannedTicket': i.isActive == false}">

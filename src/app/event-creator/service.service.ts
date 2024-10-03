@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 @Injectable({
@@ -8,22 +8,28 @@ export class ServiceService {
 
   constructor(private http : HttpClient )
   { }
-  private apicall = "https://localhost:7081/";  
-
-  private LoginURL = this.apicall + 'creator-account-login';
-
-  private RegisterURL = this.apicall + 'register-as-creator';
+  private URL = "https://localhost:7081/";  
+  loginToAccount(accountID: number): Observable<any> { 
+    return this.http.get(`${this.URL}creator-account-login/${accountID}`);
+}
   
-  onLogin(login: Login): Observable<any> {
-    const params = new HttpParams()
-      .set('username', login.userName)
-      .set('password', login.password)
-    return this.http.get(this.LoginURL, { params });
-  }
-
-  onRegister(r: Register): Observable<any> {
-    return this.http.post(this.RegisterURL, r);
+  myCreatorAccounts(): Observable<any> {
+    return this.http.get(this.URL+"my-creator-account");
   }  
+  onRegister(r: Register): Observable<any> {
+    return this.http.post(this.URL + "register-as-creator", r);
+  }  
+
+  accountCreation(accountName: string): Observable<any> {
+    const payload = {
+      accountName,
+    };
+    return this.http.post<any>(this.URL + "creator-account-registration", payload, {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+      }),
+    });  
+  }
 }
 
 

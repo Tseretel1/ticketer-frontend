@@ -437,10 +437,11 @@
     transition: 0.3s all ease-in-out;
     border-radius: 10px;
     justify-content: center;
-    position: fixed;
     z-index: 10;
-    color: black;
-    margin-top: 60px;
+    width: 100%;
+}
+.backoff:hover{
+    background-color: white;
 }
 
 
