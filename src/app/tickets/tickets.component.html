@@ -1,13 +1,4 @@
 <div class="centerCover">
-    <div class="categories">
-        <div class="categoriesAlign">
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'MUSIC'"> {{'MUSIC' | translate }} <mat-icon class="categoryIcons music">music_note</mat-icon> </div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'FILM'"> {{'FILM' | translate }} <mat-icon class="categoryIcons">camera_alt</mat-icon> </div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'THEATER'"> {{'THEATER' | translate }} <mat-icon class="categoryIcons theater">theater_comedy</mat-icon> </div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'ANIMATION'"> {{'ANIMATION' | translate }} <mat-icon class="categoryIcons">animation</mat-icon></div>
-            <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'FOOTBALL'"> {{'FOOTBALL' | translate }} <mat-icon class="categoryIcons football">sports_soccer</mat-icon> </div>
-        </div>
-    </div>
     <div class="Tickets_Header" *ngIf="allTicketsVisible == false">
         <div class="headercarousel" #Headercarousel>
             <div class="PopularEvent"#eventParent *ngFor="let pop of Popularevent">

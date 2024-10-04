@@ -22,7 +22,7 @@ export class ProfileService {
     return this.http.get(this.URL + 'my-profile');
   } 
   GetAccountManagment():Observable<any>{
-    return this.http.get(this.URL + 'account-managment');
+    return this.http.get(this.URL + 'account-management');
   } 
   RemoveUserfromAccount(userid :number):Observable<any>{
     return this.http.delete(`${this.URL}remove-user-from-account/${userid}`);

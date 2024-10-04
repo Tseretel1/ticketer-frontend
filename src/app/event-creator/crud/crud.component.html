@@ -15,6 +15,14 @@
   </div>
 </div>
 
+
+<div class="response-modal-parent">
+  <div class="">
+    
+  </div>
+</div>
+
+
     <div class="CancelAdingticket">
         <div class="cancel-ticket-align">
           <button class="CancelAdingticketButton" (click)="CancelTicketCreation()">{{"BACK" | translate}}</button> 
@@ -68,15 +76,27 @@
                 <span *ngIf=" ticketForm.controls['Price'].errors?.['required']"class="validation-message">{{"PRICE" | translate}} {{"ISNECESSARY" | translate}}</span>
               </div>  
             </div>
-            <div class="input-align datetime-container">
-              <label class="input-names">{{"ACTIVATIONDATE" | translate}} </label>
-              <div class="date-align-time">
-                  <input  id="activationdate" [formControl]="Date" type="date" class="dateStyle">
-                  <input  [formControl]="Time" class="Time" type="time" id="activationtime">    
-              </div>  
-              <div *ngIf="ticketForm.controls['Activation_Date'].dirty || ticketForm.valid">
-                <span *ngIf=" ticketForm.controls['ActivationTime'].errors?.['required']"class="validation-message">{{"ACTIVATIONDATE" | translate}} {{"ISNECESSARY" | translate}}</span>
-              </div>           
+            <div class="datetime-flex">
+              <div class="input-align datetime-container">
+                <label class="input-names">{{"ACTIVATIONDATE" | translate}} </label>
+                <div class="date-align-time">
+                    <input  id="activationdate" [formControl]="Date" type="date" class="dateStyle">
+                    <input  [formControl]="Time" class="Time" type="time" id="activationtime">    
+                </div>  
+                <div *ngIf="ticketForm.controls['Activation_Date'].dirty || ticketForm.valid">
+                  <span *ngIf=" ticketForm.controls['ActivationTime'].errors?.['required']"class="validation-message">{{"ACTIVATIONDATE" | translate}} {{"ISNECESSARY" | translate}}</span>
+                </div>           
+              </div>
+              <div class="input-align datetime-container">
+                <label class="input-names">{{"EXPIRATIONDATE" | translate}}</label>
+                <div class="date-align-time">
+                    <input  id="activation-date" formControlName="Expiration_Date"type="date" class="dateStyle" id="expirationdate">
+                    <input id="activation-time" formControlName="ExpirationTime" type="time"class="Time" id="expirationtime">    
+                </div>  
+                <div *ngIf="ticketForm.controls['Expiration_Date'].dirty || ticketForm.valid">
+                  <span *ngIf=" ticketForm.controls['ExpirationTime'].errors?.['required']"class="validation-message">{{"EXPIRATIONDATE" | translate}} {{"ISNECESSARY" | translate}}</span>
+                </div> 
+              </div> 
             </div>
           </div>
   
@@ -94,16 +114,6 @@
                     <span *ngIf=" ticketForm.controls['Description'].errors?.['required']"class="validation-message">{{"DESCRIPTION" | translate}} {{"ISNECESSARY" | translate}}</span>
                   </div> 
               </div>
-              <div class="input-align datetime-container">
-                <label class="input-names">{{"EXPIRATIONDATE" | translate}}</label>
-                <div class="date-align-time">
-                    <input  id="activation-date" formControlName="Expiration_Date"type="date" class="dateStyle" id="expirationdate">
-                    <input id="activation-time" formControlName="ExpirationTime" type="time"class="Time" id="expirationtime">    
-                </div>  
-                <div *ngIf="ticketForm.controls['Expiration_Date'].dirty || ticketForm.valid">
-                  <span *ngIf=" ticketForm.controls['ExpirationTime'].errors?.['required']"class="validation-message">{{"EXPIRATIONDATE" | translate}} {{"ISNECESSARY" | translate}}</span>
-                </div> 
-              </div> 
           </div>
   
   
@@ -114,7 +124,7 @@
                 <input type="number" formControlName="TicketCount" class="ticket-inputs" placeholder="0">
               </div>
               <div class="create-ticket-parent">
-                 <button type="submit" class="create-ticket-button" (click)="addOrUpdate()" [disabled]="!ticketForm.valid">{{"SAVETICKET" | translate}}</button>
+                 <button type="submit" class="create-ticket-button" (click)="addOrUpdate()" [disabled]="!ticketForm.valid || isFormSubmited">{{"SAVETICKET" | translate}}</button>
               </div>
             </div>
           </div>

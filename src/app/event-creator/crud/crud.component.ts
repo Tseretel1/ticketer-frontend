@@ -164,8 +164,12 @@ export class CrudComponent implements OnInit{
   deleteTicket(id:number){
     this.service.deleteTicket(id).subscribe(
       (res) => {
-        console.log(res.message);
-        this.closedeletemodal();
+        if(res.success){
+          this.closedeletemodal();
+          setTimeout(() => {            
+            this.location.back();
+          }, 500);
+        }
       },
       (error) => {
         console.error(error.message);
@@ -204,27 +208,27 @@ export class CrudComponent implements OnInit{
       };
       this.service.Updateticket(TicketToUpdate).subscribe(
         (res) => {
-          console.log(res);
+          if(res.success){
+            this.ticketForm.value.reset();
+            this.location.back();
+          }
         },
         (error) => {
           console.error(error.message);
-          console.log(TicketToUpdate);
-
         }
       );
     } 
     else {
       console.error('Form is invalid');
       console.log(this.ticketForm.value);
-
       Object.values(this.ticketForm.controls).forEach(control => {
         control.markAsTouched();
       });
     }
-  }
-  addticket(): void {
-    if (this.ticketForm.valid) {
+  }addticket(): void {
+    if (this.ticketForm.valid && !this.isFormSubmited) {
       this.isFormSubmited = true;
+  
       const TicketADD: TicketToAdd = {
         title: this.ticketForm.value.Title,
         description: this.ticketForm.value.Description,
@@ -235,24 +239,27 @@ export class CrudComponent implements OnInit{
         photo: this.ticketForm.value.Photo,
         genre: this.ticketForm.value.Genre,
       };
+  
       this.service.createTicket(TicketADD).subscribe(
         (res) => {
-          console.log(this.ticketForm.value);
-          console.log(res);
+          this.isFormSubmited = false;
+          if (res.success) {
+            this.ticketForm.reset();
+            this.location.back();
+          }
         },
         (error) => {
-          console.log(this.ticketForm.value);
+          this.isFormSubmited = false;
           console.error(error.message);
-          console.log(TicketADD);
         }
       );
-    } 
-    else {
-      console.error('Form is invalid');
+    } else {
+      console.error('Form is invalid or already submitted');
       console.log(this.ticketForm.value);
       Object.values(this.ticketForm.controls).forEach(control => {
         control.markAsTouched();
       });
     }
   }
+  
 }

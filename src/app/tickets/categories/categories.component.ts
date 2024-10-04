@@ -25,11 +25,11 @@ export class CategoriesComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.router.params.pipe(takeUntil(this.destroy$)).subscribe(params => {
       this.categoryName =params['id'];
+      this.loadCategorisedTicket();
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 50);
     });
-    this.loadCategorisedTicket();
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 50);
   }
   ngOnDestroy(): void {
     this.destroy$.next();

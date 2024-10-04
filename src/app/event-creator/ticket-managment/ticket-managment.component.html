@@ -28,9 +28,13 @@
    </div>
 </div>
 <div class="ticket-managment-body">  
-
   <!-- Active Tickets -->
-      <div class="TicketWrap" *ngIf="ticketSwtich">
+
+  <div class="not-found-container" *ngIf="activeTickets.length <= 0 && ticketSwtich">{{"NOTFOUND"|translate}} </div>
+  <div class="not-found-container" *ngIf="expiredTickets.length <= 0 && ticketSwtich==false">{{"NOTFOUND"|translate}} </div>
+
+
+      <div class="TicketWrap" *ngIf="activeTickets.length > 0 && ticketSwtich">
         <div class="Ticket" *ngFor="let tkt of activeTickets; let i = index"[routerLink]="['/EventCreator/Crud', tkt.id]">
             <div class="SoldTicketCount"> <mat-icon class="iconsize">confirmation_number</mat-icon> {{tkt.ticketCount}}</div>
             <div class="TicketFlex">
@@ -62,7 +66,7 @@
 
   <!-- Expired Tickets -->
 
-      <div class="TicketWrap" *ngIf="ticketSwtich == false">
+      <div class="TicketWrap" *ngIf="expiredTickets.length > 0 && ticketSwtich == false">
         <div class="Ticket Ticket-expired" *ngFor="let tkt of expiredTickets; let i = index"[routerLink]="['/EventCreator/Crud', tkt.id]">
             <div class="SoldTicketCount"> <mat-icon class="iconsize">confirmation_number</mat-icon> {{tkt.ticketCount}}</div>
             <div class="TicketFlex">

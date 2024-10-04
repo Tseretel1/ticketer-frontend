@@ -4,59 +4,6 @@
   align-items: center;
   flex-direction: column;
 }
-
-//Categories
-.categories{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0px 20px 0px;
-}
-.categoriesAlign{
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-  max-width: 1600px;
-  align-items: center;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  scrollbar-width: none; 
-  -ms-overflow-style: none; 
-  max-width: 1600px;
-  gap: 30px;
-}
-
-
-.Ticket_parent_Carousel::-webkit-scrollbar {
-display: none;
-}
-.categoryTitle{
-  display: flex;
-  align-items: center;
-  color: white;
-  gap: 5px;
-  cursor: pointer;
-}
-.categoryIcons{
-  color: rgb(225, 132, 97);
-}
-.categoryIcons{
-  color: rgb(225, 132, 97);
-}
-.football{
-  color: lightgreen;
-}
-.music{
-  color: red;
-}
-.theater{
-  color: lightgreen;
-}
-.film{
-  color: lightgreen;
-}
-
 //Header______________________________________
 .Tickets_Header{
     width: 100%;

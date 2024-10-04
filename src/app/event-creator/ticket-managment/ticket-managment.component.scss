@@ -3,7 +3,7 @@
     width: 100%;
     overflow-x: hidden;
     height: 100%;
-  }
+}
 .Modal{
     width: 100%;
     height: 100%;
@@ -30,12 +30,22 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    height: 100%;
+}
+.not-found-container{
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 .ticket-managment-body{
     width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
+    height: 100%;
 }
 .my-tickets{
     display: flex;

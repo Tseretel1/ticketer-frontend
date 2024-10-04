@@ -8,7 +8,7 @@ import { routes } from './app/app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { DatePipe } from '@angular/common';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpLoaderFactory } from './app/http-loader.factory'; // Ensure this is the correct path
+import { HttpLoaderFactory } from './app/http-loader.factory';
 import { HttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {

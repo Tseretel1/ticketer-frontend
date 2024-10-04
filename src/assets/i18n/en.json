@@ -84,7 +84,12 @@
     "EXPIRATIONDATE": "Expiration Date",
     "EDITTICKET": "Edit Ticket",
     "HOWMANYTICKETS": "How many Tickets do you want to create?",
-    "SAVETICKET": "Save Ticket"
+    "SAVETICKET": "Save Ticket",
 
-    
+
+
+    "ACCOUNTEXISTS": "Account with given Name Already exists!",
+    "PERSONALID": "Your Personal ID",
+    "PHONENUMBER": "Your Phone Number",
+    "PERSONALIDPHOTO": "Personal id card Photo"
 }

@@ -25,17 +25,27 @@ export class NavigationComponent implements OnInit, OnDestroy{
     private authService:AuthService,
     private service :NavService,
     private location :Location, 
-    private router :Router,
-    private translate :TranslateService
+    private translate :TranslateService,
+    public router :Router,
   ) 
   {
+
   }
-
-
+  pathsToHide(): boolean {
+    const routesToHide = [
+      this.routes.creator,
+      this.routes.creatorProfile,
+      this.routes.creatorTicketManagement,
+      this.routes.creatorCrud,
+      this.routes.creatorScanner,
+      this.routes.fullticket, 
+      this.routes.userProfile
+    ];
+    return !routesToHide.some(route => this.router.url.startsWith(route));
+  }
   changeLanguage(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     const lang = selectElement.value;
-  
     this.translate.use(lang);
     localStorage.setItem('language', lang);
   }

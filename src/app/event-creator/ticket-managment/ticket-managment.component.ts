@@ -14,6 +14,7 @@ import { Router, RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { Routes, appRoutes } from '../../route-paths';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-create-ticket',
@@ -34,7 +35,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ticketmanagmentComponent implements OnInit {
   routes: Routes = appRoutes;
-  constructor(private ticketservice: CreateTicketService) {}
+  constructor(private ticketservice: CreateTicketService,private authservice:AuthService) {}
   ticketId?: string;
 
   ngOnInit(): void {
@@ -101,6 +102,10 @@ export class ticketmanagmentComponent implements OnInit {
   LoadMyTickets() {
     this.loadActiveTickets();
     this.loadExpiredTickets();
+    var token = localStorage.getItem("CreatorToken");
+    if(token){
+      console.log(this.authservice.getUserRole(token));
+    }
   }
 
   loadActiveTickets() {

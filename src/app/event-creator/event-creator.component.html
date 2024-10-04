@@ -1,25 +1,28 @@
 <div class="modalaprent" *ngIf="modalvisible">
-    <div class="modal">
-        <div class="CloseModalParent">
-          <button (click)="hideModal()" class="close-modal-btn CloseModalbutton">X</button>
-        </div>
-        <div class="Registration_Response">
-          <p class="Response_Style">{{ Server_response }}</p>
+    <div class="back-click" (click)="hideModal()">
+        <div class="modal">
+            <div class="close-modal-parent">
+              <button (click)="hideModal()" class="close-modal-btn">X</button>
+            </div>
+            <div class="Registration_Response">
+              <p class="server-response">{{ "ACCOUNTEXISTS" |translate }}</p>
+            </div>
         </div>
     </div>
 </div>
 <div class="EventParent" *ngIf="LoggedCheck()" >
     <div class="Navigation">
-        <a [routerLink]="this.routes.creatorTicketManagement" routerLinkActive="active-link"  class="router-link" >{{"TICKETMANAGMENT" |translate}}</a>
+        <a [routerLink]="this.routes.creatorTicketManagement" routerLinkActive="active-link" class="router-link" >{{"TICKETMANAGMENT" |translate}}</a>
         <a [routerLink]="this.routes.creatorProfile" routerLinkActive="active-link" class="router-link">{{"PROFILE" |translate}}</a>
     </div>
     <router-outlet></router-outlet>
 </div>
-<div class="AccountLoginCheck" *ngIf="LoggedCheck() == false">
+<div class="AccountLoginCheck" *ngIf="!LoggedCheck()">
         <!--Log into creator account-->
         <div class="account-parent">
+            <div class="account-tag" *ngIf="switch && creatorCheck()">{{"MYACCOUNTS" |translate}}</div>
+            <div class="CreateAccountLabel" *ngIf="!switch  && creatorCheck()">{{"CREATENEWACCOUNT"|translate}}</div>
             <div class="my-accounts-parent" *ngIf="switch">
-                <div class="account-tag">{{"MYACCOUNTS" |translate}}</div>
                   <div class="my-accounts" *ngFor="let i of myAccounts">
                     <div class="my-accounts-click" (click)="LoginToaccount(i.id)">
                         <div class="account-image-container">
@@ -35,25 +38,24 @@
             </div>
         
                  <!--Register as creator  Form-->
-                <form class="LogAccountForm" [formGroup]="RegisterForm" (submit)="RegisterAscreator()" *ngIf="switch == false && creatorCheck() == false">
+                <form class="LogAccountForm" [formGroup]="RegisterForm" (submit)="RegisterAscreator()" *ngIf="!switch  && !creatorCheck()">
                     <label for="" class="CreateAccountLabel">{{"REGISTERASCREATOR" |translate}}</label>
                     <div class="inputparents"> 
-                        <label class="Leblofinputs">Your Personal ID</label>
+                        <label class="Leblofinputs">{{"PERSONALID" |translate}}</label>
                         <input type="number" class="LoginAccountInputs" placeholder="Personal ID" formControlName="PersonalID">
                         <div *ngIf="RegisterForm.controls['PersonalID']?.dirty " class="positionrelative">
                             <span *ngIf="RegisterForm.controls['PersonalID']?.errors?.['required']" class="validationMessage">Personal ID is required</span>
                         </div>
                     </div>
-                 
                    <div class="inputparents">
-                     <label class="Leblofinputs">Your Phone Number</label>
+                     <label class="Leblofinputs">{{"PHONENUMBER" |translate}}</label>
                      <input type="number" class="LoginAccountInputs" placeholder="+995" formControlName="PhoneNumber"> 
                      <div *ngIf="RegisterForm.controls['PhoneNumber']?.dirty " class="positionrelative">
                          <span *ngIf="RegisterForm.controls['PhoneNumber']?.errors?.['required']" class="validationMessage">Phone number is required</span>
                      </div>
                    </div>
                    <div class="inputparents">
-                     <label class="Leblofinputs">Your Personal ID Photo</label> 
+                     <label class="Leblofinputs">{{"PERSONALIDPHOTO" |translate}}</label> 
                        <input type="number" class="LoginAccountInputs" placeholder="idcardphoto" formControlName="IdCardPhoto"> 
                        <button class="CreateAccountButton ">Submit</button>
                     </div>
@@ -61,20 +63,18 @@
 
 
                 <!--Create Account Form-->
-                <form [formGroup]="CreateAccountForm" class="LogAccountForm" *ngIf="switch == false && creatorCheck()">
-                    <div class="CreateAccountLabel">{{"CREATENEWACCOUNT"|translate}}</div>
+                <form [formGroup]="CreateAccountForm" class="LogAccountForm" *ngIf="!switch && creatorCheck()">
                     <div class="">
                         <label class="input-title">{{ "ACCOUNTNAME" | translate }}</label>
-                        <input type="text" formControlName="accountName" placeholder="new account" class="LoginAccountInputs">
-                        
-                        <div class="input-dirty" *ngIf="RegisterForm.controls['accountName']?.dirty && RegisterForm.controls['accountName']?.invalid">
-                            <p class="red-input" *ngIf="RegisterForm.controls['accountName'].errors?.['required']">
+                        <input type="text" formControlName="accountName" placeholder="new account" class="LoginAccountInputs">        
+                        <div class="input-dirty" *ngIf="CreateAccountForm.controls['accountName']?.dirty && CreateAccountForm.controls['accountName']?.invalid">
+                            <p class="red-input" *ngIf="CreateAccountForm.controls['accountName'].errors?.['required']">
                                 {{ "ACCOUNTNAME" | translate }} {{ "ISNECESSARY" | translate }}
                             </p>
                         </div>
                     </div>
                     
-                    <button class="bookmarkBtn" (click)="createNewAccount()" [disabled]="!RegisterForm.valid">
+                    <button class="bookmarkBtn" (click)="createNewAccount()" [disabled]="!CreateAccountForm.valid">
                       <p class="text">{{"SUBMIT"|translate}} </p>
                     </button>
                 </form>

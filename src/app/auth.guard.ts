@@ -48,18 +48,3 @@ export const UserGuard: CanActivateFn = (route, state) => {
     return false;
   }
 };
-export const AccountAdminGuard: CanActivateFn = (route, state) => {
-  const authService = inject(AuthService);
-  const token = localStorage.getItem('CreatorToken');
-  const router = inject(Router);
-  if (token) {
-    const userRole = authService.getUserRole(token);
-    if (userRole === 'AccountAdmin') {
-      return true;
-    } else {
-      return false; 
-    }
-  } else {
-    return false;
-  }
-};

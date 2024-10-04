@@ -79,6 +79,11 @@
     "EXPIRATIONDATE": "გაუქმების თარიღი",
     "EDITTICKET": "ბილეთის დაედითება",
     "HOWMANYTICKETS": "რამდენი ბილეთის შექმნა გსურთ?",
-    "SAVETICKET": "ბილეთის შენახვა"
-    
+    "SAVETICKET": "ბილეთის შენახვა",
+
+    "ACCOUNTEXISTS": "აქაუნთი იგივე სახელით უკვე არსებობს!",
+    "PERSONALID": "თქვენი პირადი ნომერი",
+    "PHONENUMBER": "მობილურის ნომერი",
+    "PERSONALIDPHOTO": "პირადობის ფოტო"
+
 }

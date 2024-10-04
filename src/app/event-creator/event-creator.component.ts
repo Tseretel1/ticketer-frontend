@@ -61,6 +61,12 @@ export class EventCreatorComponent implements OnInit{
   hideModal(){
       this.modalvisible = false;
   }
+  showmModal(){
+    this.modalvisible = true;
+    setTimeout(() => {
+      this.modalvisible = false;
+    }, 5000);
+  }
 
   FormsTitleText :string = "Welcome Creator";
 
@@ -78,7 +84,6 @@ export class EventCreatorComponent implements OnInit{
     this.service.myCreatorAccounts().subscribe(
       (resp)=>{
         this.myAccounts = resp;
-        console.log(resp);
         if(resp.length<=0){
           this.switch = false;
         }
@@ -169,9 +174,14 @@ export class EventCreatorComponent implements OnInit{
         console.log(accountName);
         this.service.accountCreation(accountName).subscribe(
             (resp) => {
-                if (resp!=null) {
+                if (resp!=null && resp.success) {
                   this.myAccounts.push(resp);
                   this.LoginToaccount(resp.id);
+                }
+                else if(!resp.success){
+                  this.CreateAccountForm.reset();
+                  this.showmModal();
+                  this.Server_response = resp.message;
                 }
             },
             (error) => {
@@ -181,6 +191,5 @@ export class EventCreatorComponent implements OnInit{
     } else {
         console.error("Form is invalid");
     }
-}
-
+  }
 }
