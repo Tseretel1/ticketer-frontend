@@ -14,7 +14,7 @@ export class ServiceService {
 }
   
   myCreatorAccounts(): Observable<any> {
-    return this.http.get(this.URL+"my-creator-account");
+    return this.http.get(this.URL + "my-creator-account");
   }  
   onRegister(r: Register): Observable<any> {
     return this.http.post(this.URL + "register-as-creator", r);

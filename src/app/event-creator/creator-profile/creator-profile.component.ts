@@ -25,11 +25,11 @@ routes: Routes = appRoutes;
     this.AccountManagment();
   }
 
-  MyProfile: any = {}; 
+  profile: any = {}; 
   LoadMyProfile() {
     this.service.GetMyProfile().subscribe(
       (resp: any) => {
-        this.MyProfile = resp;
+        this.profile = resp;
       },
       (error) => {
         console.error('Error fetching Profile data:', error);

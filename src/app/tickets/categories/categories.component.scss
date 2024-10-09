@@ -1,4 +1,4 @@
-  //Ticket______________________________________
+//Ticket
   .CenterBody{
       width: 100%;
       display: flex;
@@ -6,7 +6,7 @@
       flex-direction: column;
       align-items: center;
       z-index: 5;
-      overflow-x: hidden;
+      overflow: hidden;
   }
   
   
@@ -79,7 +79,7 @@
     flex-direction: column;
     height: auto;
     border-radius: 5px;
-    animation: Appear 0.3s linear;
+    animation: Appear 0.5s linear;
   }
   .ticket-title{
     font-size: 20px;

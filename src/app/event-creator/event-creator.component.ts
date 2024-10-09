@@ -172,16 +172,17 @@ export class EventCreatorComponent implements OnInit{
     if (this.CreateAccountForm.valid) {
         const accountName = this.CreateAccountForm.value.accountName;
         console.log(accountName);
+        
         this.service.accountCreation(accountName).subscribe(
             (resp) => {
-                if (resp!=null && resp.success) {
-                  this.myAccounts.push(resp);
-                  this.LoginToaccount(resp.id);
-                }
-                else if(!resp.success){
-                  this.CreateAccountForm.reset();
-                  this.showmModal();
-                  this.Server_response = resp.message;
+                if (resp.success) {
+                    this.CreateAccountForm.reset();
+                    this.myAccounts.push(resp);
+                    this.LoginToaccount(resp.accountID);
+                } else {
+                    this.CreateAccountForm.reset();
+                    this.showmModal();
+                    this.Server_response = resp.message;
                 }
             },
             (error) => {
@@ -191,5 +192,6 @@ export class EventCreatorComponent implements OnInit{
     } else {
         console.error("Form is invalid");
     }
-  }
+}
+
 }

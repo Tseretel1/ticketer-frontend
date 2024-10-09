@@ -93,6 +93,7 @@
     align-items: center;
     width: 100%;
     position: relative;
+    gap: 50px;
 }
 .headerleAlign{
     width: 90%;
@@ -165,6 +166,12 @@
     color: white;
     transition: 0.3s all ease-in-out;
     position: relative;
+    animation: 0.5s ticketAnimation;
+}
+@keyframes ticketAnimation {
+    0%{scale: 0.5;}
+    50%{scale: 1.05;}
+    100%{scale: 1;}
 }
 .ticketTitle{
     padding: 0px 0px 0px 20px;
@@ -225,6 +232,9 @@
   }
   .TicketImageContainer:hover{
     border: 1px solid white;
+  }
+  .expired-container{
+    border: 1px solid red;
   }
   .ticketimage {
     width: 100%;
@@ -316,6 +326,7 @@
     grid-template-columns: repeat(2, 1fr); 
     width: 90%;
     margin-top: 50px;
+    max-width: 1600px;
 }
 .SingleTicket{
     display: flex;

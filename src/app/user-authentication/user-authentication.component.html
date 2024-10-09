@@ -1,0 +1,81 @@
+
+<div class="modal-parent" *ngIf="modalVisible">
+    <div class="modal">
+        <div class="close-button-parent">
+            <button (click)="closeModal()" class="close-button">X</button>
+        </div>
+        <div class="possible-response">
+            <p class="response" *ngIf="emailVisible">{{"EMAILREGISTERED" | translate}}</p>
+            <p class="response" *ngIf="passcodeVisible">{{"WRONGPASSCODE" | translate}}</p>
+            <p class="response" *ngIf="passwordVisible">{{"SOMETHINGWENTWRONG" | translate}}</p>
+            <p class="response" *ngIf="loginresp">{{"EMAILPASSINCORECT" | translate}}</p>
+        </div>
+    </div>
+</div>
+<div class="center-body">
+    <div class="login-form" *ngIf="switch">
+        <form action="" [formGroup]="loginForm">
+            <div class="form-container">
+                <div class="form-title">
+                    {{"LOGIN"| translate}}
+                </div>
+                <div class="input-column">
+                    <label class="input-label">{{"EMAIL" |translate}}</label>
+                    <input type="email" class="form-inputs" formControlName="email">
+                </div>
+                <div class="input-column">
+                    <label class="input-label">{{"PASSWORD" |translate}}</label>
+                    <input type="email" class="form-inputs" formControlName="password">
+                </div>
+                <button class="submit-button" (click)="login()">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <div class="login-form" *ngIf="!switch">
+        <form action="" [formGroup]="emailValidationForm">
+            <div class="form-container">
+                <div class="form-title">
+                    {{"REGISTRATION"| translate}}
+                </div>
+                <div class="input-column">
+                    <label class="input-label">{{"EMAIL" |translate}}</label>
+                    <input type="email" class="form-inputs" formControlName="email">
+                </div>
+                <button class="submit-button" (click)="validateEmail()">Submit</button>
+            </div>
+        </form>
+        <form action="" [formGroup]="passcodeValidationForm" *ngIf="passcodeVisible">
+            <div class="form-container">
+                <div class="form-title">
+                    {{"REGISTRATION"| translate}}
+                </div>                 
+                <div class="input-column">
+                    <label class="input-label">{{"PASSCODE" |translate}}</label>
+                    <input type="number" class="form-inputs" formControlName="passcode">
+                </div>
+                <button class="submit-button" (click)="passcodeValidation()">Submit</button>
+            </div>
+        </form>
+        <form action="" [formGroup]="registrationForm" *ngIf="passwordVisible">
+            <div class="form-container">
+                <div class="form-title">
+                    {{"REGISTRATION"| translate}}
+                </div>
+                <div class="input-column">
+                    <label class="input-label">{{"PASSWORD" |translate}}</label>
+                    <input type="password" class="form-inputs" formControlName="password">
+                </div>
+                <button class="submit-button" (click)="RegistrationFinish()">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="switch-parent">
+        <button (click)="switchReg()" *ngIf="switch" class="switch-button">{{"SWITCHTOLOGIN" |translate}}</button>
+        <button (click)="switchLog()" *ngIf="!switch" class="switch-button">{{"SWITCHTOREG" |translate}}</button>
+    </div>
+</div>

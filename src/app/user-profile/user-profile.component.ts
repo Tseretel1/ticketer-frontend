@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { UserService } from './user.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { appRoutes, Routes } from '../route-paths';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
@@ -18,7 +18,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
   styleUrl: './user-profile.component.scss',
 })
 export class UserProfileComponent implements OnInit,OnDestroy{
-
+  routes: Routes = appRoutes;
   qrData: string = '';
   constructor(
     private router:Router,
@@ -118,7 +118,7 @@ switchToExpired(){
     if(token || CreatorToken){
       localStorage.removeItem('token');
       localStorage.removeItem('CreatorToken');
-      this.router.navigate(['/Login']);
+      this.router.navigate([this.routes.login]);
     }
   }
   

@@ -57,8 +57,28 @@
 
 
     "LOGIN": "Login",
+    "EMAIL": "Email",
+    "PASSWORD": "Pssword",
+    "PASSCODE": "Passcode",
+    "NAME": "Name",
+    "LASTNAME": "Lastname",
+    "PERSONALID": "Your Personal ID",
+    "PHONENUMBER": "Phone Number",
+    "PERSONALIDPHOTO": "Personal ID card Photo",
+    "EMAILREGISTERED": "This email is already registered",
+    "WRONGPASSCODE": "Wrong passcode please try again!",
+    "SOMETHINGWENTWRONG": "Somethin went wrong!",
+    "WEHAVESENTYOUCODE": "We have sent you 6 digids code to your email, please enter below to confirm your mail!",
+
+
     "REGISTRATION": "Registration",
+    "SWITCHTOLOGIN": "Switch to Login",
+    "SWITCHTOREG": "Switch to Registration",
     "SWITCHTO": "Switch",
+    "EMAILPASSINCORECT": "Email or password is incorrect!",
+    "WEHAVESENTYOU": "We have sent you 6 digits passcode to your email address, please enter below to finish registration!",
+
+
 
     "MYACCOUNTS": "My Accounts",
     "REGISTERASCREATOR": "Register as creator",
@@ -88,8 +108,5 @@
 
 
 
-    "ACCOUNTEXISTS": "Account with given Name Already exists!",
-    "PERSONALID": "Your Personal ID",
-    "PHONENUMBER": "Your Phone Number",
-    "PERSONALIDPHOTO": "Personal id card Photo"
+    "ACCOUNTEXISTS": "Account with given Name Already exists!"
 }

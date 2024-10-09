@@ -102,7 +102,7 @@
          <div class="Ticket"  *ngFor="let tkt of expTickets; let i = index">
             <div class="SoldCount"><p class="soldcounttext">{{tkt.ticketCount}}</p> <mat-icon class="iconsize2">confirmation_number</mat-icon></div>
              <div class="card_box" (click)="viewTicket(tkt)">
-                     <div class="TicketImageContainer">
+                     <div class="TicketImageContainer expired-container">
                          <img [src]="tkt.photo" alt="" class="ticketimage">
                      </div>
              </div>

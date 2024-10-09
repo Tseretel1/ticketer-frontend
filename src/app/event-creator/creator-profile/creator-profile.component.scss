@@ -1,354 +1,60 @@
-:host {
-  display: block;
+:host{
   width: 100%;
   height: 100%;
 }
-.ParentOfThemall{
+.profile-parent{
   display: flex;
-  flex-direction: column;
-  position: relative;
-}
-.exitbuttonparent{
   width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.exit-from-account-parent{
   display: flex;
+  width: 90%;
   justify-content: flex-end;
+  max-width: 1600px;
+  .exit-from-account{
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+  }
+  .exit-from-account:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
 }
-.exitButton{
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px white, 0px 0px 5px white inset;
-  outline: none;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.3s all ease-in-out;
-  margin-top: 10px;
-  z-index: 2;
-}
-.exitButton:hover{
-  box-shadow: 0px 0px 20px white, 0px 0px 20px white inset;
-  text-shadow: 0px 0px 10px white;
-}
-
-.ExitModal{
+.my-profile{
   display: flex;
-  width: 100%;
-  height: 100%;
-  position: fixed;
   align-items: center;
-  justify-content: center;
-  z-index: 4;
-  background-color: rgba(0, 0, 0, 0.308);
-  backdrop-filter: blur(2px);
-  transition: 0.3s all ease-in-out;
+  padding-top: 30px;
 }
-.modal{
-  display: flex;
-  width: 300px;
-  height: 150px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 10px black;
-  color: white;
-  border-radius: 20px;
-  z-index: 500;
-  background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
-  background-size: 800% 800%;
-  -webkit-animation: AnimationName 20s ease infinite;
-  -moz-animation: AnimationName 20s ease infinite;
-  animation: AnimationName 20s ease infinite;
-}
-
-.buttoparent{
-  display: flex;
-  gap: 20px;
-}
-
-.answerButtons{
-  padding: 10px 20px 10px 20px ;
-  border-radius: 5px;
-  transition: 0.2s all ease-in-out;    
-  cursor: pointer;
-  border: 1px solid white;
-  outline: none;
-}
-
-
-
-.Profile_Container{
-    display: flex;
-    width: 100%;
-    height: auto;
-    justify-content: center;
-    z-index: 9;
-}
-.Imagecontainer{
-  border-radius: 50%;
+.logo-container{
+  width: 100px;
+  height: 100px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 130px;
-  z-index: 2;
+  border-radius: 50%;
 }
-.Profileimage{
+.profile-logo{
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.ProfileSide{   
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-}
-.Profilestyle{
-    width: auto;
-    border-radius: 10px;  
-    display: flex;
-    align-items: center; 
-    gap: 10px;
-}
-.AccountUsername{
-  color: white;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 25px;  
-  text-shadow: 0px 0px 5px whitesmoke;
-  z-index: 1;
-}
-.ManagmentParent{
-  width: 100%;
-  display: flex;
-}
-.Managment{
-    display:flex;
-    z-index: 3;
-    padding: 10px;
-    flex-direction: column;
-    align-items: center;
-    z-index: 0;
-}
-.ManagmentTitle{
-  color: white;
-}
-.ManagmentMain{
-  color: black;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background-color: white;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  color: black;
-  gap: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px black;
-  max-height: 330px;
-  overflow: auto;
-  min-height: 120px;
-}
-
-.ManagmentMain::-webkit-scrollbar {
-  width: 0px;
-}
-
-.ManagmentMain::-webkit-scrollbar-track {
-  background: transparent;
-}
-.ManagmentMain::-webkit-scrollbar-thumb {
-  background: transparent;
-}
-
-.ManagmentMain::-webkit-scrollbar-button {
-  background: transparent;
-  color: transparent;
-}
-.Usermanagment{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
-  transition: 0.2s all ease-in-out;
-  cursor: pointer;
-  padding: 5px 10px 5px 10px;
-  background-color: rgba(0, 0, 0, 0.378);
-  border-radius: 5px;
-  overflow: auto;
-  resize: horizontal;
-  box-sizing: border-box;
-  border: 1px solid transparent; 
-}
-.Usermanagment:hover{
-  background-color: white;
-  scale: 1.01;
-  border: 1px solid black;
-}
-.userinfo{
-  margin: 0px;
-  font-size: 14px;
-  font-family: sans-serif;
-}
-.namewhite{
-  font-weight: bold;
-}
-.Column{
-  padding:5px;
-  border-radius: 5px;
-  gap: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-}
-.ColumnProfile{
-  background-color: rgba(0, 0, 0, 0.701);
-  color: white;
-}
-.nameflex{
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  justify-content: center;
-  background-color: black;
-  border-radius: 5px;
-  color: white;
-  padding: 5px;
-}
-.logged-account{
-  color: goldenrod;
-}
-
-.columnTitle{
-  border-bottom: 1px solid black;
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  font-weight: bold
-}
-.userimagecontainer{
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  overflow: hidden;
-}
-.ProfileIcon{
-  width: 50px;
-  height: 50px;
-  font-size: 50px;
-}
-.userimage{
+.no-logo{
   width: 100%;
   height: 100%;
+  color: white;
   display: flex;
   justify-content: center;
-}
-
-
-
-
-
-
-
-//Modifing role cards
-.RoleManagmentModal{
-  width: 100%;
-  display: flex;
   align-items: center;
-  flex-direction: column;
-  height: 100%;
-  position: fixed;
-  z-index: 11;
-  background-color: rgb(0 0 0 / 53%);
-  justify-content:center;
-  backdrop-filter: blur(3px);
-  font-family: sans-serif;
-}
-.ModalButtons{
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  margin-top: 20px;
-}
-.BackBUtton{
-  border: none;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.Dismiss{
-  background-color: transparent;
-  border: 1px solid black;
-  color: black;
-} 
-.Submit{
- background-color: rgba(0, 128, 0, 0.686);
- color: white;
-}
-.Rolecard{
-  background-color: white;
-  display: flex;
-  color: white;
-}
-.ModifyUserParent{
-  border-radius: 10px;
-  padding: 10px;
-  background-color: white;
-  position: relative;
-}
-.usermodifycard{
-  display: flex;
-  flex-direction: column;
-}
-.modifyData{
-  display: flex;
-
-}
-.modifyimagecontainer{
-  width: 100px;
-  height: 100px;
-}
-.modifyicon{
-  width: 100px;
-  height: 100px;
   font-size: 100px;
 }
-.Rolecolumn{
-  background-color: darkred;
-  max-width: 150px;
-  height: 22px;
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  display: grid;
-  place-items: center;
+.profile-name{
+  font-size: 25px;
+  color: whitesmoke;
 }
-.RoleText{
-  font-size: 15px;
-  font-family: sans-serif;
-  color: white;
-}
-.RemoveButtonParent{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-.RemoveAdministratorButton{
-  border: none;
-  background-color: darkred;
-  border-radius: 5px;
-  outline: none;
-  color: white;
-  padding: 5px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  transition: 0.2s all ease-in-out;
-  cursor: pointer;
-  width: 100%;
-}
-.RemoveAdministratorButton:hover{
-  background-color: red;
-  box-shadow: 0px 0px 10px red;
-}
+

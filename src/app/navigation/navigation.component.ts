@@ -34,12 +34,9 @@ export class NavigationComponent implements OnInit, OnDestroy{
   pathsToHide(): boolean {
     const routesToHide = [
       this.routes.creator,
-      this.routes.creatorProfile,
-      this.routes.creatorTicketManagement,
-      this.routes.creatorCrud,
-      this.routes.creatorScanner,
       this.routes.fullticket, 
-      this.routes.userProfile
+      this.routes.userProfile,
+      this.routes.login
     ];
     return !routesToHide.some(route => this.router.url.startsWith(route));
   }
@@ -52,6 +49,7 @@ export class NavigationComponent implements OnInit, OnDestroy{
 
   routes: Routes = appRoutes;
   Back() {
+    +
     this.location.back();
   }
   
