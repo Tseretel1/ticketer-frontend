@@ -1,15 +1,16 @@
 import { Component, OnInit, resolveForwardRef } from '@angular/core';
 import { ActivatedRoute, OnSameUrlNavigation, Router } from '@angular/router';
 import { CrudService, Ticket, TicketToAdd } from './crud.service';
-import { CommonModule, DatePipe, Location } from '@angular/common';
+import { CommonModule, DatePipe, Location, provideCloudinaryLoader } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { CloudinaryModule} from '@cloudinary/ng';
 
 @Component({
   selector: 'app-crud',
   standalone: true,
-  imports: [CommonModule,MatIcon,ReactiveFormsModule,TranslateModule],
+  imports: [CommonModule,MatIcon,ReactiveFormsModule,TranslateModule, CloudinaryModule],
   templateUrl: './crud.component.html',
   styleUrl: './crud.component.scss'
 })
@@ -33,8 +34,8 @@ export class CrudComponent implements OnInit{
       Expiration_Date: ['', Validators.required],
       ActivationTime: ['', Validators.required],
       ExpirationTime: ['', Validators.required],
-      Photo: ['', ],
-      TicketCount: ['', [Validators.required, Validators.maxLength(3)]],
+      TicketCount: ['', Validators.required],
+      Photo: ['', Validators.required],
     });
   }
   isUpdateMode:boolean = false;
@@ -43,20 +44,29 @@ export class CrudComponent implements OnInit{
 
   ngOnInit(): void {
     this.router.params.subscribe(params => {
-      this.id = + params['id'];
+      this.id = +params['id'];
       this.addTicket = params['id'];
-      this.MatchingTicket(); 
-    });
-    if (this.addTicket == 'add') {
-      this.isUpdateMode = false;
-    } else {
-      this.isUpdateMode = true;
-      this.MatchingTicket(); 
-    }
+      if(this.addTicket === 'add'){
+        this.isUpdateMode = false;
+      }
+      else{
+        this.isUpdateMode = true;
+        this.MatchingTicket();
+      }
+    }); 
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 50);
   }
+  
+  addOrUpdate(): void {
+    if (this.isUpdateMode) {
+      this.UPdateTicket(); 
+    } else {
+      this.addticket(); 
+    }
+  }
+  
 
   photoTicket: string | null = '';
   MatchingTicket() {
@@ -67,7 +77,6 @@ export class CrudComponent implements OnInit{
             this.TicketToedit = resp;
             this.photoTicket = resp.photo;
             this.imagePreview = this.photoTicket;
-
             this.ticketForm.patchValue({
               Title :resp.title,
               Description: resp.description,
@@ -76,7 +85,8 @@ export class CrudComponent implements OnInit{
               Activation_Date: this.datepipe.transform(resp.activation_Date, 'yyyy-MM-dd'),
               Expiration_Date: this.datepipe.transform(resp.expiration_Date, 'yyyy-MM-dd'),
               ActivationTime: this.datepipe.transform(resp.activation_Date, 'HH:mm'),
-              ExpirationTime: this.datepipe.transform(resp.expiration_Date, 'HH:mm'),       
+              ExpirationTime: this.datepipe.transform(resp.expiration_Date, 'HH:mm'),  
+              Photo: resp.photo 
             });
             console.log('patch value', this.ticketForm.value)
           } else {
@@ -89,6 +99,8 @@ export class CrudComponent implements OnInit{
       );
     }
   }
+
+
    formatHour(date: string | null): string {
     if (!date) {
       return '';
@@ -118,35 +130,9 @@ export class CrudComponent implements OnInit{
   }
 
 
-
-  imagePreview: string | ArrayBuffer | null = null;
-  onFileChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        this.imagePreview = reader.result;
-      };
-
-      reader.readAsDataURL(file);
-    } else {
-      this.imagePreview = null;
-    }
-  }
-
   triggerFileInput(): void {
     const fileInput = document.getElementById('photo') as HTMLInputElement;
     fileInput.click();
-  }
-
-  onFileChange2(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files) {
-      const file = input.files[0];
-      console.log('Selected file:', file);
-    }
   }
 
   CancelTicketCreation (){
@@ -177,58 +163,67 @@ export class CrudComponent implements OnInit{
     );
     console.log("id of this ticket" ,id)
   }
-
-
-
-
-  addOrUpdate(): void {
-    if (this.isUpdateMode) {
-      this.UPdateTicket();
-    } else {
-      this.addticket();
-    }
-  }
   
-  
-  //Ticket creation
-  isFormSubmited: boolean = false;
-  UPdateTicket(): void {
-    if (this.ticketForm.valid) {
+
+ //Ticket creation
+ imagePreview: string | ArrayBuffer | null = null;
+ selectedFile: File | null = null;
+ onFileChange(event: Event) {
+   const input = event.target as HTMLInputElement;
+   if (input.files && input.files[0]) {
+     this.selectedFile = input.files[0]; 
+     const reader = new FileReader();
+     reader.onload = () => {
+       this.imagePreview = reader.result; 
+     };
+     this.photoTicket = '';
+     reader.readAsDataURL(this.selectedFile);
+   } else {
+     this.selectedFile = null;
+     this.imagePreview = null;
+   }
+ }
+
+
+  savedImg: string |null = null;
+  isimgUploaded :boolean = false;addticket(): void {
+    if (this.ticketForm.valid && !this.isFormSubmited) {
       this.isFormSubmited = true;
-      const TicketToUpdate: Ticket = {
-        ID :this.id,
-        title: this.ticketForm.value.Title,
-        description: this.ticketForm.value.Description,
-        price: this.ticketForm.value.Price,
-        ticketCount: this.ticketForm.value.TicketCount,
-        activation_Date: this.service.combineDateAndTime(this.ticketForm.value.Activation_Date, this.ticketForm.value.ActivationTime),
-        expiration_Date: this.service.combineDateAndTime(this.ticketForm.value.Expiration_Date, this.ticketForm.value.ExpirationTime),
-        photo: this.ticketForm.value.Photo,
-        genre: this.ticketForm.value.Genre,
-      };
-      this.service.Updateticket(TicketToUpdate).subscribe(
-        (res) => {
-          if(res.success){
-            this.ticketForm.value.reset();
-            this.location.back();
-          }
-        },
-        (error) => {
-          console.error(error.message);
-        }
-      );
-    } 
-    else {
-      console.error('Form is invalid');
+      this.uploadImage();
+    } else {
+      console.error('Form is invalid or already submitted');
       console.log(this.ticketForm.value);
       Object.values(this.ticketForm.controls).forEach(control => {
         control.markAsTouched();
       });
     }
-  }addticket(): void {
-    if (this.ticketForm.valid && !this.isFormSubmited) {
-      this.isFormSubmited = true;
+  }
+  uploadImage(): void {
+    if (this.selectedFile) {
+      this.service.uploadImage(this.selectedFile).subscribe(
+        (response) => {
+          this.savedImg = response.secure_url;
+          this.isimgUploaded = true;
+          if(this.isUpdateMode){
+            this.proceedToUpdateTicket();
+          }
+          else{
+            this.proceedToAddTicket();
+          }
+        },
+        (error) => {
+          console.error('Error uploading image:', error);
+          this.isFormSubmited = false; 
+        }
+      );
+    } else {
+      console.error('No file selected for upload');
+      this.isFormSubmited = false;
+    }
+  }
   
+  proceedToAddTicket(): void {
+    if (this.isimgUploaded && this.savedImg) {
       const TicketADD: TicketToAdd = {
         title: this.ticketForm.value.Title,
         description: this.ticketForm.value.Description,
@@ -236,7 +231,7 @@ export class CrudComponent implements OnInit{
         ticketCount: this.ticketForm.value.TicketCount,
         activation_Date: this.service.combineDateAndTime(this.ticketForm.value.Activation_Date, this.ticketForm.value.ActivationTime),
         expiration_Date: this.service.combineDateAndTime(this.ticketForm.value.Expiration_Date, this.ticketForm.value.ExpirationTime),
-        photo: this.ticketForm.value.Photo,
+        photo: this.savedImg,
         genre: this.ticketForm.value.Genre,
       };
   
@@ -253,6 +248,20 @@ export class CrudComponent implements OnInit{
           console.error(error.message);
         }
       );
+    }
+  }
+  
+
+
+
+
+
+  isFormSubmited: boolean = false;
+
+  UPdateTicket(): void {
+    if (this.ticketForm.valid && !this.isFormSubmited) {
+      this.isFormSubmited = true; 
+      this.uploadImage();
     } else {
       console.error('Form is invalid or already submitted');
       console.log(this.ticketForm.value);
@@ -261,5 +270,39 @@ export class CrudComponent implements OnInit{
       });
     }
   }
+  proceedToUpdateTicket(): void {
+    if (this.isimgUploaded && this.savedImg) {
+      if(this.savedImg ==null){
+        
+      }
+      const TicketToUpdate: Ticket = {
+        ID: this.id,
+        title: this.ticketForm.value.Title,
+        description: this.ticketForm.value.Description,
+        price: this.ticketForm.value.Price,
+        ticketCount: this.ticketForm.value.TicketCount,
+        activation_Date: this.service.combineDateAndTime(this.ticketForm.value.Activation_Date, this.ticketForm.value.ActivationTime),
+        expiration_Date: this.service.combineDateAndTime(this.ticketForm.value.Expiration_Date, this.ticketForm.value.ExpirationTime),
+        photo: this.savedImg,
+        genre: this.ticketForm.value.Genre,
+      };
+  
+      this.service.Updateticket(TicketToUpdate).subscribe(
+        (res) => {
+          this.isFormSubmited = false;
+          if (res.success) {
+            this.ticketForm.reset();
+            this.location.back();
+          }
+        },
+        (error) => {
+          this.isFormSubmited = false;
+          console.error(error.message);
+        }
+      );
+    }
+  }
+  
+
   
 }

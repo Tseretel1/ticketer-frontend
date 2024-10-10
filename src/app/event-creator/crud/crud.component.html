@@ -37,7 +37,7 @@
             <div class="image-preview">
               <div class="photoAlign">
                 <button (click)="triggerFileInput()" class="photoinput"><mat-icon>photo_camera</mat-icon>Upload Photo</button>
-                <input id="photo" formControlName="Photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden>
+                <input id="photo"  type="file" (change)="onFileChange($event)" accept="image/*" hidden>
               </div>
               <img [src]="imagePreview" class="imagepreviewphoto">
             </div>
@@ -124,7 +124,7 @@
                 <input type="number" formControlName="TicketCount" class="ticket-inputs" placeholder="0">
               </div>
               <div class="create-ticket-parent">
-                 <button type="submit" class="create-ticket-button" (click)="addOrUpdate()" [disabled]="!ticketForm.valid || isFormSubmited">{{"SAVETICKET" | translate}}</button>
+                 <button type="submit" class="create-ticket-button" (click)="addOrUpdate()" [disabled]=" isFormSubmited">{{"SAVETICKET" | translate}}</button>
               </div>
             </div>
           </div>

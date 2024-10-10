@@ -54,6 +54,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
     this.MostpopularTickets();
     this.UpcomingTickets();
     this.theaterTickets();
+    this.getotherTickets();
   }
 
   TicketViewCount(id:number){
@@ -83,6 +84,18 @@ export class TicketsComponent implements OnInit, OnDestroy{
     this.ticketService.UpcomingTickets().subscribe(
       (resp: any[]) => {
         this.upcomingTickets = resp;
+      },
+      (error) => {
+        console.error('Error fetching ticket data:', error);
+      }
+    );
+  }
+  otherTickets :any[] = [];
+
+  getotherTickets() {
+    this.ticketService.otherTickets().subscribe(
+      (resp: any[]) => {
+        this.otherTickets = resp;
       },
       (error) => {
         console.error('Error fetching ticket data:', error);

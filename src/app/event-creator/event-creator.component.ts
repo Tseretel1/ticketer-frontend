@@ -176,7 +176,7 @@ export class EventCreatorComponent implements OnInit{
         this.service.accountCreation(accountName).subscribe(
             (resp) => {
                 if (resp.success) {
-                    this.CreateAccountForm.reset();
+                  this.CreateAccountForm.reset();
                     this.myAccounts.push(resp);
                     this.LoginToaccount(resp.accountID);
                 } else {

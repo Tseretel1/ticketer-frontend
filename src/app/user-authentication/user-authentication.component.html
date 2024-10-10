@@ -14,20 +14,21 @@
 </div>
 <div class="center-body">
     <div class="login-form" *ngIf="switch">
+        
         <form action="" [formGroup]="loginForm">
             <div class="form-container">
                 <div class="form-title">
                     {{"LOGIN"| translate}}
                 </div>
-                <div class="input-column">
-                    <label class="input-label">{{"EMAIL" |translate}}</label>
-                    <input type="email" class="form-inputs" formControlName="email">
+                <div class="form__group field">
+                    <input type="input" class="form__field" placeholder="Name" formControlName="email">
+                    <label for="name" class="form__label">{{"EMAIL" |translate}}</label>
                 </div>
-                <div class="input-column">
-                    <label class="input-label">{{"PASSWORD" |translate}}</label>
-                    <input type="email" class="form-inputs" formControlName="password">
+                <div class="form__group field">
+                    <input type="password" class="form__field" placeholder="Name" formControlName="password">
+                    <label for="name" class="form__label">{{"PASSWORD" |translate}}</label>
                 </div>
-                <button class="submit-button" (click)="login()">Submit</button>
+                <button class="submit-button" (click)="login()" [ngClass]="{'valid-class': loginForm.valid, 'invalid-class': !loginForm.valid}">Submit</button>
             </div>
         </form>
     </div>
@@ -36,16 +37,16 @@
 
 
     <div class="login-form" *ngIf="!switch">
-        <form action="" [formGroup]="emailValidationForm">
+        <form action="" [formGroup]="emailValidationForm" *ngIf="emailVisible"> 
             <div class="form-container">
                 <div class="form-title">
                     {{"REGISTRATION"| translate}}
                 </div>
-                <div class="input-column">
-                    <label class="input-label">{{"EMAIL" |translate}}</label>
-                    <input type="email" class="form-inputs" formControlName="email">
+                <div class="form__group field">
+                    <input type="email" class="form__field" placeholder="Name"  formControlName="email">
+                    <label for="name" class="form__label">{{"EMAIL" |translate}}</label>
                 </div>
-                <button class="submit-button" (click)="validateEmail()">Submit</button>
+                <button class="submit-button" (click)="validateEmail()" [disabled]="!emailValidationForm.valid" [ngClass]="{'valid-class': emailValidationForm.valid, 'invalid-class': !emailValidationForm.valid}">Submit</button>
             </div>
         </form>
         <form action="" [formGroup]="passcodeValidationForm" *ngIf="passcodeVisible">
@@ -53,11 +54,11 @@
                 <div class="form-title">
                     {{"REGISTRATION"| translate}}
                 </div>                 
-                <div class="input-column">
-                    <label class="input-label">{{"PASSCODE" |translate}}</label>
-                    <input type="number" class="form-inputs" formControlName="passcode">
+                <div class="form__group field">
+                    <input type="email" class="form__field" placeholder="Name"  formControlName="passcode">
+                    <label for="name" class="form__label">{{"PASSCODE" |translate}}</label>
                 </div>
-                <button class="submit-button" (click)="passcodeValidation()">Submit</button>
+                <button class="submit-button" (click)="passcodeValidation()" [ngClass]="{'valid-class': passcodeValidationForm.valid, 'invalid-class': !passcodeValidationForm.valid}">Submit</button>
             </div>
         </form>
         <form action="" [formGroup]="registrationForm" *ngIf="passwordVisible">
@@ -65,11 +66,11 @@
                 <div class="form-title">
                     {{"REGISTRATION"| translate}}
                 </div>
-                <div class="input-column">
-                    <label class="input-label">{{"PASSWORD" |translate}}</label>
-                    <input type="password" class="form-inputs" formControlName="password">
+                <div class="form__group field">
+                    <input type="email" class="form__field" placeholder="Name"  formControlName="password">
+                    <label for="name" class="form__label">{{"PASSWORD" |translate}}</label>
                 </div>
-                <button class="submit-button" (click)="RegistrationFinish()">Submit</button>
+                <button class="submit-button" (click)="RegistrationFinish()" [ngClass]="{'valid-class': registrationForm.valid, 'invalid-class': !registrationForm.valid}">Submit</button>
             </div>
         </form>
     </div>

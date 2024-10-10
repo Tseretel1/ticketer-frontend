@@ -218,7 +218,10 @@ export class UserAuthenticationComponent {
       this.service.registration(reg).subscribe(
         (resp) => {
           if (resp.success) {
-            this.login(reg)
+            this.loginForm.value.email = reg.email;
+            this.loginForm.value.password = reg.password;
+            console.log(this.loginForm.value);
+            this.login(reg);
             this.openEmailForm(); 
             this.closeModal(); 
           } else {

@@ -8,6 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class CrudService {
   private url = "https://localhost:7081/api/Creator/";
+
+  private cloudName = 'ds1q7oiea';
+  private uploadPreset = 'cloudinary_Upload_Preset';
+
+  uploadImage(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', this.uploadPreset);
+    return this.http.post(`https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`, formData);
+  }
+
   deleteTicket(id: number): Observable<any> {
     return this.http.delete(`${this.url}delete-tickets/${id}`);
   }
@@ -28,18 +39,26 @@ export class CrudService {
     const combinedDateTime = `${date}T${time}:00.000`;
     return this.formatDateToBackend(new Date(combinedDateTime));
   }
+
+
   Updateticket(ticket: Ticket): Observable<any> {
     return this.http.put(this.url + "update-tickets", ticket, {
         headers: { 'Content-Type': 'application/json' },
         responseType: 'json',
     });   
-}
-createTicket(ticket: TicketToAdd): Observable<any> {
-    return this.http.post(this.url + "add-new-tickets", ticket, {
-        headers: { 'Content-Type': 'application/json' },
-        responseType: 'json',
-    });
   }
+
+
+
+  createTicket(ticket: TicketToAdd): Observable<any> {
+      return this.http.post(this.url + "add-new-tickets", ticket, {
+          headers: { 'Content-Type': 'application/json' },
+          responseType: 'json',
+      });
+  }
+
+
+
 }  
 
 export interface Ticket{

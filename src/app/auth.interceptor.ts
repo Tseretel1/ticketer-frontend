@@ -13,18 +13,21 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loaderService.show();
 
+    const isCloudinaryRequest = req.url.includes('https://api.cloudinary.com');
+
     let token = localStorage.getItem('token');
     if (req.url.includes('/api/Creator/')) {
       token = localStorage.getItem('CreatorToken');
     }
 
-    const clonedReq = token
+    const clonedReq = isCloudinaryRequest ? req : (token
       ? req.clone({
           setHeaders: {
             Authorization: `Bearer ${token}`
           }
         })
-      : req;
+      : req);
+
     return next.handle(clonedReq).pipe(
       finalize(() => {
         this.loaderService.hide();

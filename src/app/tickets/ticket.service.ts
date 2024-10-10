@@ -29,6 +29,9 @@ export class TicketService {
   theaterTickets():Observable<any>{
     return this.http.get(this.URL + 'theater-tickets');
   } 
+  otherTickets():Observable<any>{
+    return this.http.get(this.URL + 'other-tickets');
+  } 
   TicketViewCount(id: number): Observable<any> {
     return this.http.patch(this.URL+ 'view-count', id, {
       headers: { 'Content-Type': 'application/json' },
