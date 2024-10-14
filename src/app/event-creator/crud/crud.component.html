@@ -31,7 +31,7 @@
           </div>
         </div>  
     </div>
-    <form [formGroup]="ticketForm"  (submit)="addOrUpdate()" class="ticket-form">
+    <form [formGroup]="ticketForm"  (submit)="AddOrUpdate()" class="ticket-form">
       <div class="center-form">
         <div class="image-preview-parent">
             <div class="image-preview">
@@ -124,7 +124,7 @@
                 <input type="number" formControlName="TicketCount" class="ticket-inputs" placeholder="0">
               </div>
               <div class="create-ticket-parent">
-                 <button type="submit" class="create-ticket-button" (click)="addOrUpdate()" [disabled]=" isFormSubmited">{{"SAVETICKET" | translate}}</button>
+                 <button type="submit" class="create-ticket-button" (click)="AddOrUpdate()">{{"SAVETICKET" | translate}}</button>
               </div>
             </div>
           </div>

@@ -10,7 +10,12 @@
                 Ticketer
                 <mat-icon>confirmation_number</mat-icon>
             </div>
-            <input type="text" (ngModelChange)="searchTickets()" placeholder="Search by name..." class="searchbar"/>
+          <form [formGroup]="searchForm" class="search-from">
+            <input type="text" formControlName= "searchTerm" placeholder="Search by name..." class="searchbar"/>
+            <button [routerLink]="routes.searchResult + searchForm.value.searchTerm">
+                Search
+            </button>
+          </form>
          </div>
          <div class="Nav_Routesflex">
              <a [routerLink]="this.routes.userProfile"  class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="searchbarShow()">

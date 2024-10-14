@@ -1,13 +1,12 @@
 
-<div class="information-notfound"  *ngIf="categorisedTickets.length ===0">
-    {{"NOTFOUND" |translate}}
+<div class="information-notfound"  *ngIf="searchResult.length === 0">
+    <p class="not-found-text">{{"NOTFOUND" |translate}}</p>
 </div>
 
-<div class="CenterBody" *ngIf="categorisedTickets.length > 0" >
+<div class="CenterBody" *ngIf="searchResult.length > 0" >
     <div class="Ticket_parent"appScrollAnimation>
-        <div class="Ticket" *ngFor="let tkt of categorisedTickets; let i = index" [routerLink]="[this.routes.fullticket,tkt.id]" (click)="TicketViewCount(tkt.id)" [ngClass]="{'top-ticket': isTopTicket(tkt)}">
+        <div class="Ticket" *ngFor="let tkt of searchResult; let i = index" [routerLink]="[this.routes.fullticket,tkt.id]" (click)="TicketViewCount(tkt.id)">
             <div class="card_box" >
-                <span *ngIf="isTopTicket(tkt)" class="TopTicket"></span>
                <div class="TicketImageContainer">
                 <img [src]="tkt.photo" alt="" class="ticketimage">
                 <div class="ticketDate">

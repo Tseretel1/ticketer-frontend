@@ -6,6 +6,8 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { CloudinaryModule} from '@cloudinary/ng';
+import { colorSpace } from '@cloudinary/url-gen/actions/delivery';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crud',
@@ -38,19 +40,22 @@ export class CrudComponent implements OnInit{
       Photo: ['', Validators.required],
     });
   }
-  isUpdateMode:boolean = false;
 
+
+  AddOrUpdateTicket:boolean = false;
   addTicket :string = ''; 
 
   ngOnInit(): void {
     this.router.params.subscribe(params => {
       this.id = +params['id'];
       this.addTicket = params['id'];
-      if(this.addTicket === 'add'){
-        this.isUpdateMode = false;
+      if(this.addTicket === 'addnewticket'){
+        this.AddOrUpdateTicket = false;
+        console.log(this.AddOrUpdateTicket);
       }
       else{
-        this.isUpdateMode = true;
+        this.AddOrUpdateTicket = true;
+        console.log(this.AddOrUpdateTicket);
         this.MatchingTicket();
       }
     }); 
@@ -59,24 +64,15 @@ export class CrudComponent implements OnInit{
     }, 50);
   }
   
-  addOrUpdate(): void {
-    if (this.isUpdateMode) {
-      this.UPdateTicket(); 
-    } else {
-      this.addticket(); 
-    }
-  }
-  
 
-  photoTicket: string | null = '';
+  isPhotoChanged: boolean  = false;
   MatchingTicket() {
     if (this.id) {
       this.service.getMatchingTicket(this.id).subscribe(
         (resp) => {
           if (resp) {
             this.TicketToedit = resp;
-            this.photoTicket = resp.photo;
-            this.imagePreview = this.photoTicket;
+            this.imagePreview = resp.photo;
             this.ticketForm.patchValue({
               Title :resp.title,
               Description: resp.description,
@@ -86,7 +82,7 @@ export class CrudComponent implements OnInit{
               Expiration_Date: this.datepipe.transform(resp.expiration_Date, 'yyyy-MM-dd'),
               ActivationTime: this.datepipe.transform(resp.activation_Date, 'HH:mm'),
               ExpirationTime: this.datepipe.transform(resp.expiration_Date, 'HH:mm'),  
-              Photo: resp.photo 
+              Photo :resp.photo,
             });
             console.log('patch value', this.ticketForm.value)
           } else {
@@ -165,6 +161,7 @@ export class CrudComponent implements OnInit{
   }
   
 
+
  //Ticket creation
  imagePreview: string | ArrayBuffer | null = null;
  selectedFile: File | null = null;
@@ -176,51 +173,52 @@ export class CrudComponent implements OnInit{
      reader.onload = () => {
        this.imagePreview = reader.result; 
      };
-     this.photoTicket = '';
+     this.isPhotoChanged = true;
      reader.readAsDataURL(this.selectedFile);
-   } else {
+   } 
+   else {
      this.selectedFile = null;
      this.imagePreview = null;
    }
  }
 
-
-  savedImg: string |null = null;
-  isimgUploaded :boolean = false;addticket(): void {
-    if (this.ticketForm.valid && !this.isFormSubmited) {
-      this.isFormSubmited = true;
-      this.uploadImage();
-    } else {
-      console.error('Form is invalid or already submitted');
-      console.log(this.ticketForm.value);
-      Object.values(this.ticketForm.controls).forEach(control => {
-        control.markAsTouched();
-      });
-    }
+ savedImg: string |null = null;
+ isimgUploaded :boolean = false;
+ AddOrUpdate() {
+  if (this.AddOrUpdateTicket) {
+    this.uploadImage().subscribe(() => {
+      this.proceedToUpdateTicket();
+    });
+  } else {
+    this.uploadImage().subscribe(() => {
+      this.proceedToAddTicket();
+    });
   }
-  uploadImage(): void {
+}
+
+uploadImage(): Observable<any> {
+  return new Observable(observer => {
     if (this.selectedFile) {
       this.service.uploadImage(this.selectedFile).subscribe(
         (response) => {
           this.savedImg = response.secure_url;
-          this.isimgUploaded = true;
-          if(this.isUpdateMode){
-            this.proceedToUpdateTicket();
-          }
-          else{
-            this.proceedToAddTicket();
-          }
+          this.isimgUploaded = true
+          observer.next(response);
+          observer.complete();
         },
         (error) => {
           console.error('Error uploading image:', error);
-          this.isFormSubmited = false; 
+          this.isFormSubmited = false;
+          observer.error(error);
         }
       );
-    } else {
-      console.error('No file selected for upload');
-      this.isFormSubmited = false;
     }
-  }
+    else {
+      observer.complete();
+    }
+  });
+}
+
   
   proceedToAddTicket(): void {
     if (this.isimgUploaded && this.savedImg) {
@@ -238,12 +236,14 @@ export class CrudComponent implements OnInit{
       this.service.createTicket(TicketADD).subscribe(
         (res) => {
           this.isFormSubmited = false;
+          console.log(res)
           if (res.success) {
             this.ticketForm.reset();
             this.location.back();
           }
         },
         (error) => {
+          console.log(error);
           this.isFormSubmited = false;
           console.error(error.message);
         }
@@ -257,24 +257,8 @@ export class CrudComponent implements OnInit{
 
 
   isFormSubmited: boolean = false;
-
-  UPdateTicket(): void {
-    if (this.ticketForm.valid && !this.isFormSubmited) {
-      this.isFormSubmited = true; 
-      this.uploadImage();
-    } else {
-      console.error('Form is invalid or already submitted');
-      console.log(this.ticketForm.value);
-      Object.values(this.ticketForm.controls).forEach(control => {
-        control.markAsTouched();
-      });
-    }
-  }
   proceedToUpdateTicket(): void {
     if (this.isimgUploaded && this.savedImg) {
-      if(this.savedImg ==null){
-        
-      }
       const TicketToUpdate: Ticket = {
         ID: this.id,
         title: this.ticketForm.value.Title,
@@ -286,10 +270,10 @@ export class CrudComponent implements OnInit{
         photo: this.savedImg,
         genre: this.ticketForm.value.Genre,
       };
-  
       this.service.Updateticket(TicketToUpdate).subscribe(
         (res) => {
           this.isFormSubmited = false;
+          console.log(res)
           if (res.success) {
             this.ticketForm.reset();
             this.location.back();
@@ -301,8 +285,8 @@ export class CrudComponent implements OnInit{
         }
       );
     }
-  }
-  
-
-  
+    else{
+      console.log("this is the problem");
+    }
+  } 
 }

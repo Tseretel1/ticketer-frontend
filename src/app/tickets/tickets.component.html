@@ -1,34 +1,19 @@
-<div class="centerCover">
-    <div class="Tickets_Header" *ngIf="allTicketsVisible == false">
-        <div class="headercarousel" #Headercarousel>
-            <div class="PopularEvent"#eventParent *ngFor="let pop of Popularevent">
-                <div class="Header_Content"  [routerLink]="[this.routes.fullticket, pop.id]">
-                  <div class="firsthalf">
-                    <p class="content_style">
-                        {{pop.title}}
-                    </p>
-                  </div>
-                  <div class="secondhalf">
-                    <p class="content_style">
-                        {{pop.genre}}
-                    </p>
-                  </div>
-                </div>
-            <div class="Photocontainer">
-               <img [src]="pop.photo" alt="" class="MostpopularEventPhoto">
-            </div>
-         </div>
+
+
+<div class="header">
+    <div class="cover">
+        <div class="cover-image-container">
+            <img [src]="coverImages.photo" class="cover-image" alt="" [routerLink]="this.routes.fullticket + coverImages.id">
+                <button class="slider-buttons left" (click)="scrollLeft()"> <mat-icon>chevron_left</mat-icon></button>
+                <button class="slider-buttons right" (click)="scrollRight()" > <mat-icon>chevron_right</mat-icon></button>
         </div>
-    </div>
+    </div> 
+</div>
 
 
 
-     <!--------------Tickets-------------->
 
-
-    <div class="CenterBody" *ngIf="allTicketsVisible == false && popularTickets">
-
-        
+    <div class="CenterBody" *ngIf="allTicketsVisible == false && popularTickets">        
         <!--Upcoming Tickets-->
         <div class="sectionHeader headerTop" *ngIf="popularTickets">
             <div class="sectionHeaderAlign">
@@ -65,9 +50,9 @@
         <!--Popular Tickets-->
         <div class="sectionHeader" *ngIf="otherTickets">
             <div class="sectionHeaderAlign">
-                <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'popular'">{{ 'OTHERTICKETS' | translate }}<mat-icon class = "starIcon staritself">star</mat-icon></p>
+                <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'other'">{{ 'OTHERTICKETS' | translate }}<mat-icon class = "starIcon staritself">star</mat-icon></p>
                 <div class="scrolBUttonsParent">
-                    <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories+'popular'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+                    <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories+'other'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
                 </div>
             </div>
         </div>
@@ -94,8 +79,9 @@
 
         <div class="sectionHeader headerTop" *ngIf="popularTickets">
             <div class="sectionHeaderAlign">
-                <div class="">
-                    <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'popular'"> {{ 'POPULAREVENTS' | translate }}</p> 
+                <div class="section-title-align"  [routerLink]="this.routes.ticketCategories+'popular'">
+                    <p class="sectionTitletext"> {{ 'POPULAREVENTS' | translate }}</p> 
+                    <div class="top-tickets">Top <mat-icon>star</mat-icon></div>
                 </div>
                 <div class="scrolBUttonsParent">
                     <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'popular'">{{ 'SEEALLTICKETS' | translate }} <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
@@ -105,7 +91,6 @@
         <section class="other-section" *ngIf="popularTickets">
             <div class="Ticket_parent"  *ngIf="popularTickets" appScrollAnimation>
                 <div class="Tickets" *ngFor="let tkt of popularTickets; let i = index" [routerLink]="this.routes.fullticket+tkt.id"  (click)="TicketViewCount(tkt.id)">
-                    <div class="top-tickets">Top <mat-icon>star</mat-icon></div>
                     <div class="card_box">
                         <div class="TicketImageContainer">
                             <img [src]="tkt.photo" alt="" class="ticketimage">
@@ -115,7 +100,7 @@
                             </div>
                         </div>
                         <div class="ticketfooter">
-                            <p class="ticketTitleMain">{{tkt.title}}</p>
+                            <p class="popular-title">{{tkt.title}}</p>
                         </div>
                     </div>
                 </div>
@@ -123,30 +108,6 @@
         </section>  
          
     </div>
-
-    <div class="theater-header" *ngIf="theaterticketss">
-        <div class="theater-title">
-            <p class="theater-title-text">{{ 'THEATEREVENTS' | translate }}<mat-icon class = "theater-icon">theater_comedy</mat-icon></p> 
-        </div>
-        <div class="see-all-tickets-parent"> 
-            <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories + 'THEATER'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
-        </div>
-    </div>
-    <section class="theater-section-parent" *ngIf="theaterticketss">
-        <div class="theater-section">
-            <div class="theater-align" *ngFor="let tkt of theaterticketss; let i = index" [ngClass]="{'theater-align-small': i > 0}">
-                <div class="theater-photo-container" *ngIf="i === 0" [routerLink]="this.routes.fullticket+tkt.id"  (click)="TicketViewCount(tkt.id)">
-                    <div class="theater-name-parent"><p class="thater-ticket-name">{{tkt.title}}</p></div>
-                    <img [src]="tkt.photo" alt="" class="theater-photos">
-                </div>
-                <div class="theater-photo-container" *ngIf="i > 0" [routerLink]="this.routes.fullticket+tkt.id" (click)="TicketViewCount(tkt.id)" >
-                    <div class="theater-name-parent"><p class="thater-ticket-name">{{tkt.title}}</p></div>
-                    <img [src]="tkt.photo" alt="" class="theater-photos">
-                </div>
-            </div>                
-        </div>    
-    </section>  
-    
 
 
     <footer class="footer">
@@ -165,5 +126,4 @@
         </div>
       </div>
     </footer>
-</div>
 

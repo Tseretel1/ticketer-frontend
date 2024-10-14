@@ -9,6 +9,7 @@ export interface Routes {
     creatorCrud: string;
     creatorScanner: string;
     creatorTicketManagement: string;
+    searchResult :string;
 }
 
 export const appRoutes: Routes = {
@@ -21,5 +22,6 @@ export const appRoutes: Routes = {
     creatorScanner: "/event-creator/scanner",
     creatorTicketManagement: "/event-creator/ticket-management",
     ticketCategories : "/ticket-categories/",
-    userProfile :"/user-profile"
+    userProfile :"/user-profile",
+    searchResult :"/search/"
 };

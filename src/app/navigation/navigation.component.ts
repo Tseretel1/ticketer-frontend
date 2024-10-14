@@ -1,11 +1,12 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ɵɵsetComponentScope } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { NavService } from './nav.service';
 import { appRoutes, Routes } from '../route-paths';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-navigation',
@@ -15,21 +16,27 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     CommonModule,
     RouterLinkActive,
     MatIcon,
-    TranslateModule
+    TranslateModule,
+    ReactiveFormsModule
     ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent implements OnInit, OnDestroy{
+
+  searchForm :FormGroup
   constructor(
     private authService:AuthService,
     private service :NavService,
     private location :Location, 
     private translate :TranslateService,
     public router :Router,
+    private fb :FormBuilder,
   ) 
   {
-
+    this.searchForm = this.fb.group({
+      searchTerm : ['', Validators.required]
+    })
   }
   pathsToHide(): boolean {
     const routesToHide = [

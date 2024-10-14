@@ -152,7 +152,7 @@ export class ticketmanagmentComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const scrollPosition = window.scrollY + window.innerHeight;
+    const scrollPosition = window.scrollY + window.innerHeight-50;
     const windowHeight = document.body.offsetHeight;
 
     if (scrollPosition >= windowHeight) {

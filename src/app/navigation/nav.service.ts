@@ -13,4 +13,8 @@ export class NavService {
    GetMyProfile(): Observable<any> {
      return this.http.get( this.URL+'user-profile');
    }
+   search(searchTerm :string): Observable<any> {
+    return this.http.get(`${this.URL}search-by-title/${searchTerm}`);
+  }
+   
 }

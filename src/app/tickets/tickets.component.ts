@@ -50,10 +50,8 @@ export class TicketsComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.fetchPopularEvents();
     this.MostpopularTickets();
     this.UpcomingTickets();
-    this.theaterTickets();
     this.getotherTickets();
   }
 
@@ -69,8 +67,14 @@ export class TicketsComponent implements OnInit, OnDestroy{
   popularTickets :any[] = [];
   MostpopularTickets() {
     this.ticketService.MostPopularTickets().subscribe(
-      (resp: any[]) => {
-        this.popularTickets = resp
+      (resp) => {
+        this.popularTickets = resp;
+        console.log(this.popularTickets);
+        
+        if (this.popularTickets.length > 0) {
+          this.coverImages = this.popularTickets[this.currentIndex];
+          this.coverFlow();
+        }
       },
       (error) => {
         console.error('Error fetching ticket data:', error);
@@ -78,6 +82,36 @@ export class TicketsComponent implements OnInit, OnDestroy{
     );
   }
 
+   
+  currentIndex: number = 0;
+  coverImages : any = {};
+
+  coverFlow() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+
+    this.intervalId = setInterval(() => {
+      if (this.popularTickets.length > 0) {
+        this.currentIndex = (this.currentIndex + 1) % this.popularTickets.length;
+        this.coverImages = this.popularTickets[this.currentIndex];
+      }
+    }, 5000);
+  }
+  scrollLeft() {
+    if (this.popularTickets.length > 0) {
+      this.currentIndex = (this.currentIndex - 1 + this.popularTickets.length) % this.popularTickets.length;
+      this.coverImages = this.popularTickets[this.currentIndex];
+    }
+  }
+  
+  scrollRight() {
+    if (this.popularTickets.length > 0) {
+      this.currentIndex = (this.currentIndex + 1) % this.popularTickets.length;
+      this.coverImages = this.popularTickets[this.currentIndex]; 
+    }
+  }
+  
 
   upcomingTickets :any[] = [];
   UpcomingTickets() {
@@ -96,18 +130,6 @@ export class TicketsComponent implements OnInit, OnDestroy{
     this.ticketService.otherTickets().subscribe(
       (resp: any[]) => {
         this.otherTickets = resp;
-      },
-      (error) => {
-        console.error('Error fetching ticket data:', error);
-      }
-    );
-  }
-
-  theaterticketss :any[] = [];
-  theaterTickets() {
-    this.ticketService.theaterTickets().subscribe(
-      (resp: any[]) => {
-        this.theaterticketss = resp;
       },
       (error) => {
         console.error('Error fetching ticket data:', error);
@@ -136,44 +158,6 @@ export class TicketsComponent implements OnInit, OnDestroy{
     this.allTicketsVisible = false;
     this.tickets = [];
   }
-  
-  @ViewChild('Headercarousel') coverscroll!: ElementRef;
-  @ViewChild('eventParent') coverscrollchild!: ElementRef;
-
-  coverScroolLeft() {
-    const ticketWidthElement = this.coverscrollchild.nativeElement;
-    const ticketWidth = ticketWidthElement.offsetWidth;
-    this.coverscroll.nativeElement.scrollBy({ left: -ticketWidth + 20, behavior: 'smooth' });
-  }
-
-  coverScroolRight() {
-    const ticketWidthElement = this.coverscrollchild.nativeElement;
-    const ticketWidth = ticketWidthElement.offsetWidth;
-    this.coverscroll.nativeElement.scrollBy({ left: ticketWidth + 30, behavior: 'smooth' });
-  }
-fetchPopularEvents(): void {
-  this.eventsSubscription = this.ticketService.PopularEvents().subscribe(
-    (resp: any) => {
-      this.Popularevent = resp;
-      this.startEventLoop();
-    },
-    (error) => {
-      console.error('Error fetching event data:', error);
-    }
-  );
-}
-intervalMs: number = 5000;
-fadeDurationMs: number = 200;
-
-
-
-startEventLoop(): void {
-  setInterval(() => {
-    setTimeout(() => {
-      this.coverScroolRight();
-    }, this.fadeDurationMs);
-  }, this.intervalMs);
-}
 
 ngOnDestroy(): void {
   if (this.intervalId) {
