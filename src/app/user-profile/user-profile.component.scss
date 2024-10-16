@@ -1,7 +1,10 @@
+
 .exitButton{
     display: flex;
     width: 100%;
     justify-content: flex-end;
+    padding-top: 51px;
+
 }
 
 .ExitFromAccountbutton{
@@ -94,6 +97,7 @@
     width: 100%;
     position: relative;
     gap: 50px;
+    padding-top: 51px;
 }
 .headerleAlign{
     width: 90%;
@@ -107,7 +111,7 @@
 .noTicketFound{
     font-size: 30px;
     color: white;
-    margin-top: 200px;
+    text-align: center;
 }
 .ticketswitchParent{
     width: 100%;
@@ -535,6 +539,9 @@
     .singlephotoContainer{
         width: 250px;
     }
+    .switchButton{
+        padding: 0px 30px 0px 30px;
+    }
 }
 @media screen and (max-width : 400px){
     .switchButton{
@@ -554,6 +561,9 @@
     }
     .SingleDate{
         font-size: 20px;
+    }
+    .switchButton{
+        padding: 0px 10px 0px 10px;
     }
 }
 @media screen and (max-width : 350px){

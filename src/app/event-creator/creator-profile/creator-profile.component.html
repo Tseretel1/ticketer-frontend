@@ -1,12 +1,60 @@
 <div class="profile-parent">
-    <div class="exit-from-account-parent">
-        <button class="exit-from-account" (click)="ExitFromAccunt()">{{"EXITFROMACCOUNT" | translate}}</button>
-    </div>
-    <div class="my-profile">
-        <div class="logo-container">
-            <img [src]="profile.logo" alt="" class="profile-logo" *ngIf="profile.logo">
-            <mat-icon class="no-logo" *ngIf="!profile.logo">account_circle</mat-icon>
+   <div class="profile-aligment">
+        <div class="exit-from-account-parent">
+            <button class="exit-from-account" (click)="ExitFromAccunt()">{{"EXITFROMACCOUNT" | translate}}</button>
         </div>
-        <p class="profile-name">{{profile.userName}}</p>
+        <div class="my-profile">
+            <div class="logo-container">
+                <img [src]="profile.logo" alt="" class="profile-logo" *ngIf="profile.logo">
+                <mat-icon class="no-logo" *ngIf="!profile.logo">account_circle</mat-icon>
+            </div>
+            <p class="profile-name">{{profile.userName}}</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="dashboard-parent">
+    <p class="dashboard-title">{{"DASHBOARD" |translate}}</p>
+    <div class="dashboard">
+        <div class="ticket" *ngFor="let i of ActiveTickets">
+            <div class="ticket-background">
+                <div class="title-align">
+                    <div class="ticket-image-container">
+                        <img [src]="i.photo" alt="" class="ticket-image">
+                    </div>
+                    <p class="ticket-title">{{i.title}}</p>
+               </div>
+               <div class="stat-column">
+                <div class="stat-parent">
+                    <p class="stat-title">
+                      {{"SOLDCOUNT" |translate}}
+                    </p>
+                    <p class="stat-res">
+                        {{i.sold}}
+                        <mat-icon>confirmation_number</mat-icon>
+                    </p>
+                </div> 
+                <div class="stat-parent">
+                    <p class="stat-title">
+                      {{"REMAININGCOUNT" |translate}}
+                    </p>
+                    <p class="stat-res">
+                        {{i.ticketCount}}
+                        <mat-icon>confirmation_number</mat-icon>
+                    </p>
+                </div> 
+                <div class="stat-parent">
+                    <p class="stat-title">
+                      {{"VIEWCOUNT" |translate}}
+                    </p>
+                    <div class="stat-res">
+                        <div class="view-count"><mat-icon>visibility</mat-icon>{{i.viewCount}}</div>
+                    </div>
+                </div> 
+    
+                </div>
+            </div>
+        </div>
     </div>
 </div>

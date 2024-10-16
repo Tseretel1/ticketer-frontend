@@ -74,7 +74,7 @@
 
 <div class="MyTicketsParent" *ngIf="ticketSwitch">
    <div class="TicketCenter">
-      <div class="noTicketFound" *ngIf="noTicketsMessage">
+      <div class="noTicketFound" *ngIf="actTickets.length <= 0">
          {{"NOTFOUND" | translate}}
       </div>
       <div class="Ticket_parent" *ngIf="actTickets" appScrollAnimation>
@@ -95,7 +95,7 @@
 
 <div class="MyTicketsParent" *ngIf="expTickets && ticketSwitch ==false">
    <div class="TicketCenter">
-      <div class="noTicketFound" *ngIf="noTicketsMessage">
+      <div class="noTicketFound" *ngIf="expTickets.length <= 0">
          {{"NOTFOUND" | translate}}
       </div>
       <div class="Ticket_parent" *ngIf="expTickets" appScrollAnimation>

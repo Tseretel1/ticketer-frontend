@@ -43,7 +43,16 @@ export class NavigationComponent implements OnInit, OnDestroy{
       this.routes.creator,
       this.routes.fullticket, 
       this.routes.userProfile,
-      this.routes.login
+      this.routes.login,
+    ];
+    return !routesToHide.some(route => this.router.url.startsWith(route));
+  }
+  navHide(): boolean {
+    const routesToHide = [
+      this.routes.creatorCrud,
+      this.routes.creatorProfile, 
+      this.routes.creatorScanner,
+      this.routes.creatorTicketManagement,
     ];
     return !routesToHide.some(route => this.router.url.startsWith(route));
   }

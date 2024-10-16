@@ -17,14 +17,21 @@ export class ProfileService {
   GetMytickets(): Observable<any> {
     return this.http.get( this.URL+'my-tickets');
   }
-  
+
+  GetAllActiveTickets(): Observable<any> {
+    return this.http.get(`${this.URL}all-active-tickets`);
+  }
+
   GetMyProfile():Observable<any>{
     return this.http.get(this.URL + 'my-profile');
-  } 
+  }
+
   GetAccountManagment():Observable<any>{
     return this.http.get(this.URL + 'account-management');
   } 
+
   RemoveUserfromAccount(userid :number):Observable<any>{
     return this.http.delete(`${this.URL}remove-user-from-account/${userid}`);
   }
+  
 }

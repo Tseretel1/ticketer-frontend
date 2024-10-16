@@ -118,7 +118,7 @@
 }
 .Ticket::before{
     content: "Active";
-    top: 10px;
+    top: -10px;
     left: -10px;
     position: absolute;
     background-color: Green;
@@ -128,7 +128,7 @@
 }
 .Ticket-expired::before{
     content: "Expired";
-    top: 10px;
+    top: -10px;
     left: -10px;
     position: absolute;
     background-color: red;
@@ -141,7 +141,7 @@
 }
 .SoldTicketCount{
     position: absolute;
-    top: 10px;
+    top: -10px;
     right: -10px;
     background-color: black;
     padding: 5px;
@@ -153,8 +153,8 @@
 .titlecenter{
     display: flex;
     width: 100%;
-    justify-content: center;
     margin-top: 5px;
+    font-size: 18px;
 }
 
 .TicketImageContainer {
@@ -168,7 +168,6 @@
     border-radius: 10px;
     border: 1px solid transparent;
     transition: 0.2s all ease-in-out;
-    border: 1px solid white;
   }
   .TicketImageContainer:hover{
     border: 1px solid green;

@@ -27,7 +27,7 @@
                     <div class="my-accounts-click" (click)="LoginToaccount(i.id)">
                         <div class="account-image-container">
                             <img [src]="i.logo" alt="" class="account-image" *ngIf="i.logo">
-                            <mat-icon *ngIf="i.logo==null">account_circle</mat-icon>
+                            <mat-icon class="no-logo" *ngIf="!i.logo">account_circle</mat-icon>
                         </div>
                          <div class="account-name">
                             {{i.userName}}

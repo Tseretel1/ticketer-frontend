@@ -33,19 +33,16 @@ export class EventCreatorComponent implements OnInit{
   routes: Routes = appRoutes;
 
   ngOnInit(): void {
-    this.LoggedCheck();
+    if(this.LoggedCheck()){
+      this.router.navigate([this.routes.creatorProfile]);
+    }
     this.mycreatorAccounts();
   }
 
   
-  Loginform :FormGroup;
   RegisterForm :FormGroup;
   CreateAccountForm :FormGroup
   constructor(private authService: AuthService, private fb :FormBuilder, private service :ServiceService, private router :Router){
-    this.Loginform =  fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-    });
     this.RegisterForm = fb.group({
       PersonalID :['',[Validators.required]],
       PhoneNumber :['',[Validators.required]],
@@ -100,7 +97,6 @@ export class EventCreatorComponent implements OnInit{
         const token = localStorage.getItem('CreatorToken');
         if (token) {
             this.router.navigate([this.routes.creatorProfile]);
-            this.Loginform.reset();
         }
         else{
           localStorage.setItem('CreatorToken', resp.message);

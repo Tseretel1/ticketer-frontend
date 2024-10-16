@@ -23,6 +23,7 @@ routes: Routes = appRoutes;
   ngOnInit(): void {
     this.LoadMyProfile();
     this.AccountManagment();
+    this.LoadActiveTickets();
   }
 
   profile: any = {}; 
@@ -37,6 +38,18 @@ routes: Routes = appRoutes;
     );
   }
 
+  ActiveTickets: any[] = []; 
+  LoadActiveTickets() {
+    this.service.GetAllActiveTickets().subscribe(
+      (resp: any) => {
+        this.ActiveTickets = resp;
+        console.log(this.ActiveTickets);
+      },
+      (error) => {
+        console.error('Error fetching Profile data:', error);
+      }
+    );
+  }
 
   Managment :any[] = [];
   AccountManagment(){

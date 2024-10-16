@@ -111,6 +111,16 @@
     align-items: center;
     gap: 5px;
 }
+.search-btn{
+    padding: 4px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+.search-btn:hover{
+    background-color: rgba(255, 255, 255, 0.733);
+}
 .Navbarflex2{
     display: flex;
     align-items: center;
@@ -302,7 +312,10 @@
     color: white;
     gap: 5px;
     cursor: pointer;
-    padding: 5px;
+    padding: 4px 8px;
+  }
+  .test{
+    line-height: 0;
   }
   .categoire-active{
     padding: 5px;

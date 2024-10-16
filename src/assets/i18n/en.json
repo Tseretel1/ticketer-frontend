@@ -97,6 +97,12 @@
 
     "TICKETMANAGMENT": "Ticket Managment",
     "SCANNER": "Scanner",
+    "DASHBOARD": "Dashboard",
+    "SOLDCOUNT": "Sold ticket amount",
+    "VIEWCOUNT": "Views",
+    "REMAININGCOUNT": "Remaining ticket amount",
+
+
     "PROFILE": "Profile",
     "ADDTICKET": "Add new Ticket",
 

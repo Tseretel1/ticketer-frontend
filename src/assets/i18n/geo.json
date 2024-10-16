@@ -90,6 +90,11 @@
 
     "TICKETMANAGMENT": "ბილეთების მართვა",
     "SCANNER": "სკანერი",
+    "DASHBOARD": "დეშბორდი",
+    "SOLDCOUNT": "გაყიდული ბილეთები",
+    "VIEWCOUNT": "ნახვები",
+    "REMAININGCOUNT": "დარჩენილი ბილეთები",
+
     "PROFILE": "პროფილი",
     "ADDTICKET": "დაამატე ბილეთი",
 
