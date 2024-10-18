@@ -24,7 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class FullTicketComponent implements OnInit, OnDestroy {
   id: number = 0;
-  matchingTicket: any = null;
+  matchingTicket: any = {};
   foundtickets: any[] = [];
   SellingForm: FormGroup;
   private destroy$ = new Subject<void>(); // Subject for managing unsubscriptions
@@ -94,7 +94,6 @@ export class FullTicketComponent implements OnInit, OnDestroy {
 
   matchingTicketFound() {
     this.matchingTicket = this.foundtickets.find(ticket => ticket.id === this.id); 
-    console.log(this.matchingTicket);
     if (this.matchingTicket) {
       this.matchingTicket.photo = `${this.matchingTicket.photo}?v=${new Date().getTime()}`;
       this.soldOut = this.matchingTicket.ticketCount <= 0;

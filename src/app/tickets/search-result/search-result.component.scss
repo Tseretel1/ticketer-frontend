@@ -53,6 +53,9 @@
   position: relative;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .ticketDate{
   display: flex;
@@ -75,7 +78,6 @@
 }
 .Ticket {
   color: white;
-  font-family: sans-serif;
   transition: 0.3s all ease-in-out;
   cursor: pointer;
   display: flex;

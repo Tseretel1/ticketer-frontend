@@ -33,13 +33,17 @@ export class EventCreatorComponent implements OnInit{
   routes: Routes = appRoutes;
 
   ngOnInit(): void {
-    if(this.LoggedCheck()){
+    if (this.LoggedCheck() && this.isCreatorRoute()) {
       this.router.navigate([this.routes.creatorProfile]);
     }
-    this.mycreatorAccounts();
+    else{
+      this.mycreatorAccounts();
+    }
   }
 
-  
+  private isCreatorRoute(): boolean {
+    return this.router.url == this.routes.creator;
+  }
   RegisterForm :FormGroup;
   CreateAccountForm :FormGroup
   constructor(private authService: AuthService, private fb :FormBuilder, private service :ServiceService, private router :Router){

@@ -58,19 +58,27 @@
 .form-container{
     display: flex;
     flex-direction: column;
-    background-color: rgba(50, 53, 106, 0.662);
+    background-color: rgba(0, 0, 0, 0.662);
     border: 1px solid white;
     padding: 50px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px black;
     gap: 10px;
     align-items: center;
-    animation: showModal 1s;
+    animation: showModal 0.5s;
 }
 @keyframes showModal{
-    0%{scale:0}
-    50%{scale:1.2}
-    100%{scale:1}
+    0%{
+      scale:0.5;
+      opacity: 0;
+    }
+    50%{
+      scale:1.2;
+    }
+    100%{
+      scale:1;
+      opacity: 1;
+    }
 }
 .form-input-align{
     display: flex;
@@ -172,14 +180,10 @@
     padding: 5px;
     border-radius: 10px;
     border: none;
-    animation: buttonAnim 1s;
+    animation: showModal 0.5s;
     cursor: pointer;
 }
-@keyframes buttonAnim{
-    0%{scale:0;}
-    50%{padding: 10px;}
-    100%{scale:1}
-}
+
 .close-button-parent{
     display: flex;
     width: 100%;

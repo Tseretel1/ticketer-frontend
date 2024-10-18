@@ -54,7 +54,7 @@ export class CrudService {
       return this.http.post(this.url + "add-new-tickets", ticket, {
           headers: { 'Content-Type': 'application/json' },
           responseType: 'json',
-      });
+    });
   }
 
 

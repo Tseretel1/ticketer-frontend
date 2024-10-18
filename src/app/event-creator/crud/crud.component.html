@@ -26,12 +26,12 @@
     <div class="CancelAdingticket">
         <div class="cancel-ticket-align">
           <button class="CancelAdingticketButton" (click)="CancelTicketCreation()">{{"BACK" | translate}}</button> 
-          <div *ngIf="TicketToedit !=null">
-            <button class="CancelAdingticketButton delete-ticket-button" (click)="opendeletemodal()"> {{"DELETETICKET" | translate}}</button>
+          <div *ngIf="ticketResp !=null">
+            <button class="CancelAdingticketButton delete-ticket-button" *ngIf="AddOrUpdateTicket" (click)="opendeletemodal()"> {{"DELETETICKET" | translate}}</button>
           </div>
         </div>  
     </div>
-    <form [formGroup]="ticketForm"  (submit)="AddOrUpdate()" class="ticket-form">
+    <form [formGroup]="ticketForm" class="ticket-form">
       <div class="center-form">
         <div class="image-preview-parent">
             <div class="image-preview">
@@ -118,10 +118,21 @@
   
   
           <div class="input-align-parent">
+            <div class="input-align" *ngIf="AddOrUpdateTicket">
+              <div class="ticket-count-title">
+                <p class="input-names">{{"REMAININGTICKETSCOUNT" | translate}} </p>
+                <p class="ticket-count-num">{{ticketResp.ticketCount}}</p> 
+                <mat-icon class="count-icon">confirmation_number</mat-icon>
+              </div>
+              <div class="ticket-count-resp">
+                <div><button class="add-ticket-count-button" (click)="showTicketcountInput()">{{"ADDTICKET" | translate}}</button></div>
+              </div>
+            </div>
             <div class="ticket-count">
               <div class="ticket-count-align">
-                <label class="input-names">{{"HOWMANYTICKETS" | translate}}</label>
-                <input type="number" formControlName="TicketCount" class="ticket-inputs" placeholder="0">
+                <label class="input-names" *ngIf="!AddOrUpdateTicket">{{"HOWMANYTICKETS" | translate}}</label>
+                <input type="number" *ngIf="!AddOrUpdateTicket" formControlName="TicketCount" class="ticket-inputs" placeholder="0">
+                <input type="number" *ngIf="AddOrUpdateTicket && countInputswitch" formControlName="TicketCount" class="ticket-inputs" placeholder="0">
               </div>
               <div class="create-ticket-parent">
                  <button type="submit" class="create-ticket-button" (click)="AddOrUpdate()">{{"SAVETICKET" | translate}}</button>

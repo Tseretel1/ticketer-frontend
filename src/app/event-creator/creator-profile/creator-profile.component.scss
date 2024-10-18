@@ -13,27 +13,6 @@
   max-width: 1600px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-}
-.exit-from-account-parent{
-  display: flex;
-  width: 90%;
-  justify-content: flex-end;
-  max-width: 1600px;
-  .exit-from-account{
-    background-color: transparent;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    padding: 5px;
-    transition: 0.3s all ease-in-out;
-    cursor: pointer;
-  }
-  .exit-from-account:hover{
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-  }
 }
 .dashboard-title{
   color: white;
@@ -69,6 +48,135 @@
   font-size: 25px;
   color: whitesmoke;
 }
+.settings{
+  padding: 50px;
+  color: white;
+}
+.settings-icon{
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+}
+.profile-animation{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.profile-animation:hover .settings-icon{
+  animation: 3s settingIcon;
+}
+
+@keyframes settingIcon {
+  50%{
+    transform: rotate(180deg);
+  }
+}
+
+
+
+
+//edit profile
+.edit-profile{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.exitfrom-profile{
+  width: 100%;
+}
+.exit-from-account-parent{
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  max-width: 1600px;
+  .exit-from-account{
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    transition: 1.3s all ease-in-out;
+    cursor: pointer;
+  }
+  .back{
+    background-color: white;
+    color: black;
+    padding: 10px;
+  }
+  .exit-from-account:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+}
+@keyframes saveimageaAnimation {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+.big-nologo{
+  width: 180px;
+  height: 180px;
+  font-size: 180px;
+}
+.save-image-button{
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+}
+.disabled{
+  cursor: default;
+  opacity: 1;
+  transition: 0.3s all ease-in-out;
+  animation :saveimageaAnimation 1s; 
+  opacity: 1;
+}
+.update-photo-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.profile-image-container{
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.change-photo-button{
+  position: absolute;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  opacity: 0.3;
+  transition: 0.3s all ease-in-out;
+  cursor: pointer;
+}
+.profile-image-container:hover .change-photo-button{
+  opacity: 1;
+}
+
+
+
+
+//dashboard
 
 .dashboard-parent{
   width: 100%;
@@ -77,13 +185,15 @@
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  padding-bottom: 50px;
 }
 .dashboard{
   width: 90%;
   max-width: 1600px;
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: 20px;
+  justify-content: space-between;
 }
 .ticket{
   display: flex;
@@ -93,15 +203,17 @@
 }
 .ticket-background{
   display: flex;
-  background-color: rgba(0, 0, 0, 0.482);
-  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.358);
   justify-content: space-evenly;
   border-radius: 10px;
   gap: 10px;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid grey;
 }
 .ticket-image-container{
   width: 100%;
-  width: 300px;
   height: 180px;
   overflow: hidden;
   border-radius: 10px;
@@ -119,21 +231,49 @@
 .ticket-title{
   color: white;
   font-size: 20px;
-  max-width: 300px;
 }
 .stat-column{
   display: flex;
   flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
+  gap:16px;
 }
 .stat-title{
+  color: lightcoral;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sold-color{
+  color: lightgreen;
+}
+.total-color{
   color: white;
 }
 .stat-res{
   display: flex;
   align-items: center;
   color: lightgrey;
+  gap: 10px;
+  line-height: 0;
+}
+.res-num{
+  display: flex;
+  align-items: flex-end;
+  line-height: 0;
+  font-size: 20px;
+  color: white;
+}
+.icon-roatate{
+  transform: rotate(35deg);
+  margin-bottom: 8px;
+}
+.eye-margin{
+  margin-bottom: 8px;
+}
+.view-flex{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .view-count{
   display: flex;
@@ -141,35 +281,25 @@
 }
 
 
-@media screen and (min-width :1400px){
+@media screen and (min-width : 1365px){
   .dashboard{
-    grid-template-columns: repeat(3,1fr);
+      grid-template-columns: repeat(4, 1fr);
   }
 }
 
-
-@media screen and (max-width :1100px){
+@media screen and (max-width : 1065px){
   .dashboard{
-    grid-template-columns: repeat(1,1fr);
+      grid-template-columns: repeat(2, 1fr);
   }
 }
 
-
-@media screen and (max-width :700px){
-  .title-align{
-    flex-direction: column-reverse;
-  }
-  .ticket-background{
-    flex-direction: column;
+@media screen and (max-width : 665px){
+  .dashboard{
+      gap: 10px;
   }
 }
-
-@media screen and (max-width :400px){
-  .ticket-image-container{
-    width: 260px;
-    height: 100px;
-  }
-  .ticket-title{
-    max-width: 260px;
+@media screen and (max-width : 600px){
+  .dashboard{
+      grid-template-columns: repeat(1, 1fr);
   }
 }

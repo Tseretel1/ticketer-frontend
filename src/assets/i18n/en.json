@@ -99,8 +99,11 @@
     "SCANNER": "Scanner",
     "DASHBOARD": "Dashboard",
     "SOLDCOUNT": "Sold ticket amount",
+    "TOTAL": "Total",
     "VIEWCOUNT": "Views",
     "REMAININGCOUNT": "Remaining ticket amount",
+    "REMAININGTICKETSCOUNT": "Remaining tickets count",
+
 
 
     "PROFILE": "Profile",

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from './profile.service';
+import { Profile, ProfileService } from './profile.service';
 import { CommonModule, DatePipe, getLocaleNumberSymbol,  } from '@angular/common';
-import { ReactiveFormsModule, } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { CdkDrag } from '@angular/cdk/drag-drop';
@@ -18,7 +18,11 @@ import { appRoutes, Routes} from '../../route-paths';
 export class CreatorProfileComponent implements OnInit{
 routes: Routes = appRoutes;
 
-  constructor (private service :ProfileService, private authservice :AuthService, private router :Router){
+  EditPhotoForm :FormGroup
+  constructor (private service :ProfileService, private authservice :AuthService, private router :Router,private fb: FormBuilder){
+    this.EditPhotoForm = fb.group({
+      logo:['', Validators.required],
+    })
   }
   ngOnInit(): void {
     this.LoadMyProfile();
@@ -26,11 +30,99 @@ routes: Routes = appRoutes;
     this.LoadActiveTickets();
   }
 
+
+  triggerFileInput(): void {
+    const fileInput = document.getElementById('photo') as HTMLInputElement;
+    fileInput.click();
+  }
+
+  selectedFile: File | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
+  
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+  
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result; 
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+  
+
+  savedImg : string ='';
+  isimgUploaded :boolean = false;
+
+
+  uploadImage(): void {
+    if (this.selectedFile) {
+        this.service.uploadImage(this.selectedFile).subscribe(
+            (response) => {
+                this.savedImg = response.secure_url; // URL of the uploaded image
+                this.updateProfilePhoto(); // Update account with new logo
+                console.log('Upload successful:', response.secure_url);
+            },
+            (error) => {
+                console.error('Error uploading image:', error);
+            }
+        );
+    } else {
+        console.log('No file selected for upload.');
+    }
+}
+
+updateProfilePhoto(): void {
+    this.service.editProfilePhoto(this.savedImg).subscribe(
+        (resp) => {
+            if (resp.success) {
+                this.editProfile = false; 
+                console.log(resp);
+            } else {
+                console.error('Failed to update profile:', resp.message);
+            }
+        },
+        (error) => {
+            console.error('Error updating profile:', error); 
+        }
+    );
+}
+
+
+  updateAccount() {
+      this.service.editProfilePhoto(this.savedImg).subscribe(
+        (resp) => {
+          console.log(resp);
+            if (resp.success) {
+                this.editProfile = false;
+                console.log(resp);
+            }
+        },
+        (error) => {
+            console.error('Error updating profile:', error);
+        }
+    );
+}
+
+
+
+  editProfile :boolean = false;
+  openEditProfile(){
+    this.editProfile = true;
+  }
+  CloseEditProfile(){
+    this.editProfile = false;
+  }
+
+
   profile: any = {}; 
   LoadMyProfile() {
     this.service.GetMyProfile().subscribe(
       (resp: any) => {
         this.profile = resp;
+        this.imagePreview = resp.logo;
       },
       (error) => {
         console.error('Error fetching Profile data:', error);

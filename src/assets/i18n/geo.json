@@ -92,6 +92,7 @@
     "SCANNER": "სკანერი",
     "DASHBOARD": "დეშბორდი",
     "SOLDCOUNT": "გაყიდული ბილეთები",
+    "TOTAL": "ჯამი",
     "VIEWCOUNT": "ნახვები",
     "REMAININGCOUNT": "დარჩენილი ბილეთები",
 
@@ -104,6 +105,7 @@
     "EXPIRATIONDATE": "გაუქმების თარიღი",
     "EDITTICKET": "ბილეთის დაედითება",
     "HOWMANYTICKETS": "რამდენი ბილეთის შექმნა გსურთ?",
+    "REMAININGTICKETSCOUNT": "ბილეთების რაოდენობა",
     "SAVETICKET": "ბილეთის შენახვა",
 
     "ACCOUNTEXISTS": "აქაუნთი იგივე სახელით უკვე არსებობს!"

@@ -46,6 +46,9 @@
     position: relative;
     cursor: pointer;
     transition: all 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
   .ticketDate{
     display: flex;

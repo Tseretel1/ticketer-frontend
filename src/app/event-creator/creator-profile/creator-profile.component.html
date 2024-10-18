@@ -1,55 +1,79 @@
-<div class="profile-parent">
+<div class="profile-parent" *ngIf="!editProfile">
    <div class="profile-aligment">
-        <div class="exit-from-account-parent">
-            <button class="exit-from-account" (click)="ExitFromAccunt()">{{"EXITFROMACCOUNT" | translate}}</button>
-        </div>
         <div class="my-profile">
-            <div class="logo-container">
-                <img [src]="profile.logo" alt="" class="profile-logo" *ngIf="profile.logo">
-                <mat-icon class="no-logo" *ngIf="!profile.logo">account_circle</mat-icon>
-            </div>
-            <p class="profile-name">{{profile.userName}}</p>
+           <div class="profile-animation" (click)="openEditProfile()">
+                <div class="logo-container">
+                    <img [src]="profile.logo" alt="" class="profile-logo" *ngIf="profile.logo">
+                    <mat-icon class="no-logo" *ngIf="!profile.logo">account_circle</mat-icon>
+                </div>
+                <p class="profile-name">{{profile.userName}}</p>
+                <div class="settings">
+                    <mat-icon class="settings-icon">settings</mat-icon>
+                </div>
+           </div>
         </div>
     </div>
 </div>
 
+<div class="edit-profile" *ngIf="editProfile">
+    <div class="exit-from-account-parent">
+        <button class="exit-from-account back" (click)="CloseEditProfile()">{{"BACK" | translate}}</button>
+        <button class="exit-from-account" (click)="ExitFromAccunt()">{{"EXITFROMACCOUNT" | translate}}</button>
+    </div>
+   <form action="" [formGroup]="EditPhotoForm" class="update-photo-form">
+        <div class="profile-image-container">
+            <button (click)="triggerFileInput()" class="change-photo-button"><mat-icon >camera_alt</mat-icon></button>
+            <img *ngIf="imagePreview" [src]="imagePreview" alt="" class="profile-image">
+            <mat-icon class="no-logo big-nologo" *ngIf="!imagePreview ">account_circle</mat-icon>
+            <input id="photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden>
+        </div>
+        <button type="button" (click)="uploadImage()" [disabled]="!selectedFile" [ngClass]="{'disabled': selectedFile}" class="save-image-button">Save Image</button>
+   </form>
+</div>
 
-<div class="dashboard-parent">
+<div class="dashboard-parent" *ngIf="!editProfile">
     <p class="dashboard-title">{{"DASHBOARD" |translate}}</p>
     <div class="dashboard">
         <div class="ticket" *ngFor="let i of ActiveTickets">
             <div class="ticket-background">
                 <div class="title-align">
-                    <div class="ticket-image-container">
-                        <img [src]="i.photo" alt="" class="ticket-image">
-                    </div>
                     <p class="ticket-title">{{i.title}}</p>
-               </div>
+                </div>
+                <div class="ticket-image-container">
+                    <img [src]="i.photo" alt="" class="ticket-image">
+                </div>
                <div class="stat-column">
                 <div class="stat-parent">
-                    <p class="stat-title">
+                    <div class="stat-title sold-color">
                       {{"SOLDCOUNT" |translate}}
-                    </p>
-                    <p class="stat-res">
-                        {{i.sold}}
-                        <mat-icon>confirmation_number</mat-icon>
-                    </p>
+                      <div class="stat-res">     
+                        <p class="res-num"> {{i.sold}} </p>
+                        <mat-icon class="icon-roatate">confirmation_number</mat-icon>
+                      </div>
+                    </div>
                 </div> 
                 <div class="stat-parent">
-                    <p class="stat-title">
+                    <div class="stat-title">
                       {{"REMAININGCOUNT" |translate}}
-                    </p>
-                    <p class="stat-res">
-                        {{i.ticketCount}}
-                        <mat-icon>confirmation_number</mat-icon>
-                    </p>
+                        <div class="stat-res">
+                            <p class="res-num">{{i.ticketCount}}</p>
+                            <mat-icon class="icon-roatate">confirmation_number</mat-icon>
+                        </div>
+                    </div>
                 </div> 
                 <div class="stat-parent">
-                    <p class="stat-title">
-                      {{"VIEWCOUNT" |translate}}
+                    <div class="stat-title total-color">
+                        {{"TOTAL" |translate}} :
+                       <p class="res-num">{{i.sold * i.price}} ₾</p>
+                    </div>
+                </div> 
+                <div class="stat-parent view-flex">
+                    <p class="stat-title total-color">
+                      {{"VIEWCOUNT" |translate}} :
                     </p>
                     <div class="stat-res">
-                        <div class="view-count"><mat-icon>visibility</mat-icon>{{i.viewCount}}</div>
+                        <p class="res-num">{{i.viewCount}}</p>
+                        <div class="view-count"><mat-icon class="eye-margin">visibility</mat-icon></div>
                     </div>
                 </div> 
     

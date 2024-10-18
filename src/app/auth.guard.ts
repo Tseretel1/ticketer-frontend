@@ -15,6 +15,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
 };
+
 export const CreatorGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const token = localStorage.getItem('token');

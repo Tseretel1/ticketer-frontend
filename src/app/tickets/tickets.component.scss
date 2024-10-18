@@ -189,16 +189,6 @@
   font-weight: bolder;
   cursor: pointer;
 }
-.sectionTitletext::before{
-  content: "";
-  border-radius: 50%;
-  width: 5px;
-  height: 5px;
-  color: green;
-  top: 0;
-  background-color: green;
-  margin-right: 5px;
-}
 .starIcon{
   color: orangered;
   font-size: 30px;

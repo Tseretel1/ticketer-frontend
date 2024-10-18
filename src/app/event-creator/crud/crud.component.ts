@@ -6,9 +6,8 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { MatIcon } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { CloudinaryModule} from '@cloudinary/ng';
-import { colorSpace } from '@cloudinary/url-gen/actions/delivery';
 import { Observable } from 'rxjs';
-
+import { appRoutes, Routes } from '../../route-paths';
 @Component({
   selector: 'app-crud',
   standalone: true,
@@ -17,15 +16,19 @@ import { Observable } from 'rxjs';
   styleUrl: './crud.component.scss'
 })
 export class CrudComponent implements OnInit{
+routes: Routes = appRoutes;
+
   id:number = 0
-  TicketToedit: any = null;
+  ticketResp: any = {};
+  
   ticketForm : FormGroup;
   constructor ( 
     private fb :FormBuilder,
     private datepipe:DatePipe,
-    private router : ActivatedRoute,
+    private route : ActivatedRoute,
     private service: CrudService,
-    private location:Location
+    private location:Location,
+    private router :Router
   ){
     this.ticketForm = this.fb.group({
       Title:  ['', Validators.required],
@@ -37,7 +40,7 @@ export class CrudComponent implements OnInit{
       ActivationTime: ['', Validators.required],
       ExpirationTime: ['', Validators.required],
       TicketCount: ['', Validators.required],
-      Photo: ['', Validators.required],
+      Photo: [''],
     });
   }
 
@@ -46,7 +49,7 @@ export class CrudComponent implements OnInit{
   addTicket :string = ''; 
 
   ngOnInit(): void {
-    this.router.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.addTicket = params['id'];
       if(this.addTicket === 'addnewticket'){
@@ -71,7 +74,7 @@ export class CrudComponent implements OnInit{
       this.service.getMatchingTicket(this.id).subscribe(
         (resp) => {
           if (resp) {
-            this.TicketToedit = resp;
+            this.ticketResp = resp;
             this.imagePreview = resp.photo;
             this.ticketForm.patchValue({
               Title :resp.title,
@@ -84,7 +87,6 @@ export class CrudComponent implements OnInit{
               ExpirationTime: this.datepipe.transform(resp.expiration_Date, 'HH:mm'),  
               Photo :resp.photo,
             });
-            console.log('patch value', this.ticketForm.value)
           } else {
             console.log('No response data available.');
           }
@@ -124,6 +126,23 @@ export class CrudComponent implements OnInit{
   get Price(): FormControl {
     return this.ticketForm.get('Price') as FormControl || null;
   }
+  get ticketCount(): FormControl {
+    return this.ticketForm.get('TicketCount') as FormControl || null;
+  }
+
+  countInputswitch :boolean = false
+  showTicketcountInput(){
+    if(this.countInputswitch == false)
+      {   
+        this.countInputswitch = true;
+      }
+      else{
+        this.countInputswitch = false;
+      }
+  }
+
+
+
 
 
   triggerFileInput(): void {
@@ -186,6 +205,11 @@ export class CrudComponent implements OnInit{
  isimgUploaded :boolean = false;
  AddOrUpdate() {
   if (this.AddOrUpdateTicket) {
+    if(!this.selectedFile){
+      this.savedImg = this.ticketForm.value.Photo;
+      console.log("photo" , this.savedImg);
+      this.proceedToUpdateTicket();
+    }
     this.uploadImage().subscribe(() => {
       this.proceedToUpdateTicket();
     });
@@ -239,7 +263,7 @@ uploadImage(): Observable<any> {
           console.log(res)
           if (res.success) {
             this.ticketForm.reset();
-            this.location.back();
+            this.router.navigate([this.routes.creatorTicketManagement]);
           }
         },
         (error) => {
@@ -257,8 +281,12 @@ uploadImage(): Observable<any> {
 
 
   isFormSubmited: boolean = false;
+  ticketCountChanged :number = 0;
   proceedToUpdateTicket(): void {
-    if (this.isimgUploaded && this.savedImg) {
+    if (this.savedImg) {
+      if(this.ticketCountChanged == 0){
+
+      }
       const TicketToUpdate: Ticket = {
         ID: this.id,
         title: this.ticketForm.value.Title,
@@ -276,7 +304,7 @@ uploadImage(): Observable<any> {
           console.log(res)
           if (res.success) {
             this.ticketForm.reset();
-            this.location.back();
+            this.router.navigate([this.routes.creatorTicketManagement]);
           }
         },
         (error) => {

@@ -68,9 +68,7 @@ export class TicketsComponent implements OnInit, OnDestroy{
   MostpopularTickets() {
     this.ticketService.MostPopularTickets().subscribe(
       (resp) => {
-        this.popularTickets = resp;
-        console.log(this.popularTickets);
-        
+        this.popularTickets = resp;        
         if (this.popularTickets.length > 0) {
           this.coverImages = this.popularTickets[this.currentIndex];
           this.coverFlow();

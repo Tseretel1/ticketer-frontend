@@ -13,7 +13,34 @@ export class ProfileService {
   {
 
   }
-  private URL = "https://localhost:7081/api/Creator/"
+  private URL = "https://localhost:7081/api/Creator/";
+
+  private cloudName = 'ds1q7oiea';
+  private uploadPreset = 'cloudinary_Upload_Preset';
+
+  uploadImage(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', this.uploadPreset);
+    return this.http.post(`https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`, formData);
+  }
+
+
+
+  editProfilePhoto(photo: string): Observable<any> {
+    return this.http.patch(this.URL + "edit-profile-photo", photo, {
+        headers: { 'Content-Type': 'text/plain' }
+    });
+}
+
+  editProfileName(name :string): Observable<any> {
+    return this.http.put(this.URL + "edit-profile-name", name, {
+        headers: { 'Content-Type': 'application/json' },
+        responseType: 'json',
+    });   
+  }
+
+
   GetMytickets(): Observable<any> {
     return this.http.get( this.URL+'my-tickets');
   }
@@ -34,4 +61,8 @@ export class ProfileService {
     return this.http.delete(`${this.URL}remove-user-from-account/${userid}`);
   }
   
+}
+export interface Profile{
+  Username :string;
+  Logo :string;
 }

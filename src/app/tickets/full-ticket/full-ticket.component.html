@@ -122,7 +122,12 @@
 
 
 <div class="sugestions" *ngIf="foundtickets"> 
-  <div class="SugestionsText">{{matchingTicket?.publisher.userName}}  {{"SUGGESTIONS" | translate}}</div>
+  <div class="publisher-align">
+    <div class = "publisher-img-container">
+      <img [src]="matchingTicket?.publisher.logo" alt="" class="publisher-img">
+    </div>
+    <div class="SugestionsText">{{matchingTicket?.publisher.userName}}  {{"SUGGESTIONS" | translate}}</div>
+  </div>
   <div class="Ticket_parent">
     <div class="Ticket" *ngFor="let tkt of foundtickets; let i = index">
       <div class="TicketFlex" (click)="NewMatchingTicket(tkt.id)">
@@ -132,5 +137,5 @@
           <p class="sugestionTicketTitle">{{tkt.title}}</p>
       </div>
     </div>    
-   </div> 
- </div>
+  </div> 
+</div>
