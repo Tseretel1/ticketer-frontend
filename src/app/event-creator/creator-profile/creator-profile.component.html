@@ -1,38 +1,94 @@
-<div class="profile-parent" *ngIf="!editProfile">
-   <div class="profile-aligment">
-        <div class="my-profile">
-           <div class="profile-animation" (click)="openEditProfile()">
-                <div class="logo-container">
-                    <img [src]="profile.logo" alt="" class="profile-logo" *ngIf="profile.logo">
-                    <mat-icon class="no-logo" *ngIf="!profile.logo">account_circle</mat-icon>
-                </div>
-                <p class="profile-name">{{profile.userName}}</p>
-                <div class="settings">
-                    <mat-icon class="settings-icon">settings</mat-icon>
-                </div>
-           </div>
-        </div>
-    </div>
-</div>
 
-<div class="edit-profile" *ngIf="editProfile">
-    <div class="exit-from-account-parent">
-        <button class="exit-from-account back" (click)="CloseEditProfile()">{{"BACK" | translate}}</button>
+<!-- Profile -->
+<div class="exit-from-account-parent">
+    <div class="exit-align">
         <button class="exit-from-account" (click)="ExitFromAccunt()">{{"EXITFROMACCOUNT" | translate}}</button>
     </div>
-   <form action="" [formGroup]="EditPhotoForm" class="update-photo-form">
-        <div class="profile-image-container">
-            <button (click)="triggerFileInput()" class="change-photo-button"><mat-icon >camera_alt</mat-icon></button>
-            <img *ngIf="imagePreview" [src]="imagePreview" alt="" class="profile-image">
-            <mat-icon class="no-logo big-nologo" *ngIf="!imagePreview ">account_circle</mat-icon>
-            <input id="photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden>
-        </div>
-        <button type="button" (click)="uploadImage()" [disabled]="!selectedFile" [ngClass]="{'disabled': selectedFile}" class="save-image-button">Save Image</button>
-   </form>
+</div>
+<div class="edit-profile">
+   <div class="edit-profile-container">
+      <div class="profile-form-align">
+        <form action="" [formGroup]="EditnameForm" class="update-photo-form">
+            <div class="profile-image-and-name">
+                <div class="img-save-align">
+                    <div class="profile-image-container">
+                        <button (click)="triggerFileInput()" class="change-photo-button"><mat-icon >camera_alt</mat-icon></button>
+                        <img *ngIf="imagePreview" [src]="imagePreview" alt="" class="profile-image">
+                        <mat-icon class="no-logo big-nologo" *ngIf="!imagePreview ">account_circle</mat-icon>
+                        <input id="photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden>
+                    </div>
+                    <div *ngIf="savePhotobButton">
+                        <button type="button" (click)="uploadImage()" [disabled]="!selectedFile" [ngClass]="{'disabled': selectedFile}" class="save-image-button">{{"SAVEIMAGE"|translate}}</button>
+                    </div>
+                </div>
+                <div class="account-name-parent">
+                    <p class="account-name">{{username.value}}</p>
+                    <div *ngIf="!inputDisable">
+                        <button class="enable-button" (click)="EnableInput()"><mat-icon class="editicon" >edit</mat-icon> </button>
+                    </div>
+                </div>
+            </div>
+      </form>
+        <form action="" [formGroup]="EditnameForm" *ngIf="inputDisable">
+            <div class="save-username-parent">
+                <div class = "disbaled-input-parent">
+                    <div class="close-editing"> 
+                        <label for="" class="account-name-label">{{"NAME" | translate}}</label>
+                        <button class="transparent-button" (click)="DesableInput()"><mat-icon class="dash-red">close</mat-icon></button>
+                    </div>
+                    <input type="text" formControlName ="username" class="username-input"  [ngClass]="{'disabled-input': inputDisable}">
+                </div>
+                <div>
+                    <button (click)="editNameFunc()" class="save-username-button" formControlName="username"> {{"SAVE" | translate}}</button>
+                </div>
+            </div>
+        </form>
+      </div>
+   </div>
 </div>
 
-<div class="dashboard-parent" *ngIf="!editProfile">
-    <p class="dashboard-title">{{"DASHBOARD" |translate}}</p>
+
+<!-- Dashboard -->
+
+<div class="dashboard-parent">
+   <div class="dashbord-align">
+    <p class="dashboard-title">{{"DASHBOARD" |translate}} 
+        <mat-icon class="dash-red">bar_chart</mat-icon>
+        <mat-icon class="dash-green">show_chart</mat-icon> 
+    </p>
+    <div class="total-stat-parent">
+        <div class="total-align">
+            <div class="total-resp">
+                <p class="total-title">
+                    {{"TOTALSOLD"|translate}}:
+                </p>
+                <p class="total-resp-num">
+                    {{totalSold}}
+                </p>
+                <mat-icon class="icon-roatate total-orange">confirmation_number</mat-icon>
+            </div>
+            <div class="total-resp">
+                <p class="total-title">
+                    {{"TOTALPRICE"|translate}}:
+                </p>
+                <p class="total-resp-num">
+                    {{totalPrice}}
+                </p>
+                <p class="total-green">
+                    ₾
+                </p>
+            </div>
+            <div class="total-resp">
+                <p class="total-title">
+                   {{"TOTALVIEWS"|translate}}: 
+                </p>
+                <p class="total-resp-num">
+                    {{totalViews}}
+                </p>
+                <mat-icon class="eye-margin total-grey">visibility</mat-icon>
+            </div>
+        </div>
+    </div> 
     <div class="dashboard">
         <div class="ticket" *ngFor="let i of ActiveTickets">
             <div class="ticket-background">
@@ -76,9 +132,9 @@
                         <div class="view-count"><mat-icon class="eye-margin">visibility</mat-icon></div>
                     </div>
                 </div> 
-    
                 </div>
             </div>
         </div>
     </div>
+   </div>
 </div>

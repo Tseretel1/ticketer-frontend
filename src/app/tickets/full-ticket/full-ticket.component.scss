@@ -10,10 +10,13 @@
   align-items: center;
   justify-content: center;
   z-index: 3;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.619);
+  animation: modalAnimation 0.3s;
 }
+
 .ModalWindow {
-  background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
+  background: linear-gradient(270deg, rgb(0, 5, 24), #011b0e, rgb(0, 5, 24));
   background-size: 800% 800%;
   -webkit-animation: AnimationName 20s ease infinite;
   -moz-animation: AnimationName 20s ease infinite;
@@ -29,7 +32,9 @@
   transition: 0.3s all ease-in-out;
   box-shadow: 0px 0px 10px black;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
+  gap: 20px;
+  border: 1px solid grey;
 }
 @keyframes AnimationName {
   0% {
@@ -44,50 +49,95 @@
     background-position: 0% 50%
   }
 }
-.bottomQuestion{
-  width: 100%;
-  border-top: 2px solid white;
-  display: flex;
-  justify-content: center;
-  padding: 10px 0px 10px 0px;
+@keyframes modalAnimation {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }
-.modalDates{
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
+.modal-notlogged{
+  z-index: 4;
 }
-.modalDateAlign{
-  display: flex;
-  align-items: center;
+.notlogged-gap{
+  gap: 30px;
 }
-.datecolor{
+.not-logget-resp{
   color: white;
+  font-size: 22px;
+  text-align: center;
+  max-width: 500px;
 }
-.buyCountFlex{
-  display: flex;
-  align-items: center;
+.go-to-login {
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
   color: white;
-  gap: 10px;
-}
+  border: 3px solid rgb(252, 70, 100);
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 1;
+  font-family: inherit;
+  border-radius: 20px;
+ }
+ 
+ .go-to-login::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(252, 70, 100);
+  transform: translateX(-100%);
+  transition: all .3s;
+  z-index: -1;
+ }
+ 
+ .go-to-login:hover::before {
+  transform: translateX(0);
+ }
+ 
 .alignHard{
   display: flex;
   align-items: center;
 }
-.Question{
-  color: white;
+.payment-data-align{
   display: flex;
-  gap: 10px;
-  align-items: center;
-  font-size: 30px;
+  flex-direction: column;
+  width: 100%;
 }
-.modalName{
-  font-size: 40px;
+.payment-gap{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.totalprice{
+  color: lightcoral;
+  font-weight: bold;
+  display: flex;
+  gap: 5px;
+}
+.green-emoji{
+  color: green;
+}
+.modal-ticket-title{
+  font-size: 25px;
+  color: whitesmoke;
+}
+.payment-resp{
+  color: white;
 }
 .TicketModal{
   width: 100%;
   overflow: hidden;
   border-radius: 10px;
-  height: 250px;
+  height: 200px;
   z-index: 3;
 }
 .TicketImageModal{
@@ -134,37 +184,58 @@
 
 .increment-button, .decrement-button {
   background-color: #007bff;
+  border-radius: 10px;
   color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
+  transition: 0.3s all ease-in-out;
 }
 
 .increment-button:hover, .decrement-button:hover {
   background-color: #0056b3;
 }
-
-.buy{
-  background-color: transparent;
-  transition: 0.3s all ease-in-out;
+.decrement-animation{
+  opacity: 0;
+  cursor: default;
+}
+.buy {
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  border: 3px solid green;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  border: 1px solid white;
-}
-.buy:hover{
-  background-color: rgba(0, 128, 0, 0.523);
-  letter-spacing: 1px;
-}
-.text{
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 1;
+  font-family: inherit;
+ }
+ 
+ .buy::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: green;
+  transform: translateX(-100%);
+  transition: all .3s;
+  z-index: -1;
+ }
+ 
+ .buy:hover::before {
+  transform: translateX(0);
+ }
+.pay-text{
   display:flex;
   align-items: center;
-  gap: 10px;
-}
-.price{
-  color: goldenrod;
-  font-weight: bold;
-  font-size: 20px;
+  gap: 18px;
+  text-shadow: 0px 0px 5px black;
 }
 .CloseModal{
   width: 100%;
@@ -185,14 +256,65 @@
 .cancel:hover{
   background-color: red;
 }
-.disabled_button {
-  background-color: gray;
-  border: 10px solid blue;
-  cursor: not-allowed;
-  pointer-events: none; 
-  opacity: 0.6;
-  cursor: not-allowed;
+.fancy {
+  border-radius: 10px;
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 10px;
+  transition: 0.3s all ease-in-out;
+  display: none; 
+  opacity: 0; 
 }
+
+.fancy {
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  border: 3px solid rgb(252, 70, 100);
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 1;
+  font-family: inherit;
+ }
+ 
+ .fancy::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(252, 70, 100);
+  transform: translateX(-100%);
+  transition: all .3s;
+  z-index: -1;
+ }
+ 
+ .fancy:hover::before {
+  transform: translateX(0);
+ }
+.disabled-buy-button {
+  opacity: 0.5;
+  display: flex;
+  animation: disabledButtonAnimation 1s forwards; 
+}
+
+@keyframes disabledButtonAnimation {
+  0% {
+    opacity: 0; 
+    display: flex;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
 .SmallModalParent{
   width: 100%;
   display: flex;
@@ -302,13 +424,6 @@ $background :#1e3d59;
   width: 85%;
   justify-content: space-between;
 }
-.viewCount{
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 20px;
-}
 .flipicon{
     rotate: (180deg);
 }
@@ -357,7 +472,7 @@ $background :#1e3d59;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 40px;
+    padding-top: 40px;
     align-items: center;
 }
 .dataalign{
@@ -366,11 +481,6 @@ $background :#1e3d59;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-.view-count{
-  color: white;
-  display: flex;
-  align-items: center;
 }
 .Title{
     font-size: 30px;
@@ -459,12 +569,13 @@ $background :#1e3d59;
     flex-direction: column;
     width: 80%;
     align-items: flex-start;
+    gap: 20px;
 }
 .paymentAlign{
-  width: 80%;
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-direction: column;
 }
 .imageCard{
   width: 150px;
@@ -498,7 +609,6 @@ $background :#1e3d59;
   color: white;
   padding: 30px 0px 30px 0px;
   font-size: 25px;
-  cursor: not-allowed;
   width: 100%;
 }
 .SecondSection{
@@ -531,8 +641,16 @@ $background :#1e3d59;
     margin-top: 20px;
 }
 .SugestionsText{
-    font-size: 20px;
     color: white;
+    text-align: center;
+    gap: 10px;
+}
+.publisher-username{
+  font-size: 20px;
+}
+.sugestions-text{
+  color: rgb(200, 199, 199);
+  font-size: 16px;
 }
 .publisher-img-container{
   width: 50px;
@@ -548,6 +666,8 @@ $background :#1e3d59;
 .publisher-align{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -661,27 +781,6 @@ $background :#1e3d59;
 
 
 
-//buy Button
-.fancy {
-    border-radius: 10px;
-    background-color: transparent;
-    border: 1px solid white;
-    padding: 10px;
-    transition: 0.3s all ease-in-out;
-   }
-   .fancy:hover{
-    cursor: pointer;
-    background-color: rgba(245, 245, 245, 0.181);
-   }
-   .text {
-    transition: all 0.3s ease-in-out;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: white;
-   }
-   
-
-
 
 
 
@@ -693,9 +792,6 @@ $background :#1e3d59;
 
 
 @media screen and (max-width : 1075px){
-    .titleParent{
-      margin-top: 0px;
-    }
     .FountTicketParent{
       flex-direction: column-reverse;
       margin-top: 0px;
@@ -733,9 +829,6 @@ $background :#1e3d59;
   }
 }
 @media screen and (max-width : 600px){
-  .foundticket{
-    height: 200px;
-  }
   .datatitles{
     font-size: 18px;    
   }
@@ -750,11 +843,11 @@ $background :#1e3d59;
   .TicketImageContainer{
     height: 120px;
   }
-  .foundticket{
-    height: 140px;
-  }
   .Ticket_parent{
     gap: 10px;
+  }
+  .foundticket{
+    height: 200px;
   }
 }
 @media screen and (max-width : 280px){

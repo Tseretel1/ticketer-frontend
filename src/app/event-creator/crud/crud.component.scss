@@ -8,12 +8,17 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
     position: fixed;
     z-index: 2;
-    background: linear-gradient(rgba(0, 0, 0, 0.212), rgb(0, 0, 0));
+    background: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
 }
-
+.delete-modal-align{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 75%;
+    align-items: center;
+}
 .delete-modal{
     background-color: #000000;
     background: linear-gradient(270deg, rgb(18, 6, 50), #222c05, rgb(18, 6, 50));
@@ -26,6 +31,7 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 10px black;
+    border: 1px solid grey;
 }
 
 .modal-question{
@@ -50,7 +56,7 @@
     color: yellow;
 }
 .note{
-    color: #9f9f00;
+    color: red;
     
 }
 .modal-buttons{
@@ -191,7 +197,6 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    min-width: 180px;
     max-height: 90px;
     max-width: 300px;
 }
@@ -332,4 +337,11 @@
     .val-absolute{
         bottom: -20px;
     }
+}
+
+
+@media screen and (max-width : 600px){ 
+  .image-preview{
+    height: 200px;
+  }   
 }

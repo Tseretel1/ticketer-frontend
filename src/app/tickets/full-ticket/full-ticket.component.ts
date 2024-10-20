@@ -1,13 +1,13 @@
 import { CommonModule, DatePipe, Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink,} from '@angular/router';
 import { FullTicketService } from './full-ticket.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { appRoutes, Routes} from '../../route-paths';
 @Component({
   selector: 'app-full-ticket',
   standalone: true,
@@ -23,16 +23,17 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./full-ticket.component.scss'],
 })
 export class FullTicketComponent implements OnInit, OnDestroy {
+  routes: Routes = appRoutes;
+
   id: number = 0;
   matchingTicket: any = {};
   foundtickets: any[] = [];
   SellingForm: FormGroup;
-  private destroy$ = new Subject<void>(); // Subject for managing unsubscriptions
+  private destroy$ = new Subject<void>();
 
   constructor(
     private router: ActivatedRoute, 
     private myService: FullTicketService,
-    private datePipe: DatePipe,
     private location: Location,
     private fb: FormBuilder
   ) {
@@ -60,20 +61,20 @@ export class FullTicketComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  ticketCount: number = 1;
+  ticketCount: number = 0;
   incrementVisible = true;
   soldOut = true;
 
   increment(): void {
-    if (this.ticketCount < 10) {
-      this.ticketCount++;
-      this.SellingForm.get('TicketCount')?.setValue(this.ticketCount);
+    if (this.ticketCount < this.matchingTicket.ticketCount &&this.ticketCount<10) {
+        this.ticketCount ++;
+        this.SellingForm.get('TicketCount')?.setValue(this.ticketCount);
     }
     this.incrementVisible = this.ticketCount < 10;
   }
 
   decrement(): void {
-    if (this.ticketCount > 1) {  
+    if (this.ticketCount > 0) {  
       this.ticketCount--;
       this.SellingForm.get('TicketCount')?.setValue(this.ticketCount);
     }
@@ -107,7 +108,7 @@ export class FullTicketComponent implements OnInit, OnDestroy {
     if (this.matchingTicket) {
       this.matchingTicket.photo = `${this.matchingTicket.photo}?v=${new Date().getTime()}`;
       this.id = id;
-      this.ticketCount = 1;
+      this.ticketCount = 0;
       this.SellingForm.get('TicketCount')?.setValue(this.ticketCount);
       this.soldOut = this.matchingTicket.ticketCount <= 0;
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -118,7 +119,7 @@ export class FullTicketComponent implements OnInit, OnDestroy {
 
   hideModal() {
     this.Modal = false;
-    this.showSmallModal("Canceled!");
+    this.showSmallModal();
   }
 
   showModal() {
@@ -128,8 +129,7 @@ export class FullTicketComponent implements OnInit, OnDestroy {
   SmallModal: boolean = false;
   SmallModalText: string = "";
 
-  showSmallModal(message: string) {
-    this.SmallModalText = message;
+  showSmallModal() {
     this.SmallModal = true;
     setTimeout(() => {
       this.SmallModal = false;
@@ -140,16 +140,40 @@ export class FullTicketComponent implements OnInit, OnDestroy {
     return this.matchingTicket && this.matchingTicket.ticketCount > 0;
   }
 
+  
+  IsIncrementMoreThanZero(): boolean {
+    if(this.ticketCount > 0){
+      return false;
+    }
+    return true;
+  }
+
+  notLoggedModal :boolean = false;
+  ShowNotLoggedModal(){
+    this.notLoggedModal = true;
+  }
+  HideNotLoggedModal(){
+    this.notLoggedModal = false;
+  }
+
   BuyTicket() {
     this.myService.BuyTicket(this.id, this.SellingForm.value.TicketCount).pipe(takeUntil(this.destroy$)).subscribe(
       (resp: any) => {
-        this.showSmallModal(resp.message);
-        this.hideModal();
-        this.matchingTicket.ticketCount -= this.SellingForm.value.TicketCount; // Decrement the ticket count
+        if(resp.success){    
+          this.showSmallModal();
+          this.SmallModalText ="You Bought ticket succesfully";
+          this.hideModal();
+          this.matchingTicket.ticketCount -= this.SellingForm.value.TicketCount;
+      }
       },
       (error: any) => {
-        this.showSmallModal(error.error?.message || 'An unexpected error occurred.');
-        this.hideModal();
+        if (error.status === 401 || error.status === 403) {
+          this.SmallModalText ="somethin went wrong";
+          this.hideModal();
+          this.ShowNotLoggedModal();
+        } else {
+          console.error('An unexpected error occurred:', error);
+        }
       }
     );
   }

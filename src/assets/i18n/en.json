@@ -15,7 +15,7 @@
 
 
 
-    "EXITFROMACCOUNT" : "Exit From Account",
+    "EXITFROMACCOUNT" : "Exit",
     "SUREWANTTOEXIT" : "Are you sure you want to exit?",
     "YES" : "YES",
     "NO" : "NO",
@@ -56,6 +56,11 @@
     "SUGGESTIONS": "Suggestions",
     "CHOSEN": "Selected",
     "PAY": "Pay",
+    "TOTALPAY": "Total price",
+    "NEXT": "Next",
+
+    "NOTLOGGED": "To buy a ticket, please register or log into your account.",
+    "GOTOLOGIN": "Go to Register",
 
 
     "LOGIN": "Login",
@@ -103,6 +108,9 @@
     "VIEWCOUNT": "Views",
     "REMAININGCOUNT": "Remaining ticket amount",
     "REMAININGTICKETSCOUNT": "Remaining tickets count",
+    "TOTALVIEWS": "Total views",
+    "TOTALPRICE": "Total Revenue",
+    "TOTALSOLD": "Total Sold",
 
 
 
@@ -116,6 +124,8 @@
     "EDITTICKET": "Edit Ticket",
     "HOWMANYTICKETS": "How many Tickets do you want to create?",
     "SAVETICKET": "Save Ticket",
+    "SAVEIMAGE": "Save Image",
+    "SAVE": " Save",
 
 
 

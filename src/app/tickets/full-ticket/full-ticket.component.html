@@ -5,32 +5,39 @@
     <div class="CloseModal">
        <button class="cancel"  (click)="hideModal()"><mat-icon>close</mat-icon></button>
     </div>
-    <p class="Question modalName">{{matchingTicket.title}}</p>
+    <p class="modal-ticket-title">{{matchingTicket.title}}</p>
     <div class="TicketModal">
       <img [src]="matchingTicket.photo" alt="" class="TicketImageModal">
-    </div>
-    <div class="modalDates">
-      <div class="modalDateAlign">
-         <mat-icon class="datecolor">calendar_today</mat-icon>
-         <p class="Question">{{ matchingTicket.activation_Date | date: 'MMM d' }}</p>
+      <div class="">
+        <p class="payment-resp">{{matchingTicket.price * SellingForm.value.TicketCount}} ₾</p>
       </div>
-      <div class="modalDateAlign">
-        <mat-icon class="datecolor">access_time </mat-icon> 
-        <p class="Question">{{ matchingTicket.activation_Date | date: 'h : mm' }}</p>
-     </div>
-     
     </div>
-    <div class="bottomQuestion">
-      <div class="ticketsellingCo">
-      <div class="buyCountFlex"> {{"CHOSEN"|translate}}  <b> {{ticketCount}} </b>  <p class="alignHard"><mat-icon class="datecolor"> confirmation_number</mat-icon>{{"TICKET"|translate}} </p></div>
+    <div class="payment-data-align">
+      <div class="payment-gap">
+         <div class="totalprice"> {{"CHOSEN" | translate}}:  <b class="payment-resp"> {{ticketCount}} </b>  <p class="payment-resp">{{"TICKET"|translate}} </p></div>
+         <div class="totalprice">{{"TOTALPAY" | translate}}: <p class="payment-resp">{{matchingTicket.price * SellingForm.value.TicketCount}} ₾</p></div>
       </div> 
     </div>
     <div class="modalButtonAlign">
-      <button class="submitbuttons buy" (click)="BuyTicket()"><span class="text">{{"PAY" |translate}}:<p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span></button>
+      <button class="submitbuttons buy" (click)="BuyTicket()"><span class="pay-text">{{"PAY" |translate}} <p> {{matchingTicket.price * SellingForm.value.TicketCount}} ₾</p> </span></button>
     </div>
   </div>
 </div> 
 
+
+<div class="ModalWindowParent modal-notlogged" *ngIf="notLoggedModal">
+  <div class="ModalWindow notlogged-gap">
+    <div class="CloseModal">
+      <button class="cancel"  (click)="HideNotLoggedModal()"><mat-icon>close</mat-icon></button>
+    </div>
+    <div class="not-logget-resp">
+      {{"NOTLOGGED" | translate}}
+    </div>
+    <button class="go-to-login" [routerLink]="routes.login">
+      {{"GOTOLOGIN" | translate}}
+    </button>
+  </div>
+</div>
 
 <!--Little Modal-->
 <div class="SmallModalParent" *ngIf="SmallModal">
@@ -46,7 +53,6 @@
             <div class="titleParent">
               <div class="dataalign">
                 <p class="Title"> {{matchingTicket.title}}</p>
-                <div class="view-count"><mat-icon>visibility</mat-icon>{{matchingTicket.viewCount}}</div>
               </div>
             </div>  
 
@@ -62,7 +68,7 @@
                 <b class="datatitles"> {{"GENRE"|translate}}  :</b><p class="datatext"> {{matchingTicket.genre}} </p>
               </div>
               <div class="data">
-                <b class="datatitles"> {{"PRICE"|translate}}  :</b> <p class="datatext">{{matchingTicket.price}}$</p>
+                <b class="datatitles"> {{"PRICE"|translate}}  :</b> <p class="datatext">{{matchingTicket.price}} ₾</p>
               </div>
               <div class="data description">
                 <b class="datatitles"> {{"DESCRIPTION"|translate}}  :</b> 
@@ -74,9 +80,9 @@
                   <b class="datatitles"> {{"BUYTICKET"|translate}} </b>
                 </div>
                 <div class="paymentAlign">
-                  <form [formGroup]="SellingForm" class="sellingForm" *ngIf="soldOut">
+                  <form [formGroup]="SellingForm" class="sellingForm" *ngIf="!soldOut">
                     <div class="input-container">
-                      <button class="decrement-button" (click)="decrement()">-</button>
+                      <button class="decrement-button" (click)="decrement()" [ngClass]="{'decrement-animation': ticketCount <= 0}">-</button>
                       <div class="countDisplay">
                         <div class="ticketsellingCount">
                           <mat-icon>confirmation_number</mat-icon>
@@ -92,15 +98,15 @@
                           <img [src]="matchingTicket.photo" class="imageCardPhoto" alt="">
                         </div>                   
                       </div>
-                      <button class="increment-button" (click)="increment()" *ngIf="increment">+</button>
+                      <button class="increment-button" (click)="increment()" *ngIf="increment"  [ngClass]="{'decrement-animation': ticketCount >= 10}">+</button>
                     </div> 
                   </form>
                   <button 
                   class="fancy" 
                   (click)="showModal()" 
                   [attr.disabled]="!isTicketAvailable ? true : null"
-                  [ngClass]="{'disabled_button': !isTicketAvailable}">
-                  <span class="text"> {{"PRICE"|translate}} <p class="price">{{matchingTicket.price * SellingForm.value.TicketCount}}$</p> </span>
+                  [ngClass]="{'disabled-buy-button': !IsIncrementMoreThanZero()}">
+                  <span class="text"><p class="price">{{"NEXT"|translate}}</p> </span>
                 </button>
                 </div>
               </div>
@@ -124,9 +130,16 @@
 <div class="sugestions" *ngIf="foundtickets"> 
   <div class="publisher-align">
     <div class = "publisher-img-container">
-      <img [src]="matchingTicket?.publisher.logo" alt="" class="publisher-img">
+      <img [src]="matchingTicket.publisher?.logo" alt="" class="publisher-img">
     </div>
-    <div class="SugestionsText">{{matchingTicket?.publisher.userName}}  {{"SUGGESTIONS" | translate}}</div>
+    <div class="SugestionsText">
+      <p class="publisher-username">
+        {{matchingTicket.publisher?.userName}}  
+      </p>
+     <p class="sugestions-text">
+        {{"SUGGESTIONS" | translate}}
+     </p>
+    </div>
   </div>
   <div class="Ticket_parent">
     <div class="Ticket" *ngFor="let tkt of foundtickets; let i = index">

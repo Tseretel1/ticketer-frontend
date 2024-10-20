@@ -25,7 +25,7 @@
                     <label for="name" class="form__label">{{"EMAIL" |translate}}</label>
                 </div>
                 <div class="form__group field">
-                    <input type="password" class="form__field" placeholder="Name" formControlName="password">
+                    <input type="password" class="form__field" placeholder="Name" formControlName="password" >
                     <label for="name" class="form__label">{{"PASSWORD" |translate}}</label>
                 </div>
                 <button class="submit-button" (click)="login()" [ngClass]="{'valid-class': loginForm.valid, 'invalid-class': !loginForm.valid}">Submit</button>

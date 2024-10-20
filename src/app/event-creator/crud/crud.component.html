@@ -1,18 +1,20 @@
 
 <div class="delete-modal-parent" *ngIf="modalvisible">
-  <div class="delete-modal">
-    <div class="modal-question">
-      <p class="are-you-sure">{{"SURETODELETE"|translate}}</p>
-      <div class="warning-flex">
-        <mat-icon class="warn">warning</mat-icon>
-        <p class="note">{{"DELETENOTE"|translate}}</p>
+  <div class="delete-modal-align">
+    <div class="delete-modal">
+      <div class="modal-question">
+        <p class="are-you-sure">{{"SURETODELETE"|translate}}</p>
+        <div class="warning-flex">
+          <mat-icon class="warn">warning</mat-icon>
+          <p class="note">{{"DELETENOTE"|translate}}</p>
+        </div>
+      </div>
+      <div class="modal-buttons">
+        <button class="CancelAdingticketButton delete-ticket-button" (click)="deleteTicket(this.id)"> {{"DELETETICKET" | translate}}</button>
+        <button class="CancelAdingticketButton" (click)="closedeletemodal()"> {{"CANCEL" | translate}}</button>
       </div>
     </div>
-    <div class="modal-buttons">
-      <button class="CancelAdingticketButton delete-ticket-button" (click)="deleteTicket(this.id)"> {{"DELETETICKET" | translate}}</button>
-      <button class="CancelAdingticketButton" (click)="closedeletemodal()"> {{"CANCEL" | translate}}</button>
-    </div>
-  </div>
+  </div> 
 </div>
 
 

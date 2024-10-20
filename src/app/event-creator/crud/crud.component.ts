@@ -207,7 +207,6 @@ routes: Routes = appRoutes;
   if (this.AddOrUpdateTicket) {
     if(!this.selectedFile){
       this.savedImg = this.ticketForm.value.Photo;
-      console.log("photo" , this.savedImg);
       this.proceedToUpdateTicket();
     }
     this.uploadImage().subscribe(() => {

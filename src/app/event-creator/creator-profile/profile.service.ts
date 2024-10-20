@@ -26,19 +26,19 @@ export class ProfileService {
   }
 
 
-
-  editProfilePhoto(photo: string): Observable<any> {
-    return this.http.patch(this.URL + "edit-profile-photo", photo, {
-        headers: { 'Content-Type': 'text/plain' }
-    });
+editProfilePhoto(photo: string): Observable<any> {
+  return this.http.put(this.URL + "edit-profile-photo", { photo: photo }, {
+      headers: { 'Content-Type': 'application/json' },
+      responseType: 'json',
+  });   
 }
 
-  editProfileName(name :string): Observable<any> {
-    return this.http.put(this.URL + "edit-profile-name", name, {
-        headers: { 'Content-Type': 'application/json' },
-        responseType: 'json',
-    });   
-  }
+editProfileName(name: string): Observable<any> {
+  return this.http.put(this.URL + "edit-profile-name", { name: name }, {
+      headers: { 'Content-Type': 'application/json' },
+      responseType: 'json',
+  });   
+}
 
 
   GetMytickets(): Observable<any> {

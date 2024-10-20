@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Profile, ProfileService } from './profile.service';
 import { CommonModule, DatePipe, getLocaleNumberSymbol,  } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { CdkDrag } from '@angular/cdk/drag-drop';
@@ -18,11 +18,12 @@ import { appRoutes, Routes} from '../../route-paths';
 export class CreatorProfileComponent implements OnInit{
 routes: Routes = appRoutes;
 
-  EditPhotoForm :FormGroup
+EditnameForm :FormGroup
   constructor (private service :ProfileService, private authservice :AuthService, private router :Router,private fb: FormBuilder){
-    this.EditPhotoForm = fb.group({
-      logo:['', Validators.required],
+    this.EditnameForm = fb.group({
+      username:['', Validators.required],
     })
+    
   }
   ngOnInit(): void {
     this.LoadMyProfile();
@@ -34,16 +35,18 @@ routes: Routes = appRoutes;
   triggerFileInput(): void {
     const fileInput = document.getElementById('photo') as HTMLInputElement;
     fileInput.click();
+    this.DesableInput();
   }
 
   selectedFile: File | null = null;
   imagePreview: string | ArrayBuffer | null = null;
+  imagePreviewSec: string | ArrayBuffer | null = null;
   
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
-  
+      this.savePhotobButton = true;
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result; 
@@ -61,8 +64,8 @@ routes: Routes = appRoutes;
     if (this.selectedFile) {
         this.service.uploadImage(this.selectedFile).subscribe(
             (response) => {
-                this.savedImg = response.secure_url; // URL of the uploaded image
-                this.updateProfilePhoto(); // Update account with new logo
+                this.savedImg = response.secure_url;
+                this.updateProfilePhoto();
                 console.log('Upload successful:', response.secure_url);
             },
             (error) => {
@@ -71,15 +74,14 @@ routes: Routes = appRoutes;
         );
     } else {
         console.log('No file selected for upload.');
-    }
+  }
 }
 
 updateProfilePhoto(): void {
     this.service.editProfilePhoto(this.savedImg).subscribe(
         (resp) => {
             if (resp.success) {
-                this.editProfile = false; 
-                console.log(resp);
+              this.imagePreviewSec = this.imagePreview;
             } else {
                 console.error('Failed to update profile:', resp.message);
             }
@@ -96,7 +98,6 @@ updateProfilePhoto(): void {
         (resp) => {
           console.log(resp);
             if (resp.success) {
-                this.editProfile = false;
                 console.log(resp);
             }
         },
@@ -106,28 +107,61 @@ updateProfilePhoto(): void {
     );
 }
 
+profile: any = {}; 
+savedUserName :string = '';
+LoadMyProfile() {
+  this.service.GetMyProfile().subscribe(
+    (resp: any) => {
+      this.profile = resp;
+      this.imagePreview = resp.logo;
+      this.imagePreviewSec = resp.logo
+      this.EditnameForm.patchValue({
+        username :resp.userName,
+      });
+      this.savedUserName = resp.userName;
+    },
+    (error) => {
+      console.error('Error fetching Profile data:', error);
+    }
+  );
+}
+get username(): FormControl {
+  return this.EditnameForm.get('username') as FormControl || null;
+}
 
+  savePhotobButton :boolean = false;
 
-  editProfile :boolean = false;
-  openEditProfile(){
-    this.editProfile = true;
+  inputDisable :boolean = false;
+  EnableInput(){
+    this.inputDisable = true;
+    this.savePhotobButton = false;
+    this.imagePreview = this.imagePreviewSec;
   }
-  CloseEditProfile(){
-    this.editProfile = false;
+
+  DesableInput(){
+    this.inputDisable = false;
+    this.EditnameForm.patchValue({
+      username: this.savedUserName,
+    });
   }
 
 
-  profile: any = {}; 
-  LoadMyProfile() {
-    this.service.GetMyProfile().subscribe(
-      (resp: any) => {
-        this.profile = resp;
-        this.imagePreview = resp.logo;
-      },
-      (error) => {
-        console.error('Error fetching Profile data:', error);
-      }
-    );
+
+  editNameFunc(){
+    if(this.EditnameForm.valid){
+      console.log(this.EditnameForm.value.username);
+      this.service.editProfileName(this.EditnameForm.value.username).subscribe(
+        (resp)=>{
+          if(resp.success){
+            this.inputDisable = false;
+            this.savedUserName = this.EditnameForm.value.username;
+          }
+        },
+        (error)=>{
+          console.log(error);
+        }
+      )
+    }
   }
 
   ActiveTickets: any[] = []; 
@@ -135,13 +169,41 @@ updateProfilePhoto(): void {
     this.service.GetAllActiveTickets().subscribe(
       (resp: any) => {
         this.ActiveTickets = resp;
-        console.log(this.ActiveTickets);
+        this.getTotalSold();
+        this.getTotalViews();
+        this.getTotalPrice();
       },
       (error) => {
         console.error('Error fetching Profile data:', error);
       }
     );
   }
+  totalSold: number = 0;
+
+  getTotalSold(): number {
+    this.totalSold = this.ActiveTickets.reduce((total, ticket) => {
+      return total + (ticket.sold || 0);
+    }, 0);
+    return this.totalSold; 
+  }
+  totalPrice: number = 0;
+
+  getTotalPrice(): number {
+    this.totalPrice = this.ActiveTickets.reduce((total, ticket) => {
+      return total + ((ticket.sold || 0) * (ticket.price || 0)); 
+    }, 0);
+    return this.totalPrice;
+  }
+
+  totalViews: number = 0;
+  getTotalViews(): number {
+    this.totalViews = this.ActiveTickets.reduce((total, ticket) => {
+      return total + (ticket.viewCount || 0);
+    }, 0);
+    return this.totalViews;
+  }
+
+
 
   Managment :any[] = [];
   AccountManagment(){
