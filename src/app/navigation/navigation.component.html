@@ -41,10 +41,9 @@
 <div class="categories"  *ngIf="pathsToHide()">
     <div class="categoriesAlign">
         <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'music'" routerLinkActive="categoire-active"><p class="nav-titles"> {{'MUSIC' | translate }} </p><mat-icon class="categoryIcons music">music_note</mat-icon> </div>
-        <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'film'" routerLinkActive="categoire-active"><p class="nav-titles"> {{'FILM' | translate }}  </p><mat-icon class="categoryIcons">camera_alt</mat-icon> </div>
+        <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'cinema'" routerLinkActive="categoire-active"><p class="nav-titles"> {{'FILM' | translate }}  </p><mat-icon class="categoryIcons">camera_alt</mat-icon> </div>
         <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'theater'" routerLinkActive="categoire-active"> <p class="nav-titles"> {{'THEATER' | translate }}  </p> <mat-icon class="categoryIcons theater">theater_comedy</mat-icon> </div>
-        <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'animation'"routerLinkActive="categoire-active"> <p class="nav-titles"> {{'ANIMATION' | translate }}  </p><mat-icon class="categoryIcons">animation</mat-icon></div>
-        <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'football'" routerLinkActive="categoire-active"> <p class="nav-titles"> {{'FOOTBALL' | translate }}  </p> <mat-icon class="categoryIcons football">sports_soccer</mat-icon> </div>
+        <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Sport'" routerLinkActive="categoire-active"> <p class="nav-titles"> {{'FOOTBALL' | translate }}  </p> <mat-icon class="categoryIcons football">sports_soccer</mat-icon> </div>
         <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'other'" routerLinkActive="categoire-active"> <p class="nav-titles"> {{'OTHER' | translate }}  </p></div>
     </div>
 </div>

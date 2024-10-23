@@ -1,19 +1,51 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ScannerService } from './scanner.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-scanner',
   standalone: true,
-  imports: [CommonModule, ZXingScannerModule],
+  imports: [
+    CommonModule,
+    ZXingScannerModule,
+    TranslateModule,
+    MatIcon
+  ],
   templateUrl: './scanner.component.html',
   styleUrl: './scanner.component.scss'
 })
 export class ScannerComponent {
 
-  scannedResult: string | null = null;
+  
+  constructor(public service :ScannerService){
 
-  handleQrCodeResult(result: string) {
-    this.scannedResult = result;
-    console.log('Scanned QR Code:', result);
   }
+  isScannerOpen :boolean = true;
+ 
+
+  openScanner (){
+    this.isScannerOpen = true;
+  }
+  HideScanner (){
+    this.isScannerOpen = false;
+  }
+
+
+  scanedResult: any = {};
+
+  scannQr(ticketID: string) {
+    this.isScannerOpen = false;
+    this.service.scannOneTime(ticketID).subscribe(
+      (resp)=>{
+        this.scanedResult =resp;
+      },
+      (error)=>{
+
+      }
+    )
+  }
+
+
 }

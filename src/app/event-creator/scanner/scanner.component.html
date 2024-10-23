@@ -1,10 +1,33 @@
-<div>
-    <h2>QR Code Scanner</h2>
-    <zxing-scanner (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
-    
-    <div *ngIf="scannedResult">
-      <h3>Scanned Result:</h3>
-      <p>{{ scannedResult }}</p>
-    </div>
+<div class="scanner-parent" *ngIf="isScannerOpen">
+    <zxing-scanner  class="scanner" (scanSuccess)="scannQr($event)"></zxing-scanner>
+    <button class="scanner-opener close-scanner" (click)="HideScanner()">{{"CLOSESCANNER"|translate}}</button>
 </div>
-  
+
+<div class="scaner-response" *ngIf="!isScannerOpen">
+  <div class="found-ticket">
+    <div class="ticket-image-container">
+      <img *ngIf="scanedResult?.respObject?.ticketPhoto" [src]="scanedResult.respObject.ticketPhoto" alt="" class="ticket-image">
+    </div>
+    <div *ngIf="scanedResult?.respObject">
+      <p class="ticket-title">{{scanedResult.respObject.ticketTitle}}</p>
+      <div class="expired" *ngIf="scanedResult.respObject.isExpired">
+        {{"EXPIRED" | translate}}
+      </div>
+      <div *ngIf="!scanedResult.respObject.isExpired">
+        <div class="is-active active" *ngIf="scanedResult.respObject.isActive">
+          {{"ACTIVE" | translate}}
+          <mat-icon class="active">check</mat-icon>
+        </div>
+        <div class="is-active expired" *ngIf="!scanedResult.respObject.isActive">
+          {{"INACTIVE" | translate}}
+          <mat-icon class="expired">close</mat-icon>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="scanedResult==null" class="ticket-not-found">
+      {{"TICKETNOTFOUND" |translate}}
+    </div>
+    <button class="scanner-opener" (click)="openScanner()">{{"OPENSCANNER"|translate}}</button>
+  </div>
+</div>

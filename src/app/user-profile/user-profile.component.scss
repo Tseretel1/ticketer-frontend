@@ -1,30 +1,38 @@
 
-.exitButton{
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    padding-top: 51px;
 
+.ExitFromAccountbutton {
+display: inline-block;
+padding: 10px;
+font-size: 16px;
+font-weight: 700;
+color: white;
+border: 3px solid red;
+cursor: pointer;
+position: relative;
+background-color: transparent;
+text-decoration: none;
+overflow: hidden;
+z-index: 1;
+font-family: inherit;
+border-radius: 10px;
+align-items: center;
 }
 
-.ExitFromAccountbutton{
-    background-color: rgba(0, 0, 0, 0.459);
-    padding: 10px 20px 10px 20px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: 0.3s all ease-in-out;
-    z-index: 2;
+.ExitFromAccountbutton::before {
+content: "";
+position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: red;
+transform: translateX(-100%);
+transition: all .3s;
+z-index: -1;
 }
-.ExitFromAccountbutton:hover{
-    background-color: white;
-    color: black;
-    text-shadow: 0px 0px 10px white;
-    box-shadow: 0px 0px 10px white;
+
+.ExitFromAccountbutton:hover::before {
+transform: translateX(0);
 }
 
 .ExitModal{
@@ -102,16 +110,17 @@
 .headerleAlign{
     width: 90%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: space-between;
     margin-top: 20px;
     max-width: 1600px;
 }
 .noTicketFound{
     font-size: 30px;
     color: white;
+    height: 55vh;
+    display: flex;
     text-align: center;
+    align-items: center;
 }
 .ticketswitchParent{
     width: 100%;
@@ -134,6 +143,7 @@
     font-size: 20px;
     margin-top: 20px;
     cursor: pointer;
+    font-family: inherit;
 }
 .myTicketsHeader{
     display: flex;
@@ -255,13 +265,6 @@
     height: 100%;
     object-fit: cover;
 }  
-.singlephotoContainer{
-    width: 350px;
-    height: 150px;
-    overflow: hidden;
-    border-radius: 10px;
-    position: relative;
-}
 .AbsoluteHover{
     position: absolute;
     width: 100%;
@@ -298,13 +301,14 @@
 .SingleDate{
     color: white;
     font-size: 30px;
-    font-family: 'Courier New', Courier, monospace;
     align-items: center;
 }
 .exitButtonParent{
     width: 100%;
     display: flex;
-    justify-content: center;
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: center;
 }
 .exitbuttonAlign{
     width: 90%;
@@ -325,74 +329,49 @@
     flex-direction: column;
     align-items: center;
 }
-.SingleTicketParent{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    width: 90%;
-    margin-top: 50px;
-    max-width: 1600px;
-}
-.SingleTicket{
+.qr-ticket-grid{
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 5px;
+}
+.qr-ticket-parent{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    width: 90%;
+    padding: 20px 0px;
+    max-width: 1600px;
+    gap: 30px;
+
+}
+.qr-image-container{
+    width: 100%;
+    height: 180px;
     border-radius: 10px;
-    color: black;
-    flex-direction: column;
-    margin-top: 20px;
+    overflow: hidden;
     position: relative;
-    flex-wrap: wrap;
-    margin: 15px;
-    background-color: white;
+    display: flex;
+    justify-content: center;
 }
-.scannedTicket{
-    background-color: rgba(255, 0, 0, 0.471);
-    box-shadow: 0px 0px 10px black;
-    border: 1px solid black;
-}
-.scannedTicket::before{
-    content: "Scanned";
-    top: -10px;
-    right: -10px;
-    background-color: red;
-    box-shadow: 10px 0px 10px black;
-    color: white;
-    position: absolute;
-    z-index: 1;
-    padding: 5px;
-    border-radius: 5px;
-    text-shadow: 0px 0px 2px black;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    z-index: 2;
-}
-.ifScanned{
-    position: absolute;
+.scanned-ticket{
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(3px);
-    border-radius: 10px;
-    z-index: 1;
-}
-.TicketNumber{
     position: absolute;
-    top: -7px;
-    left: -2px;
-    color: white;
-    background-color: black;
-    padding: 5px;
-    border-radius: 5px;
-    z-index: 2;
-    border: 1px solid white;
+    background-color: rgba(255, 0, 0, 0.395);
+    z-index: 5;
+    backdrop-filter: blur(2px);
 }
-.SinglticketTitle{
-    font-size: 25px;
-    font-weight: 500;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
+.qr-ticket-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.qrsection{
+    position: absolute;
+    right: 0;
+    margin-top: 18px;
+}
+.qr-code{
+    width: 100%;
+    height: 100%;
 }
 .tktdate{
     display: flex;
@@ -409,17 +388,10 @@
     width: 100%;
 }
 .Titleofcupon{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: 5px;
     font-size: 20px;
     font-weight: 600;
     text-shadow: 0px 0px 2px black
-}
-.qrsection{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
 }
 .ticketerbrandingTitle{
     width: 50%;
@@ -437,10 +409,21 @@
 .upside{
     transform: rotate(180deg);
 }
+.qr-ticket-title-parent{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.qr-ticket-title{
+    color: white;
+    font-size: 25px;
+    max-width: 90%;
+    padding-top: 30px;
+}
 .backoff{
     display: flex;
     align-items: center;
-    padding: 5px;
+    padding: 8px 16px;
     font-weight: 600;
     border: none;
     cursor: pointer;
@@ -453,45 +436,32 @@
     border-radius: 10px;
     justify-content: center;
     z-index: 10;
-    width: 100%;
 }
 .backoff:hover{
     background-color: white;
 }
 
 
-
-
-@media screen and (min-width : 1620px){
-    .SingleTicketParent{
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .singlephotoContainer{
-        width: 300px;
-        height: 150px;
-    }
-}
-
-@media screen and (min-width : 1365px){
+@media screen and (min-width : 1565px){
     .Ticket_parent{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .qr-ticket-parent{
         grid-template-columns: repeat(4, 1fr);
     }
 }
 @media screen and (max-width : 1300px){
-    .singlephotoContainer{
-        width: 250px;
-        height: 150px;
-    }
+  
 }
 
 @media screen and (max-width : 1065px){
     .Ticket_parent{
         grid-template-columns: repeat(2, 1fr);
     }
-    .singlephotoContainer{
-        width: 400px;
-        height: 150px;
+    .qr-ticket-parent{
+        grid-template-columns: repeat(2, 1fr);
     }
+
     .CodeAndPhoto{
         flex-direction: column;
     }
@@ -504,18 +474,11 @@
     .SingleTicketParent{
         grid-template-columns: repeat(1, 1fr);
     }
-    .singlephotoContainer{
-        width: 400px;
-        height: 150px;
-    }
     .CodeAndPhoto{
         flex-direction: column;
     }
     .ticketerbrandingTitle{
         display: flex;
-    }
-    .qrsection{
-        max-width: 400px;
     }
 }
 
@@ -528,34 +491,28 @@
     .Ticket_parent{
         gap: 10px;
     }
-    .singlephotoContainer{
-        width: 300px;
+    .qr-ticket-parent{
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 @media screen and (max-width : 600px){
     .Ticket_parent{
         grid-template-columns: repeat(1, 1fr);
     }
-    .singlephotoContainer{
-        width: 250px;
-    }
     .switchButton{
         padding: 0px 30px 0px 30px;
+    }
+    .headerleAlign{
+        flex-direction: column-reverse;
+        gap: 20px;
     }
 }
 @media screen and (max-width : 400px){
     .switchButton{
        padding: 0px 20px 0px 20px;
     }
-    .singlephotoContainer{
-        width: 200px;
-    }
 }
 @media screen and (max-width : 385px){
-    .singlephotoContainer{
-        width: 130px;
-        height: 130px;
-    }
     .qrcodeWidth{
         scale: 1;
     }
@@ -567,10 +524,6 @@
     }
 }
 @media screen and (max-width : 350px){
-    .singlephotoContainer{
-        width: 110px;
-        height: 110px;
-    }
     .qrcodeWidth{
         scale: 0.8;
     }

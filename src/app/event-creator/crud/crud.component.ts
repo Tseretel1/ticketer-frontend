@@ -54,7 +54,6 @@ routes: Routes = appRoutes;
       this.addTicket = params['id'];
       if(this.addTicket === 'addnewticket'){
         this.AddOrUpdateTicket = false;
-        console.log(this.AddOrUpdateTicket);
       }
       else{
         this.AddOrUpdateTicket = true;

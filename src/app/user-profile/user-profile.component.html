@@ -10,44 +10,33 @@
      </div>
     </div>
 </div>
-<div class="exitButton" *ngIf="ExitFromAccountVisible">
-    <button (click)="Showmodal()" class="ExitFromAccountbutton"><mat-icon>exit_to_app</mat-icon>{{"EXITFROMACCOUNT" | translate}}</button>
-</div>
 
 
 
 <div class="centersingleTicketParent" *ngIf="QRVisible && Instances">
-   <div class="SinglticketTitle">
-      {{SingleTicket.title}}
-   </div>
    <div class="SingleTicketDate">
       <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{ SingleTicket.activation_Date | date: 'MMM d' }}</p>
       <p class="SingleDate"><mat-icon>access_time</mat-icon>{{ SingleTicket.activation_Date | date: 'h : m a' }}</p>
    </div>
-   <div class="exitButtonParent" *ngIf="ExitFromAccountVisible == false">
+   <div class="exitButtonParent" *ngIf="!ExitFromAccountVisible ">
       <div class="exitbuttonAlign">
-         <button class="backoff" (click)="BackFromTicket()">Back<mat-icon class="upside">exit_to_app</mat-icon></button>
+         <button class="backoff" (click)="BackFromTicket()">{{"BACK"|translate}}</button>
+      </div>
+      <div class="qr-ticket-title-parent">
+         <p class="qr-ticket-title">
+            {{SingleTicket.title}}
+         </p>
       </div>
    </div>
-   <div class="SingleTicketParent">
-      <div class="SingleTicket" *ngFor="let i of Instances; let index = index" [ngClass]="{'scannedTicket': i.isActive == false}">
-         <div class="ifScanned" *ngIf="i.isActive == false">
-   
-         </div>
-         <div class="TicketNumber" >
-            {{ index + 1 }}
-         </div>
-         <p class="Titleofcupon">{{SingleTicket.title}}</p>
-         <div class="CodeAndPhoto">
-            <div class="Singleticket" >
-               <div class=" singlephotoContainer">
-                  <img [src]="SingleTicket.photo" alt="" class="TicketPhoto">
-               </div>
+   <div class="qr-ticket-parent">
+      <div class="qr-ticket-grid" *ngFor="let i of Instances; let index = index">
+         <div class="qr-image-container">
+            <div class="scanned-ticket" *ngIf="!i.isActive "> </div>
+            <img [src]="SingleTicket.photo" alt="" class="qr-ticket-image">
+            <div class="qrsection">
+               <qrcode class="qr-code" [qrdata]="i.uniqueID"></qrcode>
             </div>
-               <div class="qrsection">
-               </div>
          </div>
-         <div class="uniqueID">{{i.uniqueID}} </div>
       </div>
    </div>
 </div>
@@ -58,16 +47,20 @@
          <div class="headerTitle">
             {{"MYTICKETS" | translate}}
          </div>
+
          <div class="ticketswitchParent">
             <div class = "">
                <button class="switchButton" (click)="switchToActive()">{{"ACTIVE" | translate}}</button>  
                <div class="spanline" *ngIf="ticketSwitch"></div>
             </div>
             <div class = "">
-               <button class="switchButton" (click)="switchToExpired()"> {{"EXPIRED" | translate}}</button> 
+               <button class="switchButton" (click)="switchToExpired()"> {{"HISTORY" | translate}}</button> 
                <div class="spanline expired" *ngIf="ticketSwitch == false"></div>
             </div>
          </div>
+      </div>
+      <div class="exitButton" *ngIf="ExitFromAccountVisible">
+         <button (click)="Showmodal()" class="ExitFromAccountbutton">{{"EXITFROMACCOUNT" | translate}}</button>
       </div>
    </div>
 

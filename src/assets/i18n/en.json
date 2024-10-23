@@ -30,8 +30,8 @@
     "MUSIC": "Music",
     "THEATER": "Theater",
     "ANIMATION": "Animation",
-    "FOOTBALL": "Football",
-    "FILM": "Film",
+    "FOOTBALL": "Sport",
+    "FILM": "Cinema",
     "OTHER": "Other",
 
 
@@ -43,7 +43,11 @@
 
     "MYTICKETS": "My Tickets",
     "ACTIVE": "Active",
-    "EXPIRED": "History",
+    "TICKETNOTFOUND": "Ticket Not Found!",
+    "INACTIVE": "InActive",
+    "EXPIRED": "Expired",
+    "HISTORY": "History",
+
 
     
 
@@ -102,7 +106,7 @@
 
     "TICKETMANAGMENT": "Ticket Managment",
     "SCANNER": "Scanner",
-    "DASHBOARD": "Dashboard",
+    "DASHBOARD": "Statistics",
     "SOLDCOUNT": "Sold ticket amount",
     "TOTAL": "Total",
     "VIEWCOUNT": "Views",
@@ -111,6 +115,9 @@
     "TOTALVIEWS": "Total views",
     "TOTALPRICE": "Total Revenue",
     "TOTALSOLD": "Total Sold",
+
+    "OPENSCANNER": "Open scanner",
+    "CLOSESCANNER": "Close scanner",
 
 
 

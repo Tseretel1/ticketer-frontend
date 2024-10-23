@@ -27,8 +27,8 @@
     "MUSIC": "მუსიკა",
     "THEATER": "თეატრი",
     "ANIMATION": "ანიმაცია",
-    "FOOTBALL": "ფეხბურთი",
-    "FILM": "ფილმები",
+    "FOOTBALL": "სპორტი",
+    "FILM": "კინო",
     "OTHER": "სხვა",
 
     
@@ -42,7 +42,10 @@
 
     "MYTICKETS": "ჩემი ბილეთები",
     "ACTIVE": "აქტიური",
-    "EXPIRED": "ისტორია",
+    "TICKETNOTFOUND": "ბილეთი ვერ მოიძებნა",
+    "INACTIVE": "არა აქტიური",
+    "EXPIRED": "ვადაგასული",
+    "HISTORY": "ისტორია",
 
     "DATE": "თარიღი",
     "GENRE": "ჟანრი",
@@ -96,7 +99,7 @@
 
     "TICKETMANAGMENT": "ბილეთების მართვა",
     "SCANNER": "სკანერი",
-    "DASHBOARD": "დეშბორდი",
+    "DASHBOARD": "სტატისტიკა",
     "SOLDCOUNT": "გაყიდული ბილეთები",
     "TOTAL": "ჯამი",
     "VIEWCOUNT": "ნახვები",
@@ -104,6 +107,10 @@
     "TOTALVIEWS": "სულ ნახვები",
     "TOTALPRICE": "სულ ჯამი",
     "TOTALSOLD": "სულ გაყიდული",
+
+    "OPENSCANNER": "გახსენი სკანერი",
+    "CLOSESCANNER": "დახურე სკანერი",
+
 
     "PROFILE": "პროფილი",
     "ADDTICKET": "დაამატე ბილეთი",

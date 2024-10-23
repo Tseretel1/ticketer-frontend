@@ -10,12 +10,16 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  animation: dashboardAnimtion 0.5s;
+  padding-top: 50px;
 }
 .edit-profile-container{
   display: flex;
   width: 90%;
   max-width: 1600px;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
 }
 .profile-form-align{
   display: flex; 
@@ -44,40 +48,41 @@
 .exitfrom-profile{
   width: 100%;
 }
-.exit-from-account-parent{
-  display: flex;
+.exit-from-account {
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  border: 3px solid red;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 1;
+  font-family: inherit;
+  border-radius: 10px;
+  align-items: center;
+  height: 40px;
+  }
+  
+  .exit-from-account::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
-  justify-content: center;
-  max-width: 1600px;
-  padding-top: 40px;
-  .exit-align{
-    width: 90%;
-    display: flex;
-    justify-content: flex-end;
-    max-width: 1600px;
+  height: 100%;
+  background-color: red;
+  transform: translateX(-100%);
+  transition: all .3s;
+  z-index: -1;
   }
-  .exit-from-account{
-    background-color: transparent;
-    border: 1px solid red;
-    border-radius: 5px;
-    color: white;
-    padding: 8px 18px;
-    transition: 0.2s all ease-in-out;
-    cursor: pointer;
+  
+  .exit-from-account:hover::before {
+  transform: translateX(0);
   }
-  .back{
-    background-color: white;
-    color: black;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  .exit-from-account:hover{
-    background-color: rgba(255, 0, 0, 0.453);
-    box-shadow: 0px 0px 10px red;
-  }
-}
 
 .save-image-button {
   background-color: #ffffff00;
@@ -264,13 +269,29 @@
   animation: dashboardAnimtion 0.5s;
   padding: 20px 0px;
 }
+.scanner{
+  border-radius: 10px;
+  background-color: rgba(253, 253, 253, 0.047);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  justify-content: center;
+}
+.scanner:hover{
+  background-color: rgba(255, 255, 255, 0.219);
+}
+.qr-code{
+  opacity: 0.5;
+}
 @keyframes dashboardAnimtion{
   0%{
-    opacity: 0;
     scale: 0;
   }
+
   100%{
-    opacity: 1;
     scale: 1;
   }
 }

@@ -60,10 +60,9 @@
               <label class="input-names">{{"GENRE" | translate}} </label>
               <select id="genre" formControlName="Genre" [formControl]="Genre" class="ticket-inputs"  [ngClass]="{'empty-input': ticketForm.controls['Genre'].errors?.['required']}"> 
                 <option class="GenreOption" value="" disabled selected>{{"SELECTGENRE" | translate}} </option>
-                <option class="GenreOption" value="Football">{{"FOOTBALL" | translate}} </option>
-                <option class="GenreOption" value="Film">{{"FILM" | translate}} </option>
+                <option class="GenreOption" value="Sport">{{"FOOTBALL" | translate}} </option>
+                <option class="GenreOption" value="Cinema">{{"FILM" | translate}} </option>
                 <option class="GenreOption" value="Theater">{{"THEATER" | translate}} </option>
-                <option class="GenreOption" value="Animation">{{"ANIMATION" | translate}} </option>
                 <option class="GenreOption" value="Music">{{"MUSIC" | translate}} </option>
                 <option class="GenreOption" value="Other">{{"OTHER" | translate}} </option>
               </select>

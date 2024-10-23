@@ -530,9 +530,10 @@ $background :#1e3d59;
   gap: 10px;
 }
 .datatitles{
-  color: lightcoral;
+  color: rgb(242, 132, 150);
   font-size: 22px;
 }
+
 .datatext{
   font-size: 18px;
 }
@@ -594,13 +595,15 @@ $background :#1e3d59;
 }
 .ticketsellingCount{
   position: absolute;
-  right: -10px;
-  top: -10px;
+  right: -15px;
+  top: -15px;
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.937);
+  background-color: rgba(0, 0, 0, 0.679);
   display: flex;
   align-items: center;
   z-index: 2;
+  border: 1px solid rgb(252, 70, 100);
+  padding: 5px;
 }
 .TktSoldout{
   display: flex;

@@ -1,10 +1,11 @@
 import { CommonModule, DatePipe, NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, isStandalone, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { UserService } from './user.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { appRoutes, Routes } from '../route-paths';
+import { QRCodeModule } from 'angularx-qrcode';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
@@ -13,6 +14,7 @@ import { appRoutes, Routes } from '../route-paths';
     MatIcon,
     DatePipe,
     TranslateModule,
+    QRCodeModule
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',

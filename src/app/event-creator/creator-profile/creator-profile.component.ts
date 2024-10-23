@@ -8,10 +8,21 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 import { AuthService } from '../../auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { appRoutes, Routes} from '../../route-paths';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { QRCodeModule } from 'angularx-qrcode';
 @Component({
   selector: 'app-creator-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DatePipe, MatIcon, RouterLink,CdkDrag,TranslateModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule, 
+    DatePipe, 
+    MatIcon, 
+    RouterLink,
+    CdkDrag,
+    TranslateModule,
+    QRCodeModule
+  ],
   templateUrl: './creator-profile.component.html',
   styleUrl: './creator-profile.component.scss'
 })
@@ -210,7 +221,6 @@ get username(): FormControl {
     this.service.GetAccountManagment().subscribe(
       (resp:any)=>{
         this.Managment = resp
-        console.log(this.Managment)
       },
       (error:any)=>{
         console.log(error);
