@@ -46,7 +46,6 @@ export class UserAuthenticationComponent {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
       };
-      console.log(loginP);
       this.service.login(loginP).subscribe(
         (resp) => {
           if (resp.success) {

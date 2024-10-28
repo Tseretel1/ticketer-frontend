@@ -13,19 +13,19 @@
 
 
 
-    <div class="CenterBody" *ngIf="allTicketsVisible == false && popularTickets">        
+    <div class="CenterBody" *ngIf="popularTickets">        
         <!--Upcoming Tickets-->
-        <div class="sectionHeader headerTop" *ngIf="popularTickets">
-            <div class="sectionHeaderAlign">
-                <div class="">
-                    <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'upcoming'"> {{ 'UPCOMINGEVENTS' | translate }} <mat-icon class = "starIcon">calendar_today/mat-icon></mat-icon></p> 
-                </div>
-                <div class="scrolBUttonsParent">
-                    <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'upcoming'">{{ 'SEEALLTICKETS' | translate }} <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+        <section class="section" *ngIf="popularTickets">
+            <div class="sectionHeader headerTop" *ngIf="popularTickets">
+                <div class="sectionHeaderAlign">
+                    <div class="">
+                        <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'upcoming'"> {{ 'UPCOMINGEVENTS' | translate }} <mat-icon class = "starIcon">calendar_today/mat-icon></mat-icon></p> 
+                    </div>
+                    <div class="scrolBUttonsParent">
+                        <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'upcoming'">{{ 'SEEALLTICKETS' | translate }} <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <section class="section" *ngIf="popularTickets">
                 <div class="CenterCatousel" >
                     <div class="Ticket_parent_Carousel"  *ngIf="upcomingTickets" appScrollAnimation>
                         <div class="Ticket" *ngFor="let tkt of upcomingTickets; let i = index" [routerLink]="this.routes.fullticket+tkt.id"  (click)="TicketViewCount(tkt.id)">
@@ -48,15 +48,15 @@
 
 
         <!--Popular Tickets-->
-        <div class="sectionHeader" *ngIf="otherTickets">
-            <div class="sectionHeaderAlign">
-                <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'other'">{{ 'OTHERTICKETS' | translate }}<mat-icon class = "starIcon staritself">star</mat-icon></p>
-                <div class="scrolBUttonsParent">
-                    <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories+'other'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+        <section class="section" *ngIf="otherTickets">  
+            <div class="sectionHeader" *ngIf="otherTickets">
+                <div class="sectionHeaderAlign">
+                    <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'other'">{{ 'OTHERTICKETS' | translate }}<mat-icon class = "starIcon staritself">star</mat-icon></p>
+                    <div class="scrolBUttonsParent">
+                        <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories+'other'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <section class="section" *ngIf="otherTickets">    
+            </div>  
                 <div class="CenterCatousel">
                     <div class="Ticket_parent_Carousel" *ngIf="otherTickets" appScrollAnimation>
                         <div class="Ticket" *ngFor="let tkt of otherTickets; let i = index" [routerLink]="[this.routes.fullticket, tkt.id]"  (click)="TicketViewCount(tkt.id)">
@@ -77,18 +77,18 @@
                 </div>   
         </section>   
 
-        <div class="sectionHeader headerTop" *ngIf="popularTickets">
-            <div class="sectionHeaderAlign">
-                <div class="section-title-align"  [routerLink]="this.routes.ticketCategories+'popular'">
-                    <p class="sectionTitletext"> {{ 'POPULAREVENTS' | translate }}</p> 
-                    <div class="top-tickets">Top <mat-icon>star</mat-icon></div>
-                </div>
-                <div class="scrolBUttonsParent">
-                    <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'popular'">{{ 'SEEALLTICKETS' | translate }} <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+        <section class="other-section" *ngIf="popularTickets">
+            <div class="sectionHeader headerTop" *ngIf="popularTickets">
+                <div class="sectionHeaderAlign">
+                    <div class="section-title-align"  [routerLink]="this.routes.ticketCategories+'popular'">
+                        <p class="sectionTitletext"> {{ 'POPULAREVENTS' | translate }}</p> 
+                        <div class="top-tickets">Top <mat-icon>star</mat-icon></div>
+                    </div>
+                    <div class="scrolBUttonsParent">
+                        <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'popular'">{{ 'SEEALLTICKETS' | translate }} <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <section class="other-section" *ngIf="popularTickets">
             <div class="Ticket_parent"  *ngIf="popularTickets" appScrollAnimation>
                 <div class="Tickets" *ngFor="let tkt of popularTickets; let i = index" [routerLink]="this.routes.fullticket+tkt.id"  (click)="TicketViewCount(tkt.id)">
                     <div class="card_box">
@@ -116,7 +116,7 @@
             {{"BECOMECREATOR" |translate}}
         </div>
         <div class="creator-flex">
-            <a class="creator-space" [routerLink]="this.routes.creator" >
+            <a class="creator-space" (click)="navigateToCreatorSpace()">
                 <div class="RouterLink"><mat-icon class="creatorIcon">palette</mat-icon>{{ 'CREATORSPACE' | translate }}</div>
             </a>
             <div class="footer-ticketer-title" (click)="scrollonTop()">  

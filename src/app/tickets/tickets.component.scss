@@ -57,9 +57,14 @@
     flex-direction: column;
     align-items: center;
     z-index: 5;
+    gap: 100px;
+    padding: 50px 0px;
 }
 .card_box_main{
   width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .card_box span {
   position: absolute;
@@ -172,7 +177,6 @@
   display: flex;
   justify-content: center;
   z-index: 2;
-  margin-top: 50px;
 }
 .sectionHeaderAlign{
   width: 90%;
@@ -182,17 +186,19 @@
 }
 .sectionTitletext{
   color: lightcyan;
-  font-size: 25px;
+  font-size: 30px;
   display: flex;
   align-items: center;
   font-weight: bolder;
   cursor: pointer;
+  gap: 8px;
 }
 .starIcon{
   color: orangered;
   font-size: 30px;
   width: 30px;
   height: 30px;
+  padding-bottom: 5px;
 }
 .section{
   display: flex;
@@ -202,6 +208,7 @@
   position: relative;
   justify-content: center;
   height: 270px;
+  gap: 40px;
 }
 .other-section{
   display: flex;
@@ -209,6 +216,7 @@
   align-items: center;
   position: relative;
   justify-content: center;
+  flex-direction: column;
 }
 .section-title-align{
   display: flex;
@@ -221,7 +229,7 @@
   max-width: 1600px;
   grid-template-columns: repeat(3,1fr);
   gap: 30px;
-  padding-top: 30px;
+  padding-top: 10px;
   row-gap: 50px;
 }
 .popular-title{
@@ -231,6 +239,9 @@
 }
 .card_box{
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .Tickets{
   position: relative;
@@ -356,6 +367,7 @@
   border: 1px solid rgba(128, 128, 128, 0.257);
   text-decoration: none;
   transition:0.3s all ease-in-out;
+  cursor: pointer;
 }
 .creator-space:hover{
   background-color: rgba(70, 70, 70, 0.381);
@@ -409,16 +421,13 @@
   .Ticket_parent_Carousel{
     gap: 20px;
   }
-  .sectionHeader{
-    margin-top: 30px;
-  }
   .starIcon{
     width: 20px;
     height: 20px;
     font-size: 20px;
   }
   .sectionTitletext{
-    font-size: 20px;
+    font-size: 25px;
   }
   .Ticket_parent_Carousel{
     margin-top: 20px;
@@ -523,11 +532,17 @@
       gap: 20px;
       row-gap: 20px;
     }
+    .popular-title{
+      font-size: 18px;
+    }
 }
 
 @media screen and (max-width : 600px){
     .Ticket_parent{
         grid-template-columns: repeat(1, 1fr);
+    }
+    .popular-title{
+      font-size: 15px;
     }
 }
 

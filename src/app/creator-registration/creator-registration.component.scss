@@ -1,0 +1,255 @@
+.form-center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.first-half {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: formAnimation 0.5s;
+  max-width: 400px;
+}
+@keyframes formAnimation {
+  0% {
+    opacity: 0;
+    gap: 0px;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.register-from-parent {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px;
+  background: linear-gradient(270deg, rgb(0, 5, 24), #011b0e, rgb(0, 5, 24));
+  border-radius: 10px;
+  background-size: 800% 800%;
+  align-items: center;
+  gap: 30px;
+  box-shadow: 0px 0px 1px white;
+}
+.title-label {
+  color: white;
+  font-size: 25px;
+}
+.card-photo-label{
+    font-size: 17px;
+    color: #9b9b9b;
+}
+
+.form__group {
+  position: relative;
+  padding: 20px 0 0;
+  width: 100%;
+  min-width: 250px;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  color: #fff;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+  color: transparent;
+}
+
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 17px;
+  cursor: text;
+  top: 0px;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #9b9b9b;
+  pointer-events: none;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  border-image: linear-gradient(to right, white, lightblue);
+  border-image-slice: 1;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: -10px;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.form__field:required,
+.form__field:invalid {
+  box-shadow: none;
+}
+
+.next-button {
+  display: inline-block;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  border: 2px solid grey;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 1;
+  font-family: inherit;
+  border-radius: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.next-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: grey;
+  transform: translateX(-100%);
+  transition: all 0.3s;
+  z-index: -1;
+}
+
+.next-button:hover::before {
+  transform: translateX(0);
+}
+
+.upload-photo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.img-container{
+    height: 150px;
+    border-radius: 10px;
+    border: 1px solid white;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.upload-button{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.3;
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+}
+.img-container:hover .upload-button{
+    opacity: 1;
+}
+.save-button::before{
+  transform: translateX(0);
+  cursor:not-allowed;
+}
+.disabled-save{
+    border:2px solid green;
+}
+.disabled-save::before{
+    border:2px solid green;
+    cursor: pointer;
+    background-color:  green;
+    transform: translateX(-100%);
+}
+.disabled-save:hover::before{
+    border:2px solid green;
+    cursor: pointer;
+    transform: translateX(0px);
+}
+
+.progress-bar-parent{
+  width: 100%;
+}
+.progress-bar{
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.progress-num-align{
+  display: flex;
+  justify-content: space-between; 
+  width: 100%;
+}
+.step-1{
+  border-radius: 5px;
+  height: 20px;
+  position: absolute;
+  transition: 0.3s all ease-in-out;
+  width: 0;
+}
+.step-2{
+  background-color: darkred;
+  width: 20%;
+}
+.step-3{
+  background-color: red;
+  width: 40%;
+}
+.step-4{
+  background-color: orange;
+  width: 60%;
+}
+.step-5{
+  background-color: yellow;
+  width: 80%;
+}
+.step-6{
+  background-color: green;
+  width: 100%;
+}
+
+.progress-num{
+  color: black;
+  border-radius: 50%;
+  padding: 5px;
+  background-color: white;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}

@@ -10,6 +10,7 @@ export interface Routes {
     creatorScanner: string;
     creatorTicketManagement: string;
     searchResult :string;
+    creatorRegistration :string;
 }
 
 export const appRoutes: Routes = {
@@ -23,5 +24,6 @@ export const appRoutes: Routes = {
     creatorTicketManagement: "/event-creator/ticket-management",
     ticketCategories : "/ticket-categories/",
     userProfile :"/user-profile",
-    searchResult :"/search/"
+    searchResult :"/search/",
+    creatorRegistration : "/register-as-creator",
 };

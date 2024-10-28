@@ -20,8 +20,8 @@
 <div class="AccountLoginCheck" *ngIf="!LoggedCheck()">
         <!--Log into creator account-->
         <div class="account-parent">
-            <div class="account-tag" *ngIf="switch && creatorCheck()">{{"MYACCOUNTS" |translate}}</div>
-            <div class="CreateAccountLabel" *ngIf="!switch  && creatorCheck()">{{"CREATENEWACCOUNT"|translate}}</div>
+            <div class="account-tag" *ngIf="switch">{{"MYACCOUNTS" |translate}}</div>
+            <div class="CreateAccountLabel" *ngIf="!switch && creatorCheck()" >{{"CREATENEWACCOUNT"|translate}}</div>
             <div class="my-accounts-parent" *ngIf="switch">
                   <div class="my-accounts" *ngFor="let i of myAccounts">
                     <div class="my-accounts-click" (click)="LoginToaccount(i.id)">
@@ -37,33 +37,8 @@
                   <div class="account-name" *ngIf=" myAccounts.length <= 0">{{"NOTFOUND" | translate}}</div>
             </div>
         
-                 <!--Register as creator  Form-->
-                <form class="LogAccountForm" [formGroup]="RegisterForm" (submit)="RegisterAscreator()" *ngIf="!switch  && !creatorCheck()">
-                    <label for="" class="CreateAccountLabel">{{"REGISTERASCREATOR" |translate}}</label>
-                    <div class="inputparents"> 
-                        <label class="Leblofinputs">{{"PERSONALID" |translate}}</label>
-                        <input type="number" class="LoginAccountInputs" placeholder="Personal ID" formControlName="PersonalID">
-                        <div *ngIf="RegisterForm.controls['PersonalID']?.dirty " class="positionrelative">
-                            <span *ngIf="RegisterForm.controls['PersonalID']?.errors?.['required']" class="validationMessage">Personal ID is required</span>
-                        </div>
-                    </div>
-                   <div class="inputparents">
-                     <label class="Leblofinputs">{{"PHONENUMBER" |translate}}</label>
-                     <input type="number" class="LoginAccountInputs" placeholder="+995" formControlName="PhoneNumber"> 
-                     <div *ngIf="RegisterForm.controls['PhoneNumber']?.dirty " class="positionrelative">
-                         <span *ngIf="RegisterForm.controls['PhoneNumber']?.errors?.['required']" class="validationMessage">Phone number is required</span>
-                     </div>
-                   </div>
-                   <div class="inputparents">
-                     <label class="Leblofinputs">{{"PERSONALIDPHOTO" |translate}}</label> 
-                       <input type="number" class="LoginAccountInputs" placeholder="idcardphoto" formControlName="IdCardPhoto"> 
-                       <button class="CreateAccountButton ">Submit</button>
-                    </div>
-                </form>
-
-
                 <!--Create Account Form-->
-                <form [formGroup]="CreateAccountForm" class="LogAccountForm" *ngIf="!switch && creatorCheck()">
+                <form [formGroup]="CreateAccountForm" class="LogAccountForm"  *ngIf=" !switch && creatorCheck()">
                     <div class="">
                         <label class="input-title">{{ "ACCOUNTNAME" | translate }}</label>
                         <input type="text" formControlName="accountName" placeholder="new account" class="LoginAccountInputs">        
@@ -74,14 +49,10 @@
                         </div>
                     </div>
                     
-                    <button class="bookmarkBtn" (click)="createNewAccount()" [disabled]="!CreateAccountForm.valid">
+                    <button class="bookmarkBtn" [ngClass]="{'bokmark-valid': CreateAccountForm.valid}" (click)="createNewAccount()" [disabled]="!CreateAccountForm.valid">
                       <p class="text">{{"SUBMIT"|translate}} </p>
                     </button>
                 </form>
-                <div class=""*ngIf="creatorCheck()==false">
-                    <button class="RegisterAsCreator" (click)="SwitchForms()" *ngIf="switch">{{"REGISTERASCREATOR"|translate}}</button>
-                    <button class="RegisterAsCreator" (click)="SwitchForms()" *ngIf="switch==false">{{"MYACCOUNTS"|translate}}</button>
-                </div>
                 <div class="" *ngIf="creatorCheck()">
                     <button class="RegisterAsCreator" (click)="SwitchForms()" *ngIf="switch">{{"CREATENEWACCOUNT"|translate}}</button>
                     <button class="RegisterAsCreator" (click)="SwitchForms()" *ngIf="switch ==false">{{"MYACCOUNTS"|translate}}</button>

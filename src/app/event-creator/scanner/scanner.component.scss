@@ -54,6 +54,12 @@
     height: 100%;
     object-fit: cover;
 }
+.expired-container{
+    border: 3px solid red;
+}
+.active-container{
+    border: 3px solid green;
+}
 .ticket-title{
     color: white;
     font-family: inherit;

@@ -87,13 +87,10 @@
   
   @keyframes Appear {
     0% {
-      transform: translate(-900px);
-    }
-    50%{
-      transform: translate(100px);
+      opacity: 0;
     }
     100% {
-      transform: scale(1);
+      opacity: 1;
     }
   }
   

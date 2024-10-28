@@ -1,12 +1,13 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TicketService } from './ticket.service';
 import { CommonModule, DatePipe } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { appRoutes, Routes} from '../route-paths'
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -41,6 +42,8 @@ export class TicketsComponent implements OnInit, OnDestroy{
   constructor
   (
     private ticketService: TicketService,
+    private router :Router,
+    private authService :AuthService
   ) 
   {
   }
@@ -134,29 +137,33 @@ export class TicketsComponent implements OnInit, OnDestroy{
       }
     );
   }
-  allTicketsVisible = false;
-  everyTicketTitle = "";
 
-  seeAllPopularTickets(){
-    this.tickets = this.popularTickets;
-    this.allTicketsVisible = true;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    this.everyTicketTitle = "Most popular events";
+  navigateToCreatorSpace(){
+    if(this.creatorCheck()){
+      this.router.navigate([this.routes.creator])
+    }
+    else{
+      this.router.navigate([this.routes.creatorRegistration])
+    }
   }
 
-  seeAllUpcomingTickets(){
-    this.tickets = this.upcomingTickets;
-    this.allTicketsVisible = true;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    this.everyTicketTitle = `Upcoming events `;
-    console.log(this.upcomingTickets);
+  creatorCheck(){
+    const Token = localStorage.getItem("token");
+    if(Token){
+      var Role =  this.authService.getUserRole(Token);
+      if(Role == "Creator"){
+        return true;
+      }
+      else if(Role == "User")
+      {
+        return false;
+      }
+    }
+    return false;
   }
 
-  BackButton(){
-    this.allTicketsVisible = false;
-    this.tickets = [];
-  }
 
+  
 ngOnDestroy(): void {
   if (this.intervalId) {
     clearInterval(this.intervalId);

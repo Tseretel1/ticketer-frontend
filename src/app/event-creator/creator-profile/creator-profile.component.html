@@ -8,9 +8,9 @@
                 <div class="img-save-align">
                     <div class="profile-image-container">
                         <button (click)="triggerFileInput()" class="change-photo-button"><mat-icon >camera_alt</mat-icon></button>
+                        <input id="photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden>
                         <img *ngIf="imagePreview" [src]="imagePreview" alt="" class="profile-image">
                         <mat-icon class="no-logo big-nologo" *ngIf="!imagePreview ">account_circle</mat-icon>
-                        <input id="photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden>
                     </div>
                     <div *ngIf="savePhotobButton">
                         <button type="button" (click)="uploadImage()" [disabled]="!selectedFile" [ngClass]="{'disabled': selectedFile}" class="save-image-button">{{"SAVEIMAGE"|translate}}</button>

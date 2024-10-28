@@ -5,7 +5,7 @@
 
 <div class="scaner-response" *ngIf="!isScannerOpen">
   <div class="found-ticket">
-    <div class="ticket-image-container">
+    <div class="ticket-image-container" [ngClass]="{'expired-container':scanedResult?.respObject?.isExpired }" [ngClass]="{'active-container':scanedResult?.respObject?.isActive }">
       <img *ngIf="scanedResult?.respObject?.ticketPhoto" [src]="scanedResult.respObject.ticketPhoto" alt="" class="ticket-image">
     </div>
     <div *ngIf="scanedResult?.respObject">

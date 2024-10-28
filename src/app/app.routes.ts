@@ -12,12 +12,14 @@ import { ScannerComponent } from './event-creator/scanner/scanner.component';
 import { ticketmanagmentComponent } from './event-creator/ticket-managment/ticket-managment.component';
 import { UserAuthenticationComponent } from './user-authentication/user-authentication.component';
 import { SearchResultComponent } from './tickets/search-result/search-result.component';
+import { CreatorRegistrationComponent } from './creator-registration/creator-registration.component';
 
 export const routes: Routes = [
   { path: 'tickets', component: TicketsComponent },
   { path: 'login', component: UserAuthenticationComponent },
   { path: 'full-ticket/:id', component: FullTicketComponent},
   { path: 'search/:id', component: SearchResultComponent},
+  { path: 'register-as-creator', component:CreatorRegistrationComponent},
   {
     path: 'event-creator',
     component: EventCreatorComponent,

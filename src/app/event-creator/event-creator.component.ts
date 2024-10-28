@@ -80,7 +80,7 @@ export class EventCreatorComponent implements OnInit{
     }
   }
 
- myAccounts :any []= [];
+  myAccounts :any []= [];
   mycreatorAccounts(){
     this.service.myCreatorAccounts().subscribe(
       (resp)=>{
@@ -94,6 +94,8 @@ export class EventCreatorComponent implements OnInit{
       }
     )
   }
+
+
   LoginToaccount(accountID :number){
     this.service.loginToAccount(accountID).subscribe(
       (resp)=>{
@@ -141,31 +143,6 @@ export class EventCreatorComponent implements OnInit{
       this.switch = false;
       this.switchText  = "Register as Creator";
     }
-  }
-
-
-  RegisterAscreator(){
-    const reg: Register={
-      IdCardPhoto : this.RegisterForm.value.IdCardPhoto,
-      PhoneNumber : this.RegisterForm.value.PhoneNumber,
-      PersonalID : this.RegisterForm.value.PersonalID
-    }
-    this.service.onRegister(reg).subscribe(
-      (resp)=>{
-        if(resp.message.success == true)
-        {
-          this.Server_response = resp.message;
-          this.modalvisible = true;
-        }
-        else{
-          this.Server_response = resp.message;
-          this.modalvisible = true;
-        }
-      },
-      (error)=>{
-        console.log(error);
-      }
-    )
   }
 
   createNewAccount() {

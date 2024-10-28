@@ -40,6 +40,7 @@ export class NavigationComponent implements OnInit, OnDestroy{
   }
   pathsToHide(): boolean {
     const routesToHide = [
+      this.routes.creatorRegistration,
       this.routes.creator,
       this.routes.fullticket, 
       this.routes.userProfile,
