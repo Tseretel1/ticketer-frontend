@@ -61,51 +61,10 @@
     padding: 50px 0px;
 }
 .card_box_main{
-  width: 320px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-.card_box span {
-  position: absolute;
-  overflow: hidden;
-  width: 150px;
-  height: 150px;
-  top: -10px;
-  left: -10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card_box span::before {
-  content: 'Top';
-  position: absolute;
-  width: 150%;
-  height: 40px;
-  background-image: linear-gradient(45deg, #ff3107 0%, #ff4444  51%, #ff401a  100%);
-  transform: rotate(-45deg) translateY(-20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.23);
-  z-index: 2;
-}
-
-.card_box span::after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  bottom: 0;
-  left: 0;
-  height: 10px;
-  z-index: -1;
-  box-shadow: 140px -140px #cc3f47;
-  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
 }
 .ticketDate{
   display: flex;
@@ -248,14 +207,20 @@
   cursor: pointer;
 }
 .top-tickets{
-  background-color: red;
-  padding: 5px;
+  background-color: rgb(169, 5, 5);
+  padding: 3px;
   border-radius: 10px;
   color: white;
   z-index: 1;
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 7px;
+  justify-content: center;
+  rotate: 10deg;
+}
+.startwenty{
+  font-size: 20px;
 }
 .TicketImageContainer{
   border-image-width: 100%;
@@ -334,7 +299,6 @@
 
 .footer{
   display: flex;
-  margin-top: 50px;
   justify-content: center;
   width: 100%;
   background-color: rgb(23, 23, 28);
@@ -346,7 +310,15 @@
   max-width: 1600px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.creater-space-parent{
+  display: flex;
   flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
 }
 .creator-flex{
   display: flex;
@@ -356,21 +328,9 @@
 .become-creator{
   color: white;
   font-size: 20px;
-}
-.creator-space{
-  background-color: rgba(0, 0, 0, 0.381);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  border: 1px solid rgba(128, 128, 128, 0.257);
-  text-decoration: none;
-  transition:0.3s all ease-in-out;
+  text-align: center;
   cursor: pointer;
-}
-.creator-space:hover{
-  background-color: rgba(70, 70, 70, 0.381);
+  transition: 0.3s all ease-in-out;
 }
 .RouterLink{
   color: white;
@@ -397,7 +357,11 @@
 }
 
 
-
+.ticketer-footer{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
 
 
@@ -535,6 +499,11 @@
     .popular-title{
       font-size: 18px;
     }
+}
+@media screen and (max-width : 665px){
+  .footerChild{
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width : 600px){

@@ -4,11 +4,16 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TranslateModule } from '@ngx-translate/core';
 import { login, passcode, RegisterServiceService } from './register-service.service';
 import { appRoutes, Routes} from '../route-paths';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-user-authentication',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,TranslateModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    RouterLink
+  ],
   templateUrl: './user-authentication.component.html',
   styleUrl: './user-authentication.component.scss'
 })
@@ -127,7 +132,7 @@ export class UserAuthenticationComponent {
     this.modalVisible = true;
     setTimeout(() => {
       this.modalVisible = false
-    }, 5000);
+    }, 10000);
   }
 
   openPasscodeResp(){

@@ -23,13 +23,21 @@
                     <div class="profileflex" >
                         <div class="profilecontainermain">
                             <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
-                            <mat-icon class="ProfileNot" *ngIf="Profile.profile == null">account_circle</mat-icon>
+                            <mat-icon class="ProfileNot" *ngIf="!Profile.profile">account_circle</mat-icon>
                         </div>
-         
+                        <div class="email-parent">
+                            <p class="email">
+                               {{"PROFILE"|translate}}
+                            </p>
+                        </div>
                     </div>
                 </div>
-             </a>   
-             <a [routerLink]="this.routes.login" class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin() == false"><mat-icon>login</mat-icon>{{"LOGIN" |translate}}</a>
+             </a> 
+             <div class="creator-space" *ngIf="Loggedin()" (click)="navigateToCreatorSpace()">
+                <mat-icon class="creator-icon">palette</mat-icon>
+                <p class="creator-text">{{"CREATORSPACE"|translate}}</p>
+             </div>
+             <a [routerLink]="this.routes.login" class="RouterLinkflex" routerLinkActive="active-link" *ngIf="!Loggedin()"><mat-icon>login</mat-icon>{{"LOGIN" |translate}}</a>
              <select (change)="changeLanguage($event)" class="language">
                 <option class="language-options" value="" disabled selected>{{ 'LANGUAGE' | translate }}</option>
                 <option class="language-options"  value="en">En</option>
@@ -41,7 +49,7 @@
 <div class="categories"  *ngIf="pathsToHide()">
     <div class="categoriesAlign">
         <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'music'" routerLinkActive="categoire-active"><p class="nav-titles"> {{'MUSIC' | translate }} </p><mat-icon class="categoryIcons music">music_note</mat-icon> </div>
-        <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'cinema'" routerLinkActive="categoire-active"><p class="nav-titles"> {{'FILM' | translate }}  </p><mat-icon class="categoryIcons">camera_alt</mat-icon> </div>
+        <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'cinema'" routerLinkActive="categoire-active"><p class="nav-titles"> {{'FILM' | translate }}  </p><mat-icon class="categoryIcons">local_movies</mat-icon> </div>
         <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'theater'" routerLinkActive="categoire-active"> <p class="nav-titles"> {{'THEATER' | translate }}  </p> <mat-icon class="categoryIcons theater">theater_comedy</mat-icon> </div>
         <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'Sport'" routerLinkActive="categoire-active"> <p class="nav-titles"> {{'FOOTBALL' | translate }}  </p> <mat-icon class="categoryIcons football">sports_soccer</mat-icon> </div>
         <div class="categoryTitle" [routerLink]="this.routes.ticketCategories+'other'" routerLinkActive="categoire-active"> <p class="nav-titles"> {{'OTHER' | translate }}  </p></div>
@@ -62,20 +70,21 @@
                 <div class="profile">
                     <div class="profilecontainer">
                         <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
-                        <mat-icon class="ProfileNot" *ngIf="Profile.profile == null">account_circle</mat-icon>
+                        <mat-icon class="profilenot-2" *ngIf="Profile.profile == null">account_circle</mat-icon>
                     </div>
                  
                     <div class="username"> 
-                        <p>{{Profile.name}}</p>
-                        <p>{{Profile.lastName}}</p>
+                        <p class="email">
+                            {{"PROFILE"|translate}}
+                         </p>
                     </div>
                 </div>
              </a>
-             <a [routerLink]="this.routes.login" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin() == false" (click)="searchbarHide()"><mat-icon>login</mat-icon>Login</a>
              <a [routerLink]="this.routes.ticket" class="RouterLink" routerLinkActive="active-link" (click)="searchbarShow()"><mat-icon>confirmation_number</mat-icon>{{ 'TICKETS' | translate }}</a>
+             <a [routerLink]="this.routes.login" class="RouterLink" routerLinkActive="active-link" *ngIf="!Loggedin()" (click)="searchbarHide()"><mat-icon>login</mat-icon>Login</a>
          </div>
          <div class="CreatorSpace">
-            <a [routerLink]="this.routes.creator" class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Creator()" (click)="searchbarHide()"><mat-icon>palette</mat-icon>{{ 'CREATORSPACE' | translate }}</a>
+            <a class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Loggedin()" (click)="navigateToCreatorSpace()"><mat-icon>palette</mat-icon>{{ 'CREATORSPACE' | translate }}</a>
          </div>
      </div>
      <div class="OtherHalf"  [style.opacity]="opacity"  (click)="HideNavigation()">

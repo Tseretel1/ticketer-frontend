@@ -11,6 +11,7 @@ export interface Routes {
     creatorTicketManagement: string;
     searchResult :string;
     creatorRegistration :string;
+    restorePassword :string;
 }
 
 export const appRoutes: Routes = {
@@ -22,8 +23,9 @@ export const appRoutes: Routes = {
     creatorCrud: "/event-creator/crud/",
     creatorScanner: "/event-creator/scanner",
     creatorTicketManagement: "/event-creator/ticket-management",
-    ticketCategories : "/ticket-categories/",
+    ticketCategories : "/ticket/genre/",
     userProfile :"/user-profile",
     searchResult :"/search/",
     creatorRegistration : "/register-as-creator",
+    restorePassword :'/restore-password'
 };

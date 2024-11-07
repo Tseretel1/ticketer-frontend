@@ -3,293 +3,145 @@
   height: 100%;
 }
 
+.delete-modal-parent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 2;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  animation: 0.3s deleteAnimation;
+}
+
+@keyframes deleteAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.delete-modal-align {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 75%;
+  align-items: center;
+}
+
+.delete-modal {
+  background-color: #000000;
+  background: linear-gradient(270deg, rgb(18, 6, 50), #222c05, rgb(18, 6, 50));
+  background-size: 800% 800%;
+  animation: AnimationName 20s ease infinite;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px black;
+  animation: 0.3s modalAn;
+  border: 1px solid grey;
+}
+
+@keyframes modalAn {
+  0% {
+    scale: 0.5;
+  }
+  100% {
+    scale: 1;
+  }
+}
+.modal-question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.are-you-sure {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+}
+
+.warning-flex {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.warn {
+  color: yellow;
+}
+
+.note {
+  color: red;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.center-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
 .CancelAdingticket {
   display: flex;
   width: 100%;
   justify-content: center;
 }
 
-.CancelAdingticketButton {
-  width: 200px;
-  font-size: 20px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.ticketbody {
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.centerTicketMaker {
-  display: flex;
-  z-index: 3;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.FormAlign {
-  display: flex;
-  flex-direction: column;
-  color: white;
+.cancel-ticket-align {
+  width: 90%;
+  max-width: 800px;
   padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.CancelAdingticketButton {
   border-radius: 10px;
-  border: 1px solid gray;
-  background: linear-gradient(270deg, rgba(18, 6, 50, 0), rgb(6, 11, 50));
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
-  gap: 20px;
-}
-
-.FirstHalf {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.halfcolumn {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.wraperFlex {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.SecondHalf {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.FormHeader {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.genreparent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.genre {
-  width: 100%;
-  max-width: 120px;
-  border: none;
-  border-radius: 5px;
-  padding: 5px;
-  color: goldenrod;
-  font-size: 16px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: transparent;
-  border: 1px solid white;
-  outline: 1px solid white;
-}
-
-.genre option {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 10px;
-  transition: 0.3s all ease-in-out;
-}
-
-.genre option:hover,
-.genre option:focus {
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-}
-
-.genre option:checked {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-}
-
-.DescriptionAlingn {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.description {
-  width: 100%;
-}
-
-.TicketCountParent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.centercreationbutton {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.CreateTicketButton {
-  width: auto;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
-  font-size: 20px;
   cursor: pointer;
-  margin-top: 5px;
-}
-
-.DateGroup {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 10px;
-  border-radius: 10px;
-  max-width: 200px;
-}
-
-.DateAlign {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.dateStyle {
-  color: goldenrod;
-  background-color: transparent;
   border: none;
-  outline: none;
-  padding: 2px;
-  border-radius: 5px;
-  border: 1px solid white;
-}
-
-.Time {
-  background-color: transparent;
-  width: 100px;
-  border-radius: 8px;
-  border: none;
-  color: goldenrod;
-  padding: 5px 10px;
-  border: 1px solid white;
-  transition: all 0.3s ease;
-}
-
-.Time:focus {
-  outline: none;
-  background-color: #444;
-  box-shadow: 0 0 0 2px #00aaff;
-}
-
-.iconsize {
-  width: 20px;
-  height: 15px;
-  font-size: 15px;
-}
-
-.Date {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.TicketInputs {
-  outline: none;
-  color: goldenrod;
-  background-color: transparent;
-  border: none;
+  transition: 0.3s all ease-in-out;
   padding: 5px;
-  width: 100px;
-  width: auto;
-  text-align: center;
-  border-radius: 5px;
-  border: 1px solid white;
 }
 
-.pricetag {
-  width: 100px;
+.delete-ticket-button {
+  background-color: transparent;
+  border: 1px solid red;
+  color: white;
+  transition: 0.2s all ease-in-out;
 }
 
-.CenterEverything {
+.delete-ticket-button:hover {
+  background-color: red;
+}
+
+.image-preview-parent {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  z-index: 3;
 }
 
-.AddTicketCard {
-  width: 218px;
-}
-
-.Createticketbutton {
-  display: flex;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s all ease-in-out;
-  font-weight: 600;
-  background-color: rgba(106, 116, 218, 0.45);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 2px solid white;
-  border-top: 2px solid white;
-}
-
-.Createticketbutton:hover {
-  letter-spacing: 1px;
-  background-color: rgb(37, 37, 104);
-}
-
-.MakingTitcket {
-  display: flex;
-  width: auto;
-  z-index: 3;
-  flex-direction: column;
-  align-items: center;
-}
-
-.TicketPreview {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  gap: 10px;
-}
-
-.Preview {
-  color: white;
-}
-
-.DescriptionValue {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.inputvalues {
-  margin: 2px;
-  display: flex;
-}
-
-.ImagePreview {
-  width: 180px;
-  height: 240px;
+.image-preview {
+  width: 90%;
+  height: 250px;
   overflow: hidden;
   position: relative;
-  border-radius: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.503);
+  border: 1px solid grey;
 }
 
 .photoAlign {
@@ -301,6 +153,8 @@
   height: 100%;
   opacity: 0.1;
   transition: 0.2s all ease-in-out;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .photoAlign:hover {
@@ -328,8 +182,216 @@
   border-radius: 10px;
 }
 
-@media screen and (max-width: 550px) {
-  .Createticketbutton {
-    height: 60px;
+.input-align-parent {
+  width: 100%;
+  display: flex;
+  padding: 30px;
+  justify-content: space-between;
+  gap: 30px;
+  flex-direction: column;
+}
+
+.input-align {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-names {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+
+.ticket-inputs {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid white;
+  color: lightpink;
+  padding: 10px;
+  animation: inputAnimations 0.5s;
+}
+
+.ticket-inputs Option {
+  background-color: black;
+}
+
+@keyframes inputAnimations {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.input-center {
+  justify-content: space-evenly;
+}
+
+.datetime-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  max-height: 90px;
+  max-width: 300px;
+}
+
+.datetime-flex {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.date-align-time {
+  display: flex;
+  flex-direction: column;
+}
+
+.description-align {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.description-validation {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.val-absolute {
+  position: absolute;
+  bottom: -20px;
+}
+
+.description-width {
+  width: 100%;
+  height: 100%;
+}
+
+.resizable-description {
+  width: 100%;
+  height: 90%;
+  resize: vertical;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  text-align: start;
+  background-color: transparent;
+  color: lightpink;
+  min-height: 150px;
+}
+
+.ticket-count {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ticket-count-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.ticket-count-num {
+  color: lightcoral;
+}
+
+.ticket-count-resp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.count-icon {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.ticket-count-align {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.create-ticket-parent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.add-ticket-count-button {
+  padding: 5px;
+  border: 1px solid white;
+  color: white;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.create-ticket-button {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 1px solid white;
+  transition: 0.3s all ease-in-out;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+}
+
+.create-ticket-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.content-background {
+  display: flex;
+  flex-direction: column;
+  width: 84%;
+  max-width: 750px;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.434);
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+.validation-message {
+  color: red;
+  font-size: 14px;
+}
+
+.empty-input {
+  border-bottom: 1px solid red;
+}
+
+.full-border {
+  border: 1px solid red;
+}
+
+@media screen and (max-width: 880px) {
+  .datetime-column {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .val-absolute {
+    bottom: -20px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .image-preview {
+    height: 200px;
   }
 }/*# sourceMappingURL=crud.component.css.map */

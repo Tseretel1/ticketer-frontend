@@ -39,6 +39,7 @@ export class EventCreatorComponent implements OnInit{
     else{
       this.mycreatorAccounts();
     }
+    this.accountCreated();
   }
 
   private isCreatorRoute(): boolean {
@@ -81,11 +82,31 @@ export class EventCreatorComponent implements OnInit{
   }
 
   myAccounts :any []= [];
+  accountCreatedd :boolean = false;
+
+  accountCreated(){
+    this.service.accountCreated().subscribe(
+      (resp)=>{
+        console.log("resp",resp)
+        if(resp.success){
+          this.accountCreatedd = true;
+        }
+        else{
+          this.accountCreatedd = false;
+        }
+      },
+      (error)=>{
+
+      }
+    )
+  }
+
+  
   mycreatorAccounts(){
     this.service.myCreatorAccounts().subscribe(
       (resp)=>{
         this.myAccounts = resp;
-        if(resp.length<=0){
+        if(resp.length <= 0 ){
           this.switch = false;
         }
       },
@@ -103,6 +124,8 @@ export class EventCreatorComponent implements OnInit{
         const token = localStorage.getItem('CreatorToken');
         if (token) {
             this.router.navigate([this.routes.creatorProfile]);
+            this.accountCreated();
+            this.accountCreatedd = false;
         }
         else{
           localStorage.setItem('CreatorToken', resp.message);
@@ -114,20 +137,6 @@ export class EventCreatorComponent implements OnInit{
     )
 }
 
-  creatorCheck(){
-    const Token = localStorage.getItem("token");
-    if(Token){
-      var Role =  this.authService.getUserRole(Token);
-      if(Role == "Creator"){
-        return true;
-      }
-      else if(Role == "User")
-      {
-        return false;
-      }
-    }
-    return false;
-  }
 
 
 

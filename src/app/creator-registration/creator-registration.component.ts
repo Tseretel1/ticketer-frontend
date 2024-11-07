@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
@@ -14,12 +14,13 @@ import { appRoutes, Routes } from '../route-paths';
     ReactiveFormsModule,
     TranslateModule,
     CommonModule,
-    MatIcon
+    MatIcon,
+    RouterLink
   ],
   templateUrl: './creator-registration.component.html',
   styleUrl: './creator-registration.component.scss'
 })
-export class CreatorRegistrationComponent {
+export class CreatorRegistrationComponent implements OnInit{
   routes: Routes = appRoutes;
   registerForm :FormGroup;
   constructor(private fb :FormBuilder,  private router :Router,private service :CreatorRegisterService){
@@ -31,6 +32,36 @@ export class CreatorRegistrationComponent {
       IdCardPhoto :['',[Validators.required]],
     });
   }
+  percentage: number = 0;
+  ngOnInit(): void {
+    this.registerForm.valueChanges.subscribe(() => {
+      this.calculatePercentage();
+    });
+  }
+  calculatePercentage(): void {
+    const totalFields = Object.keys(this.registerForm.controls).length;
+    const validFields = Object.keys(this.registerForm.controls).filter(
+      (field) => this.registerForm.get(field)?.valid
+    ).length;
+  
+    const newPercentage = (validFields / totalFields) * 100;
+    this.animatePercentageChange(this.percentage, newPercentage, 300);
+  }
+  
+  animatePercentageChange(start: number, end: number, duration: number): void {
+    const startTime = performance.now();
+    const update = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      this.percentage = Math.floor(start + (end - start) * progress);
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    };
+    requestAnimationFrame(update);
+  }
+  
   
   getProgressWidth(): string {
     const controls = [

@@ -27,6 +27,7 @@
 
     "THEATEREVENTS": "Theater",
     "SEEALLTICKETS": "view tickets",
+    "TOP": "Top",
     "MUSIC": "Music",
     "THEATER": "Theater",
     "ANIMATION": "Animation",
@@ -56,6 +57,7 @@
     "PRICE": "Price",
     "DESCRIPTION": "Description",
     "BUYTICKET": "Buy Tikcet",
+    "BOUGHTTICKET": "Congrats, you succesfully bought",
     "SOLDOUT": "Every Ticket is sold!",
     "SUGGESTIONS": "Suggestions",
     "CHOSEN": "Selected",
@@ -68,6 +70,8 @@
 
 
     "LOGIN": "Login",
+    "FORGOTPASSWORD": "Forgot Password?",
+    "RESTOREPASSWORD":  "Restore Password",
     "EMAIL": "Email",
     "PASSWORD": "Pssword",
     "PASSCODE": "Passcode",

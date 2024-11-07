@@ -82,7 +82,7 @@
     text-align: center;
 }
 .RouterLink.active-link {
-    border-bottom: 1px dashed white;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .RouterLink:hover{
     background-color: rgba(59, 59, 59, 0.401);
@@ -133,6 +133,22 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+.creator-space{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+.creator-icon{
+    color: white;
+    padding: 3px;
+    border-radius: 50%;
+}
+.creator-text{
+    color: white;
+    width: 200px;
+    text-align: center;
 }
 .RouterLinkflex{
     color: white;
@@ -213,7 +229,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 20px;
+    flex-direction: column;
 }
 .profilecontainermain{
     width: 30px;
@@ -223,28 +239,27 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%; 
-    border:1px solid white;
+}
+.email-parent{
+    width: auto;
 }
 .routerwhite{
     color: white;
     text-decoration: none;
 }
 .profilecontainer{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%; 
-    border:1px solid white;
 }
-.ProfileNot{
-    width: 50px;
-    height: 50px;
-    font-size: 50px;
-    display: flex;
-    justify-content: center;
+.profilenot-2{
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
 }
 .userprofile{
     width: 100%;
@@ -347,7 +362,7 @@
 
 
 
-@media screen and (max-width : 680px){
+@media screen and (max-width : 880px){
     .Navbarflex2{
         justify-content: flex-start;
     }

@@ -45,6 +45,7 @@ export class NavigationComponent implements OnInit, OnDestroy{
       this.routes.fullticket, 
       this.routes.userProfile,
       this.routes.login,
+      this.routes.restorePassword
     ];
     return !routesToHide.some(route => this.router.url.startsWith(route));
   }
@@ -74,7 +75,6 @@ export class NavigationComponent implements OnInit, OnDestroy{
     this.location.forward();
   }
   ngOnInit(): void {  
-    this.Creator();
     this.UserProfile();
   }
   ngOnDestroy(): void {
@@ -133,21 +133,6 @@ export class NavigationComponent implements OnInit, OnDestroy{
 
 
 
-
-  Creator(){
-    const token = localStorage.getItem('token');
-    if (token && !this.authService.isTokenExpired(token)) {
-        const userRole = this.authService.getUserRole(token);
-        if (userRole === 'Creator' || userRole =="User") {
-          return true;
-        } else {
-          return false; 
-        }
-    } else {
-      return false;
-    }
-  }
-
   User(){
     const token = localStorage.getItem('token');
     if (token && !this.authService.isTokenExpired(token)) {
@@ -185,6 +170,33 @@ export class NavigationComponent implements OnInit, OnDestroy{
       }
      )
   }
+
+  
+  navigateToCreatorSpace(){
+    this.HideNavigation();
+    if(this.creatorCheck()){
+      this.router.navigate([this.routes.creator])
+    }
+    else{
+      this.router.navigate([this.routes.creatorRegistration])
+    }
+  }
+
+  creatorCheck(){
+    const Token = localStorage.getItem("token");
+    if(Token){
+      var Role =  this.authService.getUserRole(Token);
+      if(Role == "Creator"){
+        return true;
+      }
+      else if(Role == "User")
+      {
+        return false;
+      }
+    }
+    return false;
+  }
+
 }
 
 

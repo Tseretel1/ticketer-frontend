@@ -42,7 +42,8 @@
 <!--Little Modal-->
 <div class="SmallModalParent" *ngIf="SmallModal">
   <div class="SmallModal">
-    <p class="SmallmodalText">{{SmallModalText}}</p>
+    <div class="SmallmodalText">{{"BOUGHTTICKET" |translate}} :  <p class="bought-text-color">{{matchingTicket.title}} </p></div>
+    <div class="SmallmodalText">{{"REMAININGTICKETSCOUNT" |translate}} : <p class="bought-text-color"> {{ticketCount}} </p></div>
   </div>
 </div>
 

@@ -51,7 +51,7 @@
         <section class="section" *ngIf="otherTickets">  
             <div class="sectionHeader" *ngIf="otherTickets">
                 <div class="sectionHeaderAlign">
-                    <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'other'">{{ 'OTHERTICKETS' | translate }}<mat-icon class = "starIcon staritself">star</mat-icon></p>
+                    <p class="sectionTitletext"  [routerLink]="this.routes.ticketCategories+'other'">{{ 'OTHERTICKETS' | translate }}</p>
                     <div class="scrolBUttonsParent">
                         <div class="seeAllTickets"  [routerLink]="this.routes.ticketCategories+'other'">{{ 'SEEALLTICKETS' | translate }}<mat-icon class = "starIcon">confirmation_number</mat-icon></div>
                     </div>
@@ -82,7 +82,7 @@
                 <div class="sectionHeaderAlign">
                     <div class="section-title-align"  [routerLink]="this.routes.ticketCategories+'popular'">
                         <p class="sectionTitletext"> {{ 'POPULAREVENTS' | translate }}</p> 
-                        <div class="top-tickets">Top <mat-icon>star</mat-icon></div>
+                        <div class="top-tickets">{{"TOP"|translate}} <mat-icon class="startwenty">star</mat-icon></div>
                     </div>
                     <div class="scrolBUttonsParent">
                         <div class="seeAllTickets" [routerLink]="this.routes.ticketCategories+'popular'">{{ 'SEEALLTICKETS' | translate }} <mat-icon class = "starIcon">confirmation_number</mat-icon></div>
@@ -112,16 +112,14 @@
 
     <footer class="footer">
       <div class="footerChild">
-        <div class="become-creator">
-            {{"BECOMECREATOR" |translate}}
+        <div class="footer-ticketer-title" (click)="scrollonTop()">  
+            <div class="ticketer-footer">
+                Ticketer <mat-icon>confirmation_number</mat-icon>
+            </div>
         </div>
-        <div class="creator-flex">
-            <a class="creator-space" (click)="navigateToCreatorSpace()">
-                <div class="RouterLink"><mat-icon class="creatorIcon">palette</mat-icon>{{ 'CREATORSPACE' | translate }}</div>
-            </a>
-            <div class="footer-ticketer-title" (click)="scrollonTop()">  
-                Ticketer
-                <mat-icon>confirmation_number</mat-icon>
+        <div class="creater-space-parent"  *ngIf="Loggedin()">
+            <div class="become-creator" (click)="navigateToCreatorSpace()">
+                {{"BECOMECREATOR" |translate}}
             </div>
         </div>
       </div>

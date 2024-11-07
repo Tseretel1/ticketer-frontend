@@ -11,7 +11,13 @@ export class ServiceService {
   private URL = "https://localhost:7081/";  
   loginToAccount(accountID: number): Observable<any> { 
     return this.http.get(`${this.URL}creator-account-login/${accountID}`);
-}
+
+  }
+
+  accountCreated(): Observable<any> { 
+    return this.http.get(`${this.URL}account-created`);
+  }
+
   
   myCreatorAccounts(): Observable<any> {
     return this.http.get(this.URL + "my-creator-account");

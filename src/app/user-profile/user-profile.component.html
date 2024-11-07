@@ -30,11 +30,14 @@
    </div>
    <div class="qr-ticket-parent">
       <div class="qr-ticket-grid" *ngFor="let i of Instances; let index = index">
-         <div class="qr-image-container">
-            <div class="scanned-ticket" *ngIf="!i.isActive "> </div>
-            <img [src]="SingleTicket.photo" alt="" class="qr-ticket-image">
-            <div class="qrsection">
-               <qrcode class="qr-code" [qrdata]="i.uniqueID"></qrcode>
+         <div class="qr-instance-parent">
+            <div class="ticket-count-number">{{index+1}}</div>
+            <div class="qr-image-container">
+               <div class="scanned-ticket" *ngIf="!i.isActive "> </div>
+               <img [src]="SingleTicket.photo" alt="" class="qr-ticket-image">
+               <div class="qrsection">
+                  <qrcode class="qr-code" [qrdata]="i.uniqueID"></qrcode>
+               </div>
             </div>
          </div>
       </div>

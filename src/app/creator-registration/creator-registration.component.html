@@ -11,8 +11,9 @@
                        'step-5': registerForm.get('PersonalID')?.valid,
                        'step-6': registerForm.get('IdCardPhoto')?.valid
                      }">
-               </div>
-               
+                     <div class="precentage">{{percentage}}%</div>
+
+                     </div>
                 </div>
             </div>
             <div class="first-half" *ngIf="twoStep">
@@ -49,5 +50,8 @@
                 <button class="next-button" (click)="next()">{{"BACK"|translate}}</button>
             </div>
         </div>
+        <!-- <button class="my-accounts" [routerLink]="routes.creator">
+            {{"MYACCOUNTS"|translate}}
+        </button> -->
     </form>
 </div>

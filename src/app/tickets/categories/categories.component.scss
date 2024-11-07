@@ -77,7 +77,7 @@
     flex-direction: column;
     height: auto;
     border-radius: 5px;
-    animation: Appear 0.5s linear;
+    animation: slideIn 0.5s;
   }
   .ticket-title{
     font-size: 20px;
@@ -85,12 +85,14 @@
     color: rgb(240, 217, 217);
   }
   
-  @keyframes Appear {
+  @keyframes slideIn {
     0% {
       opacity: 0;
+      transform:scale(0.8);
     }
+
     100% {
-      opacity: 1;
+      transform:scale(1);
     }
   }
   
@@ -150,9 +152,18 @@
         grid-template-columns: repeat(1, 1fr);
     }
 }
-
-@media screen and (max-width : 600px){
+@media screen and (max-width : 750px){
+    .TicketImageContainer{
+      height: 160px;
+    }
+    .Ticket_parent{
+      gap: 16px;
+      row-gap: 16px;
+  }
+}
+@media screen and (max-width : 550px){
     .Ticket_parent{
         grid-template-columns: repeat(1, 1fr);
+        row-gap: 25px;
     }
 }

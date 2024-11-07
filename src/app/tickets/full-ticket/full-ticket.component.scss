@@ -280,6 +280,7 @@
   overflow: hidden;
   z-index: 1;
   font-family: inherit;
+  display: none;
  }
  
  .fancy::before {
@@ -318,35 +319,37 @@
 .SmallModalParent{
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-}
-.SmallModal{
-  padding: 0px 30px 0px 30px;
-  border-radius: 10px;
-  background-color: white;
-  display: flex;
+  height: 100%;
   align-items: center;
   justify-content: center;
   position: fixed;
   z-index: 509;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.619);
+  animation: 0.3s disabledButtonAnimation;
 }
-.SmallModal::before{
-  content: '';
-  bottom: -2px;
-  left: -2px;
-  width: 20px;
-  height: 20px;
-  background-color: white;
-  position: absolute;
-  border-radius: 50px 0px 50px 0px;
+
+.SmallModal{
+  padding: 50px;
+  border-radius: 10px;
+  background: linear-gradient(270deg, rgb(0, 5, 24), #000000, rgb(0, 5, 24));
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 1px white;
+  gap: 10px;
+  color: white;
 }
 .SmallmodalText{
   font-size: 15px;
   font-weight: 600;
-  max-width: 200px; 
   word-break: break-all;
+  color: white;
 }
-
+.bought-text-color{
+  color: rgb(242, 132, 150);
+  font-size: 20px;
+}
 
 
 
@@ -479,6 +482,7 @@ $background :#1e3d59;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    max-width: 860px;
 }
 .Title{
     font-size: 30px;
@@ -526,6 +530,7 @@ $background :#1e3d59;
   display: flex;
   justify-content: flex-start;
   gap: 10px;
+  max-width: 860px;
 }
 .datatitles{
   color: rgb(242, 132, 150);
@@ -569,6 +574,7 @@ $background :#1e3d59;
     width: 80%;
     align-items: flex-start;
     gap: 20px;
+    max-width: 780px;
 }
 .paymentAlign{
   display: flex;

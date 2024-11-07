@@ -67,6 +67,14 @@ export class TicketsComponent implements OnInit, OnDestroy{
     )
   }
 
+  Loggedin(){
+    const token = localStorage.getItem('token');
+    if (token && !this.authService.isTokenExpired(token)) {
+          return true; 
+    } else {
+      return false;
+    }
+  }
   popularTickets :any[] = [];
   MostpopularTickets() {
     this.ticketService.MostPopularTickets().subscribe(

@@ -9,6 +9,10 @@
             <p class="response" *ngIf="passcodeVisible">{{"WRONGPASSCODE" | translate}}</p>
             <p class="response" *ngIf="passwordVisible">{{"SOMETHINGWENTWRONG" | translate}}</p>
             <p class="response" *ngIf="loginresp">{{"EMAILPASSINCORECT" | translate}}</p>
+            <div class="forgot-pass-parent">
+                <div class="forgot-password" *ngIf="loginresp">{{"FORGOTPASSWORD"|translate}}</div>
+                <button [routerLink]="routes.restorePassword" class="restore-password" *ngIf="loginresp">{{"RESTOREPASSWORD"|translate}}</button>
+            </div>
         </div>
     </div>
 </div>
@@ -28,7 +32,7 @@
                     <input type="password" class="form__field" placeholder="Name" formControlName="password" >
                     <label for="name" class="form__label">{{"PASSWORD" |translate}}</label>
                 </div>
-                <button class="submit-button" (click)="login()" [ngClass]="{'valid-class': loginForm.valid, 'invalid-class': !loginForm.valid}">Submit</button>
+                <button class="submit-button" (click)="login()" [ngClass]="{'valid-class': loginForm.valid, 'invalid-class': !loginForm.valid}">{{"SUBMIT"|translate}}</button>
             </div>
         </form>
     </div>
@@ -46,7 +50,7 @@
                     <input type="email" class="form__field" placeholder="Name"  formControlName="email">
                     <label for="name" class="form__label">{{"EMAIL" |translate}}</label>
                 </div>
-                <button class="submit-button" (click)="validateEmail()" [disabled]="!emailValidationForm.valid" [ngClass]="{'valid-class': emailValidationForm.valid, 'invalid-class': !emailValidationForm.valid}">Submit</button>
+                <button class="submit-button" (click)="validateEmail()" [disabled]="!emailValidationForm.valid" [ngClass]="{'valid-class': emailValidationForm.valid, 'invalid-class': !emailValidationForm.valid}">{{"SUBMIT"|translate}}</button>
             </div>
         </form>
         <form action="" [formGroup]="passcodeValidationForm" *ngIf="passcodeVisible">
@@ -55,10 +59,10 @@
                     {{"REGISTRATION"| translate}}
                 </div>                 
                 <div class="form__group field">
-                    <input type="email" class="form__field" placeholder="Name"  formControlName="passcode">
+                    <input type="text" class="form__field" placeholder="Name"  formControlName="passcode">
                     <label for="name" class="form__label">{{"PASSCODE" |translate}}</label>
                 </div>
-                <button class="submit-button" (click)="passcodeValidation()" [ngClass]="{'valid-class': passcodeValidationForm.valid, 'invalid-class': !passcodeValidationForm.valid}">Submit</button>
+                <button class="submit-button" (click)="passcodeValidation()" [ngClass]="{'valid-class': passcodeValidationForm.valid, 'invalid-class': !passcodeValidationForm.valid}">{{"SUBMIT"|translate}}</button>
             </div>
         </form>
         <form action="" [formGroup]="registrationForm" *ngIf="passwordVisible">
@@ -67,10 +71,10 @@
                     {{"REGISTRATION"| translate}}
                 </div>
                 <div class="form__group field">
-                    <input type="email" class="form__field" placeholder="Name"  formControlName="password">
+                    <input type="password" class="form__field" placeholder="Name"  formControlName="password">
                     <label for="name" class="form__label">{{"PASSWORD" |translate}}</label>
                 </div>
-                <button class="submit-button" (click)="RegistrationFinish()" [ngClass]="{'valid-class': registrationForm.valid, 'invalid-class': !registrationForm.valid}">Submit</button>
+                <button class="submit-button" (click)="RegistrationFinish()" [ngClass]="{'valid-class': registrationForm.valid, 'invalid-class': !registrationForm.valid}">{{"SUBMIT"|translate}}</button>
             </div>
         </form>
     </div>

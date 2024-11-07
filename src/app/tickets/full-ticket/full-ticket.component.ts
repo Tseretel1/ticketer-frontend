@@ -8,6 +8,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateModule } from '@ngx-translate/core';
 import { appRoutes, Routes} from '../../route-paths';
+import { CloudinaryModule } from '@cloudinary/ng';
+
 @Component({
   selector: 'app-full-ticket',
   standalone: true,
@@ -17,7 +19,8 @@ import { appRoutes, Routes} from '../../route-paths';
     RouterLink, 
     ReactiveFormsModule, 
     DatePipe,
-    TranslateModule
+    TranslateModule,
+    CloudinaryModule
   ],
   templateUrl: './full-ticket.component.html',
   styleUrls: ['./full-ticket.component.scss'],
@@ -119,7 +122,6 @@ export class FullTicketComponent implements OnInit, OnDestroy {
 
   hideModal() {
     this.Modal = false;
-    this.showSmallModal();
   }
 
   showModal() {
@@ -161,15 +163,12 @@ export class FullTicketComponent implements OnInit, OnDestroy {
       (resp: any) => {
         if(resp.success){    
           this.showSmallModal();
-          this.SmallModalText ="You Bought ticket succesfully";
           this.hideModal();
           this.matchingTicket.ticketCount -= this.SellingForm.value.TicketCount;
       }
       },
       (error: any) => {
         if (error.status === 401 || error.status === 403) {
-          this.SmallModalText ="somethin went wrong";
-          this.hideModal();
           this.ShowNotLoggedModal();
         } else {
           console.error('An unexpected error occurred:', error);

@@ -24,6 +24,7 @@
 
     "THEATEREVENTS": "თეატრი",
     "SEEALLTICKETS": "ყველას ნახვა",
+    "TOP": "ტოპ",
     "MUSIC": "მუსიკა",
     "THEATER": "თეატრი",
     "ANIMATION": "ანიმაცია",
@@ -52,6 +53,7 @@
     "PRICE": "ფასი",
     "DESCRIPTION": "აღწერა",
     "BUYTICKET": "ბილეთის შეძენა",
+    "BOUGHTTICKET": "გილოცავთ, თქვენ წარმატებით შეიძინეთ",
     "SOLDOUT": "ყველა ბილეთი გაყიდულია!",
     "SUGGESTIONS": "შემოთავაზებები",
     "CHOSEN": "არჩეულია",
@@ -66,6 +68,8 @@
 
 
     "LOGIN": "შესვლა",
+    "FORGOTPASSWORD": "დაგავიწყდა პაროლი?",
+    "RESTOREPASSWORD":  "პაროლის აღდგენა",
     "EMAIL": "იმეილი",
     "PASSWORD": "პაროლი",
     "PASSCODE": "პასკოდი",

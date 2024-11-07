@@ -21,7 +21,7 @@
         <!--Log into creator account-->
         <div class="account-parent">
             <div class="account-tag" *ngIf="switch">{{"MYACCOUNTS" |translate}}</div>
-            <div class="CreateAccountLabel" *ngIf="!switch && creatorCheck()" >{{"CREATENEWACCOUNT"|translate}}</div>
+            <div class="CreateAccountLabel" *ngIf="!switch" >{{"CREATENEWACCOUNT"|translate}}</div>
             <div class="my-accounts-parent" *ngIf="switch">
                   <div class="my-accounts" *ngFor="let i of myAccounts">
                     <div class="my-accounts-click" (click)="LoginToaccount(i.id)">
@@ -38,7 +38,7 @@
             </div>
         
                 <!--Create Account Form-->
-                <form [formGroup]="CreateAccountForm" class="LogAccountForm"  *ngIf=" !switch && creatorCheck()">
+                <form [formGroup]="CreateAccountForm" class="LogAccountForm"  *ngIf=" !switch && !accountCreatedd">
                     <div class="">
                         <label class="input-title">{{ "ACCOUNTNAME" | translate }}</label>
                         <input type="text" formControlName="accountName" placeholder="new account" class="LoginAccountInputs">        
@@ -53,9 +53,9 @@
                       <p class="text">{{"SUBMIT"|translate}} </p>
                     </button>
                 </form>
-                <div class="" *ngIf="creatorCheck()">
+                <div class="" *ngIf="!accountCreatedd">
                     <button class="RegisterAsCreator" (click)="SwitchForms()" *ngIf="switch">{{"CREATENEWACCOUNT"|translate}}</button>
-                    <button class="RegisterAsCreator" (click)="SwitchForms()" *ngIf="switch ==false">{{"MYACCOUNTS"|translate}}</button>
+                    <button class="RegisterAsCreator" (click)="SwitchForms()" *ngIf="!switch ">{{"MYACCOUNTS"|translate}}</button>
                 </div>
         </div>
 </div>
