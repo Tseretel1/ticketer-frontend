@@ -28,6 +28,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  animation: coverAnimation 0.5s;
+}
+@keyframes coverAnimation {
+  0%{
+    scale: 1.2;
+  }
+  100%{
+    scale: 1;
+  }
 }
 .slider-buttons{
   position: absolute;
@@ -65,18 +74,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-.ticketDate{
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.923);
-  bottom: -50px;
-  transition: 0.2s all ease-in-out;
-}
-.card_box_main:hover .ticketDate{
-  bottom: 0px;
 }
 .date-ticket{
   display: flex;
@@ -229,9 +226,6 @@
   border-radius: 10px;
   position: relative;
 }
-.TicketImageContainer:hover .ticketDate{
-  bottom: 0px;
-}
 .seeAllTickets {
   display: flex;
   align-items: center;
@@ -291,7 +285,9 @@
   height: 100%;
   object-fit: cover;
   transition: 0.4s all ease-in-out;
+  animation: coverAnimation 0.5s;
 }
+
 .TicketImageContainer:hover .ticketimage{
   scale: 1.1;
 }

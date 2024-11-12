@@ -45,7 +45,7 @@
         </div>
       </div>
 
-  <!-- Expired Tickets -->
+     <!-- Expired Tickets -->
 
       <div class="TicketWrap" *ngIf="expiredTickets.length > 0 && ticketSwtich == false">
         <div class="Ticket Ticket-expired" *ngFor="let tkt of expiredTickets; let i = index"[routerLink]="['/EventCreator/Crud', tkt.id]">

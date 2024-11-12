@@ -45,7 +45,8 @@ export class NavigationComponent implements OnInit, OnDestroy{
       this.routes.fullticket, 
       this.routes.userProfile,
       this.routes.login,
-      this.routes.restorePassword
+      this.routes.restorePassword,
+      this.routes.editProfile
     ];
     return !routesToHide.some(route => this.router.url.startsWith(route));
   }
@@ -78,7 +79,7 @@ export class NavigationComponent implements OnInit, OnDestroy{
     this.UserProfile();
   }
   ngOnDestroy(): void {
-   this.Profile ={};
+    this.UserProfile();
   }
 
 
@@ -171,16 +172,6 @@ export class NavigationComponent implements OnInit, OnDestroy{
      )
   }
 
-  
-  navigateToCreatorSpace(){
-    this.HideNavigation();
-    if(this.creatorCheck()){
-      this.router.navigate([this.routes.creator])
-    }
-    else{
-      this.router.navigate([this.routes.creatorRegistration])
-    }
-  }
 
   creatorCheck(){
     const Token = localStorage.getItem("token");

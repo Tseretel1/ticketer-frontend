@@ -26,7 +26,7 @@ export class UserAuthenticationComponent {
   registrationForm :FormGroup;
 
 
-  constructor(private fb:FormBuilder, private service:RegisterServiceService,private router :Router){
+  constructor(private fb:FormBuilder, private service:RegisterServiceService,private router :Router,){
     this.loginForm =  fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],

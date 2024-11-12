@@ -2,12 +2,14 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { URLs,URL } from '../../route-paths';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CrudService {
-  private url = "https://localhost:7081/api/Creator/";
+  BaseUrl: URL = URLs;
+  private URL = this.BaseUrl.CreatorURL;
 
   private cloudName = 'ds1q7oiea';
   private uploadPreset = 'cloudinary_Upload_Preset';
@@ -16,19 +18,20 @@ export class CrudService {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', this.uploadPreset);
-    return this.http.post(`https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`, formData);
+    return this.http.post(
+      `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`,
+      formData
+    );
   }
 
   deleteTicket(id: number): Observable<any> {
-    return this.http.delete(`${this.url}delete-tickets/${id}`);
+    return this.http.delete(`${this.URL}delete-tickets/${id}`);
   }
 
-
-  constructor(private http: HttpClient,private datePipe: DatePipe) { }
-  
+  constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
   getMatchingTicket(ticketId: number): Observable<any> {
-    return this.http.get(`${this.url}matching-ticket/${ticketId}`);
+    return this.http.get(`${this.URL}matching-ticket/${ticketId}`);
   }
 
   formatDateToBackend(date: Date): string {
@@ -42,47 +45,39 @@ export class CrudService {
     return this.formatDateToBackend(new Date(combinedDateTime));
   }
 
-
   Updateticket(ticket: Ticket): Observable<any> {
-    return this.http.put(this.url + "update-tickets", ticket, {
-        headers: { 'Content-Type': 'application/json' },
-        responseType: 'json',
-    });   
-  }
-
-
-
-  createTicket(ticket: TicketToAdd): Observable<any> {
-      return this.http.post(this.url + "add-new-tickets", ticket, {
-          headers: { 'Content-Type': 'application/json' },
-          responseType: 'json',
+    return this.http.put(this.URL + 'update-tickets', ticket, {
+      headers: { 'Content-Type': 'application/json' },
+      responseType: 'json',
     });
   }
 
-
-
-}  
-
-export interface Ticket{
-  ID :number;
-  title :string;
-  description :string;
-  genre:string;
-  price:number;
-  activation_Date : string;
-  expiration_Date :string;
-  photo:string;
-  ticketCount:number;
-}
-export interface TicketToAdd{
-  title :string;
-  description :string;
-  genre:string;
-  price:number;
-  activation_Date : string;
-  expiration_Date :string;
-  photo:string;
-  ticketCount:number;
+  createTicket(ticket: TicketToAdd): Observable<any> {
+    return this.http.post(this.URL + 'add-new-tickets', ticket, {
+      headers: { 'Content-Type': 'application/json' },
+      responseType: 'json',
+    });
+  }
 }
 
-
+export interface Ticket {
+  ID: number;
+  title: string;
+  description: string;
+  genre: string;
+  price: number;
+  activation_Date: string;
+  expiration_Date: string;
+  photo: string;
+  ticketCount: number;
+}
+export interface TicketToAdd {
+  title: string;
+  description: string;
+  genre: string;
+  price: number;
+  activation_Date: string;
+  expiration_Date: string;
+  photo: string;
+  ticketCount: number;
+}

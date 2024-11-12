@@ -1,18 +1,19 @@
-:host{
+:host {
   width: 100%;
   height: 100%;
 }
 
 //edit profile
-.edit-profile{
+.edit-profile {
   display: flex;
   width: 100%;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  animation: dashboardAnimtion 0.5s;
 }
-.edit-profile-container{
+.edit-profile-container {
   display: flex;
   width: 90%;
   max-width: 1600px;
@@ -21,31 +22,31 @@
   gap: 30px;
   align-items: center;
 }
-.profile-form-align{
-  display: flex; 
+.profile-form-align {
+  display: flex;
   background-color: rgba(0, 0, 0, 0.199);
   padding: 10px;
   border-radius: 10px;
   flex-direction: column;
 }
-.account-name-parent{
+.account-name-parent {
   display: flex;
   align-items: center;
-  gap: 16px;  
+  gap: 16px;
 }
-.account-name{
+.account-name {
   font-size: 25px;
   color: white;
   text-align: center;
 }
-.editicon{
+.editicon {
   color: lightcoral;
   cursor: pointer;
 }
-.account-name-label{
+.account-name-label {
   color: white;
 }
-.exitfrom-profile{
+.exitfrom-profile {
   width: 100%;
 }
 .exit-from-account {
@@ -65,9 +66,9 @@
   border-radius: 10px;
   align-items: center;
   height: 40px;
-  }
-  
-  .exit-from-account::before {
+}
+
+.exit-from-account::before {
   content: "";
   position: absolute;
   left: 0;
@@ -76,13 +77,13 @@
   height: 100%;
   background-color: red;
   transform: translateX(-100%);
-  transition: all .3s;
+  transition: all 0.3s;
   z-index: -1;
-  }
-  
-  .exit-from-account:hover::before {
+}
+
+.exit-from-account:hover::before {
   transform: translateX(0);
-  }
+}
 
 .save-image-button {
   background-color: #ffffff00;
@@ -116,42 +117,42 @@
 }
 
 .text {
-  margin: 0 1.5em
+  margin: 0 1.5em;
 }
 @keyframes saveimageaAnimation {
-  0%{
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
-.big-nologo{
+.big-nologo {
   width: 100px;
   height: 100px;
   font-size: 100px;
 }
-.disabled{
+.disabled {
   cursor: pointer;
   opacity: 1;
   transition: 0.3s all ease-in-out;
-  animation :saveimageaAnimation 1s; 
+  animation: saveimageaAnimation 1s;
   opacity: 1;
   display: flex;
 }
-.update-photo-form{
+.update-photo-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.profile-image-and-name{
+.profile-image-and-name {
   display: flex;
   align-items: center;
   gap: 18px;
   flex-wrap: wrap;
   justify-content: center;
 }
-.profile-image-container{
+.profile-image-container {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -162,17 +163,25 @@
   justify-content: center;
   border: 1px solid white;
 }
-.img-save-align{
+.img-save-align {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.profile-image{
+.profile-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.change-photo-button{
+.no-photo {
+  width: 120px;
+  height: 120px;
+  font-size: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.change-photo-button {
   position: absolute;
   padding: 5px;
   border-radius: 5px;
@@ -181,10 +190,10 @@
   transition: 0.3s all ease-in-out;
   cursor: pointer;
 }
-.profile-image-container:hover .change-photo-button{
+.profile-image-container:hover .change-photo-button {
   opacity: 1;
 }
-.username-input{
+.username-input {
   color: white;
   border: none;
   outline: none;
@@ -192,64 +201,115 @@
   padding: 5px;
   width: auto;
 }
-.save-username-parent{
+.save-username-parent {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 16px;
   padding-top: 16px;
 }
-.save-username-button{
+.save-username-button {
   border-radius: 5px;
   padding: 5px;
   border: none;
   cursor: pointer;
   transition: 0.3s all ease-in-out;
 }
-.save-username-button:hover{
+.save-username-button:hover {
   box-shadow: 0px 0px 5px white;
 }
-.disbaled-input-parent{
+.disbaled-input-parent {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 }
 
-.enable-button{
+.enable-button {
   background-color: transparent;
-  border: none; 
+  border: none;
 }
-.disabled-input{
+.disabled-input {
   border-bottom: 1px solid white;
   animation: inputanimation 0.5s;
 }
 @keyframes inputanimation {
-  0%{
-    width: 0%;
+  0% {
+    opacity: 0;
   }
-  100%{
-    width: 100%;
+  100% {
+    opacity: 1;
   }
 }
-.transparent-button{
+.transparent-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
-.close-editing{
+.close-editing {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-
-
-
+//managment
+.managment-parent {
+  width: 100%;
+  display: flex;
+  padding-top: 50px;
+  animation: dashboardAnimtion 0.5s;
+  align-items: center;
+  flex-direction: column;
+}
+.managment-align {
+  width: 90%;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.358);
+  padding: 20px 0px;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 1600px;
+  justify-content: center;
+}
+.managment-title {
+  color: white;
+}
+.managment {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  width: 95%;
+  gap: 20px;
+}
+.manage-accounts {
+  color: white;
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-direction: column;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.468);
+  align-items: center;
+}
+.name-lastname {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.manage-data {
+  display: flex;
+  gap: 10px;
+}
+.data-titles {
+  color: rgb(236, 160, 160);
+}
 
 //dashboard
 
-.dashboard-parent{
+.dashboard-parent {
   width: 100%;
   height: 100%;
   display: flex;
@@ -258,7 +318,7 @@
   padding-top: 50px;
   padding-bottom: 50px;
 }
-.dashbord-align{
+.dashbord-align {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -269,10 +329,9 @@
   animation: dashboardAnimtion 0.5s;
   padding: 20px 0px;
 }
-.scanner{
+.scanner {
   border-radius: 10px;
   background-color: rgba(253, 253, 253, 0.047);
-  padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -280,19 +339,20 @@
   transition: 0.3s all ease-in-out;
   justify-content: center;
 }
-.scanner:hover{
+.scanner:hover {
   background-color: rgba(255, 255, 255, 0.219);
 }
-.qr-code{
+.qr-code {
   opacity: 0.5;
 }
-@keyframes dashboardAnimtion{
-  0%{
+@keyframes dashboardAnimtion {
+  0% {
+    opacity: 0;
     scale: 0;
   }
 
-  100%{
-    scale: 1;
+  100% {
+    opacity: 1;
   }
 }
 .dashboard {
@@ -301,61 +361,61 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-.dashboard-title{
+.dashboard-title {
   color: white;
   font-size: 25px;
 }
-.dash-green{
+.dash-green {
   color: green;
 }
-.dash-red{
+.dash-red {
   color: red;
 }
-.total-stat-parent{
+.total-stat-parent {
   max-width: 1600px;
   width: 100%;
   display: flex;
   justify-content: center;
   overflow-x: scroll;
-  scrollbar-width: none; 
-  padding: 40px 0px;  
+  scrollbar-width: none;
+  padding: 40px 0px;
 }
-.total-align{
+.total-align {
   display: flex;
   gap: 10px;
   border-radius: 10px;
   width: 95%;
 }
-.total-resp{
+.total-resp {
   color: white;
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 20px;
 }
-.total-title{
+.total-title {
   text-wrap: nowrap;
 }
-.total-resp-num{
+.total-resp-num {
   font-size: 16px;
 }
-.total-orange{
+.total-orange {
   color: orange;
 }
-.total-green  {
+.total-green {
   color: green;
   font-size: 30px;
 }
-.total-grey{
+.total-grey {
   color: grey;
 }
-.ticket{
+.ticket {
   display: flex;
   gap: 20px;
   border-radius: 10px;
   justify-content: center;
 }
-.ticket-background{
+.ticket-background {
   display: flex;
   background-color: rgba(0, 0, 0, 0.358);
   justify-content: space-evenly;
@@ -366,106 +426,109 @@
   padding: 16px;
   box-shadow: 0px 0px 1px white;
 }
-.ticket-image-container{
+.ticket-image-container {
   width: 100%;
   height: 180px;
   overflow: hidden;
   border-radius: 10px;
 }
-.ticket-image{
+.ticket-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.title-align{
+.title-align {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.ticket-title{
+.ticket-title {
   color: white;
   font-size: 20px;
 }
-.stat-column{
+.stat-column {
   display: flex;
   flex-direction: column;
-  gap:16px;
+  gap: 16px;
 }
-.stat-title{
+.stat-title {
   color: lightcoral;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.sold-color{
+.sold-color {
   color: lightgreen;
 }
-.total-color{
+.total-color {
   color: white;
 }
-.stat-res{
+.stat-res {
   display: flex;
   align-items: center;
   color: lightgrey;
   gap: 10px;
   line-height: 0;
 }
-.res-num{
+.res-num {
   display: flex;
   align-items: flex-end;
   line-height: 0;
   font-size: 20px;
   color: white;
 }
-.icon-roatate{
+.icon-roatate {
   transform: rotate(35deg);
   margin-bottom: 8px;
 }
-.eye-margin{
+.eye-margin {
   margin-bottom: 8px;
 }
-.view-flex{
+.view-flex {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.view-count{
+.view-count {
   display: flex;
   align-items: center;
 }
 
-
-
-
-
-
-
-
-@media screen and (min-width : 1365px){
-  .dashboard{
-      grid-template-columns: repeat(4, 1fr);
+@media screen and (min-width: 1365px) {
+  .dashboard {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media screen and (max-width : 1065px){
-  .dashboard{
-      grid-template-columns: repeat(2, 1fr);
+@media screen and (max-width: 1065px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (max-width : 665px){
-  .dashboard{
-      gap: 10px;
+@media screen and (max-width: 765px) {
+  .managment {
+    grid-template-columns: repeat(2,1fr);
   }
 }
-@media screen and (max-width : 600px){
-  .dashboard{
-      grid-template-columns: repeat(1, 1fr);
+
+@media screen and (max-width: 665px) {
+  .dashboard {
+    gap: 10px;
   }
-  .account-name{
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .account-name {
     font-size: 20px;
   }
-  .dashboard-title{
+  .dashboard-title {
     font-size: 20px;
+  }
+  .managment {
+    grid-template-columns: repeat(1,1fr);
   }
 }

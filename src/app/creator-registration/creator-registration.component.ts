@@ -15,7 +15,6 @@ import { appRoutes, Routes } from '../route-paths';
     TranslateModule,
     CommonModule,
     MatIcon,
-    RouterLink
   ],
   templateUrl: './creator-registration.component.html',
   styleUrl: './creator-registration.component.scss'
@@ -91,7 +90,6 @@ export class CreatorRegistrationComponent implements OnInit{
   
   twoStep:boolean = true;
   next() {
-    console.log(this.registerForm.value)
     console.log(this.isFirstStepValid())
     if (this.isFirstStepValid()) {
       this.twoStep = !this.twoStep;

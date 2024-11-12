@@ -369,6 +369,16 @@ $background :#1e3d59;
     display: flex;
     z-index: 2;
 }
+@keyframes FountAnimation {
+  0%{
+    opacity: 0;
+    scale: 0.5;
+  }
+  100%{
+    scale: 1;
+    opacity: 1;
+  }
+}
 .firstSection{
   display: flex;
   width: 65%;
@@ -393,6 +403,16 @@ $background :#1e3d59;
     height: 100%;
     position: fixed;
     right: 0;
+}
+@keyframes sectionAnimation {
+  0%{
+    opacity: 0;
+    scale: 0.5;
+  }
+  100%{
+    scale: 1;
+    opacity: 1;
+  }
 }
 .MainTitle{
     color: white;

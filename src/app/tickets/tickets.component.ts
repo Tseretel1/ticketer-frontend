@@ -16,11 +16,9 @@ import { AuthService } from '../auth.service';
   imports: [
     CommonModule,
     RouterLink,
-    RouterOutlet,
     ReactiveFormsModule,
     FormsModule,
     MatIcon,
-    DatePipe,
     TranslateModule
   ],
   templateUrl: './tickets.component.html',

@@ -10,7 +10,10 @@ import { appRoutes ,Routes} from '../../route-paths';
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [CommonModule, MatIcon,DatePipe,RouterLink,TranslateModule],
+  imports: [
+    CommonModule, 
+    RouterLink,
+    TranslateModule],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })

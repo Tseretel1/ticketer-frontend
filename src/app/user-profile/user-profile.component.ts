@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe, NgIf } from '@angular/common';
 import { Component, isStandalone, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { UserService } from './user.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,9 +12,9 @@ import { QRCodeModule } from 'angularx-qrcode';
   imports: [
     CommonModule,
     MatIcon,
-    DatePipe,
     TranslateModule,
-    QRCodeModule
+    QRCodeModule,
+    RouterLink
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',

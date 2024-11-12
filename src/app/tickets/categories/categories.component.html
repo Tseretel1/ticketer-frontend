@@ -10,14 +10,9 @@
                 <span *ngIf="isTopTicket(tkt)" class="TopTicket"></span>
                <div class="TicketImageContainer">
                 <img [src]="tkt.photo" alt="" class="ticketimage">
-                <div class="ticketDate">
-                    <p class="date-ticket"><mat-icon>calendar_today </mat-icon> {{ tkt.activation_Date | date: 'MMM d' }}</p>
-                    <p class="date-ticket"><mat-icon>access_time </mat-icon> {{ tkt.activation_Date | date: 'h:mm a' }}</p>
-                    </div>
-                </div>
-                <div class="">
-                    <p class="ticket-title"> {{tkt.title}}</p> 
-                </div>
+            </div>
+            <div class="">
+                <p class="ticket-title"> {{tkt.title}}</p> 
             </div>
         </div>
     </div> 

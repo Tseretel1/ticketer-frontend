@@ -18,10 +18,8 @@ import { MatIcon } from '@angular/material/icon';
   imports: [
     CommonModule,
     RouterLink,
-    TicketsComponent,
     ReactiveFormsModule,
     RouterOutlet,
-    CdkDrag,
     TranslateModule,
     RouterLinkActive,
     MatIcon
@@ -87,7 +85,6 @@ export class EventCreatorComponent implements OnInit{
   accountCreated(){
     this.service.accountCreated().subscribe(
       (resp)=>{
-        console.log("resp",resp)
         if(resp.success){
           this.accountCreatedd = true;
         }

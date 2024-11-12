@@ -20,7 +20,6 @@ export class ScannerComponent {
 
   
   constructor(public service :ScannerService){
-
   }
   isScannerOpen :boolean = true;
  

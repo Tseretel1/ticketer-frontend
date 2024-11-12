@@ -63,6 +63,12 @@
     align-items: center;
     width: 100%;
 }
+.account-parent-align{
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    max-width: 1600px;
+}
 .account-parent{
     background: linear-gradient(270deg, rgb(0, 5, 24), #011b0e, rgb(0, 5, 24));
     background-size: 800% 800%;
@@ -92,8 +98,6 @@
 .my-accounts-click{
     width: 100%;
     display: flex;
-    align-items: center;
-    gap: 20px;
     border-radius: 10px;
     padding: 10px;
     background-color: rgb(53, 53, 77);
@@ -109,8 +113,16 @@
 .my-accounts-click:hover .account-image{
     scale: 1.1;
 }
+.accounts-align{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 .account-name{
     color: white;
+    text-align: center;
 }
 .account-tag{
     color: white;

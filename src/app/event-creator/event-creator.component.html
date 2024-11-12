@@ -19,19 +19,22 @@
 </div>
 <div class="AccountLoginCheck" *ngIf="!LoggedCheck()">
         <!--Log into creator account-->
+      <div class="account-parent-align">
         <div class="account-parent">
             <div class="account-tag" *ngIf="switch">{{"MYACCOUNTS" |translate}}</div>
             <div class="CreateAccountLabel" *ngIf="!switch" >{{"CREATENEWACCOUNT"|translate}}</div>
             <div class="my-accounts-parent" *ngIf="switch">
                   <div class="my-accounts" *ngFor="let i of myAccounts">
                     <div class="my-accounts-click" (click)="LoginToaccount(i.id)">
-                        <div class="account-image-container">
-                            <img [src]="i.logo" alt="" class="account-image" *ngIf="i.logo">
-                            <mat-icon class="no-logo" *ngIf="!i.logo">account_circle</mat-icon>
-                        </div>
-                         <div class="account-name">
-                            {{i.userName}}
-                        </div>
+                        <div class="accounts-align">
+                            <div class="account-image-container">
+                                <img [src]="i.logo" alt="" class="account-image" *ngIf="i.logo">
+                                <mat-icon class="no-logo" *ngIf="!i.logo">account_circle</mat-icon>
+                            </div>
+                             <div class="account-name">
+                                {{i.userName}}
+                            </div>
+                        </div> 
                     </div>
                   </div>
                   <div class="account-name" *ngIf=" myAccounts.length <= 0">{{"NOTFOUND" | translate}}</div>
@@ -58,4 +61,5 @@
                     <button class="RegisterAsCreator" (click)="SwitchForms()" *ngIf="!switch ">{{"MYACCOUNTS"|translate}}</button>
                 </div>
         </div>
+      </div>
 </div>

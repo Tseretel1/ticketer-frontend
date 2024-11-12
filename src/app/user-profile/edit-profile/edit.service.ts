@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { URLs,URL } from '../route-paths';
+import { URLs,URL} from '../../route-paths';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CreatorRegisterService {
+export class EditService {
   constructor(private http: HttpClient) {}
   BaseUrl: URL = URLs;
-  private URL = this.BaseUrl.URL;
 
+  private URL = this.BaseUrl.URL;
+  GetMyProfile(): Observable<any> {
+    return this.http.get(this.URL + 'user-profile');
+  }
   private cloudName = 'ds1q7oiea';
   private uploadPreset = 'cloudinary_Upload_Preset';
 
@@ -25,7 +28,7 @@ export class CreatorRegisterService {
   }
 
   UpdateUser(user: RegisterAsCreatorDTO): Observable<any> {
-    return this.http.put(this.URL + 'register-as-creator', user, {
+    return this.http.put(this.URL + 'edit-profile', user, {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });
@@ -35,7 +38,5 @@ export class CreatorRegisterService {
 export interface RegisterAsCreatorDTO {
   Name: string;
   LastName: string;
-  PersonalID: string;
-  PhoneNumber: string;
-  IdCardPhoto: string;
+  photo: string;
 }

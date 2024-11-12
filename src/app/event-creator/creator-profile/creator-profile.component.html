@@ -7,7 +7,7 @@
             <div class="profile-image-and-name">
                 <div class="img-save-align">
                     <div class="profile-image-container">
-                        <button (click)="triggerFileInput()" class="change-photo-button"><mat-icon >camera_alt</mat-icon></button>
+                        <button (click)="triggerFileInput()" *ngIf="creatorCheck()" class="change-photo-button"><mat-icon >camera_alt</mat-icon></button>
                         <input id="photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden>
                         <img *ngIf="imagePreview" [src]="imagePreview" alt="" class="profile-image">
                         <mat-icon class="no-logo big-nologo" *ngIf="!imagePreview ">account_circle</mat-icon>
@@ -19,7 +19,7 @@
                 <div class="account-name-parent">
                     <p class="account-name">{{username.value}}</p>
                     <div *ngIf="!inputDisable">
-                        <button class="enable-button" (click)="EnableInput()"><mat-icon class="editicon" >edit</mat-icon> </button>
+                        <button class="enable-button" (click)="EnableInput()" *ngIf="creatorCheck()" ><mat-icon class="editicon" >edit</mat-icon> </button>
                     </div>
                 </div>
             </div>
@@ -41,6 +41,42 @@
       </div>
         <button class="exit-from-account" (click)="ExitFromAccunt()">{{"EXITFROMACCOUNT" | translate}}</button>
    </div>
+</div>
+
+<!-- Managment -->
+
+<div class="managment-parent">
+    <div class="managment-align">
+        <div class="managment-title">
+            {{"MANAGMENT"|translate}}
+        </div>
+        <div class="managment">
+            <div class="manage-accounts" *ngFor="let i of Managment; let index = index">
+                <div class="profile-image-container">
+                    <img [src]="i.photo" *ngIf="i.photo"  alt="" class="profile-image">
+                    <mat-icon class="no-photo " *ngIf="!i.photo">account_circle</mat-icon>
+                </div>
+                <div class="name-lastname">
+                    <div class="manage-data">
+                         {{i.name}}
+                     </div>
+                     <div class="manage-data">
+                        {{i.lastName}}
+                     </div>
+                </div>
+                <div class="manage-data">
+                   <p class="data-titles" >{{"EMAIL" |translate}} :</p> {{i.email}}
+                </div>
+                <div class="manage-data">
+                    <p class="data-titles" >{{"ROLE" |translate}} :</p> {{i.accountRole}}
+                </div>
+            </div>
+            <div class="scanner" [routerLink]="routes.creatorScanner">
+                <p class="dashboard-title">{{"OPENSCANNER" |translate}}</p>
+                <qrcode class="qr-code" [qrdata]="routes.creatorScanner"></qrcode>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -86,10 +122,6 @@
         </div>
     </div> 
     <div class="dashboard">
-        <div class="scanner" [routerLink]="routes.creatorScanner">
-            <p class="dashboard-title">{{"OPENSCANNER" |translate}}</p>
-            <qrcode class="qr-code" [qrdata]="routes.creatorScanner"></qrcode>
-        </div>
         <div class="ticket" *ngFor="let i of ActiveTickets">
             <div class="ticket-background">
                 <div class="title-align">

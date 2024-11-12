@@ -11,22 +11,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-search-result',
   standalone: true,
-  imports: [MatIcon, CommonModule, RouterLink, TranslateModule],
+  imports: [
+    CommonModule, 
+    RouterLink, 
+    TranslateModule],
   templateUrl: './search-result.component.html',
-  styleUrls: ['./search-result.component.scss']
+  styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
   searchResult: any[] = [];
   private destroy$ = new Subject<void>();
 
-  constructor(
-    private service: SearchService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private service: SearchService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.params.pipe(takeUntil(this.destroy$)).subscribe(params => {
+    this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
       this.searchTerm = params['id'];
       this.loadResult();
       this.scrollToTop();
@@ -39,8 +39,8 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   }
 
   private loadResult(): void {
-    this.searchResult = []; 
-    
+    this.searchResult = [];
+
     if (this.searchTerm) {
       this.service.search(this.searchTerm).subscribe(
         (resp) => {
@@ -56,7 +56,6 @@ export class SearchResultComponent implements OnInit, OnDestroy {
       );
     }
   }
-  
 
   private scrollToTop(): void {
     setTimeout(() => {
@@ -66,8 +65,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 
   public TicketViewCount(id: number): void {
     this.service.TicketViewCount(id).subscribe(
-      (resp: any) => {
-      },
+      (resp: any) => {},
       (error: any) => {
         console.error('Error updating ticket view count:', error);
       }

@@ -22,12 +22,10 @@ import { AuthService } from '../../auth.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DatePipe,
     FormsModule,
     DragDropModule,
     MatIcon,
     RouterLink,
-    CdkDrag,
     TranslateModule,
   ],
   templateUrl: './ticket-managment.component.html',

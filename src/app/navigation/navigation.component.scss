@@ -6,6 +6,7 @@
     transition: 0.3s all ease-in-out;
     position: fixed;
     top: 0;
+    backdrop-filter: blur(2px);
 }
 .ticketerTitle{
     color: whitesmoke;
@@ -22,13 +23,12 @@
     width: 100%;
     background-color: black;
     color: white;
-    display: flex;
-    justify-content: center;
     border: none;
-    text-align: center;
     border-radius: 5px;
     padding: 5px;
     outline: none;
+    display: flex;
+    justify-content: center;
 }
 .language-options{
     display: flex;
@@ -44,8 +44,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.877);
-    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.938);
     align-items: center;
     z-index: 509;
     transition: 0.3s all ease-in-out;
@@ -54,7 +53,6 @@
 }
 .OtherHalf{
     width: 100%;
-    backdrop-filter: blur(2px);
     background-color: rgba(0, 0, 0, 0.378);
     transition: 0.3s all ease-in-out;
 }
@@ -157,9 +155,10 @@
     border: none;
     text-decoration: none;
     border-radius: 5px;
-    padding: 3px;
+    width: 100%;
+    cursor: pointer;
 }
-.RouterLinkflex.active-link {
+.active-link {
     background-color: rgba(78, 78, 78, 0.141);
 }
 .searchbarAlign{
@@ -238,10 +237,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%; 
+    border-radius: 50%;
 }
-.email-parent{
-    width: auto;
+.mytickets{
+    width: 100%;
+    flex-wrap: nowrap;
 }
 .routerwhite{
     color: white;
@@ -255,6 +255,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%; 
+    border: 1px solid grey;
 }
 .profilenot-2{
     width: 40px;
@@ -263,6 +264,7 @@
 }
 .userprofile{
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 .username{
@@ -326,15 +328,24 @@
     gap: 5px;
     cursor: pointer;
     padding: 4px 8px;
+    border-radius: 10px;
   }
   .test{
     line-height: 0;
   }
   .categoire-active{
-    padding: 5px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.133);
+    background-color:whitesmoke;
+    color: black;
     transition: 0.3s all ease-in-out;
+    animation: activelinkAnimation 0.3s;
+  }
+  @keyframes activelinkAnimation {
+    0%{
+        scale: 0.5;
+    }
+    100%{
+        scale: 1;
+    }
   }
   .categoryIcons{
     color: rgb(225, 132, 97);

@@ -5,6 +5,12 @@
   align-items: center;
   justify-content: center;
 }
+.register-form-align{
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  max-width: 1600px;
+}
 .first-half {
   display: flex;
   justify-content: center;
@@ -12,7 +18,7 @@
   align-items: center;
   gap: 20px;
   animation: formAnimation 0.5s;
-  max-width: 400px;
+  min-width: 250px;
 }
 @keyframes formAnimation {
   0% {
@@ -50,7 +56,6 @@
   position: relative;
   padding: 20px 0 0;
   width: 100%;
-  min-width: 250px;
 }
 
 .form__field {
@@ -62,6 +67,7 @@
   color: #fff;
   background: transparent;
   transition: border-color 0.2s;
+  border-radius: 0px;
 }
 
 .form__field::placeholder {
@@ -180,9 +186,11 @@
 .img-container:hover .upload-button{
     opacity: 1;
 }
+.save-button{
+  cursor: default;
+}
 .save-button::before{
   transform: translateX(0);
-  cursor:not-allowed;
 }
 .disabled-save{
     border:2px solid green;
@@ -284,4 +292,12 @@
 }
 .my-accounts:hover::before {
   transform: translateX(0);
+}
+
+
+
+@media screen and (max-width: 360px){
+  .first-half{
+    min-width: 200px;
+  }
 }

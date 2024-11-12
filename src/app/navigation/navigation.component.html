@@ -18,22 +18,24 @@
           </form>
          </div>
          <div class="Nav_Routesflex">
-             <a [routerLink]="this.routes.userProfile"  class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="searchbarShow()">
+             <div [routerLink]="this.routes.userProfile"  class="RouterLinkflex" routerLinkActive="active-link" *ngIf="Loggedin()" (click)="searchbarShow()">
                 <div class="profile">
                     <div class="profileflex" >
                         <div class="profilecontainermain">
-                            <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
-                            <mat-icon class="ProfileNot" *ngIf="!Profile.profile">account_circle</mat-icon>
+                            <img [src]="Profile.photo" alt="" class="userprofile" *ngIf="Profile.photo">
+                            <mat-icon class="ProfileNot" *ngIf="!Profile.photo">account_circle</mat-icon>
                         </div>
-                        <div class="email-parent">
-                            <p class="email">
-                               {{"PROFILE"|translate}}
-                            </p>
-                        </div>
+                        <p class="mytickets">
+                            {{"PROFILE"|translate}}
+                        </p>
                     </div>
                 </div>
-             </a> 
-             <div class="creator-space" *ngIf="Loggedin()" (click)="navigateToCreatorSpace()">
+            </div> 
+             <div class="creator-space" *ngIf="Loggedin() && creatorCheck()" [routerLink]="routes.creator" routerLinkActive="active-link">
+                <mat-icon class="creator-icon">palette</mat-icon>
+                <p class="creator-text">{{"CREATORSPACE"|translate}}</p>
+             </div>
+             <div class="creator-space" *ngIf="Loggedin() && !creatorCheck()" [routerLink]="routes.creatorRegistration" routerLinkActive="active-link">
                 <mat-icon class="creator-icon">palette</mat-icon>
                 <p class="creator-text">{{"CREATORSPACE"|translate}}</p>
              </div>
@@ -66,11 +68,12 @@
                 <option class="language-options" value="en">En</option>
                 <option class="language-options" value="geo">ქარ</option>
             </select> 
+            <a [routerLink]="this.routes.ticket" class="RouterLink" routerLinkActive="active-link" (click)="searchbarShow()"><mat-icon>confirmation_number</mat-icon>{{ 'TICKETS' | translate }}</a>
              <a [routerLink]="this.routes.userProfile" class="RouterLink" routerLinkActive="active-link" *ngIf="Loggedin()"  (click)="searchbarShow()">
                 <div class="profile">
                     <div class="profilecontainer">
-                        <img [src]="Profile.profile" alt="" class="userprofile" *ngIf="Profile.profile">
-                        <mat-icon class="profilenot-2" *ngIf="Profile.profile == null">account_circle</mat-icon>
+                        <img [src]="Profile.photo" alt="" class="userprofile" *ngIf="Profile.photo">
+                        <mat-icon class="profilenot-2" *ngIf="!Profile.photo">account_circle</mat-icon>
                     </div>
                  
                     <div class="username"> 
@@ -80,11 +83,11 @@
                     </div>
                 </div>
              </a>
-             <a [routerLink]="this.routes.ticket" class="RouterLink" routerLinkActive="active-link" (click)="searchbarShow()"><mat-icon>confirmation_number</mat-icon>{{ 'TICKETS' | translate }}</a>
              <a [routerLink]="this.routes.login" class="RouterLink" routerLinkActive="active-link" *ngIf="!Loggedin()" (click)="searchbarHide()"><mat-icon>login</mat-icon>Login</a>
          </div>
          <div class="CreatorSpace">
-            <a class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Loggedin()" (click)="navigateToCreatorSpace()"><mat-icon>palette</mat-icon>{{ 'CREATORSPACE' | translate }}</a>
+            <a class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Loggedin() && creatorCheck()" [routerLink]="routes.creator" (click)="HideNavigation()"><mat-icon>palette</mat-icon>{{ 'CREATORSPACE' | translate }}</a>
+            <a class="RouterLink RouterAuth" routerLinkActive="active-link"  *ngIf="Loggedin() && !creatorCheck()" [routerLink]="routes.creatorRegistration" (click)="HideNavigation()"><mat-icon>palette</mat-icon>{{ 'CREATORSPACE' | translate }}</a>
          </div>
      </div>
      <div class="OtherHalf"  [style.opacity]="opacity"  (click)="HideNavigation()">

@@ -77,9 +77,11 @@
     "PASSCODE": "Passcode",
     "NAME": "Name",
     "LASTNAME": "Lastname",
+    "UPLOADPHOTO": "Upload Photo",
     "PERSONALID": "Your Personal ID",
     "PHONENUMBER": "Phone Number",
     "PERSONALIDPHOTO": "Personal ID card Photo",
+    "ROLE": "Role",
     "EMAILREGISTERED": "This email is already registered",
     "WRONGPASSCODE": "Wrong passcode please try again!",
     "SOMETHINGWENTWRONG": "Somethin went wrong!",
@@ -137,7 +139,7 @@
     "SAVETICKET": "Save Ticket",
     "SAVEIMAGE": "Save Image",
     "SAVE": " Save",
-
+    "MANAGMENT": "Page Managment",
 
 
     "ACCOUNTEXISTS": "Account with given Name Already exists!"

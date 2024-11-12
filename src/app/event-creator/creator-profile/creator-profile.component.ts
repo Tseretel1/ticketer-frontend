@@ -8,7 +8,6 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 import { AuthService } from '../../auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { appRoutes, Routes} from '../../route-paths';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { QRCodeModule } from 'angularx-qrcode';
 @Component({
   selector: 'app-creator-profile',
@@ -16,10 +15,8 @@ import { QRCodeModule } from 'angularx-qrcode';
   imports: [
     CommonModule,
     ReactiveFormsModule, 
-    DatePipe, 
     MatIcon, 
     RouterLink,
-    CdkDrag,
     TranslateModule,
     QRCodeModule
   ],
@@ -30,7 +27,12 @@ export class CreatorProfileComponent implements OnInit{
 routes: Routes = appRoutes;
 
 EditnameForm :FormGroup
-  constructor (private service :ProfileService, private authservice :AuthService, private router :Router,private fb: FormBuilder){
+  constructor (
+    private service :ProfileService,
+    private authservice :AuthService, 
+    private router :Router,
+    private fb: FormBuilder,
+  ){
     this.EditnameForm = fb.group({
       username:['', Validators.required],
     })
@@ -40,6 +42,7 @@ EditnameForm :FormGroup
     this.LoadMyProfile();
     this.AccountManagment();
     this.LoadActiveTickets();
+    this.creatorCheck();
   }
 
 
@@ -280,5 +283,19 @@ get username(): FormControl {
         console.log(error.message);
       }
     )
+  }
+  creatorCheck(){
+    const Token = localStorage.getItem("CreatorToken");
+    if(Token){
+      var Role =  this.authservice.getUserRole(Token);
+      if(Role == "Creator"){
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+    return false;
   }
 }

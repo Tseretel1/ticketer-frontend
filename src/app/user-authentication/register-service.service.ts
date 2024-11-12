@@ -1,38 +1,41 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { URLs,URL } from '../route-paths';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegisterServiceService {
+  constructor(private http: HttpClient) {}
+  BaseUrl: URL = URLs;
+ 
 
-  constructor(private http: HttpClient) { }
-  private URL :string = "https://localhost:7081/";
-  
+  private URL = this.BaseUrl.URL;
+
   login(login: login): Observable<any> {
-    return this.http.post(this.URL + "login", login);
+    return this.http.post(this.URL + 'login', login);
   }
 
   validateEmail(email: string): Observable<any> {
     return this.http.post(`${this.URL}email-validation/${email}`, {});
   }
-  
+
   validatePasscode(passcode: passcode): Observable<any> {
-    return this.http.post(this.URL + "passcode-confirmation", passcode);
+    return this.http.post(this.URL + 'passcode-confirmation', passcode);
   }
-  
+
   registration(reg: login): Observable<any> {
-    return this.http.post(this.URL + "user-registration", reg);
-  }    
+    return this.http.post(this.URL + 'user-registration', reg);
+  }
 }
 
-export interface passcode{
-  email:string;
-  passcode :number;
-  password :string;
+export interface passcode {
+  email: string;
+  passcode: number;
+  password: string;
 }
-export interface login{
-  email:string;
-  password :string;
+export interface login {
+  email: string;
+  password: string;
 }

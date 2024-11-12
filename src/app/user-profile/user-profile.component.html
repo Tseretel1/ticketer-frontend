@@ -1,23 +1,5 @@
 
-<div class="ExitModal" *ngIf="modalvisible">
-    <div class="modal">
-     <div class="exita-lign">
-        <p class="exit-text">{{"SUREWANTTOEXIT" | translate}}</p>
-     </div>
-     <div class="buttoparent">
-        <button class="answerButtons Yesbutton" (click)="ExitFromAccount()">{{"YES" | translate}}</button>
-        <button class="answerButtons Nobutton" (click)="hidemodal()">{{"NO" | translate}}</button>
-     </div>
-    </div>
-</div>
-
-
-
 <div class="centersingleTicketParent" *ngIf="QRVisible && Instances">
-   <div class="SingleTicketDate">
-      <p class="SingleDate"><mat-icon>calendar_today</mat-icon> {{ SingleTicket.activation_Date | date: 'MMM d' }}</p>
-      <p class="SingleDate"><mat-icon>access_time</mat-icon>{{ SingleTicket.activation_Date | date: 'h : m a' }}</p>
-   </div>
    <div class="exitButtonParent" *ngIf="!ExitFromAccountVisible ">
       <div class="exitbuttonAlign">
          <button class="backoff" (click)="BackFromTicket()">{{"BACK"|translate}}</button>
@@ -46,11 +28,25 @@
 
 <div class="Profilecenter" *ngIf="QRVisible == false">
    <div class="headerleAlign">
+      <div class="profile-align">
+         <div class="profile-photo-align">
+            <div class="profile-photo-container" [routerLink]="routes.editProfile">
+               <img [src]="Profile.photo" class="profile-photo" alt="" *ngIf="Profile.photo">
+               <mat-icon class="ProfileNot" *ngIf="!Profile.photo">account_circle</mat-icon>
+            </div>
+            <div class="user-email" *ngIf="Profile.name == null">
+               {{Profile.email}}
+            </div>  
+            <div class="user-email"*ngIf="Profile.name != null">
+               {{Profile.name}}
+               {{Profile.lastName}}
+            </div>
+         </div>
+      </div>
       <div class="myTicketsHeader">
          <div class="headerTitle">
             {{"MYTICKETS" | translate}}
          </div>
-
          <div class="ticketswitchParent">
             <div class = "">
                <button class="switchButton" (click)="switchToActive()">{{"ACTIVE" | translate}}</button>  
@@ -61,9 +57,6 @@
                <div class="spanline expired" *ngIf="ticketSwitch == false"></div>
             </div>
          </div>
-      </div>
-      <div class="exitButton" *ngIf="ExitFromAccountVisible">
-         <button (click)="Showmodal()" class="ExitFromAccountbutton">{{"EXITFROMACCOUNT" | translate}}</button>
       </div>
    </div>
 
@@ -89,7 +82,7 @@
    </div>
 </div>
 
-<div class="MyTicketsParent" *ngIf="expTickets && ticketSwitch ==false">
+<div class="MyTicketsParent" *ngIf="expTickets && !ticketSwitch ">
    <div class="TicketCenter">
       <div class="noTicketFound" *ngIf="expTickets.length <= 0">
          {{"NOTFOUND" | translate}}

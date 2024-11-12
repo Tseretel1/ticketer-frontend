@@ -1,55 +1,60 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { URLs,URL } from '../route-paths';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ServiceService {
 
   constructor(private http : HttpClient )
   { }
-  private URL = "https://localhost:7081/";  
-  loginToAccount(accountID: number): Observable<any> { 
-    return this.http.get(`${this.URL}creator-account-login/${accountID}`);
+  BaseUrl: URL = URLs;
+  private URL = this.BaseUrl.URL;
 
+  
+  loginToAccount(accountID: number): Observable<any> {
+    return this.http.get(`${this.URL}creator-account-login/${accountID}`);
   }
 
-  accountCreated(): Observable<any> { 
+  accountCreated(): Observable<any> {
     return this.http.get(`${this.URL}account-created`);
   }
 
-  
   myCreatorAccounts(): Observable<any> {
-    return this.http.get(this.URL + "my-creator-account");
-  }  
+    return this.http.get(this.URL + 'my-creator-account');
+  }
   onRegister(r: Register): Observable<any> {
-    return this.http.post(this.URL + "register-as-creator", r);
-  }  
+    return this.http.post(this.URL + 'register-as-creator', r);
+  }
 
   accountCreation(accountName: string): Observable<any> {
     const payload = {
       accountName,
     };
-    return this.http.post<any>(this.URL + "creator-account-registration", payload, {
-      headers: new HttpHeaders({
+    return this.http.post<any>(
+      this.URL + 'creator-account-registration',
+      payload,
+      {
+        headers: new HttpHeaders({
           'Content-Type': 'application/json',
-      }),
-    });  
+        }),
+      }
+    );
   }
 }
 
-
-export interface Login{
-  userName :string,
-  password:string
+export interface Login {
+  userName: string;
+  password: string;
 }
-export interface Register{
-  PersonalID :number,
-  PhoneNumber :number,
-  IdCardPhoto:number
+export interface Register {
+  PersonalID: number;
+  PhoneNumber: number;
+  IdCardPhoto: number;
 }
-export interface CreatorAccount{
-  UserName : string,
-  Logo : string,
-  Password: string,
+export interface CreatorAccount {
+  UserName: string;
+  Logo: string;
+  Password: string;
 }

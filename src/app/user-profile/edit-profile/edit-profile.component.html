@@ -1,0 +1,60 @@
+<div class="ExitModal" *ngIf="modalvisible">
+  <div class="modal">
+   <div class="exita-lign">
+      <p class="exit-text">{{"SUREWANTTOEXIT" | translate}}</p>
+   </div>
+   <div class="buttoparent">
+      <button class="answerButtons Yesbutton" (click)="ExitFromAccount()">{{"YES" | translate}}</button>
+      <button class="answerButtons Nobutton" (click)="hidemodal()">{{"NO" | translate}}</button>
+   </div>
+  </div>
+</div>
+
+
+
+<div class="form-center">
+    <form [formGroup]="registerForm">
+      <div class="register-from-parent">
+        <div class="back-parent">
+          <div class="back-align">
+              <button class="back" (click)="back()">{{"BACK"|translate}}</button>
+                <button (click)="Showmodal()" class="ExitFromAccountbutton">{{"EXITFROMACCOUNT" | translate}}</button>
+          </div>
+        </div>
+        <div class="progress-bar-parent">
+          <div class="progress-bar">
+            <div class="step-1" [style.width]="getProgressWidth()" 
+                 [ngClass]="{
+                   'step-2': registerForm.get('Photo')?.valid,
+                   'step-3': registerForm.get('Name')?.valid,
+                   'step-4': registerForm.get('lastName')?.valid
+                 }">
+              <div class="percentage">{{percentage}}%</div>
+            </div>
+          </div>
+        </div>
+        <div class="first-half">
+          <div class="upload-photo">
+            <label class="card-photo-label">{{ "UPLOADPHOTO" | translate }}</label>
+            <div class="img-container">
+              <button class="upload-button" (click)="triggerFileInput()"> 
+                <mat-icon>camera_alt</mat-icon> 
+              </button>
+              <input id="Photo" type="file" (change)="onFileChange($event)" accept="image/*" hidden formControlName="Photo">
+              <img [src]="imagePreview" class="img" alt="">
+            </div>
+          </div>
+          <div class="form__group field">
+            <input type="text" class="form__field" formControlName="Name"  maxlength="20">
+            <label for="name" class="form__label">{{ "NAME" | translate }}</label>
+          </div>
+          <div class="form__group field">
+            <input type="text" class="form__field" formControlName="lastName"  maxlength="20">
+            <label for="name" class="form__label">{{ "LASTNAME" | translate }}</label>
+          </div>
+          <button class="next-button save-button" (click)="editProfile()" [disabled]="!registerForm.valid" [ngClass]="{'disabled-save': registerForm.valid}">{{ "SAVE" | translate }}</button>
+        </div>   
+      </div>
+    </form>
+  </div>
+  

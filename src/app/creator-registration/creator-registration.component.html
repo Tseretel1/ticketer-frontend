@@ -1,5 +1,5 @@
 <div class="form-center">
-    <form [formGroup]="registerForm">
+    <form [formGroup]="registerForm" class="register-form-align">
         <div class="register-from-parent">
             <div class="progress-bar-parent">
                 <div class="progress-bar">
@@ -30,7 +30,7 @@
                     <input type="text" class="form__field"formControlName="PhoneNumber">
                     <label for="name" class="form__label">{{"PHONENUMBER" |translate}}</label>
                 </div>
-                <button class="next-button" (click)="next()">{{"NEXT"|translate}}</button>
+                <button class="next-button" (click)="next()" [ngClass]="{'disabled-save': isFirstStepValid()}">{{"NEXT"|translate}}</button>
             </div>   
             <div class="first-half" *ngIf="!twoStep">
                 <div class="form__group field">

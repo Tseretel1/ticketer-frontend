@@ -12,6 +12,7 @@ export interface Routes {
     searchResult :string;
     creatorRegistration :string;
     restorePassword :string;
+    editProfile:string;
 }
 
 export const appRoutes: Routes = {
@@ -25,7 +26,17 @@ export const appRoutes: Routes = {
     creatorTicketManagement: "/event-creator/ticket-management",
     ticketCategories : "/ticket/genre/",
     userProfile :"/user-profile",
+    editProfile :"/edit-profile",
     searchResult :"/search/",
     creatorRegistration : "/register-as-creator",
     restorePassword :'/restore-password'
 };
+export interface URL{
+    URL: string;
+    CreatorURL :string;
+}
+export const URLs: URL = 
+{
+    URL : "http://192.168.105.228:7081/",
+    CreatorURL : "http://192.168.105.228:7081/api/Creator/",
+}

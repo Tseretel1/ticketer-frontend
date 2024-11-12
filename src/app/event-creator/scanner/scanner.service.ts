@@ -1,18 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { URLs,URL } from '../../route-paths';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ScannerService {
-
-  constructor(private http :HttpClient) 
-  { }
-  private url = "https://localhost:7081/api/Creator/";
-  
+  constructor(private http: HttpClient) {}
+  BaseUrl: URL = URLs;
+  private URL = this.BaseUrl.CreatorURL;
 
   scannOneTime(ticketId: string): Observable<any> {
-    return this.http.get(`${this.url}scann-ticket/${ticketId}`);
+    return this.http.get(`${this.URL}scann-ticket/${ticketId}`);
   }
 }

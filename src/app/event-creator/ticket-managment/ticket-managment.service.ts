@@ -3,14 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../auth.service';
 import { DatePipe } from '@angular/common';
+import { URLs,URL } from '../../route-paths';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CreateTicketService {
-  private URL = "https://localhost:7081/api/Creator/"
+  BaseUrl: URL = URLs;
+  private URL = this.BaseUrl.CreatorURL;
 
-  constructor(private http: HttpClient, private authService: AuthService, private datePipe: DatePipe) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private datePipe: DatePipe
+  ) {}
   GetActiveTickets(pageIndex: number): Observable<any> {
     return this.http.get(`${this.URL}active-tickets?pageIndex=${pageIndex}`);
   }
