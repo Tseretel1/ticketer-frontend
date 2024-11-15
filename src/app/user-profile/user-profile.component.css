@@ -1,140 +1,18 @@
-.ExitFromAccountbutton {
-  display: inline-block;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: 700;
-  color: white;
-  border: 3px solid red;
-  cursor: pointer;
-  position: relative;
-  background-color: transparent;
-  text-decoration: none;
-  overflow: hidden;
-  z-index: 1;
-  font-family: inherit;
-  border-radius: 10px;
-  align-items: center;
-}
-
-.ExitFromAccountbutton::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: red;
-  transform: translateX(-100%);
-  transition: all 0.3s;
-  z-index: -1;
-}
-
-.ExitFromAccountbutton:hover::before {
-  transform: translateX(0);
-}
-
-.ExitModal {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  align-items: center;
-  justify-content: center;
-  z-index: 4;
-  background-color: rgba(0, 0, 0, 0.308);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
-  transition: 0.3s all ease-in-out;
-  animation: exitAnim 0.3s;
-}
-
-@keyframes exitAnim {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes modalAnim {
-  0% {
-    scale: 0.5;
-  }
-  50% {
-    scale: 1.2;
-  }
-  100% {
-    scale: 1;
-  }
-}
-.exit-lign {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.exit-text {
-  text-align: center;
-  display: flex;
-}
-
-.modal {
-  display: flex;
-  width: 300px;
-  height: 150px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 10px black;
-  color: white;
-  border-radius: 20px;
-  z-index: 500;
-  background: linear-gradient(270deg, rgb(18, 6, 50), #303706, rgb(18, 6, 50));
-  background-size: 800% 800%;
-  animation: AnimationName 20s ease infinite;
-  animation: modalAnim 0.3s;
-}
-
-.buttoparent {
-  display: flex;
-  gap: 20px;
-}
-
-.answerButtons {
-  padding: 10px 20px 10px 20px;
-  border-radius: 5px;
-  transition: 0.2s all ease-in-out;
-  cursor: pointer;
-  border: 1px solid white;
-  outline: none;
-  margin-top: 10px;
-}
-
-.Nobutton {
-  border: 1px solid white;
-  background-color: transparent;
-  transition: 0.2s all ease-in-out;
-  color: white;
-  border: 1px solid white;
-  outline: none;
-}
-
 .Profilecenter {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   position: relative;
-  gap: 50px;
-  padding-top: 51px;
+  padding-top: 81px;
 }
 
 .headerleAlign {
   width: 90%;
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
   max-width: 1600px;
+  padding-top: 30px;
+  gap: 30px;
 }
 
 .noTicketFound {
@@ -149,7 +27,6 @@
 .ticketswitchParent {
   width: 100%;
   display: flex;
-  gap: 50px;
 }
 
 .spanline {
@@ -211,7 +88,7 @@
   color: white;
   transition: 0.3s all ease-in-out;
   position: relative;
-  animation: 0.7s ticketAnimation;
+  animation: 0.5s ticketAnimation;
 }
 
 @keyframes ticketAnimation {
@@ -260,6 +137,7 @@
   margin-bottom: 30px;
   row-gap: 30px;
   max-width: 1600px;
+  padding-top: 30px;
 }
 
 .card_box {
@@ -299,8 +177,17 @@
   -o-object-fit: cover;
      object-fit: cover;
   transition: 0.4s all ease-in-out;
+  animation: imageAnimation 0.5s;
 }
 
+@keyframes imageAnimation {
+  0% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
 .TicketImageContainer:hover .ticketimage {
   scale: 1.1;
 }
@@ -341,20 +228,6 @@
   width: 100%;
 }
 
-.SingleTicketDate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 20px;
-}
-
-.SingleDate {
-  color: white;
-  font-size: 30px;
-  align-items: center;
-}
-
 .exitButtonParent {
   width: 100%;
   display: flex;
@@ -366,6 +239,7 @@
 .exitbuttonAlign {
   width: 90%;
   max-width: 1600px;
+  padding-top: 3%;
 }
 
 .uniqueID {
@@ -410,6 +284,26 @@
   justify-content: center;
 }
 
+.qr-instance-parent {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.ticket-count-number {
+  padding: 8px 16px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.84);
+  color: white;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  z-index: 2;
+  border: 1px solid grey;
+  z-index: 6;
+}
+
 .scanned-ticket {
   width: 100%;
   height: 100%;
@@ -425,6 +319,7 @@
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  animation: imageAnimation 0.5s;
 }
 
 .qrsection {
@@ -517,6 +412,68 @@
   background-color: white;
 }
 
+.profile-align {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.profile-photo-align {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.profile-photo-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes profileAnimation {
+  0% {
+    transform: translateY(-100%);
+  }
+  70% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+.profile-photo {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  animation: imageAnimation 0.5s;
+}
+
+.ProfileNot {
+  width: 100px;
+  height: 100px;
+  font-size: 100px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-email {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  text-wrap: wrap;
+  max-width: 120px;
+}
+
 @media screen and (min-width: 1565px) {
   .Ticket_parent {
     grid-template-columns: repeat(4, 1fr);
@@ -565,17 +522,27 @@
   .Ticket_parent {
     grid-template-columns: repeat(1, 1fr);
   }
-  .switchButton {
-    padding: 0px 30px 0px 30px;
+  .headerTitle {
+    font-size: 25px;
   }
-  .headerleAlign {
-    flex-direction: column-reverse;
-    gap: 20px;
+  .switchButton {
+    padding: 0px 10px 0px 10px;
+    font-size: 18px;
+  }
+  .user-email {
+    font-size: 16px;
+  }
+  .user-email {
+    max-width: 100px;
   }
 }
 @media screen and (max-width: 400px) {
   .switchButton {
     padding: 0px 20px 0px 20px;
+  }
+  .headerleAlign {
+    flex-direction: column;
+    padding-top: 0px;
   }
 }
 @media screen and (max-width: 385px) {

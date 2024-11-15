@@ -82,8 +82,6 @@ export class NavigationComponent implements OnInit, OnDestroy{
     this.UserProfile();
   }
 
-
-
   searchbarShow(){
     this.HideNavigation();
   }
@@ -93,19 +91,7 @@ export class NavigationComponent implements OnInit, OnDestroy{
 
   AllTickets: any[] = [];
   tickets: any[] = [];
-  searchTerm: string = ''; 
   topTickets: Set<number> = new Set(); 
-
-    
-  searchTickets() {
-    if (this.searchTerm) {
-      this.tickets = this.AllTickets.filter(ticket =>
-        ticket.title.toLowerCase().startsWith(this.searchTerm.toLowerCase())
-      );
-    } else {
-      this.tickets = this.AllTickets;
-    }
-  }
 
   
   width = 0;

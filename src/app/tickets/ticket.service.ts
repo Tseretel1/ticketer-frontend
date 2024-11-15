@@ -1,31 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
-import { URLs, URL} from '../route-paths'
+import { BaseURL} from '../route-paths'
 @Injectable({
   providedIn: 'root',
 })
 export class TicketService {
   constructor(private http: HttpClient) {}
-  BaseUrl: URL = URLs;
+  BaseUrl: any= BaseURL;
  
 
-   private URL = this.BaseUrl.URL;
 
   MostPopularTickets():Observable<any>{
-    return this.http.get(this.URL + 'popular-tickets ');
+    return this.http.get(this.BaseUrl.URL + 'popular-tickets ');
   }
 
   UpcomingTickets(): Observable<any> {
-    return this.http.get(this.URL + 'upcoming-tickets');
+    return this.http.get(this.BaseUrl.URL + 'upcoming-tickets');
   }
 
   otherTickets(): Observable<any> {
-    return this.http.get(this.URL + 'other-tickets');
+    return this.http.get(this.BaseUrl.URL + 'other-tickets');
   }
 
   TicketViewCount(id: number): Observable<any> {
-    return this.http.patch(this.URL + 'view-count', id, {
+    return this.http.patch(this.BaseUrl.URL + 'view-count', id, {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });

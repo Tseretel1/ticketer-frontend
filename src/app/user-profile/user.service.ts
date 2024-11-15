@@ -1,28 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { URLs ,URL} from '../route-paths';
+import { BaseURL} from '../route-paths';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   constructor(private http: HttpClient) {}
-  BaseUrl: URL = URLs;
+  BaseUrl: any = BaseURL;
  
 
-  private URL = this.BaseUrl.URL;
-
   GetMyProfile(): Observable<any> {
-    return this.http.get(this.URL + 'user-profile');
+    return this.http.get(this.BaseUrl.URL + 'user-profile');
   }
   GetActiveTickets(): Observable<any> {
-    return this.http.get(this.URL + 'my-active-tickets');
+    return this.http.get(this.BaseUrl.URL + 'my-active-tickets');
   }
   GetExpiredTickets(): Observable<any> {
-    return this.http.get(this.URL + 'my-expired-tickets');
+    return this.http.get(this.BaseUrl.URL + 'my-expired-tickets');
   }
   TicketInstances(id: number): Observable<any> {
-    return this.http.get<any>(`${this.URL}my-tickets-instances/${id}`);
+    return this.http.get<any>(`${this.BaseUrl.URL}my-tickets-instances/${id}`);
   }
 }

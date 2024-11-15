@@ -3,14 +3,14 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 import { LoaderService } from './loader/loader.service';
 import { finalize } from 'rxjs/operators';
-import { URLs,URL } from './route-paths';
+import { BaseURL } from './route-paths';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private loaderService: LoaderService) {}
-  BaseUrl: URL = URLs;
+  BaseUrl: any = BaseURL;
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loaderService.show();

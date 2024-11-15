@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
 }
 
@@ -25,13 +25,10 @@
 
 @keyframes notFoundAnimation {
   0% {
-    scale: 0;
-  }
-  50% {
-    scale: 1.2;
+    opacity: 0;
   }
   100% {
-    scale: 1;
+    opacity: 1;
   }
 }
 .container {
@@ -63,20 +60,6 @@
   gap: 8px;
 }
 
-.ticketDate {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.923);
-  bottom: -50px;
-  transition: 0.3s all ease-in-out;
-}
-
-.card_box:hover .ticketDate {
-  bottom: 0px;
-}
-
 .date-ticket {
   display: flex;
   align-items: center;
@@ -93,9 +76,19 @@
   flex-direction: column;
   height: auto;
   border-radius: 5px;
-  animation: Appear 0.5s linear;
+  animation: searchAnimation 0.5s;
 }
 
+@keyframes searchAnimation {
+  0% {
+    scale: 0;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
 .ticket-title {
   font-size: 20px;
   text-shadow: 0px 0px 1px white;
@@ -104,10 +97,7 @@
 
 @keyframes Appear {
   0% {
-    transform: translate(-900px);
-  }
-  50% {
-    transform: translate(100px);
+    scale: 1.2;
   }
   100% {
     transform: scale(1);
@@ -140,6 +130,7 @@
   -o-object-fit: cover;
      object-fit: cover;
   transition: 0.4s all ease-in-out;
+  animation: Appear 0.5s linear;
 }
 
 .TicketImageContainer:hover .ticketimage {

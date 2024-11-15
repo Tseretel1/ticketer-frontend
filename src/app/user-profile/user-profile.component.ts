@@ -109,7 +109,7 @@ switchToActive(){
 }
 switchToExpired(){
   this.ticketSwitch = false;
-  if(this.expTickets != null){
+  if(this.expTickets.length <= 0){
     this.expiredTickets();
   }
 }

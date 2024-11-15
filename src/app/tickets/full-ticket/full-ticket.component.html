@@ -3,7 +3,7 @@
 <div class="ModalWindowParent" *ngIf="Modal">
   <div class="ModalWindow">
     <div class="CloseModal">
-       <button class="cancel"  (click)="hideModal()"><mat-icon>close</mat-icon></button>
+       <button class="cancel"  (click)="hideModal()"><mat-icon  class="close-icon">close</mat-icon></button>
     </div>
     <p class="modal-ticket-title">{{matchingTicket.title}}</p>
     <div class="TicketModal">
@@ -40,10 +40,13 @@
 </div>
 
 <!--Little Modal-->
-<div class="SmallModalParent" *ngIf="SmallModal">
+<div class="SmallModalParent"*ngIf="SmallModal">
   <div class="SmallModal">
-    <div class="SmallmodalText">{{"BOUGHTTICKET" |translate}} :  <p class="bought-text-color">{{matchingTicket.title}} </p></div>
-    <div class="SmallmodalText">{{"REMAININGTICKETSCOUNT" |translate}} : <p class="bought-text-color"> {{ticketCount}} </p></div>
+    <div class="CloseModal closemodalpadding">
+      <button class="cancel"  (click)="closeSmallModal()"><mat-icon class="close-icon">close</mat-icon></button>
+    </div>
+    <div class="SmallmodalText"><p>{{"BOUGHTTICKET" |translate}} </p> <p class="bought-text-color">{{matchingTicket.title}} </p></div>
+    <div class="SmallmodalText"><p>{{"TICKETSCOUNT" |translate}} : {{ticketCount}} </p></div>
   </div>
 </div>
 
@@ -61,7 +64,8 @@
             <div class="ticketInformation">
               <div class="data">
                 <b class="datatitles"> {{"DATE"|translate}} : </b>
-                <p class="Datetime">{{ matchingTicket.activation_Date | date: 'MMM d' }}</p>
+                <p class="Datetime">{{ matchingTicket.activation_Date | date: 'd MMMM' }}</p>
+
                 <p class="Datetime">|</p>
                 <p class="Datetime DatetimeHour">{{ matchingTicket.activation_Date | date: 'h:mm a' }}</p>
               </div>

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { URLs,URL } from '../route-paths';
+import { BaseURL } from '../route-paths';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,23 +9,22 @@ export class ServiceService {
 
   constructor(private http : HttpClient )
   { }
-  BaseUrl: URL = URLs;
-  private URL = this.BaseUrl.URL;
+  BaseUrl: any = BaseURL;
 
   
   loginToAccount(accountID: number): Observable<any> {
-    return this.http.get(`${this.URL}creator-account-login/${accountID}`);
+    return this.http.get(`${this.BaseUrl.URL}creator-account-login/${accountID}`);
   }
 
   accountCreated(): Observable<any> {
-    return this.http.get(`${this.URL}account-created`);
+    return this.http.get(`${this.BaseUrl.URL}account-created`);
   }
 
   myCreatorAccounts(): Observable<any> {
-    return this.http.get(this.URL + 'my-creator-account');
+    return this.http.get(this.BaseUrl.URL + 'my-creator-account');
   }
   onRegister(r: Register): Observable<any> {
-    return this.http.post(this.URL + 'register-as-creator', r);
+    return this.http.post(this.BaseUrl.URL + 'register-as-creator', r);
   }
 
   accountCreation(accountName: string): Observable<any> {
@@ -33,7 +32,7 @@ export class ServiceService {
       accountName,
     };
     return this.http.post<any>(
-      this.URL + 'creator-account-registration',
+      this.BaseUrl.URL + 'creator-account-registration',
       payload,
       {
         headers: new HttpHeaders({

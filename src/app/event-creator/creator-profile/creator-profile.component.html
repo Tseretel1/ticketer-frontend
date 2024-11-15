@@ -47,33 +47,38 @@
 
 <div class="managment-parent">
     <div class="managment-align">
-        <div class="managment-title">
-            {{"MANAGMENT"|translate}}
-        </div>
-        <div class="managment">
-            <div class="manage-accounts" *ngFor="let i of Managment; let index = index">
-                <div class="profile-image-container">
-                    <img [src]="i.photo" *ngIf="i.photo"  alt="" class="profile-image">
-                    <mat-icon class="no-photo " *ngIf="!i.photo">account_circle</mat-icon>
-                </div>
-                <div class="name-lastname">
-                    <div class="manage-data">
-                         {{i.name}}
-                     </div>
-                     <div class="manage-data">
-                        {{i.lastName}}
-                     </div>
-                </div>
-                <div class="manage-data">
-                   <p class="data-titles" >{{"EMAIL" |translate}} :</p> {{i.email}}
-                </div>
-                <div class="manage-data">
-                    <p class="data-titles" >{{"ROLE" |translate}} :</p> {{i.accountRole}}
-                </div>
-            </div>
+        <div class="scann-align">
             <div class="scanner" [routerLink]="routes.creatorScanner">
                 <p class="dashboard-title">{{"OPENSCANNER" |translate}}</p>
                 <qrcode class="qr-code" [qrdata]="routes.creatorScanner"></qrcode>
+            </div>
+
+            <div class="managment-title" (click)="expandManagment()">
+                {{"MANAGMENT"|translate}}
+                <mat-icon class="expand" [ngClass]="{'icon-anim': managmentVisible}">expand_more</mat-icon>
+            </div>
+
+            <div class="managment"  [ngClass]="{'managment-visible': managmentVisible}">
+                <div class="manage-accounts" *ngFor="let i of Managment; let index = index" [ngClass]="{'accounts-visible': managmentVisible}">
+                    <div class="profile-image-container">
+                        <img [src]="i.photo" *ngIf="i.photo"  alt="" class="profile-image">
+                        <mat-icon class="no-photo " *ngIf="!i.photo">account_circle</mat-icon>
+                    </div>
+                    <div class="name-lastname">
+                        <div class="manage-data">
+                            {{i.name}}
+                        </div>
+                        <div class="manage-data">
+                            {{i.lastName}}
+                        </div>
+                    </div>
+                    <div class="manage-data">
+                    <p class="data-titles" >{{"EMAIL" |translate}} :</p> {{i.email}}
+                    </div>
+                    <div class="manage-data">
+                        <p class="data-titles" >{{"ROLE" |translate}} :</p> {{i.accountRole}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

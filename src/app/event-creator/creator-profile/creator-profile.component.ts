@@ -298,4 +298,15 @@ get username(): FormControl {
     }
     return false;
   }
+
+
+  managmentVisible :boolean = false;
+  expandManagment(){
+    if(!this.managmentVisible){
+      this.managmentVisible = true;
+    }
+    else{
+      this.managmentVisible = false;
+    }
+  }
 }

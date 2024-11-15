@@ -1,32 +1,29 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { URLs,URL } from '../route-paths';
+import { BaseURL } from '../route-paths';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterServiceService {
   constructor(private http: HttpClient) {}
-  BaseUrl: URL = URLs;
- 
-
-  private URL = this.BaseUrl.URL;
+  BaseUrl: any = BaseURL;
 
   login(login: login): Observable<any> {
-    return this.http.post(this.URL + 'login', login);
+    return this.http.post(this.BaseUrl.URL + 'login', login);
   }
 
   validateEmail(email: string): Observable<any> {
-    return this.http.post(`${this.URL}email-validation/${email}`, {});
+    return this.http.post(`${this.BaseUrl.URL}email-validation/${email}`, {});
   }
 
   validatePasscode(passcode: passcode): Observable<any> {
-    return this.http.post(this.URL + 'passcode-confirmation', passcode);
+    return this.http.post(this.BaseUrl.URL + 'passcode-confirmation', passcode);
   }
 
   registration(reg: login): Observable<any> {
-    return this.http.post(this.URL + 'user-registration', reg);
+    return this.http.post(this.BaseUrl.URL + 'user-registration', reg);
   }
 }
 

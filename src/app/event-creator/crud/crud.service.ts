@@ -2,14 +2,13 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { URLs,URL } from '../../route-paths';
+import { BaseURL } from '../../route-paths';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
-  BaseUrl: URL = URLs;
-  private URL = this.BaseUrl.CreatorURL;
+  BaseUrl: any = BaseURL;
 
   private cloudName = 'ds1q7oiea';
   private uploadPreset = 'cloudinary_Upload_Preset';
@@ -25,13 +24,13 @@ export class CrudService {
   }
 
   deleteTicket(id: number): Observable<any> {
-    return this.http.delete(`${this.URL}delete-tickets/${id}`);
+    return this.http.delete(`${this.BaseUrl.CreatorURL}delete-tickets/${id}`);
   }
 
   constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
   getMatchingTicket(ticketId: number): Observable<any> {
-    return this.http.get(`${this.URL}matching-ticket/${ticketId}`);
+    return this.http.get(`${this.BaseUrl.CreatorURL}matching-ticket/${ticketId}`);
   }
 
   formatDateToBackend(date: Date): string {
@@ -46,14 +45,14 @@ export class CrudService {
   }
 
   Updateticket(ticket: Ticket): Observable<any> {
-    return this.http.put(this.URL + 'update-tickets', ticket, {
+    return this.http.put(this.BaseUrl.CreatorURL + 'update-tickets', ticket, {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });
   }
 
   createTicket(ticket: TicketToAdd): Observable<any> {
-    return this.http.post(this.URL + 'add-new-tickets', ticket, {
+    return this.http.post(this.BaseUrl.CreatorURL + 'add-new-tickets', ticket, {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });

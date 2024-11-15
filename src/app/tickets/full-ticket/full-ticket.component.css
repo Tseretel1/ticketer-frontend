@@ -265,7 +265,7 @@
 }
 
 .cancel {
-  padding: 2px;
+  padding: 5px;
   margin: 0;
   padding: 0;
   color: white;
@@ -273,11 +273,20 @@
   background-color: transparent;
   cursor: pointer;
   transition: 0.2s all ease-in-out;
-  display: grid;
+  border-radius: 5px;
 }
 
 .cancel:hover {
   background-color: red;
+}
+
+.close-icon {
+  font-size: 20px;
+  display: flex;
+  height: 20px;
+  width: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .fancy {
@@ -354,9 +363,11 @@
 }
 
 .SmallModal {
-  padding: 50px;
+  padding: 20px 50px 50px 50px;
   border-radius: 10px;
-  background: linear-gradient(270deg, rgb(0, 5, 24), #000000, rgb(0, 5, 24));
+  background: linear-gradient(270deg, rgb(0, 5, 24), #011b0e, rgb(0, 5, 24));
+  background-size: 800% 800%;
+  animation: AnimationName 20s ease infinite;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -370,6 +381,15 @@
   font-weight: 600;
   word-break: break-all;
   color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+
+.closemodalpadding {
+  padding: 0px 0px 20px 0px;
 }
 
 .bought-text-color {
@@ -393,6 +413,16 @@
   z-index: 2;
 }
 
+@keyframes FountAnimation {
+  0% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
 .firstSection {
   display: flex;
   width: 65%;
@@ -420,6 +450,16 @@
   right: 0;
 }
 
+@keyframes sectionAnimation {
+  0% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
 .MainTitle {
   color: white;
   display: flex;
@@ -784,7 +824,6 @@
   width: 100%;
   justify-content: center;
   transition: 0.2s all ease-in-out;
-  max-width: 380px;
   overflow: hidden;
 }
 
@@ -801,13 +840,13 @@
 
 .TicketImageContainer {
   width: 100%;
+  height: 200px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 180px;
   position: relative;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .ticketimage {
@@ -910,7 +949,7 @@
 }
 @media screen and (max-width: 450px) {
   .TicketImageContainer {
-    height: 120px;
+    height: 140px;
   }
   .Ticket_parent {
     gap: 10px;
@@ -921,6 +960,6 @@
 }
 @media screen and (max-width: 280px) {
   .TicketImageContainer {
-    height: 100px;
+    height: 120px;
   }
 }/*# sourceMappingURL=full-ticket.component.css.map */

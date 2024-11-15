@@ -183,9 +183,8 @@
 }
 
 .input-align-parent {
-  width: 100%;
+  width: 90%;
   display: flex;
-  padding: 30px;
   justify-content: space-between;
   gap: 30px;
   flex-direction: column;
@@ -201,6 +200,7 @@
   font-size: 25px;
   font-weight: bold;
   color: white;
+  width: 100%;
 }
 
 .ticket-inputs {
@@ -211,6 +211,7 @@
   color: lightpink;
   padding: 10px;
   animation: inputAnimations 0.5s;
+  border-radius: 0px;
 }
 
 .ticket-inputs Option {
@@ -234,13 +235,14 @@
   flex-direction: column;
   border-radius: 10px;
   max-height: 90px;
-  max-width: 300px;
+  width: 100%;
 }
 
 .datetime-flex {
   display: flex;
   align-items: center;
   gap: 30px;
+  width: 100%;
 }
 
 .date-align-time {
@@ -250,7 +252,7 @@
 
 .description-align {
   display: flex;
-  width: 100%;
+  width: 90%;
   justify-content: space-between;
   flex-direction: column;
 }
@@ -359,13 +361,13 @@
 .content-background {
   display: flex;
   flex-direction: column;
-  width: 84%;
-  max-width: 750px;
+  width: 90%;
+  max-width: 800px;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.434);
-  padding: 25px;
   border-radius: 10px;
   border: 1px solid grey;
+  padding: 20px 0px;
 }
 
 .validation-message {
@@ -393,5 +395,8 @@
 @media screen and (max-width: 600px) {
   .image-preview {
     height: 200px;
+  }
+  .datetime-flex {
+    flex-direction: column;
   }
 }/*# sourceMappingURL=crud.component.css.map */

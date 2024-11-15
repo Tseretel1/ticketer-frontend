@@ -7,10 +7,10 @@
 
 @keyframes dashboardAnimtion {
   0% {
-    scale: 0.5;
+    opacity: 0;
   }
   100% {
-    scale: 1;
+    opacity: 1;
   }
 }
 .center-body {
@@ -117,7 +117,7 @@
   color: white;
   flex-direction: column;
   justify-content: space-between;
-  animation: dashboardAnimtion 0.3s;
+  animation: dashboardAnimtion 0.5s;
   transition: 0.4s all ease-in-out;
 }
 
@@ -197,8 +197,17 @@
   -o-object-fit: cover;
      object-fit: cover;
   transition: 0.3s all ease-in-out;
+  animation: imageAnimation 0.7s;
 }
 
+@keyframes imageAnimation {
+  0% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
 .publisherData {
   display: flex;
   width: 100%;
@@ -263,7 +272,7 @@
 }
 @media screen and (max-width: 665px) {
   .TicketWrap {
-    gap: 10px;
+    gap: 30px;
   }
 }
 @media screen and (max-width: 600px) {

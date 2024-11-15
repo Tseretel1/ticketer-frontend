@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  animation: dashboardAnimtion 0.5s;
 }
 
 .edit-profile-container {
@@ -188,6 +189,15 @@
      object-fit: cover;
 }
 
+.no-photo {
+  width: 120px;
+  height: 120px;
+  font-size: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .change-photo-button {
   position: absolute;
   padding: 5px;
@@ -250,10 +260,10 @@
 
 @keyframes inputanimation {
   0% {
-    width: 0%;
+    opacity: 0;
   }
   100% {
-    width: 100%;
+    opacity: 1;
   }
 }
 .transparent-button {
@@ -266,6 +276,120 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.managment-parent {
+  width: 100%;
+  display: flex;
+  padding-top: 50px;
+  animation: dashboardAnimtion 0.5s;
+  align-items: center;
+  flex-direction: column;
+}
+
+.managment-align {
+  width: 90%;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.358);
+  padding: 20px 0px;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 1600px;
+  justify-content: center;
+}
+
+.scann-align {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.managment-title {
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.managment {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 90%;
+  gap: 20px;
+  animation: managmentVisible 1s;
+}
+
+.manage-accounts {
+  color: white;
+  font-family: inherit;
+  justify-content: center;
+  gap: 8px;
+  flex-direction: column;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.468);
+  align-items: center;
+  display: none;
+}
+
+.accounts-visible {
+  display: flex;
+  animation: accountsVisible 0.5s;
+}
+
+@keyframes accountsVisible {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
+.expand {
+  rotate: 0deg;
+  animation: rotateBack 0.5s;
+}
+
+@keyframes rotateBack {
+  0% {
+    rotate: 180deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
+.icon-anim {
+  rotate: 180deg;
+  animation: rotateAnim 0.5s;
+}
+
+@keyframes rotateAnim {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 180deg;
+  }
+}
+.name-lastname {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.manage-data {
+  display: flex;
+  gap: 10px;
+}
+
+.data-titles {
+  color: rgb(236, 160, 160);
 }
 
 .dashboard-parent {
@@ -292,30 +416,33 @@
 
 .scanner {
   border-radius: 10px;
-  background-color: rgba(253, 253, 253, 0.047);
-  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.468);
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   transition: 0.3s all ease-in-out;
   justify-content: center;
+  padding: 20px;
+  border: 1px solid transparent;
 }
 
 .scanner:hover {
-  background-color: rgba(255, 255, 255, 0.219);
+  background-color: rgba(0, 0, 0, 0.295);
+  border: 1px solid white;
 }
 
 .qr-code {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 @keyframes dashboardAnimtion {
   0% {
+    opacity: 0;
     scale: 0;
   }
   100% {
-    scale: 1;
+    opacity: 1;
   }
 }
 .dashboard {
@@ -346,6 +473,10 @@
   overflow-x: scroll;
   scrollbar-width: none;
   padding: 40px 0px;
+}
+
+.total-stat-parent::-webkit-scrollbar {
+  display: none;
 }
 
 .total-align {
@@ -495,6 +626,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+@media screen and (max-width: 765px) {
+  .managment {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 @media screen and (max-width: 665px) {
   .dashboard {
     gap: 10px;
@@ -509,5 +645,8 @@
   }
   .dashboard-title {
     font-size: 20px;
+  }
+  .managment {
+    grid-template-columns: repeat(1, 1fr);
   }
 }/*# sourceMappingURL=creator-profile.component.css.map */

@@ -31,12 +31,9 @@ export const appRoutes: Routes = {
     creatorRegistration : "/register-as-creator",
     restorePassword :'/restore-password'
 };
-export interface URL{
-    URL: string;
-    CreatorURL :string;
-}
-export const URLs: URL = 
+
+export const BaseURL : any = 
 {
-    URL : "http://192.168.105.228:7081/",
-    CreatorURL : "http://192.168.105.228:7081/api/Creator/",
+    URL : "http://192.168.1.10:7081/",
+    CreatorURL : "http://192.168.1.10:7081/api/Creator/",
 }

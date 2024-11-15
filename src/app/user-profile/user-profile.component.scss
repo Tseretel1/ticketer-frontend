@@ -10,7 +10,6 @@
 .headerleAlign {
   width: 90%;
   display: flex;
-  align-items: center;
   max-width: 1600px;
   padding-top: 30px;
   gap: 30px;
@@ -417,6 +416,7 @@
   font-size: 20px;
   text-align: center;
   text-wrap: wrap;
+  max-width: 120px;
 }
 
 

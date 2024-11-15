@@ -1,14 +1,17 @@
-import { CommonModule, DatePipe, Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule, DatePipe,Location, registerLocaleData } from '@angular/common';
+import { Component, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { ActivatedRoute, Router, RouterLink,} from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FullTicketService } from './full-ticket.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateModule } from '@ngx-translate/core';
-import { appRoutes, Routes} from '../../route-paths';
+import { appRoutes, Routes } from '../../route-paths';
 import { CloudinaryModule } from '@cloudinary/ng';
+import localeKa from '@angular/common/locales/ka'; // Correctly import Georgian locale
+
+registerLocaleData(localeKa);
 
 @Component({
   selector: 'app-full-ticket',
@@ -21,6 +24,9 @@ import { CloudinaryModule } from '@cloudinary/ng';
     DatePipe,
     TranslateModule,
     CloudinaryModule
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'ka' }  // Correct locale code for Georgian
   ],
   templateUrl: './full-ticket.component.html',
   styleUrls: ['./full-ticket.component.scss'],
@@ -133,9 +139,9 @@ export class FullTicketComponent implements OnInit, OnDestroy {
 
   showSmallModal() {
     this.SmallModal = true;
-    setTimeout(() => {
-      this.SmallModal = false;
-    }, 5000);
+  }
+  closeSmallModal(){
+    this.SmallModal = false;
   }
 
   get isTicketAvailable(): boolean {

@@ -1,21 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { URLs,URL } from '../route-paths';
+import { BaseURL } from '../route-paths';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavService {
   constructor(private http: HttpClient) {}
-  BaseUrl: URL = URLs;
+  BaseUrl: any = BaseURL;
 
-  
-  private url = this.BaseUrl.URL;
   GetMyProfile(): Observable<any> {
-    return this.http.get(this.url + 'user-profile');
+    return this.http.get(this.BaseUrl.URL + 'user-profile');
   }
   search(searchTerm: string): Observable<any> {
-    return this.http.get(`${this.url}search-by-title/${searchTerm}`);
+    return this.http.get(`${this.BaseUrl.URL}search-by-title/${searchTerm}`);
   }
 }

@@ -1,18 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { URLs,URL} from '../../route-paths';
+import { BaseURL} from '../../route-paths';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EditService {
   constructor(private http: HttpClient) {}
-  BaseUrl: URL = URLs;
+  BaseUrl: any = BaseURL;
 
-  private URL = this.BaseUrl.URL;
   GetMyProfile(): Observable<any> {
-    return this.http.get(this.URL + 'user-profile');
+    return this.http.get(this.BaseUrl.URL + 'user-profile');
   }
   private cloudName = 'ds1q7oiea';
   private uploadPreset = 'cloudinary_Upload_Preset';
@@ -28,7 +27,7 @@ export class EditService {
   }
 
   UpdateUser(user: RegisterAsCreatorDTO): Observable<any> {
-    return this.http.put(this.URL + 'edit-profile', user, {
+    return this.http.put(this.BaseUrl.URL + 'edit-profile', user, {
       headers: { 'Content-Type': 'application/json' },
       responseType: 'json',
     });

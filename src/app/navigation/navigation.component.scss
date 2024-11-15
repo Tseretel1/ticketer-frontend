@@ -320,6 +320,9 @@
     max-width: 1600px;
     gap: 30px;
   }
+  .categoriesAlign::-webkit-scrollbar{
+    display: none;
+  }
 
   .categoryTitle{
     display: flex;
