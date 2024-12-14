@@ -1,27 +1,58 @@
-# TicketApp
+# Ticketer - Ticket Buying and Selling Platform
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.7.
+**Ticketer** is a comprehensive platform that allows users to **buy, sell**, and **manage tickets** for events. Whether you're looking for tickets to an event or you're a creator planning your own event, Ticketer makes the process seamless and efficient.
 
-## Development server
+This platform allows users to:
+- **Find and purchase tickets** for their desired events.
+- **Create and sell tickets** for their own events.
+- **Manage tickets** with features such as ticket creation, updating, and deletion.
+- **Access a dashboard** with **statistics** on sales, income, and remaining tickets.
+- **Scan tickets** using a unique QR code system for entry verification.
 
-Run `ng serve` for a dev server. Navigate to `http://192.168.105.228:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### For Ticket Buyers:
+- **Browse events** and search for tickets by category, date, and location.
+- **Purchase tickets** for events with secure payment options.
+- Receive tickets with **QR codes**, which contain a unique ticket ID.
 
-## Build
+### For Ticket Creators:
+- **Create events** and sell tickets directly through the platform.
+- Manage tickets: Add new tickets, update existing ones, or delete tickets as needed.
+- **Dashboard** with **real-time statistics**:
+  - View sold tickets.
+  - Track **income** and sales data.
+  - See remaining tickets available.
+- **Ticket scanning functionality** to validate and verify tickets at the event venue using QR codes.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## Tech Stack
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Frontend**: Angular
+- **Backend**: .NET Core (API services for ticket creation, management, and payment)
+- **Database**: SQL Server / MongoDB (for storing event and ticket data)
+- **QR Code Generation**: For ticket validation and scanning
+- **Authentication**: JWT (JSON Web Tokens) for secure user login and role management.
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Getting Started
 
-## Further help
+### Prerequisites
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+To run this project locally, you need to have the following installed:
+- **Node.js** (with npm)
+- **Angular CLI**
+- **.NET Core SDK** (for backend development)
+- **SQL Server** (or a compatible database system)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/ticketer.git
+   cd ticketer
