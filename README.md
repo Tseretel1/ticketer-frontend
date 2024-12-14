@@ -49,10 +49,3 @@ To run this project locally, you need to have the following installed:
 - **.NET Core SDK** (for backend development)
 - **SQL Server** (or a compatible database system)
 
-### Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/ticketer.git
-   cd ticketer
